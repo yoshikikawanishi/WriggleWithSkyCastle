@@ -60,7 +60,7 @@ public class FadeInOut : SingletonMonoBehaviour<FadeInOut> {
         screen_Cover_Sprite.transform.localPosition = new Vector3(0, 0, 10);    //座標
         screen_Cover_Sprite.transform.localScale    = new Vector3(16, 16f, 1);  //サイズ
         screen_Cover_Sprite.color                   = color;                    //色
-        screen_Cover_Sprite.sortingOrder            = 11;                       //レイヤ
+        screen_Cover_Sprite.sortingOrder            = 16;                       //レイヤ
         if (is_Fade_Out) 
             screen_Cover_Sprite.color              += new Color(0, 0, 0, -1);   //透明度
     }

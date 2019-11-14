@@ -16,6 +16,7 @@ TagManager:
   - InvisibleWallTag
   - MissZoneTag
   - PlayerChargeBulletTag
+  - BombTag
   layers:
   - Default
   - TransparentFX

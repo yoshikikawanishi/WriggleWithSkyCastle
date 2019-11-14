@@ -17,7 +17,7 @@ public class Stage1_BossScene : MonoBehaviour {
 	void Update () {
         //クリア後
         if (boss.Clear_Trigger()) {
-
+            GameObject.Find("Larva").GetComponent<LarvaController>().Clear();
         }	
 	}
 }

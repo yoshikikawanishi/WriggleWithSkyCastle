@@ -24,14 +24,14 @@ public class PutOutSmallItems : MonoBehaviour {
         for(int i = 0; i < power_Num; i++) {
             var item = power_Pool.GetObject();
             item.transform.position = transform.position;
-            var velocity = new Vector2(Random.Range(-8f, 8f) * i, Random.Range(400f, 550f));
+            var velocity = new Vector2(Random.Range(-10f, 10f) * i, Random.Range(300f, 450f));
             item.GetComponent<Rigidbody2D>().velocity = velocity;
         }
         //スコア
         for (int i = 0; i < score_Num; i++) {
             var item = score_Pool.GetObject();
             item.transform.position = transform.position;
-            var velocity = new Vector2(Random.Range(-8f, 8f) * i, Random.Range(400f, 550f));
+            var velocity = new Vector2(Random.Range(-10f, 10f) * i, Random.Range(300f, 450f));
             item.GetComponent<Rigidbody2D>().velocity = velocity;
         }
     }

@@ -5,6 +5,11 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class Bullet : MonoBehaviour {
 
+    public List<string> deleted_Obj_Tag = new List<string> {
+        "PlayerBodyTag",
+        "BombTag"
+    };
+
 	public void Set_Inactive(float lifeTime) {
         StartCoroutine("Set_Inactive_Routine", lifeTime);
     }
@@ -16,8 +21,10 @@ public class Bullet : MonoBehaviour {
 
 
     private void OnTriggerEnter2D(Collider2D collision) {
-        if(collision.tag == "PlayerBodyTag") {
-            gameObject.SetActive(false);
+        foreach (string tag in deleted_Obj_Tag) {
+            if (collision.tag == tag) {
+                gameObject.SetActive(false);
+            }
         }
     }
 

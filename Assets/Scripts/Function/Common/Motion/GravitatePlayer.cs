@@ -5,6 +5,7 @@ using UnityEngine;
 /// <summary>
 /// 自機に吸い寄せられるオブジェクトにアタッチする
 /// </summary>
+[RequireComponent(typeof(Rigidbody2D))]
 public class GravitatePlayer : MonoBehaviour {
 
     //自機
@@ -17,7 +18,7 @@ public class GravitatePlayer : MonoBehaviour {
     //吸い付き始める距離
     [SerializeField] private float DISTANCE_BORDER = 60f;
     //吸い付きの強さ
-    [SerializeField] private float GRAVITATE_POWER = 250f;
+    [SerializeField] private float GRAVITATE_POWER = 50f;
 
     //コンポーネント
     private Rigidbody2D _rigid;

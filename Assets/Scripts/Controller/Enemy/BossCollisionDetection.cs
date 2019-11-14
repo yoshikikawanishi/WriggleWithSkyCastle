@@ -18,4 +18,15 @@ public class BossCollisionDetection : EnemyCollisionDetection {
         _boss_Enemy.Damaged(damage);
     }
 
+
+    //無敵化
+    public void Become_Invincible() {
+        gameObject.layer = LayerMask.NameToLayer("InvincibleLayer");
+    }
+
+    //無敵化解除
+    public void Release_Invincible() {
+        gameObject.layer = LayerMask.NameToLayer("EnemyLayer");
+    }
+
 }
