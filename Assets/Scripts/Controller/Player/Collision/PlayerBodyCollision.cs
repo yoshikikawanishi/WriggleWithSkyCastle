@@ -13,14 +13,21 @@ public class PlayerBodyCollision : MonoBehaviour {
     };
 
     //1フレーム内に２回以上被弾しないようにする
-    private bool is_Damaged = false;    
+    private bool is_Damaged = false;
+
+    //デフォルトのサイズ、オフセット
+    private Vector2 default_Size;
+    private Vector2 default_Offset;
 
 
 	// Use this for initialization
 	void Start () {
         //取得
         player_Damaged = transform.parent.GetComponent<PlayerDamaged>();
-	}
+        //初期値代入
+        default_Size = GetComponent<CapsuleCollider2D>().size;
+        default_Offset = GetComponent<CapsuleCollider2D>().offset;
+    }
 
 
     private void LateUpdate() {
@@ -68,6 +75,11 @@ public class PlayerBodyCollision : MonoBehaviour {
 
     public void Change_Collider_Size(Vector2 size) {
         GetComponent<CapsuleCollider2D>().size = size;
+    }
+
+    public void Back_Default_Collider() {
+        GetComponent<CapsuleCollider2D>().size = default_Size;
+        GetComponent<CapsuleCollider2D>().offset = default_Offset;
     }
 
     //当たり判定の表示

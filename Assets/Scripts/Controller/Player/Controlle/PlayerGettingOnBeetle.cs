@@ -16,7 +16,7 @@ public class PlayerGettingOnBeetle : MonoBehaviour {
     public bool can_Get_On_Beetle = true;
 
     private float default_Gravity;
-    private Vector2 default_Collider_Size;
+    private Vector2 default_Collider_Offset;
 
     private float scroll_Speed = 1f;
 
@@ -31,7 +31,7 @@ public class PlayerGettingOnBeetle : MonoBehaviour {
 
         //初期値代入
         default_Gravity = GetComponent<Rigidbody2D>().gravityScale;
-        default_Collider_Size = GetComponentInChildren<CapsuleCollider2D>().size;
+        default_Collider_Offset = GetComponentInChildren<CapsuleCollider2D>().offset;
     }
 
 
@@ -99,10 +99,10 @@ public class PlayerGettingOnBeetle : MonoBehaviour {
 
     //ステータス変更
     private void Change_To_Beetle_Status() {
-        transform.SetParent(main_Camera.transform);                 //カメラの子に
-        _controller.Change_Animation("RideBeetleBool");             //アニメーション
-        GetComponent<Rigidbody2D>().gravityScale = 0;               //重力
-        body_Collision.Change_Collider_Size(new Vector2(6f, 6f));   //当たり判定
+        transform.SetParent(main_Camera.transform);                                         //カメラの子に
+        _controller.Change_Animation("RideBeetleBool");                                     //アニメーション
+        GetComponent<Rigidbody2D>().gravityScale = 0;                                       //重力
+        body_Collision.Change_Collider_Size(new Vector2(6f, 6f), default_Collider_Offset);  //当たり判定
         body_Collision.Display_Sprite();
         beetle_Body.SetActive(true);
         main_Camera.GetComponent<CameraController>().Start_Auto_Scroll(scroll_Speed);  //オートスクロール
@@ -167,12 +167,12 @@ public class PlayerGettingOnBeetle : MonoBehaviour {
         string anim_Parm = _controller.is_Landing ? "IdleBool" : "JumpBool";    //アニメーション
         _controller.Change_Animation(anim_Parm);
 
-        transform.SetParent(null);                                              //親子関係解除                 
-        GetComponent<Rigidbody2D>().gravityScale = default_Gravity;             //重力
-        body_Collision.Change_Collider_Size(default_Collider_Size);             //当たり判定
+        transform.SetParent(null);                                      //親子関係解除                 
+        GetComponent<Rigidbody2D>().gravityScale = default_Gravity;     //重力
+        body_Collision.Back_Default_Collider();                         //当たり判定
         body_Collision.Hide_Sprite();
         beetle_Body.SetActive(false);
-        main_Camera.GetComponent<CameraController>().Quit_Auto_Scroll();        //オートスクロール
+        main_Camera.GetComponent<CameraController>().Quit_Auto_Scroll();//オートスクロール
     }
 
     #endregion

@@ -21,7 +21,8 @@ public class PlayerTransition : MonoBehaviour {
 
     //移動
     public void Transition(int direction) {
-        if (Time.timeScale == 0) return;
+        if (Time.timeScale == 0) return;    //時間停止中
+        if (_controller.is_Squat) return;   //しゃがみ中
         direction = direction > 0 ? 1 : -1;
 
         //空中で慣性つける
@@ -52,7 +53,8 @@ public class PlayerTransition : MonoBehaviour {
     public void Slow_Down() {
         if (_controller.is_Landing) {
             _rigid.velocity *= new Vector2(0.25f, 1);
-            _controller.Change_Animation("IdleBool");
-        }        
+            if (!_controller.is_Squat)
+                _controller.Change_Animation("IdleBool");            
+        }
     }
 }

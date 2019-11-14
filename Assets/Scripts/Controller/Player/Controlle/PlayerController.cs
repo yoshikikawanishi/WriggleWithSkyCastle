@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour {
     private PlayerTransitionRidingBeetle _transition_Beetle;
     private PlayerJump _jump;
     private PlayerAttack _attack;
+    private PlayerSquat _squat;
     private PlayerShoot _shoot;
     private PlayerGettingOnBeetle _getting_On_Beetle;
     //キー入力用
@@ -20,6 +21,7 @@ public class PlayerController : MonoBehaviour {
     //状態
     public bool is_Playable = true;
     public bool is_Landing = true;
+    public bool is_Squat = false;
     public bool is_Ride_Beetle = false;
     //攻撃の入力識別用
     public bool start_Attack_Frame_Count = false;
@@ -41,6 +43,7 @@ public class PlayerController : MonoBehaviour {
         _transition_Beetle = GetComponent<PlayerTransitionRidingBeetle>();
         _jump = GetComponent<PlayerJump>();
         _attack = GetComponent<PlayerAttack>();
+        _squat = GetComponent<PlayerSquat>();
         _shoot = GetComponent<PlayerShoot>();
         _getting_On_Beetle = GetComponent<PlayerGettingOnBeetle>();
         input = InputManager.Instance;
@@ -65,6 +68,15 @@ public class PlayerController : MonoBehaviour {
 
     //通常時の操作
     private void Normal_Controlle() {
+        //しゃがみ
+        if(Input.GetAxisRaw("Vertical") < 0 && is_Landing) {
+            if(!is_Squat)
+                _squat.Squat();
+        }
+        else {
+            if(is_Squat)
+                _squat.Release_Squat();
+        }
         //移動
         if (Input.GetAxisRaw("Horizontal") > 0) {
             _transition.Transition(1);
@@ -73,6 +85,9 @@ public class PlayerController : MonoBehaviour {
             _transition.Transition(-1);
         }
         else {
+            _transition.Slow_Down();
+        }
+        if (is_Squat) {
             _transition.Slow_Down();
         }
         //ジャンプ
@@ -120,7 +135,7 @@ public class PlayerController : MonoBehaviour {
         //待ってる間に下が押されたらキック、1度も押されなかったら横攻撃
         if (start_Attack_Frame_Count) {
             attack_Frame_Count++;
-            if (Input.GetAxis("Vertical") < -0.1f) {
+            if (Input.GetAxisRaw("Vertical") < -0.1f) {
                 _attack.Kick();
             }
             else if (attack_Frame_Count > 7) {
@@ -165,6 +180,7 @@ public class PlayerController : MonoBehaviour {
         _anim.SetBool("DashBool", false);
         _anim.SetBool("JumpBool", false);
         _anim.SetBool("RideBeetleBool", false);
+        _anim.SetBool("SquatBool", false);
 
         _anim.SetBool(next_Parameter, true);
         now_Animator_Parameter = next_Parameter;
