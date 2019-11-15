@@ -9,12 +9,12 @@ public class BulletAccelerator : MonoBehaviour {
     /// 弾をまっすぐ加速させる
     /// </summary>
     /// <param name="bullet_List"></param>
-	public void Accelerat_Bullet(List<GameObject> bullet_List, float acc_Rate) {
+	public void Accelerat_Bullet(List<GameObject> bullet_List, float acc_Rate, float acc_Time) {
         if (bullet_List[0].GetComponent<Rigidbody2D>() == null) {
             Debug.Log("Bullet Not Attached Rigidbody");
             return;
         }
-        StartCoroutine("Accelerate_Bullet_Routine");          
+        StartCoroutine(Accelerate_Bullet_Routine(bullet_List, acc_Rate, acc_Time));          
     }
 
 
@@ -27,7 +27,10 @@ public class BulletAccelerator : MonoBehaviour {
         }
         //加速
         for (float t = 0; t < acc_Time; t += Time.deltaTime) {
-            for(int i = 0; i < bullet_List.Count; i++) {
+            for(int i = 0; i < rigid_List.Count; i++) {
+                if(rigid_List[i] == null) {
+                    continue;
+                }
                 rigid_List[i].velocity *= acc_Rate * Time.timeScale;
             }
             yield return null;

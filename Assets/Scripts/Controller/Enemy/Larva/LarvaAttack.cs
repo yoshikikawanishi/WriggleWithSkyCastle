@@ -65,8 +65,8 @@ public class LarvaAttack : MonoBehaviour {
             //弾幕1
             _controller.Play_Charge_Effect(2.0f);
             yield return new WaitForSeconds(2.0f);
-            Debug.Log("TODO : Larva Shoot1");
-            yield return new WaitForSeconds(2.0f);
+            shoot_Obj.StartCoroutine("Shoot_Green_Bullet_Cor");
+            yield return new WaitForSeconds(3.0f);
         }
     }
 
@@ -76,6 +76,7 @@ public class LarvaAttack : MonoBehaviour {
         _controller.Stop_Charge_Effect();
         StopCoroutine("Phase1_Cor");
         _move.StopAllCoroutines();
+        shoot_Obj.StopAllCoroutines();
         Quit_Trace_Player();
     }
     #endregion
@@ -122,14 +123,22 @@ public class LarvaAttack : MonoBehaviour {
             //移動
             Quit_Trace_Player();
             _move.Set_Speed(0.01f, 1.2f, 0.95f);
-            _move.Start_Move(new Vector3(130f, 0), 0, false);
+            _move.Start_Move(new Vector3(0, 110f), 0, false);
             yield return new WaitUntil(_move.End_Move);
 
             //弾幕2
             _controller.Play_Charge_Effect(2.0f);
             yield return new WaitForSeconds(2.0f);
-            Debug.Log("TODO : Larva Shoot2");
-            yield return new WaitForSeconds(2.0f);
+            shoot_Obj.StartCoroutine("Shoot_Green_Bullet_Cor");
+            yield return new WaitForSeconds(3.0f);
+            shoot_Obj.Shoot_Red_Bullet();
+            yield return new WaitForSeconds(1.5f);
+            shoot_Obj.Shoot_Red_Bullet();
+            yield return new WaitForSeconds(1.5f);
+
+            //移動
+            _move.Start_Move(new Vector3(130f, -32f), 0, false);
+            yield return new WaitUntil(_move.End_Move);
         }
     }
     
@@ -139,6 +148,7 @@ public class LarvaAttack : MonoBehaviour {
         _controller.Stop_Charge_Effect();
         StopCoroutine("Phase2_Cor");
         _move.StopAllCoroutines();
+        shoot_Obj.StopAllCoroutines();
         Quit_Trace_Player();
     }
     #endregion

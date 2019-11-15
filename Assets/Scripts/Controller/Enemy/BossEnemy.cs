@@ -88,7 +88,7 @@ public class BossEnemy : MonoBehaviour {
     //クリア時の処理
     private void Clear() {
         clear_Trigger = true;
-        is_Cleared = true;
+        is_Cleared = true;        
 
         var effect = Instantiate(clear_Effect_Prefab);
         effect.transform.position = transform.position;

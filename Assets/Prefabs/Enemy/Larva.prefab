@@ -20,6 +20,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4685215513311278}
   - component: {fileID: 114020755178135434}
+  - component: {fileID: 114220610018675654}
+  - component: {fileID: 114994852942124014}
   m_Layer: 9
   m_Name: ShootObj
   m_TagString: Untagged
@@ -238,6 +240,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scales_Bullet: {fileID: 1618484187156356, guid: 094d8e4e220f4354299ff2853dc7f15d,
     type: 2}
+  green_Rice_Bullet: {fileID: 1742974461349758, guid: aee60bc3d16d58d4582e97f7de51b0a0,
+    type: 2}
+  red_Bullet: {fileID: 1695308605818196, guid: c0c20a6f0f8954646af2418a3989a0d0, type: 2}
 --- !u!114 &114130120913252434
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -247,6 +252,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4aa50f45f8a5e7d41a8cccf482658f57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114220610018675654
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1061204929445768}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3875da2e4459c248afa16ae1c3bb102, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &114475841216765868
@@ -295,7 +311,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c9048ccf0aa56442ba7e89fea6de129, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  life: 6400000078000000
+  life: a0000000a0000000
   power_Value: 8
   score_Value: 10
   phase_Change_Bomb_Prefab: {fileID: 1736861288342968, guid: 675f49615979bbc458f93a55dfd74bd8,
@@ -314,6 +330,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   back_Design: {fileID: 0}
+--- !u!114 &114994852942124014
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1061204929445768}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: caf05bc0782f25542a90c28f214cdca0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!198 &198472761795253088
 ParticleSystem:
   m_ObjectHideFlags: 1

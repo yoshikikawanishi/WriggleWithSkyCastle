@@ -49,6 +49,7 @@ public class LarvaController : MonoBehaviour {
     //クリア
     public void Clear() {
         _attack.Stop_Phase2();
+        this.enabled = false;
     }
 
 
