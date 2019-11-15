@@ -124,6 +124,7 @@ public class KeyConfig {
     /// ファイルからキーコンフィグファイルをロードする
     /// </summary>
     public void LoadConfigFile() {
+
         string filePath = Application.dataPath + @"\StreamingAssets\KeyConfig.txt";
         TextFileReader text = new TextFileReader();
         text.Read_Text_File_Path(filePath);
@@ -142,7 +143,8 @@ public class KeyConfig {
     /// <summary>
     /// 現在のキーコンフィグをファイルにセーブする
     /// </summary>
-    public void SaveConfigFile() {
+    public void SaveConfigFile() {  
+        
         string filePath = Application.dataPath + @"\StreamingAssets\KeyConfig.txt";
 
         StreamWriter sw_Clear = new StreamWriter(filePath, false);
@@ -152,6 +154,7 @@ public class KeyConfig {
         }
         sw_Clear.Flush();
         sw_Clear.Close();
+
     }
 
 }

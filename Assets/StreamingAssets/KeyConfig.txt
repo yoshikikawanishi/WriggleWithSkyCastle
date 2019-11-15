@@ -1,7 +1,7 @@
 #KEYNAME	#VALUE1	VALUE2
-Jump	Z	JoystickButton3
-Attack	X	JoystickButton1
-Ride	C	JoystickButton5
-Slow	LeftShift	joystickButton4
-Shoot	Z	JoystickButton0
-Pause	Escape	JoystickButton11
+Jump	Z	Joystick1Button3
+Attack	C	Joystick1Button1
+Ride	C	Joystick1Button5
+Slow	LeftShift	Joystick1Button6
+Shoot	Z	Joystick1Button0
+Pause	Escape	Joystick1Button11

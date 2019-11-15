@@ -118,14 +118,15 @@ internal class InputManager : SingletonMonoBehaviour<InputManager> {
         Debug.Log("Load key-config file.");
 
         //最初はデフォルトの設定をコンフィグに格納
-        KeyConfigSetting.Instance.SetDefaultKeyConfig();
-         
+        KeyConfigSetting.Instance.SetDefaultKeyConfig();        
+
         //コンフィグファイルがあれば読み出す
         try {
             InputManager.Instance.keyConfig.LoadConfigFile();
         }
         catch (IOException e) {
             Debug.Log(e.Message);
+            InputManager.Instance.keyConfig.SaveConfigFile();
         }
         
 

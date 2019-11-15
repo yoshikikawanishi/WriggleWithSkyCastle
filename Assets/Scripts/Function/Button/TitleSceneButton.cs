@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using MBLDefine;
 
 public class TitleSceneButton : MonoBehaviour {
@@ -28,6 +29,14 @@ public class TitleSceneButton : MonoBehaviour {
         if (InputManager.Instance.GetKeyDown(Key.Jump)) {
             DataManager.Instance.Load_Player_Data();
         }        
+    }
+
+
+    //設定ボタン
+    public void Setting_Button() {
+        if (InputManager.Instance.GetKeyDown(Key.Jump)) {
+            SceneManager.LoadScene("ConfigScene");
+        }
     }
 
 

@@ -5,34 +5,44 @@ using System;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.Audio;
+using MBLDefine;
 
 public class ConfigButton : MonoBehaviour {
 
     [SerializeField] private GameObject jump_Button;
+    [SerializeField] private GameObject attack_Button;
+    [SerializeField] private GameObject ride_Beetle_Button;
     [SerializeField] private GameObject shot_Button;
-    [SerializeField] private GameObject fly_Button;
+    [SerializeField] private GameObject slow_Button;
     [SerializeField] private GameObject pause_Button;
+    [Space]
     [SerializeField] private GameObject BGM_Set_Slider;
     [SerializeField] private GameObject SE_Set_Slider;
-
-    [SerializeField] private AudioMixer audio_Mixer;
-
-
+    [Space]
+    [SerializeField] private AudioMixer audio_Mixer;           
+    
     private bool wait_Input = false;
 
 
-    //ジャンプ、決定ボタン
-    public void Jump_Button() {
-        if (!wait_Input && InputManager.Instance.GetKeyDown(MBLDefine.Key.Jump)) {
-            StartCoroutine(Change_Key_Config(MBLDefine.Key.Jump, jump_Button));
-        }
+    private void Start() {
+        //ボタンテキストの変更
+        Change_Default_Button_Text(jump_Button, Key.Jump);
+        Change_Default_Button_Text(attack_Button, Key.Attack);
     }
 
-   
+
+    //テキストの変更
+    private void Change_Default_Button_Text(GameObject button, Key key) {
+        InputManager.KeyConfigSetting key_Setting = InputManager.KeyConfigSetting.Instance;
+        button.GetComponentInChildren<Text>().text 
+            = key_Setting.GetKeyCode(key)[0].ToString()
+            + "\t|\t"
+            + key_Setting.GetKeyCode(key)[1].ToString();
+    }
 
 
     //入力待ち、コンフィグ変更
-    private IEnumerator Change_Key_Config(MBLDefine.Key changed_Key, GameObject button) {
+    private IEnumerator Change_Key_Config(Key changed_Key, GameObject button) {
         //色の変更
         button.GetComponent<Image>().color = new Color(1, 0.4f, 0.4f);
         //テキストの変更
@@ -61,7 +71,7 @@ public class ConfigButton : MonoBehaviour {
                 InputManager.KeyConfigSetting key_Setting = InputManager.KeyConfigSetting.Instance;
                 for (int i = 0; i < 16; i++) {
                     if (Input.GetKeyDown("joystick button " + i.ToString())) {
-                        key_Setting.SetKey(changed_Key, new List<KeyCode> { key_Setting.GetKeyCode(changed_Key)[0] , put_Button });
+                        key_Setting.SetKey(changed_Key, new List<KeyCode> { key_Setting.GetKeyCode(changed_Key)[0], put_Button });
                         button.GetComponentInChildren<Text>().text = key_Setting.GetKeyCode(changed_Key)[0].ToString() + "\t|\tbutton " + i.ToString();
                         is_GamePad = true;
                         break;
@@ -80,6 +90,34 @@ public class ConfigButton : MonoBehaviour {
         //色を戻す
         button.GetComponent<Image>().color = new Color(1, 1, 1);
         yield return null;
+    }
+
+
+    /*==================================== 以下、ボタン押下時の関数 =========================================*/
+
+
+    //ジャンプ、決定ボタン
+    public void Jump_Button() {
+        if (!wait_Input && InputManager.Instance.GetKeyDown(Key.Jump)) {
+            StartCoroutine(Change_Key_Config(Key.Jump, jump_Button));
+        }
+    }
+
+
+    //攻撃ボタン
+    public void Attack_Button() {
+        if (!wait_Input && InputManager.Instance.GetKeyDown(Key.Jump)) {
+            StartCoroutine(Change_Key_Config(Key.Attack, attack_Button));
+        }
+    }
+
+
+    //タイトルに戻る
+    public void Back_Title_Button() {
+        if (!wait_Input && InputManager.Instance.GetKeyDown(Key.Jump)) {
+            InputManager.Instance.keyConfig.SaveConfigFile();
+            SceneManager.LoadScene("TitleScene");
+        }
     }
 
     
