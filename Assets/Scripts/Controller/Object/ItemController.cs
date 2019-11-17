@@ -42,16 +42,19 @@ public class ItemController : MonoBehaviour {
     //P取得時
     private void Gain_Power_Item() {
         PlayerManager.Instance.Add_Power();
+        UsualSoundManager.Instance.Play_Get_Small_Item_Sound();
     }
 
     //点取得時
     private void Gain_Score_Item() {
         PlayerManager.Instance.Add_Score(100);
+        UsualSoundManager.Instance.Play_Get_Small_Item_Sound();
     }
 
     //カブトムシパワー取得時
     private void Gain_Beetle_Power_Item() {
         BeetlePowerManager.Instance.StartCoroutine("Increase_Cor", value);
+        UsualSoundManager.Instance.Play_Get_Small_Item_Sound();
     }
 
     //回復取得時

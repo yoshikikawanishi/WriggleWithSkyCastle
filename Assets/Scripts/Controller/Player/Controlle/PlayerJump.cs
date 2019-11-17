@@ -7,18 +7,19 @@ public class PlayerJump : MonoBehaviour {
     //コンポーネント
     private Rigidbody2D _rigid;
     private PlayerController _controller;
-    private AudioSource jump_Sound;
+    private PlayerSoundEffect player_SE;
 
    
     private void Awake() {
         _rigid      = GetComponent<Rigidbody2D>();
         _controller = GetComponent<PlayerController>();
+        player_SE = GetComponentInChildren<PlayerSoundEffect>();
     }
 
     
     public void Jump() {
         _rigid.velocity = new Vector2(_rigid.velocity.x, 320f);
-        //jump_Sound.Play();
+        player_SE.Play_Jump_Sound();
         _controller.Change_Animation("JumpBool");
         _controller.is_Landing = false;
     }

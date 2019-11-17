@@ -51,6 +51,7 @@ public class GreenYinBall : MonoBehaviour {
             //ショット
             _shoot.Set_Bullet_Pool(bullet_Pool, null);
             _shoot.Odd_Num_Shoot(1, 0, 50f, 10);
+            UsualSoundManager.Instance.Play_Shoot_Sound();
 
             yield return new WaitForSeconds(0.8f);
 

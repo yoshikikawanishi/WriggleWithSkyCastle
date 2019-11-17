@@ -8,12 +8,13 @@ public class PlayerFootCollision : MonoBehaviour {
     private GameObject player;
     //コンポーネント
     private PlayerController player_Controller;
-    private AudioSource landing_Sound;
+    private PlayerSoundEffect player_SE;
 
     
     private void Start() {
         player = transform.parent.gameObject;        
         player_Controller   = player.GetComponent<PlayerController>();
+        player_SE = player.GetComponentInChildren<PlayerSoundEffect>();
     }
 
     
@@ -46,7 +47,7 @@ public class PlayerFootCollision : MonoBehaviour {
 
     private void Landing() {
         player_Controller.Change_Animation("IdleBool");
-        //landing_Sound.Play();
+        player_SE.Play_Land_Sound();
     }
 
 }

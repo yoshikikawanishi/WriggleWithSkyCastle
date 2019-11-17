@@ -41,6 +41,7 @@ public class LarvaShootObj : MonoBehaviour {
             var v = new Vector2(Random.Range(-200f, 200f), Random.Range(50f, 200f));
             bullet.GetComponent<Rigidbody2D>().velocity = v;
             bullet.GetComponent<Bullet>().Set_Inactive(5.0f);
+            UsualSoundManager.Instance.Play_Shoot_Sound();
         }
     }
 
@@ -48,8 +49,13 @@ public class LarvaShootObj : MonoBehaviour {
     //フェーズ1緑弾
     public IEnumerator Shoot_Green_Bullet_Cor() {
         for (int i = 0; i < 3; i++) {
+            //自機の位置を確認
+            AngleCalculater angle_Cal = new AngleCalculater();
+            float player_Angle = angle_Cal.Cal_Angle_Two_Points(transform.position, player.transform.position);
+            //ショット
             for (int j = 0; j < 4; j++) {
-                Shoot_Green_Bullet_4way(j);
+                Shoot_Green_Bullet_4way(j, player_Angle);
+                UsualSoundManager.Instance.Play_Shoot_Sound(0.07f);
                 yield return new WaitForSeconds(0.3f);
             }
             yield return new WaitForSeconds(0.3f);
@@ -57,9 +63,7 @@ public class LarvaShootObj : MonoBehaviour {
     }
 
     //つながった緑米弾を4方向に撃つ
-    private void Shoot_Green_Bullet_4way(int number) {
-        AngleCalculater angle_Cal = new AngleCalculater();
-        float player_Angle = angle_Cal.Cal_Angle_Two_Points(transform.position, player.transform.position);
+    private void Shoot_Green_Bullet_4way(int number, float player_Angle) {        
         float angle = 0;
         //内側
         angle = player_Angle + 100f + number * 23f;
@@ -101,6 +105,8 @@ public class LarvaShootObj : MonoBehaviour {
             bullet_List = _shoot.Even_Num_Shoot(2, i * 1, 80 - i * 6f, 10);
             _bullet_Acc.Accelerat_Bullet(bullet_List, 1.01f, 4);
         }
+
+        UsualSoundManager.Instance.Play_Shoot_Sound();
     }
 	
 

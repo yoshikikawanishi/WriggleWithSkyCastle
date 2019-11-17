@@ -6,6 +6,7 @@ public class PlayerAttack : MonoBehaviour {
 
     //コンポーネント
     private PlayerController _controller;
+    private PlayerSoundEffect player_SE;
     private Animator _anim;
     private Rigidbody2D _rigid;
     private PlayerAttackCollision attack_Collision;
@@ -18,6 +19,7 @@ public class PlayerAttack : MonoBehaviour {
 	void Awake () {
         //取得
         _controller = GetComponent<PlayerController>();
+        player_SE = GetComponentInChildren<PlayerSoundEffect>();
         _anim = GetComponent<Animator>();
         _rigid = GetComponent<Rigidbody2D>();
         attack_Collision = GetComponentInChildren<PlayerAttackCollision>();
@@ -38,12 +40,14 @@ public class PlayerAttack : MonoBehaviour {
         _anim.SetTrigger("AttackTrigger");
 
         attack_Collision.Make_Collider_Appear(0.18f);
+        player_SE.Play_Attack_Sound();
         _rigid.velocity += new Vector2(transform.localScale.x * 5f, 0); //Rigidbodyのスリープ状態を解除する
         for (float t = 0; t < 0.18f; t += Time.deltaTime) {
             //敵と衝突時ノックバック
             if (attack_Collision.Hit_Trigger()) {
                 Occur_Knock_Back();
                 BeetlePowerManager.Instance.StartCoroutine("Increase_Cor", 8);
+                player_SE.Play_Hit_Attack_Sound();
                 //ヒットストップ
                 Time.timeScale = 0.5f;
                 yield return new WaitForSeconds(0.05f);
@@ -79,6 +83,7 @@ public class PlayerAttack : MonoBehaviour {
         _rigid.velocity = new Vector2(transform.localScale.x * 180f, -200f);
 
         kick_Collision.Make_Collider_Appear();
+        player_SE.Play_Kick_Sound();
         for (float t = 0; t < 0.33f; t += Time.deltaTime) {
             _rigid.velocity = new Vector2(transform.localScale.x * 180f, _rigid.velocity.y);
             //敵と衝突時ノックバック
@@ -86,6 +91,7 @@ public class PlayerAttack : MonoBehaviour {
                 _rigid.velocity = new Vector2(40f * -transform.localScale.x, 180f);
                 BeetlePowerManager.Instance.StartCoroutine("Increase_Cor", 8);
                 _controller.Change_Animation("JumpBool");
+                player_SE.Play_Hit_Attack_Sound();
                 yield return new WaitForSeconds(0.15f);
                 break;
             }

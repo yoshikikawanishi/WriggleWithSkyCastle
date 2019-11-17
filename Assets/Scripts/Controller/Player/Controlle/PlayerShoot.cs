@@ -7,6 +7,7 @@ public class PlayerShoot : MonoBehaviour {
     private PlayerManager player_Manager;
     private PlayerController player_Controller;
     private PlayerEffect player_Effect;
+    private PlayerSoundEffect player_SE;
 
     //弾
     [SerializeField] private GameObject bullet;
@@ -34,7 +35,8 @@ public class PlayerShoot : MonoBehaviour {
         //取得
         player_Manager = PlayerManager.Instance;
         player_Controller = GetComponent<PlayerController>();
-        player_Effect = GetComponentInChildren<PlayerEffect>();        
+        player_Effect = GetComponentInChildren<PlayerEffect>();
+        player_SE = GetComponentInChildren<PlayerSoundEffect>();
 	}
 
 
@@ -57,7 +59,8 @@ public class PlayerShoot : MonoBehaviour {
             GameObject bullet = bullet_Pool.GetObject();
             bullet.transform.position = transform.position;
             bullet.transform.position += new Vector3(0, -8f) + new Vector3(0, 16f * i);            
-            bullet.GetComponent<Rigidbody2D>().velocity = new Vector2(900f * transform.localScale.x, 0);            
+            bullet.GetComponent<Rigidbody2D>().velocity = new Vector2(900f * transform.localScale.x, 0);
+            player_SE.Play_Shoot_Sound();
         }
     }
 
@@ -68,9 +71,11 @@ public class PlayerShoot : MonoBehaviour {
             GameObject bullet = charge_Bullet_Pool.GetObject();
             bullet.transform.position = transform.position;
             bullet.GetComponent<Rigidbody2D>().velocity = new Vector2(500f * transform.localScale.x, 0);
+            player_SE.Play_Charge_Shoot_Sound();
         }
         charge_Time = 0;
         player_Effect.Start_Shoot_Charge(0);
+        player_SE.Stop_Charge_Sound();
     }
 
 
@@ -81,7 +86,7 @@ public class PlayerShoot : MonoBehaviour {
         if(charge_Time < charge_Span[0]) {
             if (charge_Phase != 0) {
                 charge_Phase = 0;
-                player_Effect.Start_Shoot_Charge(0);
+                player_Effect.Start_Shoot_Charge(0);                
             }
         }
         //1段階目
@@ -89,6 +94,7 @@ public class PlayerShoot : MonoBehaviour {
             if(charge_Phase != 1) {
                 charge_Phase = 1;
                 player_Effect.Start_Shoot_Charge(1);
+                player_SE.Start_Charge_Sound();
             }
         }
         //2段階目
@@ -96,6 +102,7 @@ public class PlayerShoot : MonoBehaviour {
             if (charge_Phase != 2) {
                 charge_Phase = 2;
                 player_Effect.Start_Shoot_Charge(2);
+                player_SE.Change_Charge_Sound_Pitch(1.15f);
             }
         }
         //チャージ完了
@@ -103,6 +110,7 @@ public class PlayerShoot : MonoBehaviour {
             if (charge_Phase != 3) {
                 charge_Phase = 3;
                 player_Effect.Start_Shoot_Charge(3);
+                player_SE.Change_Charge_Sound_Pitch(1.3f);
             }
         }
         charge_Time += Time.deltaTime;

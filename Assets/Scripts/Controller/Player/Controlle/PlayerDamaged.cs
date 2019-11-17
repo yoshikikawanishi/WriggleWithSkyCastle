@@ -3,9 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerDamaged : MonoBehaviour {
-    
+
+    //コンポーネント
+    private PlayerSoundEffect player_SE;
+
     //無敵時間
-    private float INVINCIBLE_TIME_LENGTH = 3.0f;    
+    private float INVINCIBLE_TIME_LENGTH = 3.0f;
+
+
+    private void Start() {
+        //取得
+        player_SE = GetComponentInChildren<PlayerSoundEffect>();
+    }
 
 
     //被弾時の処理
@@ -19,6 +28,7 @@ public class PlayerDamaged : MonoBehaviour {
         Put_Out_Power(PlayerManager.Instance.Get_Power() / 8);      //パワーの減少
         StartCoroutine("Blink");                                    //点滅
         body_Collision.Become_Invincible();                         //無敵化
+        player_SE.Play_Damaged_Sound();                             //効果音
         Occure_Knock_Back();                                        //反動        
         yield return new WaitForSeconds(INVINCIBLE_TIME_LENGTH);    //無敵時間
         body_Collision.Release_Invincible();                        //戻す        

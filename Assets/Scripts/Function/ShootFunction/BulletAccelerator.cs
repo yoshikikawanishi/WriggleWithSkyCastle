@@ -31,9 +31,9 @@ public class BulletAccelerator : MonoBehaviour {
                 if(rigid_List[i] == null) {
                     continue;
                 }
-                rigid_List[i].velocity *= acc_Rate * Time.timeScale;
+                rigid_List[i].velocity *= acc_Rate;
             }
-            yield return null;
+            yield return new WaitForSeconds(0.015f);
         }
     }
 }

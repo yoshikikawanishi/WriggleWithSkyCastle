@@ -6,7 +6,6 @@ public class CameraController : MonoBehaviour {
 
     //自機
     private GameObject player;
-    private Rigidbody2D player_Rigid;    
     
     //自機との距離、自機の向き
     private float camera_Center;
@@ -28,7 +27,6 @@ public class CameraController : MonoBehaviour {
 	void Start () {
         //取得
         player = GameObject.FindWithTag("PlayerTag");
-        player_Rigid = player.GetComponent<Rigidbody2D>();
 
         //初期位置
         Fit_Player_Into_Camera();

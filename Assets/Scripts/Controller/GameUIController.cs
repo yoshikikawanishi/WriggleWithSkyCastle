@@ -16,11 +16,11 @@ public class GameUIController : MonoBehaviour {
     private PlayerManager player_Manager;
     private BeetlePowerManager beetle_Power_Manager;
 
-    private int score_Text_Value;
-    private int power_Text_Value;
-    private int stock_Text_Value;
-    private int life_Image_Number;
-    private int beetle_Power_Slider_Value;
+    private int score_Text_Value = 0;
+    private int power_Text_Value = 0;
+    private int stock_Text_Value = 0;
+    private int life_Image_Number = 0;
+    private int beetle_Power_Slider_Value = 49;
 
 
 	// Use this for initialization
