@@ -10,6 +10,7 @@ public class GameUIController : MonoBehaviour {
     [SerializeField] private Text stock_Text;
     [SerializeField] private GameObject life_Images_Parent;
     [SerializeField] private Slider beetle_Power_Slider;
+    [SerializeField] private GameObject save_Text;
 
     private GameObject[] life_Images = new GameObject[9];
 
@@ -20,7 +21,9 @@ public class GameUIController : MonoBehaviour {
     private int power_Text_Value = 0;
     private int stock_Text_Value = 0;
     private int life_Image_Number = 0;
-    private int beetle_Power_Slider_Value = 49;
+    private int beetle_Power_Slider_Value = 0;
+
+    private Image beetle_Power_Slider_Image;
 
 
 	// Use this for initialization
@@ -31,6 +34,7 @@ public class GameUIController : MonoBehaviour {
         for (int i = 0; i < 9; i++) {
             life_Images[i] = life_Images_Parent.transform.GetChild(i).gameObject;
         }
+        beetle_Power_Slider_Image = beetle_Power_Slider.transform.Find("Fill Area").GetComponentInChildren<Image>();
 
         //UI初期値
         Change_Player_UI(score_Text, 9, player_Manager.Get_Score(), score_Text_Value); //スコア
@@ -92,7 +96,26 @@ public class GameUIController : MonoBehaviour {
         if (beetle_Power_Slider_Value != beetle_Power_Manager.Get_Beetle_Power()) {
             beetle_Power_Slider_Value = beetle_Power_Manager.Get_Beetle_Power();
             beetle_Power_Slider.value = beetle_Power_Slider_Value;
+            //色
+            beetle_Power_Slider_Image.color = new Color(1, 1, 1, 0.5f);
+            if (beetle_Power_Slider_Value == 100)
+                beetle_Power_Slider_Image.color = new Color(1, 1, 1, 0.8f);
         }    
+    }
+
+
+    //セーブUIの点滅
+    public void Display_Save_Text() {
+        StartCoroutine("Blink_Save_Text_Cor");
+    }
+
+    private IEnumerator Blink_Save_Text_Cor() {
+        for(int i = 0; i < 3; i++) {
+            save_Text.SetActive(true);
+            yield return new WaitForSeconds(0.7f);
+            save_Text.SetActive(false);
+            yield return new WaitForSeconds(0.3f);
+        }
     }
 
 }

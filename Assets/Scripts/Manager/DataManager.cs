@@ -71,6 +71,7 @@ public class DataManager : SingletonMonoBehaviour<DataManager> {
         PlayerPrefs.SetInt("STOCK", 2);
         PlayerPrefs.SetInt("LIFE", 3);
         PlayerPrefs.SetInt("SCORE", 0);
+        PlayerPrefs.SetInt("BEETLE_POWER", 50);
     }
 
 

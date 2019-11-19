@@ -92,6 +92,9 @@ public class CameraController : MonoBehaviour {
 
     //自機をカメラ内に収める
     private void Fit_Player_Into_Camera() {
+        if(player == null) {
+            return;
+        }
         if(Mathf.Abs(player.transform.position.x - transform.position.x) > 245f) {
             transform.position = new Vector3(player.transform.position.x + 80f * stage_Direction, 0, -10);
         }

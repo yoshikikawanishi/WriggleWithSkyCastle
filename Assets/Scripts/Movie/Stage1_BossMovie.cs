@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Stage1_BossMovie : MonoBehaviour {
 
@@ -62,6 +63,25 @@ public class Stage1_BossMovie : MonoBehaviour {
 
         //戦闘開始
         larva.GetComponent<LarvaController>().Start_Battle();
+    }
+
+
+    //クリア時ムービー開始
+    public void Start_Clear_Movie() {
+        StartCoroutine("Play_Clear_Movie_Cor");
+    }
+
+    //クリア時ムービー
+    private IEnumerator Play_Clear_Movie_Cor() {
+        yield return new WaitForSeconds(3.0f);
+
+        _message.Start_Display("LarvaText", 1, 1);
+        yield return new WaitUntil(_message.End_Message);
+
+        FadeInOut.Instance.Start_Fade_Out(new Color(1, 1, 1), 0.01f);
+        yield return new WaitForSeconds(2.5f);
+
+        SceneManager.LoadScene("Stage2_1Scene");
     }
 
 }

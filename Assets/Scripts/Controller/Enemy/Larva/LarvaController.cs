@@ -81,11 +81,13 @@ public class LarvaController : MonoBehaviour {
     //溜めエフェクト
     public void Play_Charge_Effect(float lifeTime) {
         transform.GetChild(1).gameObject.SetActive(true);
+        transform.GetChild(1).GetComponent<AudioSource>().Play();
         Invoke("Stop_Charge_Effect", lifeTime);
     }
 
     public void Stop_Charge_Effect() {
         transform.GetChild(1).gameObject.SetActive(false);
+        transform.GetChild(1).GetComponent<AudioSource>().Stop();
     }
 
 
