@@ -11,9 +11,9 @@ public class ConfigButton : MonoBehaviour {
 
     [SerializeField] private GameObject jump_Button;
     [SerializeField] private GameObject attack_Button;
-    [SerializeField] private GameObject ride_Beetle_Button;
-    [SerializeField] private GameObject shot_Button;
+    [SerializeField] private GameObject ride_Button;
     [SerializeField] private GameObject slow_Button;
+    [SerializeField] private GameObject shoot_Button;
     [SerializeField] private GameObject pause_Button;
     [Space]
     [SerializeField] private GameObject BGM_Set_Slider;
@@ -26,27 +26,32 @@ public class ConfigButton : MonoBehaviour {
 
     private void Start() {
         //ボタンテキストの変更
-        Change_Default_Button_Text(jump_Button, Key.Jump);
-        Change_Default_Button_Text(attack_Button, Key.Attack);
+        Change_Button_Text(jump_Button, Key.Jump);
+        Change_Button_Text(attack_Button, Key.Attack);
+        Change_Button_Text(ride_Button, Key.Ride);
+        Change_Button_Text(slow_Button, Key.Slow);
+        Change_Button_Text(shoot_Button, Key.Shoot);
+        Change_Button_Text(pause_Button, Key.Pause);
     }
 
 
     //テキストの変更
-    private void Change_Default_Button_Text(GameObject button, Key key) {
+    private void Change_Button_Text(GameObject button, Key key) {
         InputManager.KeyConfigSetting key_Setting = InputManager.KeyConfigSetting.Instance;
         button.GetComponentInChildren<Text>().text 
             = key_Setting.GetKeyCode(key)[0].ToString()
-            + "\t|\t"
-            + key_Setting.GetKeyCode(key)[1].ToString();
+            + "  /  "
+            + key_Setting.GetKeyCode(key)[1].ToString().Replace("Joystick", "");
     }
-
+ 
 
     //入力待ち、コンフィグ変更
-    private IEnumerator Change_Key_Config(Key changed_Key, GameObject button) {
+    private IEnumerator Change_Key_Config(Key changed_Key, GameObject button) {        
+        InputManager.KeyConfigSetting key_Setting = InputManager.KeyConfigSetting.Instance;
         //色の変更
         button.GetComponent<Image>().color = new Color(1, 0.4f, 0.4f);
         //テキストの変更
-        button.GetComponentInChildren<Text>().text = "";
+        button.GetComponentInChildren<Text>().text = "・・・";
         //入力待ち
         wait_Input = true;
         yield return null;
@@ -66,22 +71,22 @@ public class ConfigButton : MonoBehaviour {
                         break;
                     }
                 }
-                //ゲームパッド
+                //コンフィグの変更
+                //ゲームパッドのボタンが入力されたとき
                 bool is_GamePad = false;
-                InputManager.KeyConfigSetting key_Setting = InputManager.KeyConfigSetting.Instance;
                 for (int i = 0; i < 16; i++) {
                     if (Input.GetKeyDown("joystick button " + i.ToString())) {
-                        key_Setting.SetKey(changed_Key, new List<KeyCode> { key_Setting.GetKeyCode(changed_Key)[0], put_Button });
-                        button.GetComponentInChildren<Text>().text = key_Setting.GetKeyCode(changed_Key)[0].ToString() + "\t|\tbutton " + i.ToString();
+                        key_Setting.SetKey(changed_Key, new List<KeyCode> { key_Setting.GetKeyCode(changed_Key)[0], put_Button });                        
                         is_GamePad = true;
                         break;
                     }
                 }
-                //キーボード
+                //キーボードのボタンが入力されたとき
                 if (!is_GamePad) {
-                    key_Setting.SetKey(changed_Key, new List<KeyCode> { put_Button, key_Setting.GetKeyCode(changed_Key)[1] });
-                    button.GetComponentInChildren<Text>().text = put_Button.ToString() + "\t|\t" + key_Setting.GetKeyCode(changed_Key)[1].ToString();
+                    key_Setting.SetKey(changed_Key, new List<KeyCode> { put_Button, key_Setting.GetKeyCode(changed_Key)[1] });                    
                 }
+                //テキストの変更
+                Change_Button_Text(button, changed_Key);
                 break;
             }
             yield return null;
@@ -95,6 +100,11 @@ public class ConfigButton : MonoBehaviour {
 
     /*==================================== 以下、ボタン押下時の関数 =========================================*/
 
+    /*
+     if (!wait_Input && InputManager.Instance.GetKeyDown(Key.Jump)) {
+            StartCoroutine(Change_Key_Config(Key.Jump, jump_Button));
+     }         
+    */
 
     //ジャンプ、決定ボタン
     public void Jump_Button() {
@@ -103,11 +113,38 @@ public class ConfigButton : MonoBehaviour {
         }
     }
 
-
     //攻撃ボタン
     public void Attack_Button() {
         if (!wait_Input && InputManager.Instance.GetKeyDown(Key.Jump)) {
             StartCoroutine(Change_Key_Config(Key.Attack, attack_Button));
+        }
+    }
+
+    //飛行ボタン
+    public void Ride_Button() {
+        if (!wait_Input && InputManager.Instance.GetKeyDown(Key.Jump)) {
+            StartCoroutine(Change_Key_Config(Key.Ride, ride_Button));
+        }
+    }
+
+    //低速ボタン
+    public void Slow_Button() {
+        if (!wait_Input && InputManager.Instance.GetKeyDown(Key.Jump)) {
+            StartCoroutine(Change_Key_Config(Key.Slow, slow_Button));
+        }
+    }
+
+    //ショットボタン
+    public void Shoot_Button() {
+        if (!wait_Input && InputManager.Instance.GetKeyDown(Key.Jump)) {
+            StartCoroutine(Change_Key_Config(Key.Shoot, shoot_Button));
+        }
+    }
+
+    //ポーズボタン
+    public void Pause_Button() {
+        if (!wait_Input && InputManager.Instance.GetKeyDown(Key.Jump)) {
+            StartCoroutine(Change_Key_Config(Key.Pause, pause_Button));
         }
     }
 

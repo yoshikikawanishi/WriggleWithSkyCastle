@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 using MBLDefine;
 
 public class PauseManager : SingletonMonoBehaviour<PauseManager> {
-
+    
     public enum STATE {
         normal,
         pause,
@@ -18,14 +18,14 @@ public class PauseManager : SingletonMonoBehaviour<PauseManager> {
 
 
 	// Use this for initialization
-	void Start () {
+	void Start () {        
         //シーン読み込みのデリケート
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
 	
 	// Update is called once per frame
 	void Update () {
-        if (!is_Pausable) {
+        if (!is_Pausable || !SceneManagement.Instance.Is_Game_Scene()) {
             return;
         }
         if (InputManager.Instance.GetKeyDown(Key.Pause)) {

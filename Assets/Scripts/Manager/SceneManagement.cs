@@ -84,15 +84,22 @@ public class SceneManagement : SingletonMonoBehaviour<SceneManagement> {
     //ゲームシーン
     private Dictionary<string, bool> Is_Game_Scene_Dic = new Dictionary<string, bool>() {
         { "TitleScene", false },
+        { "ConfigScene", false },
+
         { "Stage1_1Scene", true },
-        { "Stage1_BossScene", true }
+        { "Stage1_BossScene", true },
+        { "Stage2_1Scene", true },
+
+        { "GameOverScene", false },
     };
 
     //ゲームシーンかどうか
-    public bool Is_Game_Scene(string scene) {
+    public bool Is_Game_Scene() {
+        string scene = SceneManager.GetActiveScene().name;
         if (Is_Game_Scene_Dic.ContainsKey(scene)) {
             return Is_Game_Scene_Dic[scene];
         }
+        Is_Game_Scene_Dic.Add(scene, false);
         return false;
     }
     
