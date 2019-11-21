@@ -37,7 +37,6 @@ public class Enemy : MonoBehaviour {
             is_Exist = false;
             return;
         }
-        //TODO:エフェクト
         StartCoroutine("Blink");
     }
 
@@ -46,6 +45,7 @@ public class Enemy : MonoBehaviour {
     public virtual void Vanish() {
         Play_Vanish_Effect();
         Put_Out_Item();
+        StopAllCoroutines();
         if (is_Pooled) {
             gameObject.SetActive(false);
             return;

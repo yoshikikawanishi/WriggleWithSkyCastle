@@ -6,7 +6,6 @@ public class RedFairy : MonoBehaviour {
 
     //コンポーネント
     private Rigidbody2D _rigid;
-    private Renderer _renderer;
 
     private bool start_Action = false;
 
@@ -17,7 +16,6 @@ public class RedFairy : MonoBehaviour {
 	void Start () {
         //取得
         _rigid = GetComponent<Rigidbody2D>();
-        _renderer = GetComponent<Renderer>();
     }
 
     // Update is called once per frame

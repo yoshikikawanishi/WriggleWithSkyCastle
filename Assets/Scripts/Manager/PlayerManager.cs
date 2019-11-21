@@ -7,7 +7,7 @@ public class PlayerManager : SingletonMonoBehaviour<PlayerManager> {
     //ステータス
     //必ずSetter, Getterとかを使うこと
     [SerializeField] private int life = 3;
-    [SerializeField] private int stock = 2;
+    [SerializeField] private int stock = 3;
     [SerializeField] private int power = 0;
     [SerializeField] private int score = 0;
 

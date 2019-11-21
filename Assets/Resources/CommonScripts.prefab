@@ -83,7 +83,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dontDestroyOnLoad: 1
   life: 3
-  stock: 2
+  stock: 3
   power: 0
   score: 0
 --- !u!114 &114576009339083856
