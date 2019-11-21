@@ -68,7 +68,7 @@ public class DataManager : SingletonMonoBehaviour<DataManager> {
 
     //ゲームオーバー時のデータ変更
     public void Change_Data_In_Game_Over() {
-        PlayerPrefs.SetInt("STOCK", 2);
+        PlayerPrefs.SetInt("STOCK", 3);
         PlayerPrefs.SetInt("LIFE", 3);
         PlayerPrefs.SetInt("SCORE", 0);
         PlayerPrefs.SetInt("BEETLE_POWER", 50);

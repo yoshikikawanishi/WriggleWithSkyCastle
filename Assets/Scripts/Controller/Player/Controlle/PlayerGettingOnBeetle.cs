@@ -22,7 +22,7 @@ public class PlayerGettingOnBeetle : MonoBehaviour {
 
 
     //Start
-    private void Start() {
+    private void Awake() {
         //取得
         main_Camera = GameObject.FindWithTag("MainCamera");
         beetle_Body = transform.Find("BeetleBody").gameObject;
