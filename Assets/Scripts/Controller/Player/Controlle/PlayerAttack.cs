@@ -88,7 +88,7 @@ public class PlayerAttack : MonoBehaviour {
             _rigid.velocity = new Vector2(transform.localScale.x * 180f, _rigid.velocity.y);
             //敵と衝突時ノックバック
             if (kick_Collision.Hit_Trigger()) {                
-                _rigid.velocity = new Vector2(40f * -transform.localScale.x, 180f);
+                _rigid.velocity = new Vector2(40f * -transform.localScale.x, 240f);
                 BeetlePowerManager.Instance.StartCoroutine("Increase_Cor", 8);
                 _controller.Change_Animation("JumpBool");
                 player_SE.Play_Hit_Attack_Sound();

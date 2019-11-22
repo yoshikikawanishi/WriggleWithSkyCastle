@@ -19,25 +19,38 @@ public class Enemy : MonoBehaviour {
     private Color default_Color;
 
     private bool is_Exist = true;
+    private int default_Life;
 
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
         //取得
         _sprite = GetComponent<SpriteRenderer>();
         default_Color = _sprite.color;
-	}
+        default_Life = life;
+    }
+
+
+    private void OnEnable() {
+        if (is_Pooled) {
+            _sprite.color = default_Color;
+            life = default_Life;
+            is_Exist = true;
+        }
+    }
 
 
     //被弾時の処理
     public virtual void Damaged(int damage) {
         life -= damage;
-        if(life <= 0 && is_Exist) {
+        if (life <= 0 && is_Exist) {
             Vanish();
             is_Exist = false;
             return;
         }
-        StartCoroutine("Blink");
+        if (is_Exist) {
+            StartCoroutine("Blink");
+        }
     }
 
 
@@ -46,7 +59,8 @@ public class Enemy : MonoBehaviour {
         Play_Vanish_Effect();
         Put_Out_Item();
         StopAllCoroutines();
-        if (is_Pooled) {
+        
+        if (is_Pooled) {            
             gameObject.SetActive(false);
             return;
         }
@@ -67,7 +81,7 @@ public class Enemy : MonoBehaviour {
     private void Put_Out_Item() {
         gameObject.AddComponent<PutOutSmallItems>().Put_Out_Item(power_Value, score_Value);
         //TODO:回復アイテムのドロップ
-        Debug.Log("TODO: Drop_Life");
+        Debug.Log("Drop_Life");
         if (Random.Range(1, 100) <= drop_Life_Probability) {
 
         }

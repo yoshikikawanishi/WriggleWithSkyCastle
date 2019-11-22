@@ -32,17 +32,21 @@ public class LarvaShootObj : MonoBehaviour {
 
 
     //鱗粉弾
-    public void Shoot_Scales_Bullet(int num) {
-        for(int i = 0; i < num; i++) {
+    public void Shoot_Scales_Bullet(int num, float speed) {
+        List<GameObject> bullet_List = new List<GameObject>();
+        for (int i = 0; i < num; i++) {
             //弾生成
             GameObject bullet = pool_Manager.Get_Pool(scales_Bullet).GetObject();
-            bullet.transform.position = transform.position;
-            //発射
-            var v = new Vector2(Random.Range(-200f, 200f), Random.Range(50f, 200f));
+            bullet.transform.position = transform.position + new Vector3(-16f * transform.parent.localScale.x, 12f);
+            bullet_List.Add(bullet);
+            //発射            
+            float angle = 2 * Mathf.PI / num * i + Random.Range(0, 0.3f);
+            var v = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle) + 0.5f) * speed;
             bullet.GetComponent<Rigidbody2D>().velocity = v;
             bullet.GetComponent<Bullet>().Set_Inactive(5.0f);
             UsualSoundManager.Instance.Play_Shoot_Sound();
         }
+        _bullet_Acc.Accelerat_Bullet(bullet_List, 0.98f, 0.5f);        
     }
 
 

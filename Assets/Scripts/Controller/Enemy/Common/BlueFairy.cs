@@ -4,17 +4,19 @@ using UnityEngine;
 
 public class BlueFairy : MonoBehaviour {
 
-
+    
     private void OnEnable() {
         StartCoroutine("Action_Cor");
     }
 
 
     private IEnumerator Action_Cor() {
-        //上から登場
+        yield return null;
+        int vertical_Direction = transform.position.y > 0 ? 1 : -1;        
+        //登場
         float speed = 4.0f;
         for (float t = 0; t < 1.5f; t += Time.deltaTime) {
-            transform.position += new Vector3(-speed, -speed);
+            transform.position += new Vector3(-speed, -speed * vertical_Direction);
             //減速
             if (speed > 0.2f) {
                 speed -= 0.05f;
@@ -23,13 +25,13 @@ public class BlueFairy : MonoBehaviour {
         }
 
         for(float t = 0; t < 2.5f; t += Time.deltaTime) {
-            transform.position += new Vector3(-1.5f, 0.1f);
+            transform.position += new Vector3(-1.0f, 0.1f * vertical_Direction);
             yield return new WaitForSeconds(0.016f);
         }
 
         //はける
         float escape_Acc = 0.05f;
-        Vector3 escape_Speed = new Vector3(-3f, 0);
+        Vector3 escape_Speed = new Vector3(-2f, 0);
         if (transform.position.y < 0) { escape_Acc = -0.05f; }
         while (Mathf.Abs(transform.position.y) < 210f) {
             transform.position += escape_Speed * Time.timeScale;

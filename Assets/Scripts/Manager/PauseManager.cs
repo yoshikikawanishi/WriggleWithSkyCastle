@@ -28,9 +28,10 @@ public class PauseManager : SingletonMonoBehaviour<PauseManager> {
         if (!is_Pausable || !SceneManagement.Instance.Is_Game_Scene()) {
             return;
         }
-        if (InputManager.Instance.GetKeyDown(Key.Pause)) {
+        if (InputManager.Instance.GetKeyDown(Key.Pause)) {            
             if(state == STATE.normal) {
                 Pause_Game();
+                Debug.Log("Pause");
             }
             else if(state == STATE.pause) {
                 Release_Pause_Game();

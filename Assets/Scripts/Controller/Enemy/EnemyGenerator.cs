@@ -14,7 +14,7 @@ public class EnemyGenerator : MonoBehaviour {
 
     private ObjectPoolManager pool_Manager;
     private ObjectPool pool;
-    private GameObject player;
+    private GameObject main_Camera;
 
     private bool is_Enable_Generator = true;
 
@@ -23,7 +23,7 @@ public class EnemyGenerator : MonoBehaviour {
 	void Start () {
         //取得
         pool_Manager = ObjectPoolManager.Instance;
-        player = GameObject.FindWithTag("PlayerTag");
+        main_Camera = GameObject.FindWithTag("MainCamera");
 
         //オブジェクトプール
         pool = pool_Manager.Get_Pool(enemy_Prefab);
@@ -32,11 +32,11 @@ public class EnemyGenerator : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-        if(player == null) {
+        if(main_Camera == null) {
             return;
         }
 	    if(is_Enable_Generator) {
-            if(Mathf.Abs(player.transform.position.x - transform.position.x) < start_Gen_Distance_From_Player) {
+            if(Mathf.Abs(main_Camera.transform.position.x - transform.position.x) < start_Gen_Distance_From_Player) {
                 is_Enable_Generator = false;
                 StartCoroutine("Generate_Enemy_Cor");                
             }

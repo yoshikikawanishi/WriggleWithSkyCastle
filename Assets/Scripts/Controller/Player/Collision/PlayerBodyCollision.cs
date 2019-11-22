@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerBodyCollision : MonoBehaviour {
 
+    private PlayerController player_Controller;
     private PlayerDamaged player_Damaged;
     
     //被弾タグリスト
@@ -23,6 +24,7 @@ public class PlayerBodyCollision : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         //取得
+        player_Controller = transform.parent.GetComponent<PlayerController>();
         player_Damaged = transform.parent.GetComponent<PlayerDamaged>();
         //初期値代入
         default_Size = GetComponent<CapsuleCollider2D>().size;
@@ -48,7 +50,7 @@ public class PlayerBodyCollision : MonoBehaviour {
             }
         }
         //Miss時
-        if(collision.tag == "MissZoneTag") {
+        if(collision.tag == "MissZoneTag" && !player_Controller.Get_Is_Ride_Beetle()) {
             player_Damaged.Miss();
         }
     }
@@ -63,6 +65,10 @@ public class PlayerBodyCollision : MonoBehaviour {
                 player_Damaged.StartCoroutine("Damaged");
                 is_Damaged = true;
             }
+        }
+        //Miss時
+        if (collision.gameObject.tag == "MissZoneTag" && !player_Controller.Get_Is_Ride_Beetle()) {
+            player_Damaged.Miss();
         }
     }
     

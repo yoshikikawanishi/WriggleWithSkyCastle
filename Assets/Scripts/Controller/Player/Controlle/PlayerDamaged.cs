@@ -30,7 +30,7 @@ public class PlayerDamaged : MonoBehaviour {
         body_Collision.Become_Invincible();                         //無敵化
         player_SE.Play_Damaged_Sound();                             //効果音
         Occure_Knock_Back();                                        //反動        
-        yield return new WaitForSeconds(INVINCIBLE_TIME_LENGTH);    //無敵時間
+        yield return new WaitForSeconds(INVINCIBLE_TIME_LENGTH + 1.0f);    //無敵時間
         body_Collision.Release_Invincible();                        //戻す        
     }
 

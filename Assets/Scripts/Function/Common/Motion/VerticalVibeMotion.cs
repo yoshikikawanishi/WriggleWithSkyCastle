@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class VerticalMotion : MonoBehaviour {
+public class VerticalVibeMotion : MonoBehaviour {
 
     [SerializeField] private float amplitude = 16f;
     [SerializeField] private float angular_Speed = 10f;
@@ -20,8 +20,8 @@ public class VerticalMotion : MonoBehaviour {
 
 	
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
         transform.position = new Vector3(transform.position.x, center_Pos + Mathf.Sin(Mathf.Deg2Rad * angle));
-        angle = (angle + angular_Speed) % 360f;
+        angle = (angle + angular_Speed) % 360f * Time.timeScale;
 	}
 }

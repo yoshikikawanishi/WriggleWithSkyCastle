@@ -66,6 +66,14 @@ public class PlayerController : MonoBehaviour {
 	}
 
 
+    private void LateUpdate() {
+        //速度の制限
+        if(Mathf.Abs(_rigid.velocity.x) > 200f) {
+            _rigid.velocity = new Vector2(_rigid.velocity.x.CompareTo(0) * 200f, _rigid.velocity.y);
+        }
+    }
+
+
     //通常時の操作
     private void Normal_Controlle() {
         //しゃがみ
@@ -91,7 +99,7 @@ public class PlayerController : MonoBehaviour {
             _transition.Slow_Down();
         }
         //ジャンプ
-        if (input.GetKey(Key.Jump) && is_Landing) {
+        if (input.GetKeyDown(Key.Jump) && is_Landing) {
             _jump.Jump();
         }
         if (input.GetKeyUp(Key.Jump)) {

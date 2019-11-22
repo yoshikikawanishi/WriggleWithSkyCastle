@@ -24,9 +24,9 @@ public class PlayerTransition : MonoBehaviour {
         if (Time.timeScale == 0) return;    //時間停止中
         if (_controller.is_Squat) return;   //しゃがみ中
         direction = direction > 0 ? 1 : -1;
-
+        
         //空中で慣性つける
-        acc = _controller.is_Landing ? 20f : 6f;
+        acc = _controller.is_Landing ? 20f : 15f;
         //移動、加速
         if(direction == 1 && _rigid.velocity.x < MAX_SPEED) {            
             _rigid.velocity += new Vector2(acc, 0);
@@ -47,6 +47,7 @@ public class PlayerTransition : MonoBehaviour {
         if(transform.localScale.x != direction) {
             transform.localScale = new Vector3(direction, 1, 1);
         }
+        
     }
 
     //減速

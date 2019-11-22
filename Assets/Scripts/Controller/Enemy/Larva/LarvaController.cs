@@ -91,4 +91,9 @@ public class LarvaController : MonoBehaviour {
     }
 
 
+    //鱗粉エフェクト
+    public void Play_Scales_Effect() {
+        transform.GetChild(2).GetComponent<ParticleSystem>().Play();
+    }
+
 }

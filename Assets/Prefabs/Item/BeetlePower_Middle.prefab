@@ -93,7 +93,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   amplitude: 4
   angular_Speed: 8
-  start_Angular: 0
+  start_Angular: 180
 --- !u!114 &114380135983649036
 MonoBehaviour:
   m_ObjectHideFlags: 1
