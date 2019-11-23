@@ -26,7 +26,7 @@ public class PlayerTransition : MonoBehaviour {
         direction = direction > 0 ? 1 : -1;
         
         //空中で慣性つける
-        acc = _controller.is_Landing ? 20f : 15f;
+        acc = _controller.is_Landing ? 20f : 18f;
         //移動、加速
         if(direction == 1 && _rigid.velocity.x < MAX_SPEED) {            
             _rigid.velocity += new Vector2(acc, 0);

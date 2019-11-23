@@ -6,7 +6,7 @@ public class Test : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        Invoke("Test1", 5.0f);
+        Invoke("Test1", 3.0f);
 	}
 	
 

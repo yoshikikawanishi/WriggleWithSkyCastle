@@ -55,6 +55,11 @@ public class ItemController : MonoBehaviour {
     private void Gain_Beetle_Power_Item() {
         BeetlePowerManager.Instance.StartCoroutine("Increase_Cor", value);
         UsualSoundManager.Instance.Play_Get_Small_Item_Sound();
+        //エフェクト
+        GameObject main_Camera = GameObject.FindWithTag("MainCamera");
+        ReleaseAndConvergePlayer RC = transform.GetChild(0).GetComponent<ReleaseAndConvergePlayer>();        
+        RC.Play_Release_And_Converge(6, transform.position, new Vector2(208f, -104f), main_Camera);
+        transform.GetChild(0).SetParent(null);
     }
 
     //回復取得時
