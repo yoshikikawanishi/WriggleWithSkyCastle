@@ -4,13 +4,20 @@ using UnityEngine;
 
 public class PlayerAttackCollision : MonoBehaviour {
 
-    private bool is_Hit_Attack = false;    
+    private bool is_Hit_Attack = false;
+
+    private List<string> hit_Attack_Tag_List = new List<string> {
+        "EnemyTag",
+        "SandbackTag"
+    };
 
 
     private void OnTriggerEnter2D(Collider2D collision) {
-        if (collision.tag == "EnemyTag" && !is_Hit_Attack) {
-            is_Hit_Attack = true;
-        }        
+        foreach (string tag in hit_Attack_Tag_List) {
+            if (collision.tag == tag && !is_Hit_Attack) {
+                is_Hit_Attack = true;
+            }
+        }
     }
 
 
