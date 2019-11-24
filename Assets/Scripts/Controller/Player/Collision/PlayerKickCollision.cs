@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerKickCollision : MonoBehaviour {
     
-    private bool is_Hit_Kick = false;    
+    public bool is_Hit_Kick = false;    
 
 
     private void OnTriggerEnter2D(Collider2D collision) {
@@ -30,18 +30,25 @@ public class PlayerKickCollision : MonoBehaviour {
 
     public void Make_Collider_Disappear() {
         GetComponent<CircleCollider2D>().enabled = false;
+        Stop_Animation();
     }
 
 
     private void Play_Animation() {
-        GetComponent<Animator>().SetTrigger("KickTrigger");
+        GetComponent<Animator>().SetBool("KickBool", true);
         int power = PlayerManager.Instance.Get_Power();        
         if (power >= 64) {
-            transform.GetChild(0).GetComponent<Animator>().SetTrigger("KickTrigger2");            
+            transform.GetChild(0).GetComponent<Animator>().SetBool("KickBool2", true);            
         }
         else if (power >= 32) {
-            transform.GetChild(0).GetComponent<Animator>().SetTrigger("KickTrigger1");
+            transform.GetChild(0).GetComponent<Animator>().SetBool("KickBool1", true);
         }
+    }
+
+    private void Stop_Animation() {
+        GetComponent<Animator>().SetBool("KickBool", false);
+        transform.GetChild(0).GetComponent<Animator>().SetBool("KickBool1", false);
+        transform.GetChild(0).GetComponent<Animator>().SetBool("KickBool2", false);
     }
 
 }

@@ -25,7 +25,7 @@ public class BlueFairy : MonoBehaviour {
         }
 
         for(float t = 0; t < 2.5f; t += Time.deltaTime) {
-            transform.position += new Vector3(-1.0f, 0.1f * vertical_Direction);
+            transform.position += new Vector3(-0.75f, 0.1f * vertical_Direction);
             yield return new WaitForSeconds(0.016f);
         }
 

@@ -145,6 +145,7 @@ public class PlayerController : MonoBehaviour {
             attack_Frame_Count++;
             if (Input.GetAxisRaw("Vertical") < -0.1f) {
                 _attack.Kick();
+                is_Squat = false;
             }
             else if (attack_Frame_Count > 7) {
                 _attack.Attack();
@@ -189,6 +190,7 @@ public class PlayerController : MonoBehaviour {
         _anim.SetBool("JumpBool", false);
         _anim.SetBool("RideBeetleBool", false);
         _anim.SetBool("SquatBool", false);
+        _anim.SetBool("KickBool", false);
 
         _anim.SetBool(next_Parameter, true);
         now_Animator_Parameter = next_Parameter;

@@ -17,7 +17,7 @@ public class PlayerCore : MonoBehaviour {
                 time += Time.deltaTime;
             }
         }
-        if(time >= 0.5f) {
+        if(time >= 0.05f) {
             PlayerManager.Instance.Set_Life(0);
         }
     }

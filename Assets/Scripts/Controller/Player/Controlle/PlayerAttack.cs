@@ -71,7 +71,11 @@ public class PlayerAttack : MonoBehaviour {
     //キック
     public void Kick() {
         if (can_Attack) {
-            StartCoroutine("Kick_Cor");
+            kick_Collision.is_Hit_Kick = false;
+            if (_controller.is_Landing) 
+                StartCoroutine("Sliding_Cor");            
+            else 
+                StartCoroutine("Kick_Cor");
         }        
     }
 
@@ -79,27 +83,92 @@ public class PlayerAttack : MonoBehaviour {
     private IEnumerator Kick_Cor() {
         can_Attack = false;
         _controller.Set_Is_Playable(false);
-        _anim.SetTrigger("KickTrigger");
-        _rigid.velocity = new Vector2(transform.localScale.x * 180f, -200f);
+        _controller.Change_Animation("KickBool");
 
+        //キック開始
+        _rigid.velocity = new Vector2(transform.localScale.x * 180f, -200f);
         kick_Collision.Make_Collider_Appear();
         player_SE.Play_Kick_Sound();
-        for (float t = 0; t < 0.33f; t += Time.deltaTime) {
+
+        for (float t = 0; t < 0.3f; t += Time.deltaTime) {
+
             _rigid.velocity = new Vector2(transform.localScale.x * 180f, _rigid.velocity.y);
-            //敵と衝突時ノックバック
-            if (kick_Collision.Hit_Trigger()) {                
-                _rigid.velocity = new Vector2(40f * -transform.localScale.x, 240f);
+
+            //敵と衝突時の処理
+            if (kick_Collision.Hit_Trigger()) {
+                Occur_Kick_Knock_Back();
                 BeetlePowerManager.Instance.StartCoroutine("Increase_Cor", 8);
-                _controller.Change_Animation("JumpBool");
                 player_SE.Play_Hit_Attack_Sound();
-                yield return new WaitForSeconds(0.15f);
+                yield return new WaitForSeconds(0.015f);
                 break;
             }
+
+            //着地時終了
+            if (_controller.is_Landing) {
+                _rigid.velocity = new Vector2(transform.localScale.x * 180f, 0);
+                _controller.Change_Animation("KickBool");
+                yield return new WaitForSeconds(0.1f);
+                break;
+            }
+
             yield return null;
         }
-        kick_Collision.Make_Collider_Disappear();
+
+        if (_controller.is_Landing)
+            _controller.Change_Animation("IdleBool");
+        else
+            _controller.Change_Animation("JumpBool");        
 
         _controller.Set_Is_Playable(true);
+        kick_Collision.Make_Collider_Disappear();
+
+        yield return new WaitForSeconds(0.05f);
+        
         can_Attack = true;
+    }
+
+
+    //スライディング
+    private IEnumerator Sliding_Cor() {
+        can_Attack = false;
+        _controller.Set_Is_Playable(false);
+        _controller.Change_Animation("KickBool");
+
+        _rigid.velocity = new Vector2(transform.localScale.x * 180f, -200f);
+        kick_Collision.Make_Collider_Appear();
+        player_SE.Play_Kick_Sound();
+
+        //スライディング開始
+        for (float t = 0; t < 0.33f; t += Time.deltaTime) {
+
+            _rigid.velocity = new Vector2(transform.localScale.x * 180f, _rigid.velocity.y);
+
+            //敵と衝突時の処理
+            if (kick_Collision.Hit_Trigger()) {
+                Occur_Kick_Knock_Back();
+                BeetlePowerManager.Instance.StartCoroutine("Increase_Cor", 8);
+                player_SE.Play_Hit_Attack_Sound();
+                yield return new WaitForSeconds(0.015f);
+                break;
+            }            
+
+            yield return null;
+        }
+
+        if (_controller.is_Landing)
+            _controller.Change_Animation("IdleBool");
+        else
+            _controller.Change_Animation("JumpBool");        
+
+        _controller.Set_Is_Playable(true);
+        kick_Collision.Make_Collider_Disappear();        
+
+        can_Attack = true;
+    }
+
+
+    //キックのノックバック
+    private void Occur_Kick_Knock_Back() {
+        _rigid.velocity = new Vector2(40f * -transform.localScale.x, 240f);          
     }
 }
