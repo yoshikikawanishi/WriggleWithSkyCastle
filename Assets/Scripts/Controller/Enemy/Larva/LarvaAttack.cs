@@ -51,6 +51,7 @@ public class LarvaAttack : MonoBehaviour {
             for (int i = 0; i < 3; i++) {
                 yield return new WaitForSeconds(2.0f);
                 _controller.StartCoroutine("Pre_Action_Blink");
+                _controller.Play_Small_Charge_Effect();
                 yield return new WaitForSeconds(1.0f);
                 shoot_Obj.Shoot_Scales_Bullet(12, 180f);
                 _controller.Play_Scales_Effect();
@@ -116,6 +117,7 @@ public class LarvaAttack : MonoBehaviour {
             for (int i = 0; i < 3; i++) {
                 yield return new WaitForSeconds(3.0f);
                 _controller.StartCoroutine("Pre_Action_Blink");
+                _controller.Play_Small_Charge_Effect();
                 yield return new WaitForSeconds(1.0f);
                 for (int j = 0; j < 2; j++) {
                     shoot_Obj.Shoot_Scales_Bullet(20, (j+1) * 150f);

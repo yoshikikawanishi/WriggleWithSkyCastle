@@ -23,8 +23,8 @@ GameObject:
   - component: {fileID: 95328177694960050}
   - component: {fileID: 58586666416195238}
   - component: {fileID: 114072876895517318}
-  - component: {fileID: 114125304226301572}
   - component: {fileID: 114569529717143096}
+  - component: {fileID: 114556984531901074}
   m_Layer: 9
   m_Name: BlueFairy
   m_TagString: EnemyTag
@@ -89,7 +89,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 151a4e5617b28c34f873d3f94dcce539, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114125304226301572
+--- !u!114 &114556984531901074
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -97,7 +97,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1039242951229714}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e04eee4ffbf826347bb8e7a9fa8adac9, type: 3}
+  m_Script: {fileID: 11500000, guid: 4def77c0a5e125e4a8dbf901e1ddb693, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   is_Pooled: 1

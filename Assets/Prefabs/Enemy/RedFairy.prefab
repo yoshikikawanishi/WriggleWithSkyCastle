@@ -23,9 +23,9 @@ GameObject:
   - component: {fileID: 95687157239725316}
   - component: {fileID: 70882203766041594}
   - component: {fileID: 50233616774284322}
-  - component: {fileID: 114336055569919434}
   - component: {fileID: 114832934055501080}
   - component: {fileID: 114909795979556786}
+  - component: {fileID: 114376906738107940}
   m_Layer: 9
   m_Name: RedFairy
   m_TagString: EnemyTag
@@ -40,7 +40,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1928959891870948}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 179.6033, y: -33.6, z: 0}
+  m_LocalPosition: {x: -18.80075, y: -74.32766, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -99,7 +99,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &114336055569919434
+--- !u!114 &114376906738107940
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -107,7 +107,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1928959891870948}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e04eee4ffbf826347bb8e7a9fa8adac9, type: 3}
+  m_Script: {fileID: 11500000, guid: 4def77c0a5e125e4a8dbf901e1ddb693, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   is_Pooled: 0

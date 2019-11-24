@@ -7700,6 +7700,48 @@ Transform:
   m_Father: {fileID: 519420032}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1635632594
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4885315563241268, guid: 4bd949678d72d7c4f8be11df88e5a537, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -18.80075
+      objectReference: {fileID: 0}
+    - target: {fileID: 4885315563241268, guid: 4bd949678d72d7c4f8be11df88e5a537, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -74.32766
+      objectReference: {fileID: 0}
+    - target: {fileID: 4885315563241268, guid: 4bd949678d72d7c4f8be11df88e5a537, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4885315563241268, guid: 4bd949678d72d7c4f8be11df88e5a537, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4885315563241268, guid: 4bd949678d72d7c4f8be11df88e5a537, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4885315563241268, guid: 4bd949678d72d7c4f8be11df88e5a537, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4885315563241268, guid: 4bd949678d72d7c4f8be11df88e5a537, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4885315563241268, guid: 4bd949678d72d7c4f8be11df88e5a537, type: 2}
+      propertyPath: m_RootOrder
+      value: 12
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4bd949678d72d7c4f8be11df88e5a537, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1001 &1719718064
 Prefab:
   m_ObjectHideFlags: 0
@@ -7970,7 +8012,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1960837058
 Transform:
   m_ObjectHideFlags: 0

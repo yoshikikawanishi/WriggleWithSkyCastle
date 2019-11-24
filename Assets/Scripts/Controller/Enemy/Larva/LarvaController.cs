@@ -90,6 +90,10 @@ public class LarvaController : MonoBehaviour {
         transform.GetChild(1).GetComponent<AudioSource>().Stop();
     }
 
+    //小溜めエフェクト
+    public void Play_Small_Charge_Effect() {
+        transform.GetChild(3).GetComponent<ParticleSystem>().Play();
+    }
 
     //鱗粉エフェクト
     public void Play_Scales_Effect() {
