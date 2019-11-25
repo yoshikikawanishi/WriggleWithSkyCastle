@@ -5,47 +5,32 @@ using UnityEngine;
 //画面を揺らすスクリプト
 public class CameraShake : MonoBehaviour {
 
-    public void Shake(float duration, float magnitude, bool is_Fixed_Camera) {
-        StartCoroutine(DoShake(duration, magnitude, is_Fixed_Camera));
+    public void Shake(float duration, float magnitude) {
+        StartCoroutine(DoShake(duration, magnitude));
     }
 
     //カメラ揺らす
-    private IEnumerator DoShake(float duration, float magnitude, bool is_Fixed) {
+    private IEnumerator DoShake(float duration, float magnitude) {
+
         GameObject main_Camera = GameObject.FindWithTag("MainCamera");
-        var pos = main_Camera.transform.localPosition;
-        var default_Pos = main_Camera.transform.localPosition;
+        var pos = main_Camera.transform.localPosition;        
         var elapsed = 0f;
 
-        //固定カメラの時
-        if (is_Fixed) {
-            while (elapsed < duration) {
-                var x = pos.x + Random.Range(-1f, 1f) * magnitude;
-                var y = pos.y + Random.Range(-1f, 1f) * magnitude;
+        Remove_Camera_Controller(duration);
 
-                main_Camera.transform.localPosition = new Vector3(x, y, pos.z);
+        while (elapsed < duration) {
+            var x = pos.x + Random.Range(-1f, 1f) * magnitude;
+            var y = pos.y + Random.Range(-1f, 1f) * magnitude;
 
-                elapsed += Time.deltaTime;
+            main_Camera.transform.localPosition = new Vector3(x, y, pos.z) * Time.timeScale;
 
-                yield return new WaitForSeconds(0.016f);
-            }
-            main_Camera.transform.position = pos;
+            elapsed += Time.deltaTime;
+
+            yield return null;
         }
-        
-        //カメラが動くとき
-        else {
-            while (elapsed < duration) {
-                pos = main_Camera.transform.localPosition;
-                var x = pos.x + Random.Range(-1f, 1f) * magnitude;
-                var y = default_Pos.y + Random.Range(-1f, 1f) * magnitude;
 
-                main_Camera.transform.localPosition = new Vector3(x, y, pos.z);
+        main_Camera.transform.position = pos;
 
-                elapsed += Time.deltaTime;
-
-                yield return new WaitForSeconds(0.016f);
-            }
-            main_Camera.transform.position = new Vector3(main_Camera.transform.position.x, 0, default_Pos.z);
-        }
     }
 
 
@@ -55,10 +40,13 @@ public class CameraShake : MonoBehaviour {
     }
 
     private IEnumerator DoRemove_Camera_Controller(float duration) {
-        GameObject main_Camera = GameObject.FindWithTag("MainCamera");
-        main_Camera.GetComponent<CameraController>().enabled = false;
+        CameraController camera_Controller = GameObject.FindWithTag("MainCamera").GetComponent<CameraController>();
+        if (camera_Controller == null)
+            yield break;
+        
+        camera_Controller.enabled = false;
         yield return new WaitForSeconds(duration);
-        main_Camera.GetComponent<CameraController>().enabled = true;
+        camera_Controller.enabled = true;
     }
 
 }

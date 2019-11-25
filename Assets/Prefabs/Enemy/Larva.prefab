@@ -470,12 +470,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c9048ccf0aa56442ba7e89fea6de129, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  life: a0000000a0000000
+  life: aa000000aa000000
   power_Value: 8
   score_Value: 10
   phase_Change_Bomb_Prefab: {fileID: 1736861288342968, guid: 675f49615979bbc458f93a55dfd74bd8,
     type: 2}
-  clear_Effect_Prefab: {fileID: 1412540021160914, guid: 7a41ee48a9ab59c47864f837fe247c44,
+  clear_Converge_Effect_Prefab: {fileID: 1205548953361234, guid: 9ddf76b505b93354b90d8b070fead1d0,
+    type: 2}
+  clear_Effect_Prefab: {fileID: 1143129098506850, guid: 7a41ee48a9ab59c47864f837fe247c44,
     type: 2}
 --- !u!114 &114893537118939074
 MonoBehaviour:
@@ -685,8 +687,8 @@ ParticleSystem:
     startColor:
       serializedVersion: 2
       minMaxState: 2
-      minColor: {r: 1, g: 0.92138016, b: 0.60784316, a: 1}
-      maxColor: {r: 1, g: 0.8708434, b: 0.3176471, a: 1}
+      minColor: {r: 1, g: 0.87943393, b: 0.6650944, a: 1}
+      maxColor: {r: 1, g: 0.87174696, b: 0.7311321, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -748,7 +750,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 4
+      scalar: 12
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -1127,7 +1129,7 @@ ParticleSystem:
     angle: 25
     length: 5
     boxThickness: {x: 0, y: 0, z: 0}
-    radiusThickness: 0
+    radiusThickness: 0.05
     donutRadius: 0.2
     m_Position: {x: 0, y: 0, z: 0}
     m_Rotation: {x: 0, y: 0, z: 0}
@@ -1769,7 +1771,7 @@ ParticleSystem:
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 0}
-        key1: {r: 1, g: 1, b: 1, a: 0.53333336}
+        key1: {r: 1, g: 1, b: 1, a: 0.25882354}
         key2: {r: 0, g: 0, b: 0, a: 0}
         key3: {r: 0, g: 0, b: 0, a: 0}
         key4: {r: 0, g: 0, b: 0, a: 0}
@@ -23607,7 +23609,7 @@ ParticleSystemRenderer:
   m_MaxParticleSize: 0.5
   m_CameraVelocityScale: 0
   m_VelocityScale: 0
-  m_LengthScale: 10
+  m_LengthScale: 2
   m_SortingFudge: 0
   m_NormalDirection: 1
   m_RenderAlignment: 0

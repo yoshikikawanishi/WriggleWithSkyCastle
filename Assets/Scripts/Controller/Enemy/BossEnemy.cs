@@ -8,6 +8,7 @@ public class BossEnemy : MonoBehaviour {
     //コンポーネント
     private PutOutSmallItems _put_Out_Item;
     private SpriteRenderer _sprite;
+    private CameraShake _camera_Shake;
 
     //体力
     public List<int> life = new List<int>();
@@ -18,6 +19,7 @@ public class BossEnemy : MonoBehaviour {
     [Space]
     //エフェクト
     [SerializeField] private GameObject phase_Change_Bomb_Prefab;
+    [SerializeField] private GameObject clear_Converge_Effect_Prefab;
     [SerializeField] private GameObject clear_Effect_Prefab;
 
     //体力
@@ -33,6 +35,7 @@ public class BossEnemy : MonoBehaviour {
         //取得
         _put_Out_Item   = gameObject.AddComponent<PutOutSmallItems>();
         _sprite         = GetComponent<SpriteRenderer>();
+        _camera_Shake   = gameObject.AddComponent<CameraShake>();
         //初期値代入
         DEFAULT_LIFE = new List<int>(life);
     }    
@@ -87,13 +90,27 @@ public class BossEnemy : MonoBehaviour {
 
     //クリア時の処理
     private void Clear() {
-        clear_Trigger = true;
-        is_Cleared = true;        
+        StartCoroutine("Clear_Cor");
+    }
+
+    private IEnumerator Clear_Cor() {
+        
+        gameObject.layer = LayerMask.NameToLayer("InvincibleLayer");
+
+        var converge_Effect = Instantiate(clear_Converge_Effect_Prefab);
+        converge_Effect.transform.position = transform.position;
+
+        Time.timeScale = 0.15f;
+        yield return new WaitForSeconds(0.1f);
+        Time.timeScale = 1;
 
         var effect = Instantiate(clear_Effect_Prefab);
         effect.transform.position = transform.position;
 
-        gameObject.layer = LayerMask.NameToLayer("InvincibleLayer");
+        _camera_Shake.Shake(0.8f, 1.2f);
+
+        clear_Trigger = true;
+        is_Cleared = true;
     }
 
 

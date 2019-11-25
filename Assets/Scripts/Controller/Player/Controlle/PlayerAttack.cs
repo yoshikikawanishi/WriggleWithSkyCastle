@@ -49,9 +49,10 @@ public class PlayerAttack : MonoBehaviour {
                 BeetlePowerManager.Instance.StartCoroutine("Increase_Cor", 8);
                 player_SE.Play_Hit_Attack_Sound();
                 //ヒットストップ
+                float tmp = Time.timeScale;
                 Time.timeScale = 0.5f;
                 yield return new WaitForSeconds(0.05f);
-                Time.timeScale = 1.0f;
+                Time.timeScale = tmp;
                 break;
             }
             yield return null;

@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerDamaged : MonoBehaviour {
 
     //コンポーネント
-    private PlayerSoundEffect player_SE;
+    private PlayerSoundEffect player_SE;    
 
     //無敵時間
     private float INVINCIBLE_TIME_LENGTH = 3.0f;
@@ -13,7 +13,7 @@ public class PlayerDamaged : MonoBehaviour {
 
     private void Start() {
         //取得
-        player_SE = GetComponentInChildren<PlayerSoundEffect>();
+        player_SE = GetComponentInChildren<PlayerSoundEffect>();        
     }
 
 
@@ -29,21 +29,23 @@ public class PlayerDamaged : MonoBehaviour {
         StartCoroutine("Blink");                                    //点滅
         body_Collision.Become_Invincible();                         //無敵化
         player_SE.Play_Damaged_Sound();                             //効果音
-        Occure_Knock_Back();                                        //反動        
+        Occure_Knock_Back();                                        //反動     
+
         yield return new WaitForSeconds(INVINCIBLE_TIME_LENGTH + 1.0f);    //無敵時間
+
         body_Collision.Release_Invincible();                        //戻す        
     }
 
 
     //点滅
     private IEnumerator Blink() {
-        Renderer player_Renderer = GetComponent<Renderer>();
+        SpriteRenderer _sprite = GetComponent<SpriteRenderer>();
         float span = INVINCIBLE_TIME_LENGTH / 30;
         for (int i = 0; i < 15; i++) {
-            player_Renderer.enabled = false;
-            yield return new WaitForSeconds(span);
-            player_Renderer.enabled = true;
-            yield return new WaitForSeconds(span);
+            _sprite.color = new Color(1, 1, 1, 0.3f);
+            yield return new WaitForSeconds(span * 0.8f);
+            _sprite.color = new Color(1, 1, 1, 1);
+            yield return new WaitForSeconds(span * 1.2f);
         }
     }
 
