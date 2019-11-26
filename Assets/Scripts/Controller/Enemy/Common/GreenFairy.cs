@@ -38,8 +38,10 @@ public class GreenFairy : MonoBehaviour {
 
 
     private void OnBecameVisible() {
-        start_Action = true;
-        //初速
-        _rigid.velocity = new Vector2(-40f, 0);
+        if (!start_Action) {
+            start_Action = true;
+            //初速
+            _rigid.velocity = new Vector2(-40f, 0);
+        }
     }
 }

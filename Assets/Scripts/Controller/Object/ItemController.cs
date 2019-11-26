@@ -64,13 +64,19 @@ public class ItemController : MonoBehaviour {
 
     //回復取得時
     private void Gain_Life_Up_Item() {
-        PlayerManager.Instance.Add_Life();        
+        PlayerManager.Instance.Add_Life();
+        GameObject.FindWithTag("PlayerTag").GetComponentInChildren<PlayerEffect>().Play_Red_Powder_Effect();
+        UsualSoundManager.Instance.Play_Life_Up_Sound();
     }
 
     //残機アップアイテム取得時
     private void Gain_Stock_Up_Item() {
         PlayerManager.Instance.Add_Stock();
+        GameObject.FindWithTag("PlayerTag").GetComponentInChildren<PlayerEffect>().Play_Green_Powder_Effect();
+        UsualSoundManager.Instance.Play_Stock_Up_Sound();        
         Destroy(gameObject);
+
+        Debug.Log("Don't ObjectPool Stock Item");
     }
 
 }

@@ -6,21 +6,26 @@ public class Rumia : Character {
 
 
     //被弾時の処理
+    //パーティクルの停止、ルーミア発見
     protected override void Damaged() {
         base.Damaged();
+        Stage1_1Scene.Instance.rumia_State = Stage1_1Scene.Rumia.find;
         GetComponent<ParticleSystem>().Stop();
     }
 
+
     //ライフがなくなったときの処理
-    //点滅して消滅
-    protected override void Action_In_Life_Become_Zero() {        
-        GetComponent<Animator>().SetBool("VanishBool", true);
+    //点滅して消滅、ルーミア消滅
+    protected override void Action_In_Life_Become_Zero() {                
         StartCoroutine("Vanish_Cor");
+        Stage1_1Scene.Instance.rumia_State = Stage1_1Scene.Rumia.delete;
     }
 
 
+    //点滅して消滅
     private IEnumerator Vanish_Cor() {
         GetComponent<CircleCollider2D>().enabled = false;
+        GetComponent<Animator>().SetBool("VanishBool", true);
 
         SpriteRenderer _sprite = GetComponent<SpriteRenderer>();
         for (int i = 0; i < 10; i++) {

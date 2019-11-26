@@ -40,7 +40,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1569360790483774}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5190.6, y: -34, z: 0}
+  m_LocalPosition: {x: 5362.8, y: -34, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -114,7 +114,7 @@ MonoBehaviour:
   life: 15
   power_Value: 2
   score_Value: 5
-  drop_Life_Probability: 1
+  drop_Life_Probability: 100
 --- !u!114 &114826191503562798
 MonoBehaviour:
   m_ObjectHideFlags: 1

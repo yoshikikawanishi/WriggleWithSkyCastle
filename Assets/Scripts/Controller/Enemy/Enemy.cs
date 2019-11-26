@@ -27,7 +27,7 @@ public class Enemy : MonoBehaviour {
         //取得
         _sprite = GetComponent<SpriteRenderer>();
         default_Color = _sprite.color;
-        default_Life = life;
+        default_Life = life;       
     }
 
 
@@ -80,10 +80,11 @@ public class Enemy : MonoBehaviour {
     //アイテムの放出
     private void Put_Out_Item() {
         gameObject.AddComponent<PutOutSmallItems>().Put_Out_Item(power_Value, score_Value);
-        //TODO:回復アイテムのドロップ
-        Debug.Log("Drop_Life");
+        
         if (Random.Range(1, 100) <= drop_Life_Probability) {
-
+            ObjectPoolManager.Instance.Create_New_Pool(Resources.Load("Object/LifeUpItem") as GameObject, 2);
+            var life_Item = ObjectPoolManager.Instance.Get_Pool("LifeUpItem").GetObject();
+            life_Item.transform.position = transform.position;
         }
     }
 

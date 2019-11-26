@@ -129,7 +129,7 @@ MonoBehaviour:
   life: 2
   power_Value: 1
   score_Value: 2
-  drop_Life_Probability: 1
+  drop_Life_Probability: 0.5
 --- !u!114 &114621686281014336
 MonoBehaviour:
   m_ObjectHideFlags: 1

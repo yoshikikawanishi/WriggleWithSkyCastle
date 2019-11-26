@@ -32,4 +32,23 @@ public class PlayerEffect : MonoBehaviour {
             }
         }
     }
+
+
+    /// <summary>
+    /// 緑パウダーエフェクトを再生する
+    /// Player/Effectsの子供の順番を変えないこと
+    /// </summary>
+    public void Play_Green_Powder_Effect() {
+        transform.GetChild(3).GetComponent<ParticleSystem>().Play();
+    }
+
+
+    /// <summary>
+    /// 赤パウダーエフェクトを再生する
+    /// Player/Effectsの子供の順番を変えないこと
+    /// </summary>
+    public void Play_Red_Powder_Effect() {
+        transform.GetChild(4).GetComponent<ParticleSystem>().Play();
+    }
+
 }

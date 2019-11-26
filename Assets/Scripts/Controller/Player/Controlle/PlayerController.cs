@@ -203,6 +203,10 @@ public class PlayerController : MonoBehaviour {
     }
 
     //Getter
+    public bool Get_Is_Playable() {
+        return is_Playable;
+    }
+
     public bool Get_Is_Ride_Beetle() {
         return is_Ride_Beetle;
     }
