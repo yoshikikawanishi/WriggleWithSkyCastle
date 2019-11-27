@@ -100,4 +100,13 @@ public class LarvaController : MonoBehaviour {
         transform.GetChild(2).GetComponent<ParticleSystem>().Play();
     }
 
+    //バーストエフェクト
+    public void Play_Burst_Effect() {
+        transform.GetChild(4).GetComponent<ParticleSystem>().Play();
+    }
+
+    public void Play_Small_Burst_Effect() {
+        transform.GetChild(5).GetComponent<ParticleSystem>().Play();
+    }
+
 }

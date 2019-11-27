@@ -22,7 +22,7 @@ public class PlayerBodyCollision : MonoBehaviour {
 
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
         //取得
         player_Controller = transform.parent.GetComponent<PlayerController>();
         player_Damaged = transform.parent.GetComponent<PlayerDamaged>();

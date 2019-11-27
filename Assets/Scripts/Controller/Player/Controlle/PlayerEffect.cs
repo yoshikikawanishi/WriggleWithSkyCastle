@@ -6,6 +6,9 @@ public class PlayerEffect : MonoBehaviour {
 
     
     [SerializeField] private GameObject[] shoot_Charge = new GameObject[3];
+    [SerializeField] private ParticleSystem green_Powder;
+    [SerializeField] private ParticleSystem red_Powder;
+    [SerializeField] private ParticleSystem ride_Beetle;
 
     private ParticleSystem[] shoot_Charge_Particle = new ParticleSystem[3];
 
@@ -36,19 +39,47 @@ public class PlayerEffect : MonoBehaviour {
 
     /// <summary>
     /// 緑パウダーエフェクトを再生する
-    /// Player/Effectsの子供の順番を変えないこと
     /// </summary>
     public void Play_Green_Powder_Effect() {
-        transform.GetChild(3).GetComponent<ParticleSystem>().Play();
+        green_Powder.Play();
     }
 
 
     /// <summary>
     /// 赤パウダーエフェクトを再生する
-    /// Player/Effectsの子供の順番を変えないこと
     /// </summary>
     public void Play_Red_Powder_Effect() {
-        transform.GetChild(4).GetComponent<ParticleSystem>().Play();
+        red_Powder.Play();
+    }
+
+
+    /// <summary>
+    /// カブトムシ乗り時の収束エフェクトを再生を開始する
+    /// </summary>
+    public void Start_Ridding_Beetle_Effect() {
+        ride_Beetle.gameObject.SetActive(true);
+        StartCoroutine("Play_Ridding_Beetle_Effect");        
+    }
+
+    private IEnumerator Play_Ridding_Beetle_Effect() {
+        ride_Beetle.Play();
+        while (true) {
+            ride_Beetle.Simulate(
+                t: Time.unscaledDeltaTime,  //パーティクルシステムを早送りする時間
+                withChildren: true,         //子のパーティクルシステムもすべて早送りするかどうか
+                restart: false              //再起動し最初から再生するかどうか
+            );
+            yield return null;
+        }
+    }
+
+    /// <summary>
+    /// カブトムシの理事の収束エフェクトを止める
+    /// </summary>
+    public void Stop_Ridding_Beetle_Effect() {
+        ride_Beetle.Stop();
+        StopCoroutine("Play_Ridding_Beetle_Effect");
+        ride_Beetle.gameObject.SetActive(false);
     }
 
 }

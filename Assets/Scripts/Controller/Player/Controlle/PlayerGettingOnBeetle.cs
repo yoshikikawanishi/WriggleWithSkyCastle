@@ -12,6 +12,7 @@ public class PlayerGettingOnBeetle : MonoBehaviour {
 
     private PlayerController _controller;
     private PlayerBodyCollision body_Collision;
+    private PlayerEffect player_Effect;
 
     public bool can_Get_On_Beetle = true;
 
@@ -28,6 +29,7 @@ public class PlayerGettingOnBeetle : MonoBehaviour {
         beetle_Body = transform.Find("BeetleBody").gameObject;
         body_Collision = GetComponentInChildren<PlayerBodyCollision>();
         _controller = GetComponent<PlayerController>();
+        player_Effect = GetComponentInChildren<PlayerEffect>();
 
         //初期値代入
         default_Gravity = GetComponent<Rigidbody2D>().gravityScale;
@@ -58,9 +60,15 @@ public class PlayerGettingOnBeetle : MonoBehaviour {
         //時間停止
         Time.timeScale = 0;
         PauseManager.Instance.Set_Is_Pausable(false);
+        
         //カブトムシ登場        
         StartCoroutine("Appear_Beetle_Cor");
-        for (float t = 0; t < 0.8f; t += 0.016f) { yield return null; }        
+        player_Effect.Start_Ridding_Beetle_Effect();
+
+        for (float t = 0; t < 0.8f; t += 0.016f) { yield return null; }
+
+        player_Effect.Stop_Ridding_Beetle_Effect();
+        
         //ステータス変更
         Change_To_Beetle_Status();
 
