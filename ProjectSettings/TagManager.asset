@@ -18,6 +18,7 @@ TagManager:
   - PlayerChargeBulletTag
   - BombTag
   - SandbackTag
+  - ThroughGroundTag
   layers:
   - Default
   - TransparentFX

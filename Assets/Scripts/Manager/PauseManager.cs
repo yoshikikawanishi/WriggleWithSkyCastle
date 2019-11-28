@@ -2,10 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using UnityEngine.EventSystems;
 using MBLDefine;
 
 public class PauseManager : SingletonMonoBehaviour<PauseManager> {
-    
+
+    [SerializeField] private GameObject pause_Canvas_Prefab;
+    private GameObject pause_Canvas;
+
     public enum STATE {
         normal,
         pause,
@@ -31,7 +36,6 @@ public class PauseManager : SingletonMonoBehaviour<PauseManager> {
         if (InputManager.Instance.GetKeyDown(Key.Pause)) {            
             if(state == STATE.normal) {
                 Pause_Game();
-                Debug.Log("Pause");
             }
             else if(state == STATE.pause) {
                 Release_Pause_Game();
@@ -40,9 +44,8 @@ public class PauseManager : SingletonMonoBehaviour<PauseManager> {
 	}
 
 
-    //シーン読み込み時に呼ばれる関数
-    void OnSceneLoaded(Scene scene, LoadSceneMode mode) {
-        //ポーズのバグ防止用
+    //シーン読み込み時に状態を戻す
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode) {        
         state = STATE.normal;
         Time.timeScale = 1;
         Set_Is_Pausable(true);
@@ -55,20 +58,40 @@ public class PauseManager : SingletonMonoBehaviour<PauseManager> {
             Debug.Log("Can't_Pause");
             return;
         }
+
         state = STATE.pause;
         time_Scale_Before_Pause = Time.timeScale;
         Time.timeScale = 0;
+
         //自機の操作無効化
         GameObject.FindWithTag("PlayerTag").GetComponent<PlayerController>().Set_Is_Playable(false);
+
+        //ポーズキャンバスの生成
+        if(pause_Canvas == null) {
+            pause_Canvas = Instantiate(pause_Canvas_Prefab);
+        }
+        pause_Canvas.SetActive(true);
+        EventSystem.current.SetSelectedGameObject(null);       
+        pause_Canvas.transform.GetChild(0).GetComponent<Button>().Select();
     }
 
     
     //ポーズ解除
-    private void Release_Pause_Game() {
+    public void Release_Pause_Game() {
+        StartCoroutine("Release_Pause_Game_Cor");
+    }
+
+    private IEnumerator Release_Pause_Game_Cor() {
+        yield return null;
+
         state = STATE.normal;
         Time.timeScale = time_Scale_Before_Pause;
+
         //自機の操作有効化
         GameObject.FindWithTag("PlayerTag").GetComponent<PlayerController>().Set_Is_Playable(true);
+
+        //ポーズキャンバスを消す
+        pause_Canvas.SetActive(false);
     }
 
 

@@ -123,6 +123,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dontDestroyOnLoad: 1
+  pause_Canvas_Prefab: {fileID: 1205608993799736, guid: 9b8249d267ffc2b46a8993c0a93bb15d,
+    type: 2}
 --- !u!114 &114983600466901070
 MonoBehaviour:
   m_ObjectHideFlags: 1

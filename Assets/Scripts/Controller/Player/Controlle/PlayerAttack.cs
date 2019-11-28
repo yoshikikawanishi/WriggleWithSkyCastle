@@ -97,9 +97,7 @@ public class PlayerAttack : MonoBehaviour {
 
             //敵と衝突時の処理
             if (kick_Collision.Hit_Trigger()) {
-                Occur_Kick_Knock_Back();
-                BeetlePowerManager.Instance.StartCoroutine("Increase_Cor", 8);
-                player_SE.Play_Hit_Attack_Sound();
+                Do_Hit_Kick_Process();
                 yield return new WaitForSeconds(0.015f);
                 break;
             }
@@ -108,8 +106,8 @@ public class PlayerAttack : MonoBehaviour {
             if (_controller.is_Landing) {
                 _rigid.velocity = new Vector2(transform.localScale.x * 180f, 0);
                 _controller.Change_Animation("KickBool");
-                yield return new WaitForSeconds(0.1f);
-                break;
+                if(t < 0.2f)
+                    t = 0.2f;
             }
 
             yield return null;
@@ -146,9 +144,8 @@ public class PlayerAttack : MonoBehaviour {
 
             //敵と衝突時の処理
             if (kick_Collision.Hit_Trigger()) {
-                Occur_Kick_Knock_Back();
-                BeetlePowerManager.Instance.StartCoroutine("Increase_Cor", 8);
-                player_SE.Play_Hit_Attack_Sound();
+                Do_Hit_Kick_Process();
+                
                 yield return new WaitForSeconds(0.015f);
                 break;
             }            
@@ -168,8 +165,10 @@ public class PlayerAttack : MonoBehaviour {
     }
 
 
-    //キックのノックバック
-    private void Occur_Kick_Knock_Back() {
-        _rigid.velocity = new Vector2(40f * -transform.localScale.x, 240f);          
+    //キックのヒット時の処理
+    private void Do_Hit_Kick_Process() {
+        _rigid.velocity = new Vector2(40f * -transform.localScale.x, 240f); //ノックバック
+        BeetlePowerManager.Instance.StartCoroutine("Increase_Cor", 8);      //緑ゲージの増加
+        player_SE.Play_Hit_Attack_Sound();                                  //効果音
     }
 }

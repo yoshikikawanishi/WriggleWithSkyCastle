@@ -25,13 +25,13 @@ public class BlueFairy : MonoBehaviour {
         }
 
         for(float t = 0; t < 2.5f; t += Time.deltaTime) {
-            transform.position += new Vector3(-0.75f, 0.1f * vertical_Direction);
+            transform.position += new Vector3(-0.6f, 0.1f * vertical_Direction);
             yield return new WaitForSeconds(0.016f);
         }
 
         //はける
         float escape_Acc = 0.05f;
-        Vector3 escape_Speed = new Vector3(-2f, 0);
+        Vector3 escape_Speed = new Vector3(-0.8f, 0);
         if (transform.position.y < 0) { escape_Acc = -0.05f; }
         while (Mathf.Abs(transform.position.y) < 210f) {
             transform.position += escape_Speed * Time.timeScale;

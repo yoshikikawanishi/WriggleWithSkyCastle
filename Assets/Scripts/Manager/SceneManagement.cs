@@ -85,6 +85,7 @@ public class SceneManagement : SingletonMonoBehaviour<SceneManagement> {
     private Dictionary<string, bool> Is_Game_Scene_Dic = new Dictionary<string, bool>() {
         { "TitleScene", false },
         { "ConfigScene", false },
+        { "PlayGuideScene", true },
 
         { "Stage1_1Scene", true },
         { "Stage1_BossScene", true },

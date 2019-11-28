@@ -40,4 +40,12 @@ public class TitleSceneButton : MonoBehaviour {
     }
 
 
+    //遊びからボタン
+    public void Play_Guide_Button() {
+        if (InputManager.Instance.GetKeyDown(Key.Jump)) {
+            SceneManager.LoadScene("PlayGuideScene");
+        }
+    }
+
+
 }
