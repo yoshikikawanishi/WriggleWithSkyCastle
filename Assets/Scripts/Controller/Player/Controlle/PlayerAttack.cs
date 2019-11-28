@@ -104,7 +104,7 @@ public class PlayerAttack : MonoBehaviour {
 
             //着地時終了
             if (_controller.is_Landing) {
-                _rigid.velocity = new Vector2(transform.localScale.x * 180f, 0);
+                _rigid.velocity = new Vector2(transform.localScale.x * 180f, _rigid.velocity.y);
                 _controller.Change_Animation("KickBool");
                 if(t < 0.2f)
                     t = 0.2f;
@@ -141,6 +141,7 @@ public class PlayerAttack : MonoBehaviour {
         for (float t = 0; t < 0.33f; t += Time.deltaTime) {
 
             _rigid.velocity = new Vector2(transform.localScale.x * 180f, _rigid.velocity.y);
+            _controller.Change_Animation("KickBool");
 
             //敵と衝突時の処理
             if (kick_Collision.Hit_Trigger()) {

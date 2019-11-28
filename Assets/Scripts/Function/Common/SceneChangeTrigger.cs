@@ -13,6 +13,8 @@ public class SceneChangeTrigger : MonoBehaviour {
     }
     public Change_Efect change_Effect_Type;
 
+    [Space]
+    [SerializeField] private Color fade_Out_Color;
 
     //OnTriggerEnter
     private void OnTriggerEnter2D(Collider2D collision) {
@@ -29,7 +31,7 @@ public class SceneChangeTrigger : MonoBehaviour {
             case Change_Efect.non:
                 break;
             case Change_Efect.fade_Out:
-                FadeInOut.Instance.Start_Fade_Out(new Color(0, 0, 0), 0.05f);
+                FadeInOut.Instance.Start_Fade_Out(fade_Out_Color, 0.05f);
                 yield return new WaitForSeconds(1.0f);
                 break;
         }

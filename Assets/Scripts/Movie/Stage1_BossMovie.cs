@@ -78,10 +78,10 @@ public class Stage1_BossMovie : MonoBehaviour {
         _message.Start_Display("LarvaText", 1, 1);
         yield return new WaitUntil(_message.End_Message);
 
-        FadeInOut.Instance.Start_Fade_Out(new Color(1, 1, 1), 0.01f);
+        FadeInOut.Instance.Start_Fade_Out(new Color(0, 0, 0), 0.01f);
         yield return new WaitForSeconds(2.5f);
 
-        SceneManager.LoadScene("Stage2_1Scene");
+        SceneManager.LoadScene("PlayGuide2Scene");
     }
 
 }

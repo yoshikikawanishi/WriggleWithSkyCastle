@@ -1,13 +1,15 @@
 fileFormatVersion: 2
-guid: 171907e6cbfe69a4fa75b43b24d63e5b
+guid: faae57b15102509408eb02e564fc443d
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Rumia_0
-    21300002: Rumia_1
-    21300004: Rumia_2
-    21300006: Rumia_3
-    21300008: Rumia_4
-    21300010: Rumia_5
+    21300000: Mystia_0
+    21300002: Mystia_1
+    21300004: Mystia_2
+    21300006: Mystia_3
+    21300008: Mystia_4
+    21300010: Mystia_5
+    21300012: Mystia_6
+    21300014: Mystia_7
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -123,13 +125,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Rumia_0
+      name: Mystia_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 27
-        width: 20
-        height: 28
+        x: 1
+        y: 30
+        width: 22
+        height: 30
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -137,19 +139,99 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: acc554e22b1ce284e836b80303430d7d
+      spriteID: 2a88da1a1fcd6c9439d65db48f84164f
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Rumia_1
+      name: Mystia_1
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 30
+        width: 22
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 148360f41441e9e4a92a6e832a54a0c9
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mystia_2
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 30
+        width: 22
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 816026d57e5eb8742905db737477c93d
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mystia_3
+      rect:
+        serializedVersion: 2
+        x: 76
+        y: 30
+        width: 22
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 30a5c6e4919bd0d43b4f09682bc00dd0
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mystia_4
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 2
+        width: 21
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 975ec04d140096a48b6f4c4155fa9a30
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mystia_5
       rect:
         serializedVersion: 2
         x: 25
-        y: 27
-        width: 20
-        height: 28
+        y: 2
+        width: 21
+        height: 23
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -157,19 +239,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 478f7a21ee7714e4d841e0cc14d1ded9
+      spriteID: fcc1bf3d5c9e37f42b8cfd84d06b680e
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Rumia_2
+      name: Mystia_6
       rect:
         serializedVersion: 2
         x: 50
-        y: 27
-        width: 20
-        height: 28
+        y: 2
+        width: 21
+        height: 23
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -177,19 +259,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ae2f7fa5d10bfd74d9917ba5edb2bfbc
+      spriteID: 7eac767b66d87584b959fa8afeadaff6
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Rumia_3
+      name: Mystia_7
       rect:
         serializedVersion: 2
         x: 75
-        y: 27
-        width: 20
-        height: 28
+        y: 2
+        width: 21
+        height: 23
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -197,47 +279,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b0ba2e0442986ab4abf4a886e68a2cd8
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Rumia_4
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 20
-        height: 26
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c83f09691b67456499899826cdebdfa8
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Rumia_5
-      rect:
-        serializedVersion: 2
-        x: 25
-        y: 0
-        width: 20
-        height: 26
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 070f5bcf3f403bf4ebeded80fa1f36e4
+      spriteID: c6e57080386578c42b6630674e5873e4
       vertices: []
       indices: 
       edges: []
@@ -245,7 +287,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 62a0e362dfb2b5a40afc76164da06ee1
+    spriteID: 453b61ac571d5a246aa82d3308bfb82f
     vertices: []
     indices: 
     edges: []

@@ -14,7 +14,7 @@ public class Mystia : TalkCharacter {
         }
 
         if (End_Talk()) {
-            Do_Action_After_Talking();
+            StartCoroutine("Action_After_Talking_Cor");
         }
 	}
 
@@ -29,23 +29,24 @@ public class Mystia : TalkCharacter {
                 Change_Message_Status("MystiaText", 7, 12);
                 break;
             case Stage1_1Scene.Rumia.delete:
-                Change_Message_Status("MystiaText", 14, 20);
+                Change_Message_Status("MystiaText", 14, 21);
                 break;
         }
     }
 
 
     //会話終了後
-    private void Do_Action_After_Talking() {
+    private IEnumerator Action_After_Talking_Cor() {
         //当たり判定消す
         GetComponent<BoxCollider2D>().enabled = false;
 
         //飛び去る
         MoveTwoPoints _move = gameObject.AddComponent<MoveTwoPoints>();
-        _move.Set_Speed(0.01f, 1.05f, 1.0f);
-        _move.Start_Move(new Vector3(1100f, 74f), 16f, false);
+        _move.Set_Speed(0.01f, 1.05f, 0.995f); 
+        _move.Start_Move(transform.position + new Vector3(-300f, 150f), 16f, false);
+        GetComponent<Animator>().SetTrigger("FlyTrigger");
 
-        //アイテムの放出
+        //ルーミアの状態によってアイテム変更
         switch (now_Rumia_State) {
             case Stage1_1Scene.Rumia.not_find:
                 Put_Out_Score(1);
@@ -58,6 +59,11 @@ public class Mystia : TalkCharacter {
                 Put_Out_Score(10);
                 break;
         }
+
+        //ルーミアの隣に配置
+        yield return new WaitForSeconds(5.0f);        
+        transform.position = new Vector3(924f, 54f, 0);
     }
+    
 
 }
