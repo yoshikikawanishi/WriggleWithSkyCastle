@@ -98,6 +98,10 @@ internal class InputManager : SingletonMonoBehaviour<InputManager> {
             return inputManager.keyConfig.GetKeyCode(keyName.String);
         }
 
+        public List<KeyCode> GetKeyCode(string keyName) {
+            return inputManager.keyConfig.GetKeyCode(keyName);
+        }
+
         public void LoadSetting() {
             InputManager.Instance.keyConfig.LoadConfigFile();
         }
