@@ -11,7 +11,7 @@ public class Stage2_1Scene : MonoBehaviour {
             FadeInOut.Instance.Start_Fade_In(new Color(1, 1, 1), 0.015f);
             
             //セーブ
-            DataManager.Instance.Save_Player_Data(new Vector2(-134f, -40f));
+            DataManager.Instance.Save_Player_Data(new Vector2(-134f, 46f));
             GameObject.Find("Canvas").GetComponent<GameUIController>().Display_Save_Text();
 
             //自機をカブトムシに乗せる

@@ -28,7 +28,7 @@ public class PlayerJump : MonoBehaviour {
     //減速
     public void Slow_Down() {
         if (_rigid.velocity.y > 0) {
-            _rigid.velocity *= new Vector2(1, 0.5f);
+            _rigid.velocity *= new Vector2(1, 0.3f);
         }
     }
 

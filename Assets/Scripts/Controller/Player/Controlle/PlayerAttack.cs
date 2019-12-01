@@ -168,7 +168,7 @@ public class PlayerAttack : MonoBehaviour {
 
     //キックのヒット時の処理
     private void Do_Hit_Kick_Process() {
-        _rigid.velocity = new Vector2(40f * -transform.localScale.x, 240f); //ノックバック
+        _rigid.velocity = new Vector2(40f * -transform.localScale.x, 200f); //ノックバック
         BeetlePowerManager.Instance.StartCoroutine("Increase_Cor", 8);      //緑ゲージの増加
         player_SE.Play_Hit_Attack_Sound();                                  //効果音
     }

@@ -4,13 +4,19 @@ using UnityEngine;
 
 public class PlayerKickCollision : MonoBehaviour {
     
-    public bool is_Hit_Kick = false;    
+    public bool is_Hit_Kick = false;
 
+    private List<string> hit_Attack_Tag_List = new List<string> {
+        "EnemyTag",
+        "SandbackTag"
+    };
 
     private void OnTriggerEnter2D(Collider2D collision) {
-        if (collision.tag == "EnemyTag" && !is_Hit_Kick) {
-            is_Hit_Kick = true;
-        }    
+        foreach (string tag in hit_Attack_Tag_List) {
+            if (collision.tag == tag && !is_Hit_Kick) {
+                is_Hit_Kick = true;
+            }
+        }
     }
 
 

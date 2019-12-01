@@ -34,7 +34,18 @@ public class TalkCharacter : MonoBehaviour {
     }
 
 
+    protected void Update() {
+        if (mark_Up_Baloon.activeSelf) {
+            //会話開始
+            if (!is_Talking && Input.GetAxisRaw("Vertical") > 0) {
+                StartCoroutine("Talk");
+            }
+        }
+    }
+
+
     //OnTriggerStay
+    /*
     protected void OnTriggerStay2D(Collider2D collision) {
         if (collision.tag == "PlayerBodyTag") {
             if (!is_Talking && Input.GetAxisRaw("Vertical") > 0) {
@@ -42,6 +53,8 @@ public class TalkCharacter : MonoBehaviour {
             }
         }
     }
+    */
+
 
     //OnTriggerEnter
     private void OnTriggerEnter2D(Collider2D collision) {
@@ -67,6 +80,7 @@ public class TalkCharacter : MonoBehaviour {
         PlayerController player_Controller = player.GetComponent<PlayerController>();
 
         //会話開始
+        mark_Up_Baloon.SetActive(false);
         if (player_Controller.Get_Is_Playable()) {
             //自機を止める
             player_Controller.Set_Is_Playable(false);
@@ -83,8 +97,18 @@ public class TalkCharacter : MonoBehaviour {
             PauseManager.Instance.Set_Is_Pausable(true);
         }
 
+        mark_Up_Baloon.SetActive(true);
+
+        Action_In_End_Talk();
         end_Talk = true;
         is_Talking = false;
+    }
+
+
+    /// <summary>
+    /// 会話終了時に行う処理
+    /// </summary>
+    protected virtual void Action_In_End_Talk() {
     }
 
 

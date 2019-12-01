@@ -124,10 +124,10 @@ TextureImporter:
       name: Larva_0
       rect:
         serializedVersion: 2
-        x: 14
-        y: 188
-        width: 66
-        height: 40
+        x: 13
+        y: 189
+        width: 67
+        height: 39
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -135,7 +135,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ef9235b9dc1da5b4b88f700803e861c6
+      spriteID: b97b004780deedf44852d30d2a282924
       vertices: []
       indices: 
       edges: []
@@ -144,29 +144,9 @@ TextureImporter:
       name: Larva_1
       rect:
         serializedVersion: 2
-        x: 14
+        x: 13
         y: 134
-        width: 66
-        height: 39
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 86d3d47498bce0c44a2543cb33e75962
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Larva_2
-      rect:
-        serializedVersion: 2
-        x: 14
-        y: 79
-        width: 66
+        width: 67
         height: 40
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -175,18 +155,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3ee4fb5150003bc44832759d38babe66
+      spriteID: 6ade9d88b68725a49becca56bf57ba65
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Larva_3
+      name: Larva_2
       rect:
         serializedVersion: 2
-        x: 14
-        y: 24
-        width: 66
+        x: 13
+        y: 79
+        width: 67
         height: 39
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -195,7 +175,27 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8ee2dfad4f8d62c4aa48d431a102ae3f
+      spriteID: aee0f090226c475439691974e1f5748e
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Larva_3
+      rect:
+        serializedVersion: 2
+        x: 13
+        y: 23
+        width: 67
+        height: 40
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 93496548e9db30949be53200b6dfb0e3
       vertices: []
       indices: 
       edges: []
@@ -203,7 +203,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: a6f36923dc9457b449cb9b92e0d3a969
+    spriteID: 5924091cacd2dce419123051922fd9a2
     vertices: []
     indices: 
     edges: []

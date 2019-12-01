@@ -7,7 +7,8 @@ public class Mystia : TalkCharacter {
     private Stage1_1Scene.Rumia now_Rumia_State = Stage1_1Scene.Rumia.delete;
 	
 	// Update is called once per frame
-	void Update () {
+	new void Update () {
+        base.Update();
 		if(now_Rumia_State != Stage1_1Scene.Instance.rumia_State) {
             now_Rumia_State = Stage1_1Scene.Instance.rumia_State;
             Change_Message();
@@ -62,7 +63,7 @@ public class Mystia : TalkCharacter {
 
         //ルーミアの隣に配置
         yield return new WaitForSeconds(5.0f);        
-        transform.position = new Vector3(924f, 54f, 0);
+        transform.position = new Vector3(824f, 18f, 0);
     }
     
 
