@@ -86,6 +86,7 @@ public class SceneManagement : SingletonMonoBehaviour<SceneManagement> {
         { "TitleScene", false },
         { "ConfigScene", false },
         { "PlayGuideScene", true },
+        { "PlayGuide2Scene", true },
 
         { "Stage1_1Scene", true },
         { "Stage1_BossScene", true },

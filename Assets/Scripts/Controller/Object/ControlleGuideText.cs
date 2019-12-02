@@ -10,6 +10,7 @@ public class ControlleGuideText : MonoBehaviour {
     private Text _text;
 
     private bool is_Wait = true;
+    private bool is_End_Guide = false;
     private int index = 0;
 
     [SerializeField] List<string> guide_Key_List = new List<string> {
@@ -31,8 +32,13 @@ public class ControlleGuideText : MonoBehaviour {
     // Update is called once per frame
     void Update () {
 
-        if (index >= guide_Key_List.Count || !is_Wait)
+        if (index >= guide_Key_List.Count || !is_Wait) {
+            if(index == guide_Key_List.Count) {
+                is_End_Guide = true;
+                index++;
+            }
             return;
+        }
 
         if (InputManager.Instance.GetKeyDown(Get_Key(guide_Key_List[index]))) {
             index++;
@@ -64,7 +70,20 @@ public class ControlleGuideText : MonoBehaviour {
 
         yield return new WaitForSeconds(1.0f);
         is_Wait = true;
+    
+    }
 
+
+    /// <summary>
+    /// ガイドが終了した時を検知するよう
+    /// </summary>
+    /// <returns></returns>
+    public bool End_Guide_Trigger() {
+        if (is_End_Guide) {
+            is_End_Guide = false;
+            return true;
+        }
+        return false;
     }
 
 

@@ -60,6 +60,8 @@ public class ItemController : MonoBehaviour {
         ReleaseAndConvergePlayer RC = transform.GetChild(0).GetComponent<ReleaseAndConvergePlayer>();        
         RC.Play_Release_And_Converge(6, transform.position, new Vector2(208f, -104f), main_Camera);
         transform.GetChild(0).SetParent(null);
+
+        Destroy(gameObject);
     }
 
     //回復取得時

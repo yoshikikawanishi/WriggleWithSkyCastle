@@ -24,17 +24,24 @@ public class PlayerTransition : MonoBehaviour {
         if (Time.timeScale == 0) return;    //時間停止中
         if (_controller.is_Squat) return;   //しゃがみ中
         direction = direction > 0 ? 1 : -1;
-        
+
         //空中で慣性つける
-        acc = _controller.is_Landing ? 30f : 20f;
-        //移動、加速
-        if(direction == 1 && _rigid.velocity.x < MAX_SPEED) {            
+        acc = _controller.is_Landing ? 40f : 35f;
+        
+        //移動、加
+        if(direction == 1) {            
             _rigid.velocity += new Vector2(acc, 0);
             transform.localScale = new Vector3(1, 1, 1);
+            if(_rigid.velocity.x > MAX_SPEED) {
+                _rigid.velocity = new Vector2(MAX_SPEED, _rigid.velocity.y);
+            }
         }
-        if(direction == -1 && _rigid.velocity.x > -MAX_SPEED){
+        if(direction == -1){
             _rigid.velocity += new Vector2(-acc, 0);
             transform.localScale = new Vector3(-1, 1, 1);
+            if(_rigid.velocity.x < -MAX_SPEED) {
+                _rigid.velocity = new Vector2(-MAX_SPEED, _rigid.velocity.y);
+            }
         }
         //アニメーション
         if (_controller.is_Landing) {
@@ -53,9 +60,12 @@ public class PlayerTransition : MonoBehaviour {
     //減速
     public void Slow_Down() {
         if (_controller.is_Landing) {
-            _rigid.velocity *= new Vector2(0.25f, 1);
+            _rigid.velocity *= new Vector2(0.1f, 1);
             if (!_controller.is_Squat)
-                _controller.Change_Animation("IdleBool");            
+                _controller.Change_Animation("IdleBool");
+        }
+        else {
+            _rigid.velocity *= new Vector2(0.8f, 1);
         }
     }
 }

@@ -64,7 +64,7 @@ public class PlayerAttack : MonoBehaviour {
 
     //ノックバック
     private void Occur_Knock_Back() {
-        float force = _controller.is_Landing ? 170f : 40f;
+        float force = _controller.is_Landing ? 170f : 60f;
         _rigid.velocity = new Vector2(force * -transform.localScale.x, 20f);
     }
 

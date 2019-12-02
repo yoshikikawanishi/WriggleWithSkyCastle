@@ -8,7 +8,7 @@ public class PlayerDamaged : MonoBehaviour {
     private PlayerSoundEffect player_SE;    
 
     //無敵時間
-    private float INVINCIBLE_TIME_LENGTH = 3.0f;
+    private float INVINCIBLE_TIME_LENGTH = 2.0f;
 
 
     private void Start() {
