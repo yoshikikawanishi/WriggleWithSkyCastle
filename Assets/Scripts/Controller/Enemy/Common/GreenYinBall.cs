@@ -39,7 +39,7 @@ public class GreenYinBall : MonoBehaviour {
     private IEnumerator Shoot_Bullet() {
         while (true) {
             _gravitate_Player.enabled = true;
-            yield return new WaitForSeconds(5.0f);
+            yield return new WaitForSeconds(1.0f);
 
             //予備動作
             StartCoroutine("Blink");
@@ -56,6 +56,8 @@ public class GreenYinBall : MonoBehaviour {
             yield return new WaitForSeconds(0.8f);
 
             _gravitate_Player.enabled = true;
+
+            yield return new WaitForSeconds(4.0f);
         }
     }
 

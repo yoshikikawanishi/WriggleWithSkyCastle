@@ -55,7 +55,7 @@ public class LarvaShootObj : MonoBehaviour {
         for (int i = 0; i < 3; i++) {
             //自機の位置を確認
             AngleCalculater angle_Cal = new AngleCalculater();
-            float player_Angle = angle_Cal.Cal_Angle_Two_Points(transform.position, player.transform.position);
+            float player_Angle = angle_Cal.Cal_Angle_Two_Points(transform.position, player.transform.position);            
             //ショット
             for (int j = 0; j < 4; j++) {
                 Shoot_Green_Bullet_4way(j, player_Angle);
@@ -64,6 +64,7 @@ public class LarvaShootObj : MonoBehaviour {
             }
             yield return new WaitForSeconds(0.3f);
         }
+
     }
 
     //つながった緑米弾を4方向に撃つ
@@ -96,8 +97,17 @@ public class LarvaShootObj : MonoBehaviour {
     }
 
 
-    //フェーズ2赤弾
+    //フェーズ1赤弾
     public void Shoot_Red_Bullet() {
+        _shoot.Set_Bullet_Pool(pool_Manager.Get_Pool(red_Bullet), null);
+        List<GameObject> bullet_List = new List<GameObject>();
+        bullet_List = _shoot.Odd_Num_Shoot(1, 0, 80f, 10);
+        _bullet_Acc.Accelerat_Bullet(bullet_List, 1.01f, 4);
+    }
+
+
+    //フェーズ2赤弾
+    public void Shoot_Red_Bullet2() {
 
         List<GameObject> bullet_List = new List<GameObject>();
         _shoot.Set_Bullet_Pool(pool_Manager.Get_Pool(red_Bullet), null);        
