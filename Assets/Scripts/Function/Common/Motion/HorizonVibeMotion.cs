@@ -19,7 +19,7 @@ public class HorizonVibeMotion : MonoBehaviour {
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-        transform.position = new Vector3(center_Pos + Mathf.Sin(Mathf.Deg2Rad * angle), transform.position.y);
+        transform.position = new Vector3(center_Pos + Mathf.Sin(Mathf.Deg2Rad * angle) * amplitude, transform.position.y);
         angle = (angle + angular_Speed) % 360f * Time.timeScale;
     }
 }

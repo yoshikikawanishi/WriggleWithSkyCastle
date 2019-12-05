@@ -8,7 +8,8 @@ public class PlayerAttackCollision : MonoBehaviour {
 
     private List<string> hit_Attack_Tag_List = new List<string> {
         "EnemyTag",
-        "SandbackTag"
+        "SandbackTag",
+        "SandbackGrountdTag"
     };
 
 

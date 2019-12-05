@@ -46,6 +46,16 @@ public class LarvaAttack : MonoBehaviour {
         _controller.Play_Battle_Effect();
 
         while (true) {
+            //弾幕1
+            _controller.Play_Charge_Effect(2.0f);
+            yield return new WaitForSeconds(2.0f);
+            _controller.Play_Burst_Effect();
+            shoot_Obj.StartCoroutine("Shoot_Green_Bullet_Cor");
+            for (int i = 0; i < 2; i++) {
+                yield return new WaitForSeconds(1.5f);
+                shoot_Obj.Shoot_Red_Bullet();
+            }
+
             //自機を追従、鱗粉弾発射
             Start_Trace_Player();
             for (int i = 0; i < 3; i++) {
@@ -62,17 +72,7 @@ public class LarvaAttack : MonoBehaviour {
             Quit_Trace_Player();
             _move.Set_Speed(0.01f, 1.2f, 0.95f);
             _move.Start_Move(new Vector3(130f, 0), 0, false);
-            yield return new WaitUntil(_move.End_Move);
-            
-            //弾幕1
-            _controller.Play_Charge_Effect(2.0f);
-            yield return new WaitForSeconds(2.0f);
-            _controller.Play_Burst_Effect();
-            shoot_Obj.StartCoroutine("Shoot_Green_Bullet_Cor");
-            for (int i = 0; i < 2; i++) {
-                yield return new WaitForSeconds(1.5f);
-                shoot_Obj.Shoot_Red_Bullet();
-            }
+            yield return new WaitUntil(_move.End_Move);                       
         }
     }
 

@@ -8,7 +8,8 @@ public class PlayerKickCollision : MonoBehaviour {
 
     private List<string> hit_Attack_Tag_List = new List<string> {
         "EnemyTag",
-        "SandbackTag"
+        "SandbackTag",
+        "SandbackGroundTag"
     };
 
     private void OnTriggerEnter2D(Collider2D collision) {

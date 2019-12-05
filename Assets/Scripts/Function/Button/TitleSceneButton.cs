@@ -13,14 +13,42 @@ public class TitleSceneButton : MonoBehaviour {
      }
      */
 
+    [SerializeField] private ConfirmCanvas confirm_Start_Game_Canvas;
+
 
     //初めからボタン
     public void Start_Button_Function() {
         if (InputManager.Instance.GetKeyDown(Key.Jump)) {
-            SceneManagement.Instance.Delete_Visit_Scene();
-            DataManager.Instance.Initialize_Player_Data();
-            DataManager.Instance.Load_Player_Data();
+            if (PlayerPrefs.HasKey("SCENE")) {
+                confirm_Start_Game_Canvas.Display_Confirm_Canvas();
+            }
+            else {
+                StartCoroutine("Start_Game_Cor");
+            }
         }
+    }
+
+    
+    //ゲームをはじめから開始するかどうかの確認ボタン
+    public void Confirm_Button_Function(bool is_Yes) {
+        if (InputManager.Instance.GetKeyDown(Key.Jump)) {
+            if (is_Yes) {
+                StartCoroutine("Start_Game_Cor");
+            }
+            else {
+                confirm_Start_Game_Canvas.Delete_Confirm_Canvas();
+            }
+        }
+    }
+
+
+    //ゲームをはじめから開始する
+    public IEnumerator Start_Game_Cor() {
+        FadeInOut.Instance.Start_Fade_Out(new Color(0, 0, 0), 0.02f);
+        yield return new WaitForSeconds(1.0f);
+        SceneManagement.Instance.Delete_Visit_Scene();
+        DataManager.Instance.Initialize_Player_Data();
+        DataManager.Instance.Load_Player_Data();
     }
 
 
@@ -40,12 +68,19 @@ public class TitleSceneButton : MonoBehaviour {
     }
 
 
-    //遊びからボタン
+    //遊びかたボタン
     public void Play_Guide_Button() {
         if (InputManager.Instance.GetKeyDown(Key.Jump)) {
             SceneManager.LoadScene("PlayGuideScene");
         }
     }
 
+
+    //ゲーム終了ボタン
+    public void Quit_Button() {
+        if (InputManager.Instance.GetKeyDown(Key.Jump)) {
+            UnityEngine.Application.Quit();
+        }
+    }
 
 }

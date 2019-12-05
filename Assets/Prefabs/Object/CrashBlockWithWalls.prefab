@@ -20,8 +20,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4178598337570050}
   - component: {fileID: 82337671539531668}
-  - component: {fileID: 198772209624212436}
-  - component: {fileID: 199811690323262116}
+  - component: {fileID: 199809075903780196}
+  - component: {fileID: 198365473521465694}
   m_Layer: 0
   m_Name: CrashEffect
   m_TagString: Untagged
@@ -126,7 +126,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1928861928369900}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1324, y: -58, z: 0}
+  m_LocalPosition: {x: 0, y: -58, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4178598337570050}
@@ -328,7 +328,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f060d749765d2c408bd9a751c00422d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!198 &198772209624212436
+  life: 1
+  damaged_Sprite: {fileID: 21300002, guid: 5a0a0d0c4614b544a91078800a6d9134, type: 3}
+--- !u!198 &198365473521465694
 ParticleSystem:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -407,7 +409,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.2
+      scalar: 0.5
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -460,7 +462,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 30
+      scalar: 0
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -514,7 +516,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 1, g: 1, b: 1, a: 0.6431373}
+      maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -576,8 +578,8 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 5
-      minScalar: 1
+      scalar: 15
+      minScalar: 7
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -982,7 +984,7 @@ ParticleSystem:
     sphericalDirectionAmount: 0
     randomPositionAmount: 0
     radius:
-      value: 8
+      value: 1
       mode: 0
       spread: 0
       speed:
@@ -1211,7 +1213,7 @@ ParticleSystem:
       countCurve:
         serializedVersion: 2
         minMaxState: 0
-        scalar: 8
+        scalar: 1
         minScalar: 0
         maxCurve:
           serializedVersion: 2
@@ -1653,7 +1655,7 @@ ParticleSystem:
         m_NumColorKeys: 2
         m_NumAlphaKeys: 2
   UVModule:
-    enabled: 0
+    enabled: 1
     mode: 0
     frameOverTime:
       serializedVersion: 2
@@ -1761,7 +1763,7 @@ ParticleSystem:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
-    tilesX: 1
+    tilesX: 10
     tilesY: 1
     animationType: 0
     rowIndex: 0
@@ -4918,7 +4920,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
---- !u!199 &199811690323262116
+--- !u!199 &199809075903780196
 ParticleSystemRenderer:
   serializedVersion: 6
   m_ObjectHideFlags: 1
@@ -4934,7 +4936,7 @@ ParticleSystemRenderer:
   m_ReflectionProbeUsage: 0
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 10301, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 18b6525d615fff34aa280a7406dac1da, type: 2}
   - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -5010,7 +5012,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -4
-  m_Sprite: {fileID: 21300000, guid: 83518e365e7cfa24b9a2650b716b2a74, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5a0a0d0c4614b544a91078800a6d9134, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

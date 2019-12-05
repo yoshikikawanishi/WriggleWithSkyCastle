@@ -8,7 +8,8 @@ public class PlayerCore : MonoBehaviour {
 
     private List<string> tag_List = new List<string> {
         "GroundTag",
-        "ScreenWallTag"
+        "ScreenWallTag",
+        "SandbackGroundTag"
     };
 
     private void OnTriggerStay2D(Collider2D collision) {

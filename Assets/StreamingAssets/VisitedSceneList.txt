@@ -1,6 +1,6 @@
 #SceneName
 Stage1_1Scene
 Stage1_BossScene
+PlayGuide2Scene
+Stage2_1Scene
 TitleScene
-ConfigScene
-PlayGuideScene
