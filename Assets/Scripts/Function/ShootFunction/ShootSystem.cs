@@ -19,7 +19,7 @@ public class ShootSystem : MonoBehaviour {
     public bool play_On_Awake = false;
     public GameObject bullet = null;
     public Transform parent = null;
-    public float max_Speed = 100f;
+    public float max_Speed;
     public float lifeTime = 5;
 
     public bool is_Acceleration = false;
@@ -273,7 +273,7 @@ public class ShootSystem : MonoBehaviour {
         float forward = max_Speed;
         float lateral = 0;
         for(float t = 0; t < lifeTime; t += Time.deltaTime) {
-            if(bullet_Rigid == null) {
+            if(!bullet.activeSelf) {
                 yield break;
             }
             forward = max_Speed * velocity_Forward.Evaluate(t);                 //前方向
@@ -299,20 +299,32 @@ public class ShootSystem : MonoBehaviour {
             rigid_List.Add(bullet_List[i].GetComponent<Rigidbody2D>());
         }
 
+        List<Rigidbody2D> remove_List = new List<Rigidbody2D>();
         //速度変更
         float forward = max_Speed;
         float lateral = 0;
         for (float t = 0; t < lifeTime; t += Time.deltaTime) {
+
             for (int i = 0; i < rigid_List.Count; i++) {
-                if (rigid_List[i] == null) {
+                //消えたものを除く
+                if (!rigid_List[i].gameObject.activeSelf) {
+                    remove_List.Add(rigid_List[i]);
                     continue;
-                }                
+                }             
+                //速度の計算、代入
                 forward = max_Speed * velocity_Forward.Evaluate(t); //前方向
                 lateral = max_Speed * velocity_Lateral.Evaluate(t); //横方向                
                 rigid_List[i].velocity = bullet_List[i].transform.right * forward + bullet_List[i].transform.up * lateral;    //速度代入
                 float dirVelocity = Mathf.Atan2(rigid_List[i].velocity.y, rigid_List[i].velocity.x) * Mathf.Rad2Deg;    //進行方向に回転
                 bullet_List[i].transform.rotation = Quaternion.AngleAxis(dirVelocity, new Vector3(0, 0, 1));
             }
+
+            //消えたものを除く
+            for(int i = 0; i < remove_List.Count; i++) {
+                rigid_List.Remove(remove_List[i]);
+            }
+            remove_List.Clear();
+
             yield return new WaitForSeconds(0.015f);
         }
     }

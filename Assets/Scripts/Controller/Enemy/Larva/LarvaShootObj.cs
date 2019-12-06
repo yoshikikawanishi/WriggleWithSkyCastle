@@ -8,6 +8,7 @@ public class LarvaShootObj : MonoBehaviour {
     [SerializeField] private GameObject scales_Bullet;
     [SerializeField] private GameObject green_Rice_Bullet;
     [SerializeField] private GameObject red_Bullet;
+    [SerializeField] private GameObject green_Bullet;
 
     private ObjectPoolManager pool_Manager;
 
@@ -23,7 +24,8 @@ public class LarvaShootObj : MonoBehaviour {
         pool_Manager = ObjectPoolManager.Instance;
         pool_Manager.Create_New_Pool(scales_Bullet, 10);
         pool_Manager.Create_New_Pool(green_Rice_Bullet, 40);
-        pool_Manager.Create_New_Pool(red_Bullet, 10);
+        pool_Manager.Create_New_Pool(red_Bullet, 2);
+        pool_Manager.Create_New_Pool(green_Bullet, 10);
         //取得
         player = GameObject.FindWithTag("PlayerTag");
         _shoot = GetComponent<ShootFunction>();
@@ -41,7 +43,7 @@ public class LarvaShootObj : MonoBehaviour {
             bullet_List.Add(bullet);
             //発射            
             float angle = 2 * Mathf.PI / num * i + Random.Range(0, 0.3f);
-            var v = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle) + 0.5f) * speed;
+            var v = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle) + 0.5f) * speed * Random.Range(0.95f, 1.05f);
             bullet.GetComponent<Rigidbody2D>().velocity = v;
             bullet.GetComponent<Bullet>().Set_Inactive(5.0f);
             UsualSoundManager.Instance.Play_Shoot_Sound();
@@ -106,11 +108,11 @@ public class LarvaShootObj : MonoBehaviour {
     }
 
 
-    //フェーズ2赤弾
+    //フェーズ2緑弾
     public void Shoot_Red_Bullet2() {
 
         List<GameObject> bullet_List = new List<GameObject>();
-        _shoot.Set_Bullet_Pool(pool_Manager.Get_Pool(red_Bullet), null);        
+        _shoot.Set_Bullet_Pool(pool_Manager.Get_Pool(green_Bullet), null);        
 
         bullet_List = _shoot.Odd_Num_Shoot(1, 0, 80f, 10);
         _bullet_Acc.Accelerat_Bullet(bullet_List, 1.01f, 4);
@@ -123,5 +125,11 @@ public class LarvaShootObj : MonoBehaviour {
         UsualSoundManager.Instance.Play_Shoot_Sound();
     }
 	
+
+    //フェーズ2全方位弾
+    public void Shoot_Dif_Bullet() {
+        UsualSoundManager.Instance.Play_Shoot_Sound();
+        GetComponent<ShootSystem>().Shoot();
+    }
 
 }

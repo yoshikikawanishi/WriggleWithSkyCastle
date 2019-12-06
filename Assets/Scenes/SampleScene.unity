@@ -319,7 +319,6 @@ GameObject:
   - component: {fileID: 310023570}
   - component: {fileID: 310023569}
   - component: {fileID: 310023571}
-  - component: {fileID: 310023572}
   m_Layer: 0
   m_Name: TestScript
   m_TagString: Untagged
@@ -362,9 +361,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56c010cd9f9233b49ad32f8e11513d35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  kind: 0
-  play_On_Awake: 1
-  bullet: {fileID: 1099511604927390, guid: 94fbb265629e0ce4b98d40ef28419c09, type: 2}
+  kind: 2
+  play_On_Awake: 0
+  bullet: {fileID: 1742974461349758, guid: aee60bc3d16d58d4582e97f7de51b0a0, type: 2}
   parent: {fileID: 0}
   max_Speed: 100
   lifeTime: 10
@@ -373,22 +372,31 @@ MonoBehaviour:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: 0.00039672852
-      value: 0.49853516
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
+      time: 0
+      value: 0.97714233
+      inSlope: -0.00059328444
+      outSlope: -0.00059328444
+      tangentMode: 34
       weightedMode: 0
       inWeight: 0
-      outWeight: 0
+      outWeight: 0.33333334
     - serializedVersion: 3
-      time: 5.594986
-      value: 0.98365784
+      time: 2.948965
+      value: 0.97539276
       inSlope: 0
       outSlope: 0
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 2.964886
+      value: 0.99933857
+      inSlope: 1.5040509
+      outSlope: 1.5040509
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
@@ -397,8 +405,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: 0
-      value: 0
+      time: -0.08470535
+      value: 0.04951477
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -406,8 +414,26 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
-      time: 5
-      value: 0
+      time: 2.9989657
+      value: 0.050150104
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 4.0915766
+      value: 0.0000105137005
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 5.014038
+      value: 0.00030517578
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -418,89 +444,9 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   other_Param: 1
-  num: 1
-  count: 2
-  span: 0
-  inter_Angle_Deg: 20
-  center_Angle_Deg: 0
-  arc_Deg: 360
-  shoot_Rate: 30
-  duration: 5
-  is_Count_Up_Param: 1
-  num_Up: 2
-  speed_Up: -20
-  inter_Angle_Up: 0
-  center_Angle_Up: 0
---- !u!114 &310023572
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 310023568}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 56c010cd9f9233b49ad32f8e11513d35, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  kind: 1
-  play_On_Awake: 1
-  bullet: {fileID: 1099511604927390, guid: 94fbb265629e0ce4b98d40ef28419c09, type: 2}
-  parent: {fileID: 0}
-  max_Speed: 100
-  lifeTime: 10
-  is_Acceleration: 1
-  velocity_Forward:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0.00039672852
-      value: 0.49853516
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 5.594986
-      value: 0.98365784
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  velocity_Lateral:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 5
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  other_Param: 1
-  num: 2
-  count: 1
-  span: 0
+  num: 16
+  count: 3
+  span: 2
   inter_Angle_Deg: 20
   center_Angle_Deg: 0
   arc_Deg: 360

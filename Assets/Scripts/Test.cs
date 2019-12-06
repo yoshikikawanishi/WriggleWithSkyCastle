@@ -11,7 +11,7 @@ public class Test : MonoBehaviour {
 	
 
 	private void Test1() {
-        //GetComponent<ShootSystem>().Shoot();
+        GetComponent<ShootSystem>().Shoot();
     }
 
 }

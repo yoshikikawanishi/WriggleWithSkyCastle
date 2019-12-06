@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 using MBLDefine;
 
 public class TitleSceneButton : MonoBehaviour {
@@ -44,6 +45,7 @@ public class TitleSceneButton : MonoBehaviour {
 
     //ゲームをはじめから開始する
     public IEnumerator Start_Game_Cor() {
+        EventSystem.current.SetSelectedGameObject(null);
         FadeInOut.Instance.Start_Fade_Out(new Color(0, 0, 0), 0.02f);
         yield return new WaitForSeconds(1.0f);
         SceneManagement.Instance.Delete_Visit_Scene();

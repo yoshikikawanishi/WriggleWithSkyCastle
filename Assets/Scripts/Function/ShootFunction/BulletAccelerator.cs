@@ -19,21 +19,30 @@ public class BulletAccelerator : MonoBehaviour {
 
 
     //加速させるコルーチン
-    private IEnumerator Accelerate_Bullet_Routine(List<GameObject> bullet_List, float acc_Rate, float acc_Time) {
-        //Rigidbody2Dの取得
-        List<Rigidbody2D> rigid_List = new List<Rigidbody2D>();
-        for(int i = 0; i < bullet_List.Count; i++) {
-            rigid_List.Add(bullet_List[i].GetComponent<Rigidbody2D>());
-        }
-        //加速
+    private IEnumerator Accelerate_Bullet_Routine(List<GameObject> bullet_List, float acc_Rate, float acc_Time) {        
+        
+        List<GameObject> remove_List = new List<GameObject>();
+
         for (float t = 0; t < acc_Time; t += Time.deltaTime) {
-            for(int i = 0; i < rigid_List.Count; i++) {
-                if(rigid_List[i] == null) {
+
+            for (int i = 0; i < bullet_List.Count; i++) {
+                //途中で消えたものは取り除く
+                if (!bullet_List[i].activeSelf) {
+                    remove_List.Add(bullet_List[i]);
                     continue;
                 }
-                rigid_List[i].velocity *= acc_Rate;
+                bullet_List[i].GetComponent<Rigidbody2D>().velocity *= acc_Rate;
             }
+
+            //途中で消えたものは取り除く
+            for(int i = 0; i < remove_List.Count; i++) {
+                bullet_List.Remove(remove_List[i]);
+            }
+            remove_List.Clear();
+
             yield return new WaitForSeconds(0.015f);
+
         }
     }
+
 }
