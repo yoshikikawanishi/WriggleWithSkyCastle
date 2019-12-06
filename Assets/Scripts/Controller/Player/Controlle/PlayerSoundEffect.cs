@@ -14,6 +14,7 @@ public class PlayerSoundEffect : MonoBehaviour {
     [SerializeField] private AudioSource charge_Sound;
     [SerializeField] private AudioSource damaged_Sound;
     [SerializeField] private AudioSource hit_Attack_Sound;
+    [SerializeField] private AudioSource alert_Sound;
     
 
     public void Play_Jump_Sound() {
@@ -66,5 +67,9 @@ public class PlayerSoundEffect : MonoBehaviour {
 
     public void Play_Hit_Attack_Sound() {
         hit_Attack_Sound.Play();
+    }
+
+    public void Play_Alert_Sound() {
+        alert_Sound.Play();
     }
 }

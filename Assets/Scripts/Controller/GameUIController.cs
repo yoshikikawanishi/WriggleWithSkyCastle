@@ -24,6 +24,7 @@ public class GameUIController : MonoBehaviour {
     private int beetle_Power_Slider_Value = 0;
 
     private Image beetle_Power_Slider_Image;
+    private bool is_Reduced_Beetle_Power = false;
 
 
 	// Use this for initialization
@@ -89,17 +90,20 @@ public class GameUIController : MonoBehaviour {
 
     //カブトムシパワーUI変更
     private void Change_Beetle_Power_UI() {
-        if (beetle_Power_Slider_Value < beetle_Power_Manager.Get_Beetle_Power()) {
-            //増加時エフェクト
+        //増加時エフェクト
+        if (beetle_Power_Slider_Value < beetle_Power_Manager.Get_Beetle_Power()) {            
             beetle_Power_Slider.GetComponent<ParticleSystem>().Play();
-        }
+        }        
+        //値の変更
         if (beetle_Power_Slider_Value != beetle_Power_Manager.Get_Beetle_Power()) {
             beetle_Power_Slider_Value = beetle_Power_Manager.Get_Beetle_Power();
             beetle_Power_Slider.value = beetle_Power_Slider_Value;
             //色
             beetle_Power_Slider_Image.color = new Color(1, 1, 1, 0.5f);
-            if (beetle_Power_Slider_Value == 100)
+            if (beetle_Power_Slider_Value >= 95)
                 beetle_Power_Slider_Image.color = new Color(1, 1, 1, 0.8f);
+            if (beetle_Power_Slider_Value <= 30f)
+                beetle_Power_Slider_Image.color = new Color(1, 0.8f, 0.8f, 0.5f);
         }    
     }
 

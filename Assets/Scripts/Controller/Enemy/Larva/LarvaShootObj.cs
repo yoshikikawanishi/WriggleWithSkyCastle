@@ -8,7 +8,6 @@ public class LarvaShootObj : MonoBehaviour {
     [SerializeField] private GameObject scales_Bullet;
     [SerializeField] private GameObject green_Rice_Bullet;
     [SerializeField] private GameObject red_Bullet;
-    [SerializeField] private GameObject green_Bullet;
 
     private ObjectPoolManager pool_Manager;
 
@@ -25,7 +24,6 @@ public class LarvaShootObj : MonoBehaviour {
         pool_Manager.Create_New_Pool(scales_Bullet, 10);
         pool_Manager.Create_New_Pool(green_Rice_Bullet, 40);
         pool_Manager.Create_New_Pool(red_Bullet, 2);
-        pool_Manager.Create_New_Pool(green_Bullet, 10);
         //取得
         player = GameObject.FindWithTag("PlayerTag");
         _shoot = GetComponent<ShootFunction>();
@@ -105,24 +103,6 @@ public class LarvaShootObj : MonoBehaviour {
         List<GameObject> bullet_List = new List<GameObject>();
         bullet_List = _shoot.Odd_Num_Shoot(1, 0, 80f, 10);
         _bullet_Acc.Accelerat_Bullet(bullet_List, 1.01f, 4);
-    }
-
-
-    //フェーズ2緑弾
-    public void Shoot_Red_Bullet2() {
-
-        List<GameObject> bullet_List = new List<GameObject>();
-        _shoot.Set_Bullet_Pool(pool_Manager.Get_Pool(green_Bullet), null);        
-
-        bullet_List = _shoot.Odd_Num_Shoot(1, 0, 80f, 10);
-        _bullet_Acc.Accelerat_Bullet(bullet_List, 1.01f, 4);
-
-        for (int i = 1; i <= 4; i++) {
-            bullet_List = _shoot.Even_Num_Shoot(2, i * 1, 80 - i * 6f, 10);
-            _bullet_Acc.Accelerat_Bullet(bullet_List, 1.01f, 4);
-        }
-
-        UsualSoundManager.Instance.Play_Shoot_Sound();
     }
 	
 

@@ -33,6 +33,9 @@ public class PlayerController : MonoBehaviour {
     private float SHOOT_INTERVAL = 0.2f;
     private float shoot_Time = 0.2f;
 
+    //緑ゲージ不足の警告音は飛行中1度だけ鳴らす
+    private bool is_Played_Alert = false;   
+
 
     //Awake
     private void Awake() {
@@ -110,6 +113,7 @@ public class PlayerController : MonoBehaviour {
         //カブトムシに乗る
         if (input.GetKeyDown(Key.Ride) && BeetlePowerManager.Instance.Get_Beetle_Power() > 0) {
             _getting_On_Beetle.Get_On_Beetle(true);
+            is_Played_Alert = false;    //警告音を鳴らしたかどうかをリセット
         }        
     }
 
@@ -126,10 +130,18 @@ public class PlayerController : MonoBehaviour {
         Shoot();
         //カブトムシから降りる
         if (input.GetKeyDown(Key.Ride) || BeetlePowerManager.Instance.Get_Beetle_Power() <= 0) {
-            _getting_On_Beetle.Get_Off_Beetle();
+            _getting_On_Beetle.Get_Off_Beetle();            
         }
         //パワーの消費
         BeetlePowerManager.Instance.Decrease_In_Update(10.0f);
+        //警告音
+        if (BeetlePowerManager.Instance.Get_Beetle_Power() < 30f) {
+            if (!is_Played_Alert) {
+                is_Played_Alert = true;
+                GetComponentInChildren<PlayerSoundEffect>().Play_Alert_Sound();
+            }
+        }
+        
     }
 
 

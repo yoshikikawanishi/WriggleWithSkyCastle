@@ -399,11 +399,6 @@ Prefab:
     m_Modifications:
     - target: {fileID: 224584379949726354, guid: 23145e826290c9949aa63b42b3f2c54a,
         type: 2}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 224584379949726354, guid: 23145e826290c9949aa63b42b3f2c54a,
-        type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -492,21 +487,13 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 224336113966076998, guid: 23145e826290c9949aa63b42b3f2c54a,
-        type: 2}
-      propertyPath: m_AnchoredPosition.y
-      value: -48.19995
-      objectReference: {fileID: 0}
     - target: {fileID: 223104631531176620, guid: 23145e826290c9949aa63b42b3f2c54a,
         type: 2}
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 2058784203}
-    - target: {fileID: 1633432506484192, guid: 23145e826290c9949aa63b42b3f2c54a, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 82065900259865120, guid: 23145e826290c9949aa63b42b3f2c54a, type: 2}
   m_SourcePrefab: {fileID: 100100000, guid: 23145e826290c9949aa63b42b3f2c54a, type: 2}
   m_IsPrefabAsset: 0
 --- !u!1001 &544225033

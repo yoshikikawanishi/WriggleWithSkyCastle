@@ -144,13 +144,7 @@ public class LarvaAttack : MonoBehaviour {
             yield return new WaitForSeconds(1.0f);
             _controller.Play_Burst_Effect();
             shoot_Obj.StartCoroutine("Shoot_Green_Bullet_Cor");
-            yield return new WaitForSeconds(1.5f);
-
-            for (int i = 0; i < 3; i++) {
-                shoot_Obj.Shoot_Red_Bullet2();
-                _controller.Play_Small_Burst_Effect();
-                yield return new WaitForSeconds(1.5f);
-            }
+            yield return new WaitForSeconds(6.0f);
             
             //移動
             _move.Start_Move(new Vector3(130f, -32f), 0, false);

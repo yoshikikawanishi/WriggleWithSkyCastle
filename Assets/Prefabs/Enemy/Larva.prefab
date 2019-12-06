@@ -465,8 +465,6 @@ MonoBehaviour:
   green_Rice_Bullet: {fileID: 1742974461349758, guid: aee60bc3d16d58d4582e97f7de51b0a0,
     type: 2}
   red_Bullet: {fileID: 1695308605818196, guid: c0c20a6f0f8954646af2418a3989a0d0, type: 2}
-  green_Bullet: {fileID: 1264497897957820, guid: 10743456fb1ae8549a95a7adf5d4901f,
-    type: 2}
 --- !u!114 &114130120913252434
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -617,8 +615,8 @@ MonoBehaviour:
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 2.3299189
-      value: 0.0044355625
+      time: 2.099326
+      value: 0.0029932056
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -626,8 +624,8 @@ MonoBehaviour:
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 4.9710693
-      value: 0.004272461
+      time: 4.9477234
+      value: 0.002960205
       inSlope: 0
       outSlope: 0
       tangentMode: 0

@@ -26,12 +26,12 @@ public class ConfirmCanvas : MonoBehaviour {
 
 
     public void Delete_Confirm_Canvas() {
-        gameObject.SetActive(false);
-        foreach(var canvas in other_Canvas) {
+        foreach (var canvas in other_Canvas) {
             canvas.interactable = true;
         }
         EventSystem.current.SetSelectedGameObject(null);
         select_Button_In_Delete_Canvas.Select();
+        gameObject.SetActive(false);        
     }
 
 
