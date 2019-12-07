@@ -260,7 +260,6 @@ GameObject:
   - component: {fileID: 114696956113313326}
   - component: {fileID: 199741392850626736}
   - component: {fileID: 198417432382040462}
-  - component: {fileID: 82065900259865120}
   m_Layer: 5
   m_Name: BeetlePower
   m_TagString: Untagged
@@ -458,102 +457,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!82 &82065900259865120
-AudioSource:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1633432506484192}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 243373875129941320, guid: 99e0dad0e338c1f43a4b809f4ca302ab,
-    type: 2}
-  m_audioClip: {fileID: 8300000, guid: 6896c6307cb4d6e4795ad7c73759aa8e, type: 3}
-  m_PlayOnAwake: 0
-  m_Volume: 0.3
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
 --- !u!82 &82662705677939450
 AudioSource:
   m_ObjectHideFlags: 1
@@ -1391,6 +1294,57 @@ MonoBehaviour:
   life_Images_Parent: {fileID: 1660974414519454}
   beetle_Power_Slider: {fileID: 114696956113313326}
   save_Text: {fileID: 1987797002085412}
+  beetle_Power_Converter:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 4.492113
+      outSlope: 4.492113
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.12954962
+    - serializedVersion: 3
+      time: 10.762444
+      value: 24.173782
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 49.98134
+      value: 50.00692
+      inSlope: 0.71392936
+      outSlope: 0.71392936
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.21713616
+    - serializedVersion: 3
+      time: 90.95402
+      value: 76.20021
+      inSlope: 0.7985789
+      outSlope: 0.7985789
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.1837089
+      outWeight: 0.5022047
+    - serializedVersion: 3
+      time: 100
+      value: 100
+      inSlope: 4.0910306
+      outSlope: 4.0910306
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.21736647
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!114 &114969283833825818
 MonoBehaviour:
   m_ObjectHideFlags: 1

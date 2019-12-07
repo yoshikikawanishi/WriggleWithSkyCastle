@@ -11,6 +11,8 @@ public class GameUIController : MonoBehaviour {
     [SerializeField] private GameObject life_Images_Parent;
     [SerializeField] private Slider beetle_Power_Slider;
     [SerializeField] private GameObject save_Text;
+    [Space]
+    [SerializeField] private AnimationCurve beetle_Power_Converter = AnimationCurve.Linear(0, 0, 100, 100);
 
     private GameObject[] life_Images = new GameObject[9];
 
@@ -97,10 +99,10 @@ public class GameUIController : MonoBehaviour {
         //値の変更
         if (beetle_Power_Slider_Value != beetle_Power_Manager.Get_Beetle_Power()) {
             beetle_Power_Slider_Value = beetle_Power_Manager.Get_Beetle_Power();
-            beetle_Power_Slider.value = beetle_Power_Slider_Value;
+            beetle_Power_Slider.value = beetle_Power_Converter.Evaluate(beetle_Power_Slider_Value);
             //色
             beetle_Power_Slider_Image.color = new Color(1, 1, 1, 0.5f);
-            if (beetle_Power_Slider_Value >= 95)
+            if (beetle_Power_Slider_Value >= 90)
                 beetle_Power_Slider_Image.color = new Color(1, 1, 1, 0.8f);
             if (beetle_Power_Slider_Value <= 30f)
                 beetle_Power_Slider_Image.color = new Color(1, 0.8f, 0.8f, 0.5f);
