@@ -13,7 +13,9 @@ public class LarvaAttack : MonoBehaviour {
     private GameObject player;
 
     private bool start_Phase1 = true;
-    private bool start_Phase2 = true;    
+    private bool start_Phase2 = true;
+    private bool is_Direct_Player = false;
+
 
 
     private void Awake() {
@@ -36,7 +38,7 @@ public class LarvaAttack : MonoBehaviour {
             StartCoroutine("Phase1_Cor");
         }
         //自機の方向を向く
-        if(player != null) {
+        if(player != null && is_Direct_Player) {
             Direct_At_Player();
         }
     }
@@ -67,12 +69,12 @@ public class LarvaAttack : MonoBehaviour {
                 _controller.Play_Scales_Effect();
             }
             yield return new WaitForSeconds(3.0f);
-
-            //移動
             Quit_Trace_Player();
-            _move.Set_Speed(0.01f, 1.2f, 0.95f);
-            _move.Start_Move(new Vector3(130f, 0), 0, false);
-            yield return new WaitUntil(_move.End_Move);                       
+
+            //突進攻撃
+            StartCoroutine("Dash_Attack");
+            yield return new WaitForSeconds(4.8f);            
+                        
         }
     }
 
@@ -80,8 +82,9 @@ public class LarvaAttack : MonoBehaviour {
     public void Stop_Phase1() {        
         _controller.Quit_Battle_Effect();
         _controller.Stop_Charge_Effect();
-        StopCoroutine("Phase1_Cor");
+        StopAllCoroutines();
         _move.StopAllCoroutines();
+        GetComponent<MoveMotion>().Stop_Move();
         shoot_Obj.StopAllCoroutines();
         Quit_Trace_Player();
     }
@@ -99,7 +102,7 @@ public class LarvaAttack : MonoBehaviour {
             Stop_Phase1();
             StartCoroutine("Phase2_Cor");
         }
-        if(player != null) {
+        if(player != null && is_Direct_Player) {
             Direct_At_Player();
         }
     }
@@ -107,7 +110,7 @@ public class LarvaAttack : MonoBehaviour {
     private IEnumerator Phase2_Cor() {
         //無敵化、移動
         GetComponent<BossCollisionDetection>().Become_Invincible();
-        _move.Start_Move(new Vector3(180f, 32f), 0, false);
+        _move.Start_Move(new Vector3(180f, 32f));
         yield return new WaitUntil(_move.End_Move);
         yield return new WaitForSeconds(1.0f);
         GetComponent<BossCollisionDetection>().Release_Invincible();
@@ -130,12 +133,15 @@ public class LarvaAttack : MonoBehaviour {
                 }
             }
             yield return new WaitForSeconds(3.0f);
+            Quit_Trace_Player();
+
+            //突進攻撃
+            StartCoroutine("Dash_Attack");
+            yield return new WaitForSeconds(5.0f);
 
             //移動
-            Quit_Trace_Player();
-            _controller.Play_Charge_Effect(2.0f);
-            _move.Set_Speed(0.01f, 1.2f, 0.95f);
-            _move.Start_Move(new Vector3(0, 110f), 0, false);
+            _controller.Play_Charge_Effect(2.0f);            
+            _move.Start_Move(new Vector3(0, 110f));
             yield return new WaitForSeconds(2.0f);
 
             //弾幕2            
@@ -147,7 +153,7 @@ public class LarvaAttack : MonoBehaviour {
             yield return new WaitForSeconds(6.0f);
             
             //移動
-            _move.Start_Move(new Vector3(130f, -32f), 0, false);
+            _move.Start_Move(new Vector3(130f, -32f));
             yield return new WaitUntil(_move.End_Move);
         }
     }
@@ -156,14 +162,38 @@ public class LarvaAttack : MonoBehaviour {
     public void Stop_Phase2() {
         _controller.Quit_Battle_Effect();
         _controller.Stop_Charge_Effect();
-        StopCoroutine("Phase2_Cor");
+        StopAllCoroutines();
         _move.StopAllCoroutines();
+        GetComponent<MoveMotion>().Stop_Move();
         shoot_Obj.StopAllCoroutines();
         Quit_Trace_Player();
     }
     #endregion
 
 
+    //突進攻撃
+    private IEnumerator Dash_Attack() {
+        int direction = transform.position.x > 0 ? -1 : 1;
+        //移動
+        _move.Start_Move(new Vector3(-200f * direction, 16f), 1);
+        yield return new WaitUntil(_move.End_Move);        
+        transform.localScale = new Vector3(-1 * direction, 1, 1);        
+        //予備動作
+        GoAroundMotion _around_Motion = GetComponent<GoAroundMotion>();
+        _around_Motion.Start_Motion(transform.position + new Vector3(4f * direction, 0), 720f);
+        yield return new WaitUntil(_around_Motion.Is_End_Motion);
+        //突進
+        _controller.Play_Dash_Attack_Effect();
+        MoveMotion _motion = GetComponent<MoveMotion>();
+        if (direction == 1) {
+            _motion.Start_Move(0);
+        }
+        else {
+            _motion.Start_Move(1);
+        }
+        yield return new WaitForSeconds(2.0f);
+        transform.localScale = new Vector3(1 * direction, 1, 1);
+    }
 
 
 
@@ -181,11 +211,14 @@ public class LarvaAttack : MonoBehaviour {
     //自機の追従
     private void Start_Trace_Player() {
         GetComponent<GravitatePlayer>().enabled = true;
+        is_Direct_Player = true;
     }
 
     private void Quit_Trace_Player() {
         GetComponent<GravitatePlayer>().enabled = false;
         GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
+        is_Direct_Player = false;
     }
+
 
 }

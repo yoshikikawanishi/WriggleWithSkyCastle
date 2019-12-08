@@ -109,4 +109,9 @@ public class LarvaController : MonoBehaviour {
         transform.GetChild(5).GetComponent<ParticleSystem>().Play();
     }
 
+    //突進エフェクト
+    public void Play_Dash_Attack_Effect() {
+        transform.GetChild(6).GetComponent<ParticleSystem>().Play();
+    }
+
 }

@@ -108,7 +108,7 @@ public class LarvaShootObj : MonoBehaviour {
 
     //フェーズ2全方位弾
     public void Shoot_Dif_Bullet() {
-        UsualSoundManager.Instance.Play_Shoot_Sound();
+        UsualSoundManager.Instance.Play_Shoot_Sound();        
         GetComponent<ShootSystem>().Shoot();
     }
 

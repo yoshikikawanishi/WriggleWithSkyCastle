@@ -42,9 +42,8 @@ public class Mystia : TalkCharacter {
         GetComponent<BoxCollider2D>().enabled = false;
 
         //飛び去る
-        MoveTwoPoints _move = gameObject.AddComponent<MoveTwoPoints>();
-        _move.Set_Speed(0.01f, 1.05f, 0.995f); 
-        _move.Start_Move(transform.position + new Vector3(-300f, 150f), 16f, false);
+        MoveTwoPoints _move = GetComponent<MoveTwoPoints>();        
+        _move.Start_Move(transform.position + new Vector3(-300f, 150f));
         GetComponent<Animator>().SetTrigger("FlyTrigger");
 
         //ルーミアの状態によってアイテム変更
