@@ -7666,11 +7666,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4422910850872062, guid: 097fbe3035ae3124f8acd3b97b284940, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 5362.8
+      value: 5356.6
       objectReference: {fileID: 0}
     - target: {fileID: 4422910850872062, guid: 097fbe3035ae3124f8acd3b97b284940, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -34
+      value: -23.8
       objectReference: {fileID: 0}
     - target: {fileID: 4422910850872062, guid: 097fbe3035ae3124f8acd3b97b284940, type: 2}
       propertyPath: m_LocalPosition.z
@@ -7700,6 +7700,14 @@ Prefab:
         type: 2}
       propertyPath: drop_Life_Probability
       value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4422910850872062, guid: 097fbe3035ae3124f8acd3b97b284940, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4422910850872062, guid: 097fbe3035ae3124f8acd3b97b284940, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 097fbe3035ae3124f8acd3b97b284940, type: 2}
@@ -22778,33 +22786,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4aa50f45f8a5e7d41a8cccf482658f57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pos_Transition:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  speed: 0.008
-  arc_Size: -8
-  is_Local_Position: 0
+  param:
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    speed: 0.01
+    arc_Size: 0
+    is_Local_Position: 0
 --- !u!1001 &1834540296
 Prefab:
   m_ObjectHideFlags: 0

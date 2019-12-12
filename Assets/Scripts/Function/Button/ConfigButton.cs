@@ -28,7 +28,7 @@ public class ConfigButton : MonoBehaviour {
         //ボタンテキストの変更
         Change_Button_Text(jump_Button, Key.Jump);
         Change_Button_Text(attack_Button, Key.Attack);
-        Change_Button_Text(ride_Button, Key.Ride);
+        Change_Button_Text(ride_Button, Key.Fly);
         Change_Button_Text(slow_Button, Key.Slow);
         Change_Button_Text(shoot_Button, Key.Shoot);
         Change_Button_Text(pause_Button, Key.Pause);
@@ -123,7 +123,7 @@ public class ConfigButton : MonoBehaviour {
     //飛行ボタン
     public void Ride_Button() {
         if (!wait_Input && InputManager.Instance.GetKeyDown(Key.Jump)) {
-            StartCoroutine(Change_Key_Config(Key.Ride, ride_Button));
+            StartCoroutine(Change_Key_Config(Key.Fly, ride_Button));
         }
     }
 

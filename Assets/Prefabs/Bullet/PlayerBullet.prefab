@@ -105,6 +105,8 @@ MonoBehaviour:
   delete_Bullet_Obj_Tag:
   - EnemyTag
   - GroundTag
+  - SandbackTag
+  - SandbackGroundTag
 --- !u!212 &212738185155835734
 SpriteRenderer:
   m_ObjectHideFlags: 1

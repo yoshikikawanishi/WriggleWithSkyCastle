@@ -16,9 +16,9 @@ public class GravitatePlayer : MonoBehaviour {
     private Vector2 angle;
 
     //吸い付き始める距離
-    [SerializeField] private float DISTANCE_BORDER = 60f;
+    public float DISTANCE_BORDER = 60f;
     //吸い付きの強さ
-    [SerializeField] private float GRAVITATE_POWER = 50f;
+    public float GRAVITATE_POWER = 50f;
 
     //コンポーネント
     private Rigidbody2D _rigid;

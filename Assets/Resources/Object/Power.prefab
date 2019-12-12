@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 50205554372124254}
   - component: {fileID: 114609749705674926}
   - component: {fileID: 114320208554392566}
+  - component: {fileID: 114576957349063188}
   m_Layer: 0
   m_Name: Power
   m_TagString: Untagged
@@ -102,6 +103,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   kind: 0
   value: 1
+--- !u!114 &114576957349063188
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1639397021179420}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 412d53ffa1f515542ba5262c31b42b85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114609749705674926
 MonoBehaviour:
   m_ObjectHideFlags: 1

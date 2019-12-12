@@ -20,6 +20,7 @@ TagManager:
   - SandbackTag
   - ThroughGroundTag
   - SandbackGroundTag
+  - SmallItemTag
   layers:
   - Default
   - TransparentFX

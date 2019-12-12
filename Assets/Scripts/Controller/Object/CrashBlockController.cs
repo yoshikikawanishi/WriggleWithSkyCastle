@@ -4,13 +4,18 @@ using UnityEngine;
 
 public class CrashBlockController : MonoBehaviour {
 
-
+    [SerializeField]
     private List<string> destroyer_Tag_List = new List<string> {
         "PlayerBulletTag",
         "PlayerChargeBulletTag",
         "PlayerAttackTag"
     };
 
+    [SerializeField]
+    private List<string> repel_Tag_List = new List<string> {
+
+    };
+    [Space]
     [SerializeField] private int life = 1;
     [Space]
     [SerializeField] private Sprite damaged_Sprite;
@@ -22,7 +27,12 @@ public class CrashBlockController : MonoBehaviour {
             if(collision.tag == tag) {
                 Damaged();
             }
-        }        
+        }    
+        foreach(string tag in repel_Tag_List) {
+            if(collision.tag == tag) {
+                Play_Repel_Effect();
+            }
+        }
     }
 
     //OnCollisionEnter
@@ -30,6 +40,11 @@ public class CrashBlockController : MonoBehaviour {
         foreach (string tag in destroyer_Tag_List) {
             if (collision.gameObject.tag == tag) {
                 Damaged();
+            }
+        }
+        foreach (string tag in repel_Tag_List) {
+            if (collision.gameObject.tag == tag) {
+                Play_Repel_Effect();
             }
         }
     }
@@ -71,5 +86,16 @@ public class CrashBlockController : MonoBehaviour {
         Destroy(effect, 1.0f);
     }
 
+
+    //無敵エフェクト
+    private void Play_Repel_Effect() {
+        StartCoroutine("Repel_Effect_Cor");
+    }
+
+    private IEnumerator Repel_Effect_Cor() {
+        GetComponent<SpriteRenderer>().color = new Color(0.7f, 0.7f, 0.7f, 1);
+        yield return new WaitForSeconds(0.2f);
+        GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);
+    }
 
 }

@@ -183,6 +183,7 @@ public class LarvaAttack : MonoBehaviour {
         _around_Motion.Start_Motion(transform.position + new Vector3(4f * direction, 0), 720f);
         yield return new WaitUntil(_around_Motion.Is_End_Motion);
         //突進
+        UsualSoundManager.Instance.Play_Attack_Sound();
         _controller.Play_Dash_Attack_Effect();
         MoveMotion _motion = GetComponent<MoveMotion>();
         if (direction == 1) {

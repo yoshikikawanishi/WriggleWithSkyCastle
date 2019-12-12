@@ -111,7 +111,7 @@ public class PlayerController : MonoBehaviour {
         //近接攻撃
         Attack();
         //カブトムシに乗る
-        if (input.GetKeyDown(Key.Ride) && BeetlePowerManager.Instance.Get_Beetle_Power() > 0) {
+        if (input.GetKeyDown(Key.Fly) && BeetlePowerManager.Instance.Get_Beetle_Power() > 0) {
             _getting_On_Beetle.Get_On_Beetle(true);
             is_Played_Alert = false;    //警告音を鳴らしたかどうかをリセット
         }        
@@ -129,7 +129,7 @@ public class PlayerController : MonoBehaviour {
         //ショット
         Shoot();
         //カブトムシから降りる
-        if (input.GetKeyDown(Key.Ride) || BeetlePowerManager.Instance.Get_Beetle_Power() <= 0) {
+        if (input.GetKeyDown(Key.Fly) || BeetlePowerManager.Instance.Get_Beetle_Power() <= 0) {
             _getting_On_Beetle.Get_Off_Beetle();            
         }
         //パワーの消費
@@ -140,8 +140,7 @@ public class PlayerController : MonoBehaviour {
                 is_Played_Alert = true;
                 GetComponentInChildren<PlayerSoundEffect>().Play_Alert_Sound();
             }
-        }
-        
+        }        
     }
 
 
