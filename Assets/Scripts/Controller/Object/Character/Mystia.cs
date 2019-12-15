@@ -24,13 +24,13 @@ public class Mystia : TalkCharacter {
     private void Change_Message() {
         switch (now_Rumia_State) {
             case Stage1_1Scene.Rumia.not_find:
-                Change_Message_Status("MystiaText", 1, 5);
+                Change_Message_Status("MystiaText", 1, 7);
                 break;
             case Stage1_1Scene.Rumia.find:
-                Change_Message_Status("MystiaText", 7, 12);
+                Change_Message_Status("MystiaText", 9, 16);
                 break;
             case Stage1_1Scene.Rumia.delete:
-                Change_Message_Status("MystiaText", 14, 21);
+                Change_Message_Status("MystiaText", 18, 27);
                 break;
         }
     }

@@ -89,6 +89,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73e9097613b8f774b99955e1a2390e6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deleted_Obj_Tag:
+  - PlayerBodyTag
+  - BombTag
 --- !u!212 &212815910154031960
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -123,7 +126,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: 949dc91f3e29d8048bf4c228955fb959, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

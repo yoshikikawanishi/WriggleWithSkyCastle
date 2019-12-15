@@ -135,8 +135,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4eae90975da3964a8a6a9829e3a0de5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gen_Only_Flying: 1
+  gen_Only_Flying: 0
   parent: {fileID: 0}
+  generator_Parent: {fileID: 0}
   start_Gen_Distance_From_Camera: 340
   num: 4
   span: 0.8
@@ -318,7 +319,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -3
   m_Sprite: {fileID: 21300000, guid: 3311f16726bdb3d479e20a5a720c4c02, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
