@@ -322,6 +322,7 @@ public class ShootSystem : MonoBehaviour {
             //消えたものを除く
             for(int i = 0; i < remove_List.Count; i++) {
                 rigid_List.Remove(remove_List[i]);
+                bullet_List.Remove(remove_List[i].gameObject);
             }
             remove_List.Clear();
 

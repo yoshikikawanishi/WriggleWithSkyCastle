@@ -99,9 +99,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cedca1a3ba40a12488040c6580439190, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  deleted_Obj_Tag:
-  - PlayerBodyTag
-  - BombTag
+  deleted_Obj_Tag: []
   delete_Bullet_Obj_Tag:
   - EnemyTag
   - GroundTag

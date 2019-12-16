@@ -7,7 +7,9 @@ public class Bullet : MonoBehaviour {
 
     public List<string> deleted_Obj_Tag = new List<string> {
         "PlayerBodyTag",
-        "BombTag"
+        "BombTag",
+        "GroundTag",
+        "SandbackGroundTag"
     };
 
 	public void Set_Inactive(float lifeTime) {

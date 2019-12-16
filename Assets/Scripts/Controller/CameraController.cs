@@ -43,14 +43,13 @@ public class CameraController : MonoBehaviour {
         if (player == null) {
             return;
         }
-
-        //自機追従
+        
         if (!is_Auto_Scroll) {
+            //自機追従
             Follow_Player();
+            //自機をカメラに収める
+            Fit_Player_Into_Camera();
         }        
-
-        //自機をカメラに収める
-        Fit_Player_Into_Camera();
 
         //左端でスクロールを止める
         if (transform.position.x < left_Side) {
@@ -72,7 +71,7 @@ public class CameraController : MonoBehaviour {
 
     //自機追従
     private void Follow_Player() {        
-        //中心との距離が遠いとき、補完する
+        //中心との距離が遠いとき補完する
         camera_Center = player.transform.position.x + 80f * stage_Direction;
         distance_Center = camera_Center - transform.position.x;
         if (Mathf.Abs(distance_Center) < 10.0f) {

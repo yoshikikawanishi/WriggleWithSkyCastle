@@ -60,7 +60,7 @@ public class LarvaAttack : MonoBehaviour {
 
             //自機を追従、鱗粉弾発射
             Start_Trace_Player();
-            for (int i = 0; i < 3; i++) {
+            for (int i = 0; i < 2; i++) {
                 yield return new WaitForSeconds(2.0f);
                 _controller.StartCoroutine("Pre_Action_Blink");
                 _controller.Play_Small_Charge_Effect();
@@ -112,7 +112,7 @@ public class LarvaAttack : MonoBehaviour {
         GetComponent<BossCollisionDetection>().Become_Invincible();
         _move.Start_Move(new Vector3(180f, 32f));
         yield return new WaitUntil(_move.End_Move);
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(0.5f);
         GetComponent<BossCollisionDetection>().Release_Invincible();
 
         //初期設定
@@ -121,7 +121,7 @@ public class LarvaAttack : MonoBehaviour {
         while (true) {
             //自機を追従、鱗粉弾発射
             Start_Trace_Player();
-            for (int i = 0; i < 3; i++) {
+            for (int i = 0; i < 2; i++) {
                 yield return new WaitForSeconds(3.0f);
                 _controller.StartCoroutine("Pre_Action_Blink");
                 _controller.Play_Small_Charge_Effect();
@@ -137,7 +137,7 @@ public class LarvaAttack : MonoBehaviour {
 
             //突進攻撃
             StartCoroutine("Dash_Attack");
-            yield return new WaitForSeconds(5.0f);
+            yield return new WaitForSeconds(4.5f);
 
             //移動
             _controller.Play_Charge_Effect(2.0f);            

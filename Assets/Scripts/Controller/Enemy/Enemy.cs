@@ -78,7 +78,7 @@ public class Enemy : MonoBehaviour {
 
 
     //アイテムの放出
-    private void Put_Out_Item() {
+    protected void Put_Out_Item() {
         gameObject.AddComponent<PutOutSmallItems>().Put_Out_Item(power_Value, score_Value);
         
         if (Random.Range(1, 100) <= drop_Life_Probability) {

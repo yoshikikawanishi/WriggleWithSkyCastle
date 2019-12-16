@@ -92,6 +92,8 @@ MonoBehaviour:
   deleted_Obj_Tag:
   - PlayerBodyTag
   - BombTag
+  - GroundTag
+  - SandbackGroundTag
 --- !u!212 &212815910154031960
 SpriteRenderer:
   m_ObjectHideFlags: 1
