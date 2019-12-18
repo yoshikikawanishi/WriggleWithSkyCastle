@@ -338,7 +338,7 @@ GameObject:
   - component: {fileID: 212861183170916714}
   m_Layer: 8
   m_Name: KickCollision
-  m_TagString: PlayerAttackTag
+  m_TagString: PlayerKickTag
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

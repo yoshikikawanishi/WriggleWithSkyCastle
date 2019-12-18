@@ -17,7 +17,7 @@ public class MoveMotion : MonoBehaviour {
     private bool is_End_Move = false;
 
 
-    public void Start_Movee() {
+    public void Start_Move() {
         Stop_Move();
         StartCoroutine("Move", 0);
     }

@@ -6,7 +6,10 @@ public class BeetlePowerBlock : MonoBehaviour {
 
 
     private List<string> damaged_Tag_List = new List<string> {
-        "PlayerAttackTag"
+        "PlayerKickTag",
+        "PlayerAttackTag",
+        "PlayerBulletTag",
+        "PlayerChargeBulletTag",
     };
 
     private void OnTriggerEnter2D(Collider2D collision) {

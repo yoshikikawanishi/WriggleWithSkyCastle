@@ -38,10 +38,6 @@ public class LightFairy : Character {
         transform.position += new Vector3(0, 300f);
 
         End_Setting();
-        yield return new WaitForSeconds(1.0f);
-
-        //退場後セリフ
-        _message.Start_Display_Auto("LightFairyText", 11, 16, 0.5f, 0.05f);
     }
 
 

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Stage2_1Scene : MonoBehaviour {
 
+
 	// Use this for initialization
 	void Start () {        
         if (SceneManagement.Instance.Is_First_Visit()) {
@@ -19,12 +20,9 @@ public class Stage2_1Scene : MonoBehaviour {
             PlayerGettingOnBeetle player_Ride_Beetle = player.GetComponent<PlayerGettingOnBeetle>();
             player_Ride_Beetle.Get_On_Beetle(false);
         }
-
         
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+
+
+
 }

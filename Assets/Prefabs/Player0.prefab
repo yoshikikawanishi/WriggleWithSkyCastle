@@ -318,7 +318,7 @@ GameObject:
   - component: {fileID: 95060421133801190}
   m_Layer: 8
   m_Name: KickCollision
-  m_TagString: PlayerAttackTag
+  m_TagString: PlayerKickTag
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2187,6 +2187,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01d37a4e66474f7468df4a3e3ae3acff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  NORMAL_SCROLL_SPEED: 1
   is_Playable: 1
   is_Landing: 1
   is_Squat: 0
