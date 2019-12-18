@@ -93,7 +93,7 @@ public class CrashBlockController : MonoBehaviour {
     }
 
     private IEnumerator Repel_Effect_Cor() {
-        GetComponent<SpriteRenderer>().color = new Color(0.8f, 0.8f, 0.8f, 1);
+        GetComponent<SpriteRenderer>().color = new Color(0.7f, 0.7f, 0.7f, 1);
         yield return new WaitForSeconds(0.2f);
         GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);
     }

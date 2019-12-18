@@ -34,10 +34,10 @@ public class ReleaseAndConvergePlayer : MonoBehaviour {
     public void Play_Release_And_Converge(int num, Vector2 start_Pos, Vector2 aim_Pos, GameObject parent) {
        
         //生成、発射
-        List<GameObject> objects = new List<GameObject>();
+        List<GameObject> objects = new List<GameObject>();        
         for(int i = 0; i < num; i++) {
 
-            var obj = pool_Manager.Get_Pool(use_Object_Prefab).GetObject();
+            var obj = pool_Manager.Get_Pool(use_Object_Prefab).GetObject();            
             obj.transform.position = start_Pos;
             obj.transform.SetParent(parent.transform);
 
@@ -61,9 +61,10 @@ public class ReleaseAndConvergePlayer : MonoBehaviour {
     /// <returns></returns>
     public IEnumerator Converge_Cor(List<GameObject> objects, Vector2 aim_Pos, GameObject parent) {
         yield return new WaitForSeconds(start_Converge_Time);
-      
+
+        List<Rigidbody2D> rigid_List = new List<Rigidbody2D>();
         foreach (GameObject obj in objects)
-            obj.GetComponent<Rigidbody2D>().velocity *= 0.1f;
+            obj.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
         
         Vector2 aim_Pos_Abs = aim_Pos;
         List<GameObject> remove_List = new List<GameObject>();
@@ -91,10 +92,10 @@ public class ReleaseAndConvergePlayer : MonoBehaviour {
 
             //リストから削除
             foreach(GameObject remove_Obj in remove_List) {
-                objects.Remove(remove_Obj);
-                remove_Obj.GetComponent<Rigidbody2D>().velocity = new Vector2();
+                objects.Remove(remove_Obj);                
                 remove_Obj.SetActive(false);
             }
+            remove_List.Clear();
 
             yield return new WaitForSeconds(0.016f);
 

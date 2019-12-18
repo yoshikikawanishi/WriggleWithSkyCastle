@@ -5,6 +5,8 @@ using MBLDefine;
 
 public class PlayerController : MonoBehaviour {
 
+    [SerializeField] private float NORMAL_SCROLL_SPEED = 1f;
+
     //コンポーネント
     private Rigidbody2D _rigid;
     private Animator _anim;
@@ -50,6 +52,8 @@ public class PlayerController : MonoBehaviour {
         _shoot = GetComponent<PlayerShoot>();
         _getting_On_Beetle = GetComponent<PlayerGettingOnBeetle>();
         input = InputManager.Instance;
+        //初期設定
+        Change_Beetle_Scroll_Speed(NORMAL_SCROLL_SPEED);
     }
 
 
@@ -123,9 +127,13 @@ public class PlayerController : MonoBehaviour {
         //移動
         Vector2 direction = new Vector2(0, 0);
         direction = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-        if (input.GetKey(Key.Slow))
+        Change_Beetle_Scroll_Speed(NORMAL_SCROLL_SPEED);
+        if (input.GetKey(Key.Slow)) {
             direction *= 0.3f;
-        _transition_Beetle.Transition(direction);
+            Change_Beetle_Scroll_Speed(0.3f);
+        }
+        _transition_Beetle.Transition(direction);        
+
         //ショット
         Shoot();
         //カブトムシから降りる
@@ -140,7 +148,7 @@ public class PlayerController : MonoBehaviour {
                 is_Played_Alert = true;
                 GetComponentInChildren<PlayerSoundEffect>().Play_Alert_Sound();
             }
-        }        
+        }            
     }
 
 

@@ -6,9 +6,8 @@ public class SunFlowerFairy1 : MonoBehaviour {
 
     [SerializeField] private GameObject bullet;
 
-
-	// Use this for initialization
-	void Start () {
+	
+	void OnEnable () {
         StartCoroutine("Shoot_Cor");
 	}
 
@@ -20,9 +19,9 @@ public class SunFlowerFairy1 : MonoBehaviour {
             yield return new WaitForSeconds(1.5f);
 
             UsualSoundManager.Instance.Play_Shoot_Sound();
-            _shoot.Diffusion_Bullet(12, 80f, 0, 10f);
-            _shoot.Diffusion_Bullet(12, 75f, 4f, 10f);
-            _shoot.Diffusion_Bullet(12, 75f, -4f, 10f);
+            _shoot.Diffusion_Bullet(8, 80f, 0, 10f);
+            _shoot.Diffusion_Bullet(8, 75f, 4f, 10f);
+            _shoot.Diffusion_Bullet(8, 75f, -4f, 10f);
 
             yield return new WaitForSeconds(0.5f);
         }

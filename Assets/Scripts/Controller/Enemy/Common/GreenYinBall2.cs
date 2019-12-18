@@ -19,6 +19,7 @@ public class GreenYinBall2 : MonoBehaviour {
             time = -1;
             if (Random.Range(0, 100) < 25) {
                 GetComponent<ShootSystem>().Shoot();
+                UsualSoundManager.Instance.Play_Shoot_Sound(0.05f);
             }
         }
 	}

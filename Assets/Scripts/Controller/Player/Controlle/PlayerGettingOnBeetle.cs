@@ -19,6 +19,7 @@ public class PlayerGettingOnBeetle : MonoBehaviour {
     private float default_Gravity;
     private Vector2 default_Collider_Offset;
 
+
     private float scroll_Speed = 1f;
 
 

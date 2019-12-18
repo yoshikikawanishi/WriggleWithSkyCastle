@@ -156,6 +156,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotate_Speed: 5
+  is_Affected_Timescale: 1
 --- !u!114 &114137550507571802
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -168,6 +169,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotate_Speed: -2
+  is_Affected_Timescale: 1
 --- !u!114 &114335709246617350
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -191,7 +193,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   is_Pooled: 0
-  life: 3
+  life: 2
   power_Value: 2
   score_Value: 3
   drop_Life_Probability: 0.5
