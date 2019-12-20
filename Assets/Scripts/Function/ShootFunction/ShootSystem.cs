@@ -81,9 +81,8 @@ public class ShootSystem : MonoBehaviour {
 
 
     //ショット用のコルーチン
-    private IEnumerator Shoot_Cor() {
-        List<GameObject> bullet_List = new List<GameObject>();
-
+    private IEnumerator Shoot_Cor() {        
+        List<GameObject> bullet_List = new List<GameObject>();        
         for (int i = 0; i < count; i++) {
             switch (kind) {
                 case KIND.Odd:          bullet_List = Odd_Num_Shoot();  break;
@@ -144,8 +143,8 @@ public class ShootSystem : MonoBehaviour {
     /// <summary>
     /// 奇数段
     /// </summary>
-    public List<GameObject> Odd_Num_Shoot() {
-        List<GameObject> bullet_List = new List<GameObject>();
+    public List<GameObject> Odd_Num_Shoot() {        
+        List<GameObject> bullet_List = new List<GameObject>();        
 
         GameObject player = GameObject.FindWithTag("PlayerTag");
         if (player == null) {
@@ -156,11 +155,12 @@ public class ShootSystem : MonoBehaviour {
         AngleCalculater _angle = new AngleCalculater();
         center_Angle_Deg = _angle.Cal_Angle_Two_Points(transform.position, player.transform.position);
         float angle = center_Angle_Deg - num / 2 * inter_Angle_Deg;
-
+        
         for (int i = 0; i < num; i++) {
             var b = Turn_Shoot_Bullet(angle);
             bullet_List.Add(b);
             angle += inter_Angle_Deg;
+            Debug.Log(b);
         }
 
         return bullet_List;
