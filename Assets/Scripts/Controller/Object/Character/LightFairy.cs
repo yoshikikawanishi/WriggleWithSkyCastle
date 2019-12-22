@@ -63,7 +63,7 @@ public class LightFairy : Character {
 
     //アイテム放出
     private void Put_Out_Item() {
-        GetComponent<PutOutSmallItems>().Put_Out_Item(5, 10);
+        GetComponent<PutOutSmallItems>().Put_Out_Item(5, 15);
         var life = Instantiate(Resources.Load("Object/LifeUpItem") as GameObject);
         life.transform.position = transform.position;
     }

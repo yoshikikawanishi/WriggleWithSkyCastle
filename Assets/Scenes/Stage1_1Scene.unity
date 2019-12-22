@@ -22672,7 +22672,7 @@ MonoBehaviour:
   baloon_Pos: {x: 16, y: 16, z: 0}
   fileName: MystiaText
   start_ID: 1
-  end_ID: 1
+  end_ID: 2
 --- !u!61 &1727073162
 BoxCollider2D:
   m_ObjectHideFlags: 0

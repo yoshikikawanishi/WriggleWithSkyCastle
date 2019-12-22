@@ -160,7 +160,6 @@ public class ShootSystem : MonoBehaviour {
             var b = Turn_Shoot_Bullet(angle);
             bullet_List.Add(b);
             angle += inter_Angle_Deg;
-            Debug.Log(b);
         }
 
         return bullet_List;

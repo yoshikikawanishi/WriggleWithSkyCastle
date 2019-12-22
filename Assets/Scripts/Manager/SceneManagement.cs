@@ -29,8 +29,6 @@ public class SceneManagement : SingletonMonoBehaviour<SceneManagement> {
     //訪れたシーンの保存
     private void Save_Visit_Scene(string scene) {            
         string filePath = Application.dataPath + @"\StreamingAssets\VisitedSceneList.txt";
-        TextFileReader text = new TextFileReader();
-        text.Read_Text_File_Path(filePath);
         
         if (Has_Visited(scene)) {
             return;
@@ -90,7 +88,28 @@ public class SceneManagement : SingletonMonoBehaviour<SceneManagement> {
 
         { "Stage1_1Scene", true },
         { "Stage1_BossScene", true },
+
         { "Stage2_1Scene", true },
+        { "Stage2_2Scene", true },
+        { "Stage2_2Boss", true },
+
+        { "Stage3_1Scene", true },
+        { "Stage3_2Scene", true },
+        { "Stage3_BossScene", true },
+
+        { "Stage4_1Scene", true },
+        { "Stage4_2Scene", true },
+        { "Stage4_BossScene", true },
+
+        { "Stage5_1Scene", true },
+        { "Stage5_2Scene", true },
+        { "Stage5_BossScene", true },
+
+        { "Stage6_1Scene", true },
+        { "Stage6_BossScene", true },
+
+        { "Stage7_1Scene", true },
+        { "Stage7_BossScene", true },
 
         { "GameOverScene", false },
 

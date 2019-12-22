@@ -1,0 +1,3 @@
+#Key	#IsCollected
+test	False
+orb	False

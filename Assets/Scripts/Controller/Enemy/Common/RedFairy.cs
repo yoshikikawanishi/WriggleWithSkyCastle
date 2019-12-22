@@ -7,8 +7,7 @@ public class RedFairy : MonoBehaviour {
     //コンポーネント
     private Rigidbody2D _rigid;
 
-    private bool start_Action = false;
-
+    private bool wait_Visible = true;
     private int direction = -1;
     
 
@@ -18,18 +17,21 @@ public class RedFairy : MonoBehaviour {
         _rigid = GetComponent<Rigidbody2D>();
     }
 
+
     // Update is called once per frame
     void Update() {
+        if (wait_Visible) 
+            return;
+        
         //歩く
-        if (start_Action) {
-            _rigid.velocity = new Vector2(direction * 40, _rigid.velocity.y);
-        }
+        _rigid.velocity = new Vector2(direction * 40, _rigid.velocity.y);
+        
         //落下時消す
         if(transform.position.y < -170f) {
             Destroy(gameObject);
-        }
-        
+        }       
     }
+
 
     private void OnTriggerEnter2D(Collider2D collision) {
         //反転
@@ -41,7 +43,7 @@ public class RedFairy : MonoBehaviour {
 
 
     private void OnBecameVisible() {
-        start_Action = true;
+        wait_Visible = false;
     }
 
 }

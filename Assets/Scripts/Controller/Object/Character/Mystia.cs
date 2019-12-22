@@ -4,39 +4,48 @@ using UnityEngine;
 
 public class Mystia : TalkCharacter {
 
-    private Stage1_1Scene.Rumia now_Rumia_State = Stage1_1Scene.Rumia.delete;
-	
-	// Update is called once per frame
-	new void Update () {
-        base.Update();
-		if(now_Rumia_State != Stage1_1Scene.Instance.rumia_State) {
+    private Stage1_1Scene.Rumia now_Rumia_State;
+    private bool first_Talk = true;
+
+
+    //会話時の処理
+    protected override IEnumerator Talk() {
+        if (!first_Talk) {
             now_Rumia_State = Stage1_1Scene.Instance.rumia_State;
             Change_Message();
         }
 
-        if (End_Talk()) {
-            StartCoroutine("Action_After_Talking_Cor");
+        StartCoroutine(base.Talk());
+
+        yield return new WaitUntil(base.End_Talk);
+
+        if (first_Talk) {
+            Put_Out_Life_Item();
         }
-	}
+        if (now_Rumia_State == Stage1_1Scene.Rumia.find || now_Rumia_State == Stage1_1Scene.Rumia.delete) {
+            StartCoroutine(Action_After_Talking_Cor());
+        }
+        first_Talk = false;
+    }
 
 
     //会話のパターンを変える
     private void Change_Message() {
         switch (now_Rumia_State) {
             case Stage1_1Scene.Rumia.not_find:
-                Change_Message_Status("MystiaText", 1, 7);
+                Change_Message_Status("MystiaText", 3, 3);
                 break;
             case Stage1_1Scene.Rumia.find:
-                Change_Message_Status("MystiaText", 9, 16);
+                Change_Message_Status("MystiaText", 4, 6);
                 break;
             case Stage1_1Scene.Rumia.delete:
-                Change_Message_Status("MystiaText", 18, 27);
+                Change_Message_Status("MystiaText", 7, 10);
                 break;
         }
     }
 
 
-    //会話終了後
+    //会話終了時
     private IEnumerator Action_After_Talking_Cor() {
         //当たり判定消す
         GetComponent<BoxCollider2D>().enabled = false;
@@ -46,18 +55,9 @@ public class Mystia : TalkCharacter {
         _move.Start_Move(transform.position + new Vector3(-300f, 150f));
         GetComponent<Animator>().SetTrigger("FlyTrigger");
 
-        //ルーミアの状態によってアイテム変更
-        switch (now_Rumia_State) {
-            case Stage1_1Scene.Rumia.not_find:
-                Put_Out_Score(1);
-                break;
-            case Stage1_1Scene.Rumia.find:
-                Put_Out_Score(10);
-                Put_Out_Life_Item();
-                break;
-            case Stage1_1Scene.Rumia.delete:
-                Put_Out_Score(10);
-                break;
+        //アイテムを出す
+        if (now_Rumia_State == Stage1_1Scene.Rumia.find) {
+            Put_Out_Score(15);
         }
 
         //ルーミアの隣に配置

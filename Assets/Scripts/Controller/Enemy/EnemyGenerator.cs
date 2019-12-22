@@ -7,7 +7,7 @@ using UnityEngine;
 /// </summary>
 public class EnemyGenerator : MonoBehaviour {
 
-    public bool gen_Only_Flying = true;
+    public bool gen_Only_Flying = true;    
 
     public Transform parent = null;
     public Transform generator_Parent = null;
@@ -27,6 +27,7 @@ public class EnemyGenerator : MonoBehaviour {
     private PlayerController player_Controller;
 
     private bool is_Enable_Generator = true;
+    private float distance;
 
 
 	// Use this for initialization
@@ -47,7 +48,8 @@ public class EnemyGenerator : MonoBehaviour {
             if(gen_Only_Flying && !player_Controller.Get_Is_Ride_Beetle()) {
                 return;
             }
-            if(Mathf.Abs(main_Camera.transform.position.x - transform.position.x) < start_Gen_Distance_From_Camera) {
+            distance = transform.position.x - main_Camera.transform.position.x;
+            if(Mathf.Abs(distance - start_Gen_Distance_From_Camera) < 8f) {
                 is_Enable_Generator = false;
                 transform.SetParent(generator_Parent);
                 StartCoroutine("Generate_Enemy_Cor");                

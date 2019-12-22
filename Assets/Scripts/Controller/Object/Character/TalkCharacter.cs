@@ -149,6 +149,6 @@ public class TalkCharacter : MonoBehaviour {
     protected void Put_Out_Life_Item() {
         ObjectPoolManager.Instance.Create_New_Pool(Resources.Load("Object/LifeUpItem") as GameObject, 2);
         var life_Item = ObjectPoolManager.Instance.Get_Pool("LifeUpItem").GetObject();
-        life_Item.transform.position = transform.position + new Vector3(0, 10f);
+        life_Item.transform.position = transform.position + new Vector3(0, 16f);
     }
 }

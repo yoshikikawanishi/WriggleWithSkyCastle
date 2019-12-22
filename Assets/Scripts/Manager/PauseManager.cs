@@ -64,7 +64,9 @@ public class PauseManager : SingletonMonoBehaviour<PauseManager> {
         Time.timeScale = 0;
 
         //自機の操作無効化
-        GameObject.FindWithTag("PlayerTag").GetComponent<PlayerController>().Set_Is_Playable(false);
+        GameObject player = GameObject.FindWithTag("PlayerTag");
+        if(player != null)
+            player.GetComponent<PlayerController>().Set_Is_Playable(false);
 
         //ポーズキャンバスの生成
         if(pause_Canvas == null) {

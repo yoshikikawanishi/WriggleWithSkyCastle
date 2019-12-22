@@ -55,13 +55,30 @@ public class PlayerShoot : MonoBehaviour {
         if(Time.timeScale == 0) {
             return;
         }
-        for (int i = 0; i < 2; i++) {
+        int num = Shoot_Num();
+        for (int i = 0; i < num; i++) {
             GameObject bullet = bullet_Pool.GetObject();
             bullet.transform.position = transform.position;
-            bullet.transform.position += new Vector3(0, -8f) + new Vector3(0, 16f * i);            
+            bullet.transform.position += new Vector3(0, (-12f * num) / 2) + new Vector3(0, 12f * i);            
             bullet.GetComponent<Rigidbody2D>().velocity = new Vector2(900f * transform.localScale.x, 0);
             player_SE.Play_Shoot_Sound();
         }
+    }
+
+
+    //パワーによって弾の数を変える
+    private int Shoot_Num() {
+        int power = player_Manager.Get_Power();
+        if (power < 32) {
+            return 2;
+        }
+        else if (power < 64) {
+            return 3;
+        }
+        else if (power < 128) {
+            return 4;
+        }
+        return 5;
     }
 
 
@@ -114,11 +131,11 @@ public class PlayerShoot : MonoBehaviour {
             }
         }
         charge_Time += Time.deltaTime;
-    }
+    }   
 
 
     //パワーによってチャージ時間を変える
-    public void Change_Charge_Span() {
+    private void Change_Charge_Span() {
         //値が変化したときだけ判別
         if(player_Manager.Get_Power() == player_Power) {
             return;
