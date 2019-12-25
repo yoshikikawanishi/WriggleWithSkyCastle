@@ -30,4 +30,9 @@ public class Bullet : MonoBehaviour {
         }
     }
 
+
+    private void OnBecameInvisible() {
+        gameObject.SetActive(false);
+    }
+
 }

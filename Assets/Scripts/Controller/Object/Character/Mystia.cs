@@ -20,7 +20,8 @@ public class Mystia : TalkCharacter {
         yield return new WaitUntil(base.End_Talk);
 
         if (first_Talk) {
-            Put_Out_Life_Item();
+            transform.GetChild(0).gameObject.SetActive(true);
+            transform.GetChild(0).SetParent(null);
         }
         if (now_Rumia_State == Stage1_1Scene.Rumia.find || now_Rumia_State == Stage1_1Scene.Rumia.delete) {
             StartCoroutine(Action_After_Talking_Cor());

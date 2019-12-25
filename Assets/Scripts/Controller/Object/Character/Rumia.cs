@@ -37,8 +37,9 @@ public class Rumia : Character {
             yield return new WaitForSeconds((10 - i) * 0.02f);
         }
         _sprite.color = new Color(1, 1, 1, 0);
-
-        gameObject.AddComponent<PutOutSmallItems>().Put_Out_Item(0, 10);
+        
+        transform.GetChild(1).gameObject.SetActive(true);
+        transform.GetChild(1).SetParent(null);
 
         gameObject.SetActive(false);
     }

@@ -9,6 +9,7 @@ public class ShootEnemy : MonoBehaviour {
     [SerializeField] private int loop_Count = 1;    //0未満で永続ループ
     [SerializeField] private float span = 2.0f;
 
+
     private void OnEnable() {
         StartCoroutine("Shoot_Cor");
     }
@@ -21,9 +22,11 @@ public class ShootEnemy : MonoBehaviour {
         yield return new WaitForSeconds(start_Time);        
         if (loop_Count < 0)
             loop_Count = 100;
-        for (int i = 0; i < loop_Count; i++) {            
-            _shoot.Shoot();
-            UsualSoundManager.Instance.Play_Shoot_Sound();
+        for (int i = 0; i < loop_Count; i++) {
+            if (GetComponent<Renderer>().isVisible) {
+                _shoot.Shoot();
+                UsualSoundManager.Instance.Play_Shoot_Sound();
+            }
             yield return new WaitForSeconds(span);
         }
     }

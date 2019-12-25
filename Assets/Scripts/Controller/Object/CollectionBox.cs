@@ -28,10 +28,12 @@ public class CollectionBox : MonoBehaviour {
             yield break;
         }
         GetComponent<Animator>().SetBool("OpenBool", true);
+        GetComponents<AudioSource>()[0].Play();
         GetComponent<BoxCollider2D>().enabled = false;
 
         yield return new WaitForSeconds(0.3f);
 
         transform.GetChild(0).gameObject.SetActive(true);
     }
+
 }

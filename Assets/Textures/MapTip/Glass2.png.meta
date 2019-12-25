@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: e7f7339f4613cfd4ea3de66a482d9cdc
+guid: 98a4e9aeecdf3e74a97f3eaa92de9a3f
 TextureImporter:
   fileIDToRecycleName:
-    21300000: FlowerGround_0
-    21300002: FlowerGround_1
-    21300004: FlowerGround_2
+    21300000: Glass2_0
+    21300002: Glass2_1
+    21300004: Glass2_2
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -66,7 +66,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -77,7 +77,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -88,7 +88,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -99,7 +99,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -110,7 +110,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -120,13 +120,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: FlowerGround_0
+      name: Glass2_0
       rect:
         serializedVersion: 2
-        x: 1
+        x: 0
         y: 0
-        width: 96
-        height: 189
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -134,19 +134,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ea020b549843136419064ec8a4e4d3a6
+      spriteID: a4894182038c910489b12b3430c84159
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: FlowerGround_1
+      name: Glass2_1
       rect:
         serializedVersion: 2
-        x: 98
+        x: 33
         y: 0
-        width: 96
-        height: 189
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -154,19 +154,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ccce5c617b9a04543a3adbe50d62dafa
+      spriteID: 918a87a6f67e58c47802c19feaaafd31
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: FlowerGround_2
+      name: Glass2_2
       rect:
         serializedVersion: 2
-        x: 195
+        x: 66
         y: 0
-        width: 96
-        height: 189
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -174,7 +174,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c7bdc4da3af094845930b5b0cd773538
+      spriteID: b4aa997dd2eb3a34eac3d2f1797380a9
       vertices: []
       indices: 
       edges: []
@@ -182,7 +182,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 4aca34855a8a90f499555567e104aef0
+    spriteID: 60b48d7cbff7bce4191a375391169c94
     vertices: []
     indices: 
     edges: []

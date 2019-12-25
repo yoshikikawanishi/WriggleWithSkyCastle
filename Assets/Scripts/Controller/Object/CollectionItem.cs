@@ -20,7 +20,8 @@ public class CollectionItem : MonoBehaviour {
     protected virtual IEnumerator Aquire_Collection() {
         CollectionManager.Instance.Aquire_Collection(collection_Name);
         GetComponent<Animator>().SetBool("RaiseBool", true);
-        //TODO : 効果音
+        GetComponent<AudioSource>().Play();
+        gameObject.layer = LayerMask.NameToLayer("InvincibleLayer");        
         yield return new WaitForSeconds(0.5f);
         Destroy(gameObject);
     }

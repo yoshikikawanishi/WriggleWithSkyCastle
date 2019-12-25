@@ -18,10 +18,12 @@ public class SunFlowerFairy1 : MonoBehaviour {
         while (true) {
             yield return new WaitForSeconds(1.5f);
 
-            UsualSoundManager.Instance.Play_Shoot_Sound();
-            _shoot.Diffusion_Bullet(8, 80f, 0, 10f);
-            _shoot.Diffusion_Bullet(8, 75f, 4f, 10f);
-            _shoot.Diffusion_Bullet(8, 75f, -4f, 10f);
+            if (GetComponent<Renderer>().isVisible) {
+                UsualSoundManager.Instance.Play_Shoot_Sound();
+                _shoot.Diffusion_Bullet(8, 80f, 0, 10f);
+                _shoot.Diffusion_Bullet(8, 75f, 4f, 10f);
+                _shoot.Diffusion_Bullet(8, 75f, -4f, 10f);
+            }
 
             yield return new WaitForSeconds(0.5f);
         }

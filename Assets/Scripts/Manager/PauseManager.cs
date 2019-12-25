@@ -8,7 +8,7 @@ using MBLDefine;
 
 public class PauseManager : SingletonMonoBehaviour<PauseManager> {
 
-    [SerializeField] private GameObject pause_Canvas_Prefab;
+    private GameObject pause_Canvas_Prefab;
     private GameObject pause_Canvas;
 
     public enum STATE {
@@ -26,6 +26,8 @@ public class PauseManager : SingletonMonoBehaviour<PauseManager> {
 	void Start () {        
         //シーン読み込みのデリケート
         SceneManager.sceneLoaded += OnSceneLoaded;
+        //取得
+        pause_Canvas_Prefab = Resources.Load("UI/PauseCanvas") as GameObject;
     }
 	
 	// Update is called once per frame

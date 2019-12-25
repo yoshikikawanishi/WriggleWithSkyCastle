@@ -1,3 +1,3 @@
 #Key	#IsCollected
-test	False
-orb	False
+test	True
+orb	True
