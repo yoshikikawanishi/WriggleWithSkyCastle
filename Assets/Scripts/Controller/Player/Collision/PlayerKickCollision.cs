@@ -42,7 +42,6 @@ public class PlayerKickCollision : MonoBehaviour {
 
 
     private void Play_Animation() {
-        GetComponent<Animator>().SetBool("KickBool", true);
         int power = PlayerManager.Instance.Get_Power();        
         if (power >= 64) {
             transform.GetChild(0).GetComponent<Animator>().SetBool("KickBool2", true);            
@@ -53,7 +52,6 @@ public class PlayerKickCollision : MonoBehaviour {
     }
 
     private void Stop_Animation() {
-        GetComponent<Animator>().SetBool("KickBool", false);
         transform.GetChild(0).GetComponent<Animator>().SetBool("KickBool1", false);
         transform.GetChild(0).GetComponent<Animator>().SetBool("KickBool2", false);
     }

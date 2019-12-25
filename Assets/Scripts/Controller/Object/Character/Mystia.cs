@@ -44,16 +44,14 @@ public class Mystia : TalkCharacter {
 
     //会話終了時
     private IEnumerator Action_After_Talking_Cor() {
-        //初回時、収集アイテム出す
-        if (first_Talk) {
-            if (CollectionManager.Instance.Is_Collected("Mystia")) {
-                transform.GetChild(0).gameObject.SetActive(true);
-                transform.GetChild(0).SetParent(null);
-            }
-            yield break;            
+        //収集アイテム出す
+        if (!CollectionManager.Instance.Is_Collected("Mystia")) {
+            transform.GetChild(0).gameObject.SetActive(true);
+            transform.GetChild(0).SetParent(null);
+            yield break;
         }
 
-        //初回以降ルーミアに関して
+        //以降ルーミアに関して
         if (now_Rumia_State == Stage1_1Scene.Rumia.not_find) {
             yield break;        
         }

@@ -73,7 +73,7 @@ public class CollectionManager : SingletonMonoBehaviour<CollectionManager> {
         }        
         return false;
     }
-
+    
 
     //Getter
     public Dictionary<string, bool> Get_Collections_Data() {
