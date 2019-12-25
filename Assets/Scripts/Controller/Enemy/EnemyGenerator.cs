@@ -52,7 +52,7 @@ public class EnemyGenerator : MonoBehaviour {
             if(Mathf.Abs(distance - start_Gen_Distance_From_Camera) < 8f) {
                 is_Enable_Generator = false;
                 transform.SetParent(generator_Parent);
-                StartCoroutine("Generate_Enemy_Cor");                
+                StartCoroutine("Generate_Enemy_Cor");   
             }
         }
 	}
@@ -64,7 +64,7 @@ public class EnemyGenerator : MonoBehaviour {
             var enemy = pool.GetObject();
             enemy.transform.position = transform.position;  
             enemy.transform.position += (Vector3)Random_Vector2(-position_Noise, position_Noise);
-            enemy.transform.SetParent(parent);
+            enemy.transform.SetParent(parent);            
             if (is_Controlle_Move) 
                 StartCoroutine("Enemy_Move_Cor", enemy);
 
@@ -76,7 +76,7 @@ public class EnemyGenerator : MonoBehaviour {
     //敵の移動
     private IEnumerator Enemy_Move_Cor(GameObject enemy) {
         float end_Time = x_Move.keys[x_Move.length - 1].time;
-        Vector2 start_Pos = enemy.transform.localPosition;
+        Vector2 start_Pos = enemy.transform.localPosition;        
 
         for(float t = 0; t < end_Time; t += Time.deltaTime) {
             //消滅時抜ける
@@ -85,11 +85,17 @@ public class EnemyGenerator : MonoBehaviour {
 
             enemy.transform.localPosition = start_Pos + new Vector2(x_Move.Evaluate(t), y_Move.Evaluate(t));
             yield return null;
-        }
+        }        
 
         //最後まで移動したら消す
         if(is_End_And_Delete)
             enemy.SetActive(false);
+    }
+
+
+    //敵を生成可能にする
+    private void Enealbe_Enemy_Gen() {
+        is_Enable_Generator = true;
     }
 
 

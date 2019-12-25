@@ -19,6 +19,7 @@ public class CollectionItem : MonoBehaviour {
 
     protected virtual IEnumerator Aquire_Collection() {
         CollectionManager.Instance.Aquire_Collection(collection_Name);
+        GetComponent<VerticalVibeMotion>().enabled = false;
         GetComponent<Animator>().SetBool("RaiseBool", true);
         GetComponent<AudioSource>().Play();
         gameObject.layer = LayerMask.NameToLayer("InvincibleLayer");        

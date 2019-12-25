@@ -13,6 +13,8 @@ public class CollectionManager : SingletonMonoBehaviour<CollectionManager> {
         FILEPATH = Application.dataPath + @"\StreamingAssets\CollectionsData.txt";
         //セーブファイルの読み込み
         Load_Data();
+        //データの消去
+        Delete_Collections();
     }
 
 
@@ -53,6 +55,7 @@ public class CollectionManager : SingletonMonoBehaviour<CollectionManager> {
             collections_Data[key] = false;
         }
         Save_Data();
+        Debug.Log("Delete Collection Data");
     }
 
 

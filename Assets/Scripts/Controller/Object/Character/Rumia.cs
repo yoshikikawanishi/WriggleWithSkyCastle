@@ -29,6 +29,7 @@ public class Rumia : Character {
         transform.GetChild(0).gameObject.SetActive(false);
         GetComponent<Animator>().SetBool("VanishBool", true);
 
+        //点滅
         SpriteRenderer _sprite = GetComponent<SpriteRenderer>();
         for (int i = 0; i < 10; i++) {
             _sprite.color = new Color(1, 1, 1, 0);
@@ -37,9 +38,12 @@ public class Rumia : Character {
             yield return new WaitForSeconds((10 - i) * 0.02f);
         }
         _sprite.color = new Color(1, 1, 1, 0);
-        
-        transform.GetChild(1).gameObject.SetActive(true);
-        transform.GetChild(1).SetParent(null);
+
+        //アイテムを出す
+        if (!CollectionManager.Instance.Is_Collected("Rumia")) {
+            transform.GetChild(1).gameObject.SetActive(true);
+            transform.GetChild(1).SetParent(null);
+        }
 
         gameObject.SetActive(false);
     }

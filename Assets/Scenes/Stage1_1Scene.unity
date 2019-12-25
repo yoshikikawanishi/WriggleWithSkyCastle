@@ -6507,7 +6507,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4763908841912790, guid: ad841176ffea4c14cb8b8908df271e4f, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -65.3
+      value: -67
       objectReference: {fileID: 0}
     - target: {fileID: 4763908841912790, guid: ad841176ffea4c14cb8b8908df271e4f, type: 2}
       propertyPath: m_LocalPosition.z
@@ -6536,6 +6536,17 @@ Prefab:
     - target: {fileID: 1272294784753358, guid: ad841176ffea4c14cb8b8908df271e4f, type: 2}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 212307917471595424, guid: ad841176ffea4c14cb8b8908df271e4f,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 53144f2f0721787438ca6f476e2e5872,
+        type: 3}
+    - target: {fileID: 114965344020361258, guid: ad841176ffea4c14cb8b8908df271e4f,
+        type: 2}
+      propertyPath: collection_Name
+      value: Rumia
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ad841176ffea4c14cb8b8908df271e4f, type: 2}
@@ -7756,7 +7767,7 @@ Prefab:
     - target: {fileID: 114503621370178894, guid: 097fbe3035ae3124f8acd3b97b284940,
         type: 2}
       propertyPath: drop_Life_Probability
-      value: 0.1
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 4422910850872062, guid: 097fbe3035ae3124f8acd3b97b284940, type: 2}
       propertyPath: m_LocalScale.x
@@ -14414,6 +14425,17 @@ Prefab:
     - target: {fileID: 4763908841912790, guid: ad841176ffea4c14cb8b8908df271e4f, type: 2}
       propertyPath: m_RootOrder
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 212307917471595424, guid: ad841176ffea4c14cb8b8908df271e4f,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: b4b5f632860aaec4aa3d8438453d4a9b,
+        type: 3}
+    - target: {fileID: 114965344020361258, guid: ad841176ffea4c14cb8b8908df271e4f,
+        type: 2}
+      propertyPath: collection_Name
+      value: Mystia
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ad841176ffea4c14cb8b8908df271e4f, type: 2}
