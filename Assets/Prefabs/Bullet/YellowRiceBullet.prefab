@@ -102,6 +102,7 @@ MonoBehaviour:
   deleted_Obj_Tag:
   - PlayerBodyTag
   - BombTag
+  is_Delete_Invisible: 0
 --- !u!212 &212312356825207818
 SpriteRenderer:
   m_ObjectHideFlags: 1

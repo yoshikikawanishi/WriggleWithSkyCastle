@@ -54,6 +54,7 @@ public class Enemy : MonoBehaviour {
     }
 
 
+
     //消滅時の処理
     public virtual void Vanish() {
         Play_Vanish_Effect();

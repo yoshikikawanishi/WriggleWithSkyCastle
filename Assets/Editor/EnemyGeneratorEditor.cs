@@ -26,6 +26,8 @@ public class EnemyGeneratorEditor : Editor {
             obj.y_Move = EditorGUILayout.CurveField("Y_Move", obj.y_Move);
             obj.is_End_And_Delete = EditorGUILayout.Toggle("End_And_Delete", obj.is_End_And_Delete);
         }
+
+        EditorUtility.SetDirty(obj);
     }
 
 }

@@ -11,6 +11,8 @@ public class Bullet : MonoBehaviour {
         "GroundTag",
         "SandbackGroundTag"
     };
+    public bool is_Delete_Invisible = true;
+
 
 	public void Set_Inactive(float lifeTime) {
         StartCoroutine("Set_Inactive_Routine", lifeTime);
@@ -32,7 +34,8 @@ public class Bullet : MonoBehaviour {
 
 
     private void OnBecameInvisible() {
-        gameObject.SetActive(false);
+        if (is_Delete_Invisible) 
+            gameObject.SetActive(false);
     }
 
 }

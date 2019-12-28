@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour {
 
+
     //コンポーネント
     private PlayerController _controller;
     private PlayerSoundEffect player_SE;
@@ -11,12 +12,13 @@ public class PlayerAttack : MonoBehaviour {
     private Rigidbody2D _rigid;
     private PlayerAttackCollision attack_Collision;
     private PlayerKickCollision kick_Collision;
+    private PlayerManager player_Manager;
 
-    private bool can_Attack = true;
-    private bool end_Kick = false;
+    private bool can_Attack = true;    
 
-	// Use this for initialization
-	void Awake () {
+
+    // Use this for initialization
+    void Awake () {
         //取得
         _controller = GetComponent<PlayerController>();
         player_SE = GetComponentInChildren<PlayerSoundEffect>();
@@ -24,26 +26,51 @@ public class PlayerAttack : MonoBehaviour {
         _rigid = GetComponent<Rigidbody2D>();
         attack_Collision = GetComponentInChildren<PlayerAttackCollision>();
         kick_Collision = GetComponentInChildren<PlayerKickCollision>();
+        player_Manager = PlayerManager.Instance;        
     }
 
 
     #region Attack
+
+    //攻撃用フィールド変数
+    private float attack_Time = 0.18f;
+    private float attack_Span = 0.17f;
+    private bool hit_Stop = true;
+
+    private void Set_Attack_Status(float attack_Time, float attack_Span, bool hit_Stop) {
+        this.attack_Time = attack_Time;
+        this.attack_Span = attack_Span;
+        this.hit_Stop = hit_Stop;
+    }
+
+
     //攻撃
     public void Attack() {
         if (can_Attack) {
+            //オプションによって変える
+            switch (player_Manager.Get_Option()) {
+                case PlayerManager.Option.none:     Set_Attack_Status(0.18f, 0.17f, true); break;
+                case PlayerManager.Option.bee:      Set_Attack_Status(0.10f, 0.08f, true); break;
+                case PlayerManager.Option.butterfly: Set_Attack_Status(0.18f, 0.17f, false); break;
+                case PlayerManager.Option.mantis:   Set_Attack_Status(0.24f, 0.40f, true); break;
+            }
             StartCoroutine("Attack_Cor");
         }
     }
 
 
+    //攻撃用コルーチン
     public IEnumerator Attack_Cor() {
         can_Attack = false;       
         _anim.SetTrigger("AttackTrigger");
-
-        attack_Collision.Make_Collider_Appear(0.18f);
+        attack_Collision.Make_Collider_Appear(attack_Time);        
         player_SE.Play_Attack_Sound();
+
+        if (player_Manager.Get_Option() == PlayerManager.Option.bee)    //オプションが蜂の時ショット
+            Bee_Shoot();
+
         _rigid.velocity += new Vector2(transform.localScale.x * 5f, 0); //Rigidbodyのスリープ状態を解除する
-        for (float t = 0; t < 0.18f; t += Time.deltaTime) {
+        for (float t = 0; t < attack_Time; t += Time.deltaTime) {
             //敵と衝突時
             if (attack_Collision.Hit_Trigger()) {
                 StartCoroutine("Do_Hit_Attack_Process");
@@ -53,10 +80,18 @@ public class PlayerAttack : MonoBehaviour {
             yield return null;
         }
 
-        yield return new WaitForSeconds(0.17f);
+        yield return new WaitForSeconds(attack_Span);
         can_Attack = true;
     }
 
+    //オプションが蜂の時のショット    
+    private void Bee_Shoot() {
+        ObjectPool bullet_Pool = ObjectPoolManager.Instance.Get_Pool("PlayerBullet");
+        var bullet = bullet_Pool.GetObject();
+        bullet.transform.position = transform.position;
+        bullet.GetComponent<Rigidbody2D>().velocity = new Vector2(900f * transform.localScale.x, 0);
+        player_SE.Play_Shoot_Sound();
+    }
     
     //敵と衝突時の処理
     private IEnumerator Do_Hit_Attack_Process() {
@@ -64,16 +99,23 @@ public class PlayerAttack : MonoBehaviour {
         _rigid.velocity = new Vector2(force * -transform.localScale.x, 20f);
         BeetlePowerManager.Instance.StartCoroutine("Increase_Cor", 8);      //緑パワーの増加
         player_SE.Play_Hit_Attack_Sound();                                  //効果音        
-        float tmp = Time.timeScale;                                         //ヒットストップ
-        Time.timeScale = 0.5f;
-        yield return new WaitForSeconds(0.05f);
-        Time.timeScale = tmp;
+        if (hit_Stop) {                                                     //ヒットストップ
+            float tmp = Time.timeScale;
+            Time.timeScale = 0.5f;
+            yield return new WaitForSeconds(0.05f);
+            Time.timeScale = tmp;
+        }
     }
 
     #endregion
 
 
-    #region Kick    
+    #region Kick  
+
+    //キック用フィールド変数
+    private bool end_Kick = false;
+
+
     //キック
     public void Kick() {
         if (can_Attack) {

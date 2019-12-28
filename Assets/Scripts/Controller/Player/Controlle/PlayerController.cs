@@ -153,7 +153,7 @@ public class PlayerController : MonoBehaviour {
 
 
     //近接攻撃
-    //注意：もし、攻撃発生までにis_Playableがfalseになっても、攻撃は続行する
+    //注意：攻撃発生までにis_Playableがfalseになっても、攻撃は続行する
     public void Attack() {
         //入力を受け取ったら、少しだけ待つ
         if (input.GetKeyDown(Key.Attack)) {

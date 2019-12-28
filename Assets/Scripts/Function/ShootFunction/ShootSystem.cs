@@ -31,20 +31,23 @@ public class ShootSystem : MonoBehaviour {
     public bool other_Param = true;    
     // 1:奇数段 / 2:偶数弾 / 3:全方位弾 / 4:nWay弾 / 5:ばらまき弾 / 6:渦巻き弾
     public int num = 1;                 //1, 2, 3, 4
-    public int count = 5;               //1, 2, 3, 4
-    public float span = 1.0f;           //1, 2, 3, 4
     public float inter_Angle_Deg = 20;  //1, 2, 3, 4, 6
     public float center_Angle_Deg = 0;  //2, 3, 4, 5    
     public float arc_Deg = 360f;        //5
     public float shoot_Rate = 30f;      //5, 6  
     public float duration = 5.0f;       //5, 6
 
+    //連結して出す弾の数
+    public bool connect_Bullet = false;
+    public int connect_Num = 1;
+    public float speed_Diff = 15f;
+    public float angle_Diff = 0;
+
     //繰り返し時、値の変更用
-    public bool is_Count_Up_Param;
-    public int num_Up = 0;
-    public float speed_Up = 0;
-    public float inter_Angle_Up = 0;
-    public float center_Angle_Up = 0;
+    public bool looping = true;
+    public int loop_Count = 1;       
+    public float span = 1.0f;
+    public float center_Angle_Diff = 0;
 
     private ObjectPool bullet_Pool; //弾
 
@@ -82,27 +85,16 @@ public class ShootSystem : MonoBehaviour {
 
     //ショット用のコルーチン
     private IEnumerator Shoot_Cor() {        
-        List<GameObject> bullet_List = new List<GameObject>();        
-        for (int i = 0; i < count; i++) {
+        for (int i = 0; i < loop_Count; i++) {
             switch (kind) {
-                case KIND.Odd:          bullet_List = Odd_Num_Shoot();  break;
-                case KIND.Even:         bullet_List = Even_Num_Shoot(); break;
-                case KIND.Diffusion:    bullet_List = Diffusion_Shoot(); break;
-                case KIND.nWay:         bullet_List = nWay_Shoot();     break;
-            }
-            //弾の加速
-            if (is_Acceleration) {
-                StartCoroutine(Accelerat_Bullet_Cor(bullet_List, max_Speed));
-            }
-            //パラメータの変更
-            if (is_Count_Up_Param) {
-                num += num_Up;
-                max_Speed += speed_Up;
-                inter_Angle_Deg += inter_Angle_Up;
-                center_Angle_Deg += center_Angle_Up;
+                case KIND.Odd: Odd_Num_Shoot(); break;
+                case KIND.Even: Even_Num_Shoot(); break;
+                case KIND.Diffusion: Diffusion_Shoot(); break;
+                case KIND.nWay: nWay_Shoot(); break;
             }
 
-            yield return new WaitForSeconds(span);
+            center_Angle_Deg += center_Angle_Diff;
+            yield return new WaitForSeconds(span);            
         }
     }
 
@@ -113,11 +105,15 @@ public class ShootSystem : MonoBehaviour {
     /// <returns></returns>
     private IEnumerator Scatter_Shoot() {
         float angle = center_Angle_Deg;
-        for(float t = 0; t < duration; t += 1 / shoot_Rate) {
-            angle = center_Angle_Deg + Random.Range(-arc_Deg / 2, arc_Deg / 2);
-            var b = Turn_Shoot_Bullet(angle);
-            StartCoroutine(Accelerate_Bullet_Cor(b, max_Speed));
-            yield return new WaitForSeconds(1 / shoot_Rate);
+        for (int i = 0; i < loop_Count; i++) {
+            for (float t = 0; t < duration; t += 1 / shoot_Rate) {
+                angle = center_Angle_Deg + Random.Range(-arc_Deg / 2, arc_Deg / 2);
+                var b = Turn_Shoot_Bullet(angle);
+
+                yield return new WaitForSeconds(1 / shoot_Rate);
+            }
+            angle += center_Angle_Diff;
+            yield return new WaitForSeconds(span);
         }
     }
 
@@ -128,11 +124,14 @@ public class ShootSystem : MonoBehaviour {
     /// <returns></returns>
     private IEnumerator Spiral_Shoot() {
         float angle = center_Angle_Deg;
-        for(float t = 0; t < duration; t += 1 / shoot_Rate) {
-            var b = Turn_Shoot_Bullet(angle);
-            StartCoroutine(Accelerate_Bullet_Cor(b, max_Speed));
-            angle += inter_Angle_Deg;
-            yield return new WaitForSeconds(1 / shoot_Rate);
+        for (int i = 0; i < loop_Count; i++) {
+            for (float t = 0; t < duration; t += 1 / shoot_Rate) {
+                var b = Turn_Shoot_Bullet(angle);
+                angle += inter_Angle_Deg;
+                yield return new WaitForSeconds(1 / shoot_Rate);
+            }
+            angle += center_Angle_Diff;
+            yield return new WaitForSeconds(span);
         }
     }
 
@@ -154,12 +153,11 @@ public class ShootSystem : MonoBehaviour {
 
         AngleCalculater _angle = new AngleCalculater();
         center_Angle_Deg = _angle.Cal_Angle_Two_Points(transform.position, player.transform.position);
-        float angle = center_Angle_Deg - num / 2 * inter_Angle_Deg;
-        
+        float angle = center_Angle_Deg - num / 2 * inter_Angle_Deg;        
+
         for (int i = 0; i < num; i++) {
-            var b = Turn_Shoot_Bullet(angle);
-            bullet_List.Add(b);
-            angle += inter_Angle_Deg;
+            bullet_List.AddRange(Turn_Shoot_Bullet(angle));            
+            angle += inter_Angle_Deg;            
         }
 
         return bullet_List;
@@ -180,11 +178,10 @@ public class ShootSystem : MonoBehaviour {
 
         AngleCalculater _angle = new AngleCalculater();
         center_Angle_Deg = _angle.Cal_Angle_Two_Points(transform.position, player.transform.position);
-        float angle = center_Angle_Deg - ((num - 1) * 0.5f * inter_Angle_Deg);
+        float angle = center_Angle_Deg - ((num - 1) * 0.5f * inter_Angle_Deg);        
 
-        for (int i = 0; i < num; i++) {
-            var b = Turn_Shoot_Bullet(angle);
-            bullet_List.Add(b);
+        for (int i = 0; i < num; i++) {     
+            bullet_List.AddRange(Turn_Shoot_Bullet(angle));                        
             angle += inter_Angle_Deg;
         }
 
@@ -200,8 +197,8 @@ public class ShootSystem : MonoBehaviour {
 
         //弾を円形に生成,発射
         for (int i = 0; i < num; i++) {
-            float angle = i * 360f / num + center_Angle_Deg;
-            GameObject bullet = Turn_Shoot_Bullet(angle);
+            float angle = i * 360f / num + center_Angle_Deg;            
+            bullet_List.AddRange(Turn_Shoot_Bullet(angle));
             bullet_List.Add(bullet);
         }
         return bullet_List;
@@ -225,9 +222,8 @@ public class ShootSystem : MonoBehaviour {
         }
         //弾の生成、発射
         for (int i = 0; i < num; i++) {
-            float angle = center_Angle_Deg + inter_Angle_Deg * (i - center);
-            GameObject bullet = Turn_Shoot_Bullet(angle);
-            bullet_List.Add(bullet);
+            float angle = center_Angle_Deg + inter_Angle_Deg * (i - center);            
+            bullet_List.AddRange(Turn_Shoot_Bullet(angle));            
         }
         return bullet_List;
     }
@@ -238,18 +234,33 @@ public class ShootSystem : MonoBehaviour {
     /// <summary>
     /// 弾の生成、回転と発射
     /// </summary>
-    public GameObject Turn_Shoot_Bullet(float angle_Deg) {
-        var turn_Bullet = bullet_Pool.GetObject();                      //生成
-        turn_Bullet.transform.SetParent(parent);                        //親オブジェクト        
-        turn_Bullet.transform.position = transform.position;            //座標
-        turn_Bullet.transform.rotation = new Quaternion(0, 0, 0, 0);
-        turn_Bullet.transform.Rotate(new Vector3(0, 0, 1), angle_Deg);  //回転
+    public List<GameObject> Turn_Shoot_Bullet(float angle_Deg) {
+        List<GameObject> bullet_List = new List<GameObject>();
+        float speed = max_Speed;
 
-        turn_Bullet.GetComponent<Rigidbody2D>().velocity = turn_Bullet.transform.right * max_Speed;     //初速
-        if (lifeTime > 0) {
-            Delete_Bullet(turn_Bullet, lifeTime);                       //寿命
+        for (int i = 0; i < connect_Num; i++) {
+            var bullet = bullet_Pool.GetObject();                      //生成
+            bullet_List.Add(bullet);
+            bullet.transform.SetParent(parent);                        //親オブジェクト        
+            bullet.transform.position = transform.position;            //座標
+            bullet.transform.rotation = new Quaternion(0, 0, 0, 0);
+            bullet.transform.Rotate(new Vector3(0, 0, 1), angle_Deg);  //回転
+
+            bullet.GetComponent<Rigidbody2D>().velocity = bullet.transform.right * speed;     //初速
+            //寿命
+            if (lifeTime > 0) {
+                Delete_Bullet(bullet, lifeTime);                       
+            }
+            //弾の加速            
+            if (is_Acceleration) {
+                StartCoroutine(Accelerate_Bullet_Cor(bullet, max_Speed));
+            }
+
+            //パラメータ変更
+            speed -= speed_Diff;
+            angle_Deg += angle_Diff;
         }
-        return turn_Bullet;
+        return bullet_List;
     }
 
 
@@ -286,7 +297,8 @@ public class ShootSystem : MonoBehaviour {
 
 
     //弾の加速(List)
-    public IEnumerator Accelerat_Bullet_Cor(List<GameObject> bullet_List, float max_Speed) {
+    /*
+    public IEnumerator Accelerate_Bullet_Cor(List<GameObject> bullet_List, float max_Speed) {
         if (bullet_List[0].GetComponent<Rigidbody2D>() == null) {
             Debug.Log("Bullet Must Attached Rigidbody2D");
             yield break;
@@ -328,5 +340,6 @@ public class ShootSystem : MonoBehaviour {
             yield return new WaitForSeconds(0.015f);
         }
     }
+    */
 
 }

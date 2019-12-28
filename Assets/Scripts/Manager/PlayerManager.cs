@@ -6,10 +6,17 @@ public class PlayerManager : SingletonMonoBehaviour<PlayerManager> {
 
     //ステータス
     //必ずSetter, Getterとかを使うこと
+    public enum Option {
+        none,
+        bee,
+        butterfly,
+        mantis,
+    };
+    [SerializeField] Option option = Option.none;
     [SerializeField] private int life = 3;
     [SerializeField] private int stock = 3;
     [SerializeField] private int power = 0;
-    [SerializeField] private int score = 0;
+    [SerializeField] private int score = 0;        
 
     //上限値
     private int MAX_LIFE = 9;
@@ -78,6 +85,10 @@ public class PlayerManager : SingletonMonoBehaviour<PlayerManager> {
     public int Get_Score() {
         return score;
     }
+
+    public Option Get_Option() {
+        return option;
+    }
     
 
     //Setter
@@ -125,6 +136,10 @@ public class PlayerManager : SingletonMonoBehaviour<PlayerManager> {
             return;
         }
         this.score = score;
+    }
+
+    public void Set_Option(Option option) {
+        this.option = option;
     }
 
 }

@@ -22,6 +22,7 @@ TagManager:
   - SandbackGroundTag
   - SmallItemTag
   - PlayerKickTag
+  - PlayerButterflyAttackTag
   layers:
   - Default
   - TransparentFX

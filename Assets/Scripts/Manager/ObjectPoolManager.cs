@@ -27,7 +27,7 @@ public class ObjectPoolManager : SingletonMonoBehaviour<ObjectPoolManager> {
             return pool_Dictionary[obj.name];
         }
         else {
-            Create_New_Pool(obj, 10);
+            Create_New_Pool(obj, 1);
             return pool_Dictionary[obj.name];
         }
     }
