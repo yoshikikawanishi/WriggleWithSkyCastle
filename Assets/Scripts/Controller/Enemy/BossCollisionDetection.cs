@@ -25,6 +25,7 @@ public class BossCollisionDetection : EnemyCollisionDetection {
     protected override void Change_Damaged_Tag_Dictionary() {
         base.Change_Damaged_Tag_Dictionary();
         damaged_Tag_Dictionary["PlayerKickTag"] = 4;
+        damaged_Tag_Dictionary["PlayerButterflyAttackTag"] = 10;
     }
 
     //無敵化

@@ -26,6 +26,7 @@ GameObject:
   - component: {fileID: 114944714650528134}
   - component: {fileID: 114826191503562798}
   - component: {fileID: 114503621370178894}
+  - component: {fileID: 114924260505704056}
   m_Layer: 9
   m_Name: RedFairyBig
   m_TagString: EnemyTag
@@ -124,6 +125,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8836200f923b7ef479dc18db681d250f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114924260505704056
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1569360790483774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 019e0b021afc2604ebf273e0a887fe40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &114944714650528134

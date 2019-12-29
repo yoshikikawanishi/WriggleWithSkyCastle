@@ -14,7 +14,7 @@ public class RedFairy : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         //取得
-        _rigid = GetComponent<Rigidbody2D>();
+        _rigid = GetComponent<Rigidbody2D>();        
     }
 
 

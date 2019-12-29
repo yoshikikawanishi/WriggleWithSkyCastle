@@ -62,7 +62,6 @@ public class ReleaseAndConvergePlayer : MonoBehaviour {
     public IEnumerator Converge_Cor(List<GameObject> objects, Vector2 aim_Pos, GameObject parent) {
         yield return new WaitForSeconds(start_Converge_Time);
 
-        List<Rigidbody2D> rigid_List = new List<Rigidbody2D>();
         foreach (GameObject obj in objects)
             obj.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
         

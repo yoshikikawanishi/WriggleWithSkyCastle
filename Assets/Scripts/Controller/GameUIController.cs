@@ -26,7 +26,6 @@ public class GameUIController : MonoBehaviour {
     private int beetle_Power_Slider_Value = 0;
 
     private Image beetle_Power_Slider_Image;
-    private bool is_Reduced_Beetle_Power = false;
 
 
 	// Use this for initialization

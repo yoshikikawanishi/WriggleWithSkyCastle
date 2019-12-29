@@ -7,10 +7,6 @@ public class MessageDisplay : MonoBehaviour {
     
     //テキストの複数列を入れる2次元配列
     public string[,] textWords;
-    //テキスト内の行数を取得する変数
-    private int rowLength = 0;
-    //テキスト内の列数を取得する変数
-    private int columnLength = 0;
 
     //表示する用のパネル
     GameObject messagePanel;
@@ -75,8 +71,6 @@ public class MessageDisplay : MonoBehaviour {
         TextFileReader text = new TextFileReader();
         text.Read_Text_File(fileName);
         textWords = text.textWords;
-        columnLength = text.columnLength;
-        rowLength = text.rowLength;
     }
 
 

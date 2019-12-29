@@ -15,7 +15,6 @@ public class PlayerShoot : MonoBehaviour {
     private ObjectPool bullet_Pool;
     private ObjectPool charge_Bullet_Pool;
 
-    private float interval_Time = 0;
     private float charge_Time = 0;
     private float[] charge_Span = new float[3] { 0.3f, 1.0f, 2.0f };
 

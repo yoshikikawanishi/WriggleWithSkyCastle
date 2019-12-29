@@ -26,6 +26,7 @@ GameObject:
   - component: {fileID: 114832934055501080}
   - component: {fileID: 114909795979556786}
   - component: {fileID: 114376906738107940}
+  - component: {fileID: 114717199137652116}
   m_Layer: 9
   m_Name: RedFairy
   m_TagString: EnemyTag
@@ -115,6 +116,17 @@ MonoBehaviour:
   power_Value: 1
   score_Value: 1
   drop_Life_Probability: 0.2
+--- !u!114 &114717199137652116
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1928959891870948}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 019e0b021afc2604ebf273e0a887fe40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114832934055501080
 MonoBehaviour:
   m_ObjectHideFlags: 1

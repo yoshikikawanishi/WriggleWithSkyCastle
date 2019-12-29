@@ -36,6 +36,7 @@ public class PlayerAttackCollision : MonoBehaviour {
         is_Hit_Attack = false;        
         GetComponent<BoxCollider2D>().enabled = true;
         Change_Size();
+        Change_Tag();
         Play_Animation();
         Invoke("Make_Collider_Disappear", lifeTime);
     }

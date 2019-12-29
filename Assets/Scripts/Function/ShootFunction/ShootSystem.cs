@@ -108,8 +108,7 @@ public class ShootSystem : MonoBehaviour {
         for (int i = 0; i < loop_Count; i++) {
             for (float t = 0; t < duration; t += 1 / shoot_Rate) {
                 angle = center_Angle_Deg + Random.Range(-arc_Deg / 2, arc_Deg / 2);
-                var b = Turn_Shoot_Bullet(angle);
-
+                Turn_Shoot_Bullet(angle);
                 yield return new WaitForSeconds(1 / shoot_Rate);
             }
             angle += center_Angle_Diff;
@@ -126,7 +125,7 @@ public class ShootSystem : MonoBehaviour {
         float angle = center_Angle_Deg;
         for (int i = 0; i < loop_Count; i++) {
             for (float t = 0; t < duration; t += 1 / shoot_Rate) {
-                var b = Turn_Shoot_Bullet(angle);
+                Turn_Shoot_Bullet(angle);
                 angle += inter_Angle_Deg;
                 yield return new WaitForSeconds(1 / shoot_Rate);
             }

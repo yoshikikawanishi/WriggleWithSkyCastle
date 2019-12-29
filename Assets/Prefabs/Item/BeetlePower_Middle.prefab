@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d566589395a939f4c869796162c204c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  amplitude: 4
+  amplitude: 1
   angular_Speed: 8
   start_Angular: 180
 --- !u!114 &114380135983649036

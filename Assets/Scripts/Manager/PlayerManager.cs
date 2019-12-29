@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class PlayerManager : SingletonMonoBehaviour<PlayerManager> {
@@ -140,6 +141,14 @@ public class PlayerManager : SingletonMonoBehaviour<PlayerManager> {
 
     public void Set_Option(Option option) {
         this.option = option;
+    }
+
+    public void Set_Option(string option_Name) {
+        foreach(Option value in Enum.GetValues(typeof(Option))) {
+            if(value.ToString() == option_Name) {
+                this.option = value;
+            }
+        }
     }
 
 }

@@ -21,7 +21,7 @@ public class VerticalVibeMotion : MonoBehaviour {
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-        transform.position = new Vector3(transform.position.x, center_Pos + Mathf.Sin(Mathf.Deg2Rad * angle));
+        transform.position = new Vector3(transform.position.x, center_Pos + Mathf.Sin(Mathf.Deg2Rad * angle) * amplitude);
         angle = (angle + angular_Speed) % 360f * Time.timeScale;
 	}
 }
