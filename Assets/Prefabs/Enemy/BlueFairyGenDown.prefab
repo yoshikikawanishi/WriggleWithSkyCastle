@@ -142,18 +142,19 @@ MonoBehaviour:
     m_RotationOrder: 4
   other_Param: 0
   num: 1
-  count: 0
-  span: 0
   inter_Angle_Deg: 0
   center_Angle_Deg: 0
   arc_Deg: 360
   shoot_Rate: 30
   duration: 5
-  is_Count_Up_Param: 0
-  num_Up: 0
-  speed_Up: 0
-  inter_Angle_Up: 0
-  center_Angle_Up: 0
+  connect_Bullet: 0
+  connect_Num: 1
+  speed_Diff: 15
+  angle_Diff: 0
+  looping: 1
+  loop_Count: 1
+  span: 0
+  center_Angle_Diff: 0
 --- !u!114 &114241831537934616
 MonoBehaviour:
   m_ObjectHideFlags: 1

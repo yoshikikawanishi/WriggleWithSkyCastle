@@ -2,29 +2,30 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Enemy))]
 public class BlowingEnemy : MonoBehaviour {
 
-    private bool is_Blowing = false;
+    private Rigidbody2D _rigid;
 
-    private List<string> blowed_Tags = new List<string> {
-        "PlayerButterflyAttackTag",
-    };
+    private bool is_Blowing = false;
+    private bool has_Rigidbody = true;
 
     private List<string> clash_Tags = new List<string> {
         "GroundTag",
+        "ThroughGroundTag",
         "SandbackGroundTag",
         "EnemyTag",
     };
 
 
+    private void Awake() {
+        _rigid = GetComponent<Rigidbody2D>();
+        if (_rigid == null)
+            has_Rigidbody = false;
+    }
+
+
     private void OnTriggerEnter2D(Collider2D collision) {
-        //吹き飛ぶ判定
-        foreach (string tag in blowed_Tags) {
-            if (collision.tag == tag && !is_Blowing) {
-                Blow_Away();
-                is_Blowing = true;
-            }
-        }
         //衝突する判定
         foreach (string tag in clash_Tags) {
             if (collision.tag == tag && is_Blowing) {
@@ -46,13 +47,20 @@ public class BlowingEnemy : MonoBehaviour {
 
 
     //吹き飛ぶ
-    private void Blow_Away() {
-        Rigidbody2D _rigid = GetComponent<Rigidbody2D>();
-        if (_rigid == null) {
-            Debug.Log("BlowingEnemy need Rigidbody2D");  // RquireComponent()は自動でアタッチされて困るからやらないこと
-            return;
+    public void Blow_Away_Vanish() {
+        //ほかのスクリプトを無効にする
+        ScriptController sc = new ScriptController();
+        sc.Initialize(this);
+        sc.Suspend();
+        
+        //リジッドボディ関連
+        if (!has_Rigidbody) {
+            _rigid = gameObject.AddComponent<Rigidbody2D>();            
         }
+        _rigid.gravityScale = 32f;
 
+        //吹き飛ぶ
+        is_Blowing = true;
         transform.position += new Vector3(0, 6f);
         _rigid.velocity = new Vector2(-150f * Player_Direction(), 200f);
         Change_Tag_And_Layer("PlayerAttackTag", "PlayerLayer");        
@@ -61,13 +69,18 @@ public class BlowingEnemy : MonoBehaviour {
     
     //着地、壁、敵に当たるとダメージ
     private void Clash() {
-        Enemy enemy = GetComponent<Enemy>();
-        if(enemy == null) {
-            Debug.Log("BlowingEnemy need Enemy Class");
-            return;
+        //ほかのスクリプトを有効にする
+        ScriptController sc = new ScriptController();
+        sc.Initialize(this);
+        sc.Resume();
+
+        //リジッドボディ関連
+        if (!has_Rigidbody) {
+            Destroy(GetComponent<Rigidbody2D>());
         }
 
-        enemy.Vanish();
+        //消滅
+        GetComponent<Enemy>().Vanish();        
     }
 
 

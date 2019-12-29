@@ -9,7 +9,9 @@ public class BossCollisionDetection : EnemyCollisionDetection {
 
     private void Awake() {
         _boss_Enemy = GetComponent<BossEnemy>();
-        Change_Damaged_Tag_Dictionary();
+
+        //キックの火力を下げる、蝶の近接攻撃火力を上げる
+        damaged_Tag_Dictionary["PlayerKickTag"] = 4;
     }
 
 
@@ -19,14 +21,6 @@ public class BossCollisionDetection : EnemyCollisionDetection {
         _boss_Enemy.Damaged(damage);
     }
 
-
-    //被弾タグの設定
-    //キックの火力を下げる
-    protected override void Change_Damaged_Tag_Dictionary() {
-        base.Change_Damaged_Tag_Dictionary();
-        damaged_Tag_Dictionary["PlayerKickTag"] = 4;
-        damaged_Tag_Dictionary["PlayerButterflyAttackTag"] = 10;
-    }
 
     //無敵化
     public void Become_Invincible() {

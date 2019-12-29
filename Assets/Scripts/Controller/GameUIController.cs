@@ -11,6 +11,7 @@ public class GameUIController : MonoBehaviour {
     [SerializeField] private GameObject life_Images_Parent;
     [SerializeField] private Slider beetle_Power_Slider;
     [SerializeField] private GameObject save_Text;
+    [SerializeField] private Text option_Text;
     [Space]
     [SerializeField] private AnimationCurve beetle_Power_Converter = AnimationCurve.Linear(0, 0, 100, 100);
 
@@ -24,6 +25,7 @@ public class GameUIController : MonoBehaviour {
     private int stock_Text_Value = 0;
     private int life_Image_Number = 0;
     private int beetle_Power_Slider_Value = 0;
+    private PlayerManager.Option now_Option;
 
     private Image beetle_Power_Slider_Image;
 
@@ -54,6 +56,7 @@ public class GameUIController : MonoBehaviour {
         Change_Stock_UI();          //ストック
         Change_Life_UI();           //ライフ
         Change_Beetle_Power_UI();   //カブトムシパワー
+        Change_Option_UI();         //オプション
     }
 
 
@@ -106,6 +109,27 @@ public class GameUIController : MonoBehaviour {
             if (beetle_Power_Slider_Value <= 30f)
                 beetle_Power_Slider_Image.color = new Color(1, 0.8f, 0.8f, 0.5f);
         }    
+    }
+
+
+    //オプションUI変更
+    private void Change_Option_UI() {
+        if (now_Option == player_Manager.Get_Option()) {
+            return;            
+        }
+        now_Option = player_Manager.Get_Option();        
+
+        switch (now_Option) {
+            case PlayerManager.Option.none:         Set_Option_Text("none",     new Color(1.0f, 1.0f, 1.0f, 0.0f)); break;
+            case PlayerManager.Option.bee:          Set_Option_Text("Bee",      new Color(0.9f, 0.7f, 0.0f, 0.5f)); break;
+            case PlayerManager.Option.butterfly:    Set_Option_Text("Butterfly",new Color(0.8f, 1.0f, 0.0f, 0.5f)); break;
+            case PlayerManager.Option.mantis:       Set_Option_Text("Mantis",   new Color(0.0f, 1.0f, 0.0f, 0.5f)); break;
+        }
+    }
+    
+    private void Set_Option_Text(string text, Color outline_Color) {
+        option_Text.text = "Option " + text;
+        option_Text.GetComponent<Outline>().effectColor = outline_Color;
     }
 
 

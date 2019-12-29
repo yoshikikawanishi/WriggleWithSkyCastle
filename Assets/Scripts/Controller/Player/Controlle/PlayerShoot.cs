@@ -10,10 +10,10 @@ public class PlayerShoot : MonoBehaviour {
     private PlayerSoundEffect player_SE;
 
     //弾
-    [SerializeField] private GameObject bullet;
-    [SerializeField] private GameObject charge_Bullet;
-    private ObjectPool bullet_Pool;
-    private ObjectPool charge_Bullet_Pool;
+    [SerializeField] private GameObject normal_Bullet;
+    [SerializeField] private GameObject bee_Bullet;
+    [SerializeField] private GameObject butterfly_Bullet;
+    [SerializeField] private GameObject charge_Bullet;        
 
     private float charge_Time = 0;
     private float[] charge_Span = new float[3] { 0.3f, 1.0f, 2.0f };
@@ -27,10 +27,10 @@ public class PlayerShoot : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         //弾のオブジェクトプール
-        ObjectPoolManager.Instance.Create_New_Pool(bullet, 10);
+        ObjectPoolManager.Instance.Create_New_Pool(normal_Bullet, 5);
+        ObjectPoolManager.Instance.Create_New_Pool(bee_Bullet, 5);
+        ObjectPoolManager.Instance.Create_New_Pool(butterfly_Bullet, 5);
         ObjectPoolManager.Instance.Create_New_Pool(charge_Bullet, 2);
-        bullet_Pool = ObjectPoolManager.Instance.Get_Pool(bullet);
-        charge_Bullet_Pool = ObjectPoolManager.Instance.Get_Pool(charge_Bullet);
         //取得
         player_Manager = PlayerManager.Instance;
         player_Controller = GetComponent<PlayerController>();
@@ -49,19 +49,53 @@ public class PlayerShoot : MonoBehaviour {
     }
 
 
-    //通常ショット
+    #region NormalShoot
+
+    private ObjectPool bullet_Pool;
+    private int shoot_Num;
+
     public void Shoot() {
         if(Time.timeScale == 0) {
             return;
         }
-        int num = Shoot_Num();
-        for (int i = 0; i < num; i++) {
+
+        Change_Shoot_Status();
+
+        for (int i = 0; i < shoot_Num; i++) {
             GameObject bullet = bullet_Pool.GetObject();
             bullet.transform.position = transform.position;
-            bullet.transform.position += new Vector3(0, (-12f * num) / 2) + new Vector3(0, 12f * i);            
+            bullet.transform.position += new Vector3(0, (-12f * shoot_Num) / 2) + new Vector3(0, 12f * i);            
             bullet.GetComponent<Rigidbody2D>().velocity = new Vector2(900f * transform.localScale.x, 0);
             player_SE.Play_Shoot_Sound();
         }
+    }
+
+
+    //ショットのステータスを変える
+    private void Change_Shoot_Status() {
+        PlayerManager.Option option = player_Manager.Get_Option();
+        int power = player_Manager.Get_Power();
+        
+        //弾数
+        if (power < 32) 
+            shoot_Num = 2;        
+        else if (power < 64) 
+            shoot_Num = 3;        
+        else if (power < 128) 
+            shoot_Num = 4;        
+        else 
+            shoot_Num = 5;        
+
+        //弾の種類
+        GameObject obj = new GameObject();
+        switch (option) {
+            case PlayerManager.Option.none:         obj = normal_Bullet;    break;
+            case PlayerManager.Option.bee:          obj = bee_Bullet;       break;
+            case PlayerManager.Option.butterfly:    obj = butterfly_Bullet; break;
+            case PlayerManager.Option.mantis:       obj = normal_Bullet;    break;
+        }
+        bullet_Pool = ObjectPoolManager.Instance.Get_Pool(obj);
+
     }
 
 
@@ -81,10 +115,13 @@ public class PlayerShoot : MonoBehaviour {
     }
 
 
+    #endregion
+
+    #region ChargeShoot
     //チャージショット
     public void Charge_Shoot() {
         if (charge_Phase == 3) {
-            GameObject bullet = charge_Bullet_Pool.GetObject();
+            GameObject bullet = ObjectPoolManager.Instance.Get_Pool(charge_Bullet).GetObject();
             bullet.transform.position = transform.position;
             bullet.GetComponent<Rigidbody2D>().velocity = new Vector2(500f * transform.localScale.x, 0);
             player_SE.Play_Charge_Shoot_Sound();
@@ -157,5 +194,5 @@ public class PlayerShoot : MonoBehaviour {
             charge_Span = new float[3] { 0.2f, 0.4f, 0.8f };
         }
     }
-
+    #endregion
 }

@@ -9,12 +9,12 @@ public class EnemyCollisionDetection : MonoBehaviour {
 
     protected Dictionary<string, int> damaged_Tag_Dictionary = new Dictionary<string, int>() {
         {"PlayerAttackTag"  , 10 },
-        {"PlayerButterflyAttackTag", 3 },
+        {"PlayerButterflyAttackTag", 8 },
         {"PlayerKickTag"  , 10 },
         {"PlayerBulletTag"  , 1 },
         {"PlayerChargeBulletTag"  , 10},
         {"PlayerTag"        , 10},
-    };
+    };        
 
     private Enemy _enemy;
 
@@ -47,22 +47,15 @@ public class EnemyCollisionDetection : MonoBehaviour {
 
     //被弾の処理
     protected virtual void Damaged(string key) {
+        //ダメージの計算
         int damage = (int)(damaged_Tag_Dictionary[key] * Damage_Rate());
+
+        //消滅するときに行う処理の決定        
+        _enemy.vanish_Action = Enemy.VanishAction.normal;
+        if (key == "PlayerButterflyAttackTag")
+            _enemy.vanish_Action = Enemy.VanishAction.blowed;
+
         _enemy.Damaged(damage);
-    }
-
-
-    //被弾判定の変更
-    protected virtual void Change_Damaged_Tag_Dictionary() {
-        damaged_Tag_Dictionary.Clear();
-        damaged_Tag_Dictionary = new Dictionary<string, int>() {
-            {"PlayerAttackTag"  , 10 },
-            {"PlayerButterflyAttackTag", 3 },
-            {"PlayerKickTag"  , 10 },
-            {"PlayerBulletTag"  , 1 },
-            {"PlayerChargeBulletTag"  , 10},
-            {"PlayerTag"        , 10},
-        };
     }
 
 

@@ -9,25 +9,35 @@ using UnityEngine;
 [RequireComponent(typeof(EnemyCollisionDetection))]
 public class Enemy : MonoBehaviour {
     
-    [SerializeField] private bool is_Pooled = false;    
+    [SerializeField] private bool is_Pooled = false;
+    [SerializeField] private bool is_Blowed = false;
+    [Space]
     [SerializeField] private int life = 5;
     [SerializeField] private int power_Value = 0;
     [SerializeField] private int score_Value = 0;
-    [SerializeField] private float drop_Life_Probability = 1;
+    [SerializeField] private float drop_Life_Probability = 1;    
 
     private SpriteRenderer _sprite;
     private Color default_Color;
+    private BlowingEnemy blowing_Enemy;
 
     private bool is_Exist = true;
     private int default_Life;
 
+    public enum VanishAction {
+        normal,
+        blowed,
+    }
+    public VanishAction vanish_Action;
+    
 
 	// Use this for initialization
 	void Awake () {
         //取得
         _sprite = GetComponent<SpriteRenderer>();
         default_Color = _sprite.color;
-        default_Life = life;       
+        default_Life = life;
+        blowing_Enemy = gameObject.AddComponent<BlowingEnemy>();
     }
 
 
@@ -44,7 +54,7 @@ public class Enemy : MonoBehaviour {
     public virtual void Damaged(int damage) {
         life -= damage;
         if (life <= 0 && is_Exist) {
-            Vanish();
+            Vanish_Action();
             is_Exist = false;
             return;
         }
@@ -53,6 +63,17 @@ public class Enemy : MonoBehaviour {
         }
     }
 
+
+    //消滅前のアクション
+    // EnemyCollisionDetectionのDamagedで変更
+    private void Vanish_Action() {
+        if(vanish_Action == VanishAction.blowed && is_Blowed) {
+            blowing_Enemy.Blow_Away_Vanish();
+        }
+        else {
+            Vanish();
+        }
+    }
 
 
     //消滅時の処理

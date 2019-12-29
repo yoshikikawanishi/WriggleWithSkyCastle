@@ -224,10 +224,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   is_Pooled: 1
+  is_Blowed: 0
   life: 6
   power_Value: 3
   score_Value: 6
   drop_Life_Probability: 0.1
+  vanish_Action: 0
 --- !u!212 &212102257306367320
 SpriteRenderer:
   m_ObjectHideFlags: 1

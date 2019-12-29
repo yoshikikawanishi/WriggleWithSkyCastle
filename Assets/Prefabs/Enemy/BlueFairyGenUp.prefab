@@ -181,10 +181,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   is_Pooled: 1
+  is_Blowed: 0
   life: 1
   power_Value: 0
   score_Value: 5
   drop_Life_Probability: 0.1
+  vanish_Action: 0
 --- !u!114 &114758515158919348
 MonoBehaviour:
   m_ObjectHideFlags: 1
