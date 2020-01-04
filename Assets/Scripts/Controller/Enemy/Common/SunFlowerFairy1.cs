@@ -25,7 +25,7 @@ public class SunFlowerFairy1 : MonoBehaviour {
                 _shoot.Diffusion_Bullet(8, 75f, -4f, 10f);
             }
 
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(1.2f);
         }
     }
 }

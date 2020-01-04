@@ -174,7 +174,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u30FB\u5404\u5730\u306B\u3042\u308B\u30A2\u30A4\u30C6\u30E0\u3092\u96C6\u3081\u308B\u3068\n\u3044\u3044\u3053\u3068\u304C\u3042\u308A\u307E\u3059\u3002"
+  m_Text: "\u30FB\u5404\u5730\u306B\u3042\u308B\u30A2\u30A4\u30C6\u30E0\u3092\u96C6\u3081\u308B\u3068\n\u3044\u3044\u3053\u3068\u304C\u3042\u308B\u304B\u3082\uFF1F"
 --- !u!114 &114780923573481108
 MonoBehaviour:
   m_ObjectHideFlags: 1

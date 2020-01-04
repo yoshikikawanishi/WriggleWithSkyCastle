@@ -86,9 +86,10 @@ public class PlayerAttack : MonoBehaviour {
 
     //オプションが蜂の時のショット    
     private void Bee_Shoot() {
-        ObjectPool bullet_Pool = ObjectPoolManager.Instance.Get_Pool("PlayerBullet");
+        ObjectPool bullet_Pool = ObjectPoolManager.Instance.Get_Pool("PlayerBeeBullet");
         var bullet = bullet_Pool.GetObject();
         bullet.transform.position = transform.position;
+        bullet.transform.localScale = transform.localScale;
         bullet.GetComponent<Rigidbody2D>().velocity = new Vector2(900f * transform.localScale.x, 0);
         player_SE.Play_Shoot_Sound();
     }

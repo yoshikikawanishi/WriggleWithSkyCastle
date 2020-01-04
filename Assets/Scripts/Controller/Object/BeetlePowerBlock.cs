@@ -13,6 +13,13 @@ public class BeetlePowerBlock : MonoBehaviour {
         "PlayerChargeBulletTag",
     };
 
+    private Vector2 default_Pos;
+
+
+    private void Start() {
+        default_Pos = transform.position;    
+    }
+
     private void OnTriggerEnter2D(Collider2D collision) {
         foreach(var tag in damaged_Tag_List) {
             if(tag == collision.tag) {
@@ -32,7 +39,6 @@ public class BeetlePowerBlock : MonoBehaviour {
 
     //揺れる
     private IEnumerator Shake_Cor() {
-        Vector2 default_Pos = transform.position;
         for (float t = 0; t < 0.25f; t += 0.016f) {
             transform.position = default_Pos + new Vector2(Random.Range(-1, 1), Random.Range(-1, 1)) * Time.timeScale;
             yield return null;

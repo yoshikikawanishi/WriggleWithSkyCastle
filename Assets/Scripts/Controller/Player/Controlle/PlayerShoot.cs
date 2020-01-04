@@ -13,6 +13,7 @@ public class PlayerShoot : MonoBehaviour {
     [SerializeField] private GameObject normal_Bullet;
     [SerializeField] private GameObject bee_Bullet;
     [SerializeField] private GameObject butterfly_Bullet;
+    [SerializeField] private GameObject mantis_Bullet;
     [SerializeField] private GameObject charge_Bullet;        
 
     private float charge_Time = 0;
@@ -30,6 +31,7 @@ public class PlayerShoot : MonoBehaviour {
         ObjectPoolManager.Instance.Create_New_Pool(normal_Bullet, 5);
         ObjectPoolManager.Instance.Create_New_Pool(bee_Bullet, 5);
         ObjectPoolManager.Instance.Create_New_Pool(butterfly_Bullet, 5);
+        ObjectPoolManager.Instance.Create_New_Pool(mantis_Bullet, 5);
         ObjectPoolManager.Instance.Create_New_Pool(charge_Bullet, 2);
         //取得
         player_Manager = PlayerManager.Instance;
@@ -53,7 +55,10 @@ public class PlayerShoot : MonoBehaviour {
 
     private ObjectPool bullet_Pool;
     private int shoot_Num;
+    private float bullet_Speed;
+    private float width;
 
+    //ショットを打つ
     public void Shoot() {
         if(Time.timeScale == 0) {
             return;
@@ -64,8 +69,9 @@ public class PlayerShoot : MonoBehaviour {
         for (int i = 0; i < shoot_Num; i++) {
             GameObject bullet = bullet_Pool.GetObject();
             bullet.transform.position = transform.position;
-            bullet.transform.position += new Vector3(0, (-12f * shoot_Num) / 2) + new Vector3(0, 12f * i);            
-            bullet.GetComponent<Rigidbody2D>().velocity = new Vector2(900f * transform.localScale.x, 0);
+            bullet.transform.position += new Vector3(0, (-width * shoot_Num) / 2) + new Vector3(0, width * i);
+            bullet.transform.localScale = transform.localScale;
+            bullet.GetComponent<Rigidbody2D>().velocity = new Vector2(bullet_Speed * transform.localScale.x, 0);
             player_SE.Play_Shoot_Sound();
         }
     }
@@ -86,32 +92,29 @@ public class PlayerShoot : MonoBehaviour {
         else 
             shoot_Num = 5;        
 
-        //弾の種類
-        GameObject obj = new GameObject();
+        //弾の種類、速度、幅        
         switch (option) {
-            case PlayerManager.Option.none:         obj = normal_Bullet;    break;
-            case PlayerManager.Option.bee:          obj = bee_Bullet;       break;
-            case PlayerManager.Option.butterfly:    obj = butterfly_Bullet; break;
-            case PlayerManager.Option.mantis:       obj = normal_Bullet;    break;
+            case PlayerManager.Option.none:
+                Set_Shoot_Status(normal_Bullet, 900f, 12f);
+                break;
+            case PlayerManager.Option.bee:
+                Set_Shoot_Status(bee_Bullet, 1000f, 6f);
+                break;
+            case PlayerManager.Option.butterfly:                
+                Set_Shoot_Status(butterfly_Bullet, 700f, 12f);
+                break;
+            case PlayerManager.Option.mantis:                
+                Set_Shoot_Status(mantis_Bullet, 700f, 8f);
+                break;
         }
-        bullet_Pool = ObjectPoolManager.Instance.Get_Pool(obj);
-
     }
 
 
-    //パワーによって弾の数を変える
-    private int Shoot_Num() {
-        int power = player_Manager.Get_Power();
-        if (power < 32) {
-            return 2;
-        }
-        else if (power < 64) {
-            return 3;
-        }
-        else if (power < 128) {
-            return 4;
-        }
-        return 5;
+    //弾の種類、速度、幅を代入する
+    private void Set_Shoot_Status(GameObject bullet, float speed, float width) {
+        bullet_Pool = ObjectPoolManager.Instance.Get_Pool(bullet);
+        bullet_Speed = speed;
+        this.width = width;
     }
 
 
