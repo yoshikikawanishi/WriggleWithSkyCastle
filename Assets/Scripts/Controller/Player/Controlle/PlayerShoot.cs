@@ -106,6 +106,9 @@ public class PlayerShoot : MonoBehaviour {
             case PlayerManager.Option.mantis:                
                 Set_Shoot_Status(mantis_Bullet, 700f, 8f);
                 break;
+            case PlayerManager.Option.spider:
+                Debug.Log("TODO : 'PlayerShoot' Spider Shoot");
+                break;
         }
     }
 

@@ -12,6 +12,7 @@ public class PlayerManager : SingletonMonoBehaviour<PlayerManager> {
         bee,
         butterfly,
         mantis,
+        spider,
     };
     [SerializeField] Option option = Option.none;
     [SerializeField] private int life = 3;

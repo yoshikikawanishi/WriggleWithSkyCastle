@@ -10,6 +10,7 @@ public class CrashBlockController : MonoBehaviour {
         "PlayerChargeBulletTag",
         "PlayerAttackTag",
         "PlayerButterflyAttackTag",
+        "PlayerSpiderAttackTag",
         "PlayerKickTag",
     };
 

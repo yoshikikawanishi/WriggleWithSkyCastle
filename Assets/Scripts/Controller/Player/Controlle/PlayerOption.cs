@@ -26,6 +26,7 @@ public class PlayerOption : MonoBehaviour {
             case PlayerManager.Option.bee:      _anim.SetTrigger("BeeTrigger");         break;
             case PlayerManager.Option.butterfly: _anim.SetTrigger("ButterflyTrigger");  break;
             case PlayerManager.Option.mantis:   _anim.SetTrigger("MantisTrigger");      break;
+            case PlayerManager.Option.spider:    _anim.SetTrigger("SpiderTrigger");     break;
         }
     }
     

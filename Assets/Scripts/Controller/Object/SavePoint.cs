@@ -9,7 +9,8 @@ public class SavePoint : MonoBehaviour {
     private List<string> collide_Tags = new List<string> {
         "PlayerBodyTag",
         "PlayerAttackTag",
-        "PlayerButterflyAttackTag"
+        "PlayerButterflyAttackTag",
+        "PlayerSpiderAttackTag"
     };
 
     private void OnTriggerEnter2D(Collider2D collision) {

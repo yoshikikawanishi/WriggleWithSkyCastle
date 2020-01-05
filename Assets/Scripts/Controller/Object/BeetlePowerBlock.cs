@@ -9,6 +9,7 @@ public class BeetlePowerBlock : MonoBehaviour {
         "PlayerKickTag",
         "PlayerAttackTag",
         "PlayerButterflyAttackTag",
+        "PlayerSpiderAttackTag",
         "PlayerBulletTag",
         "PlayerChargeBulletTag",
     };

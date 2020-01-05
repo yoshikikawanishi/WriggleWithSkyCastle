@@ -218,6 +218,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f060d749765d2c408bd9a751c00422d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  destroyer_Tag_List:
+  - PlayerBulletTag
+  - PlayerChargeBulletTag
+  - PlayerAttackTag
+  - PlayerButterflyAttackTag
+  - PlayerKickTag
+  - PlayerSpiderAttackTag
+  repel_Tag_List: []
   life: 2
   damaged_Sprite: {fileID: 21300002, guid: 5a0a0d0c4614b544a91078800a6d9134, type: 3}
 --- !u!198 &198282846066533482

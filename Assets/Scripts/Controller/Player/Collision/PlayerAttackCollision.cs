@@ -80,6 +80,9 @@ public class PlayerAttackCollision : MonoBehaviour {
                 GetComponent<Animator>().SetTrigger("AttackTrigger3");
             }
         }
+        else if (option == PlayerManager.Option.spider) {
+            Debug.Log("TODO : 'PlayerAttackCollision' Spider Attack Animation");
+        }
         else {
             if (power < 32) {
                 GetComponent<Animator>().SetTrigger("YellowAttackTrigger");
@@ -101,6 +104,7 @@ public class PlayerAttackCollision : MonoBehaviour {
             case PlayerManager.Option.bee:          Set_Tag("PlayerAttackTag"); break;
             case PlayerManager.Option.butterfly:    Set_Tag("PlayerButterflyAttackTag"); break;
             case PlayerManager.Option.mantis:       Set_Tag("PlayerAttackTag"); break;
+            case PlayerManager.Option.spider:       Set_Tag("PlayerSpiderAttackTag");    break;
         }
     }
 

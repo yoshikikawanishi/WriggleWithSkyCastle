@@ -23,12 +23,13 @@ public class Enemy : MonoBehaviour {
 
     private bool is_Exist = true;
     private int default_Life;
-
+    
     public enum VanishAction {
         normal,
         blowed,
+        spider,
     }
-    public VanishAction vanish_Action;
+    [HideInInspector] public VanishAction vanish_Action;
     
 
 	// Use this for initialization
@@ -69,6 +70,10 @@ public class Enemy : MonoBehaviour {
     private void Vanish_Action() {
         if(vanish_Action == VanishAction.blowed && is_Blowed) {
             blowing_Enemy.Blow_Away_Vanish();
+        }
+        else if(vanish_Action == VanishAction.spider) {
+            Debug.Log("TODO : 'Enemy' Spider Vanish");
+            Vanish();
         }
         else {
             Vanish();

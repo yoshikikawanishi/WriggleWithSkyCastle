@@ -53,6 +53,7 @@ public class PlayerAttack : MonoBehaviour {
                 case PlayerManager.Option.bee:      Set_Attack_Status(0.10f, 0.08f, true); break;
                 case PlayerManager.Option.butterfly: Set_Attack_Status(0.18f, 0.17f, false); break;
                 case PlayerManager.Option.mantis:   Set_Attack_Status(0.24f, 0.40f, true); break;
+                case PlayerManager.Option.spider:   Set_Attack_Status(0.18f, 0.17f, true); break;
             }
             StartCoroutine("Attack_Cor");
         }

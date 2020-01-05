@@ -268,6 +268,8 @@ MonoBehaviour:
   repel_Tag_List:
   - PlayerAttackTag
   - PlayerKickTag
+  - PlayerButterflyAttackTag
+  - PlayerSpiderAttackTag
   life: 3
   damaged_Sprite: {fileID: 21300002, guid: 2c085ab4cc96fd74baef7a6728a4c659, type: 3}
 --- !u!114 &114853277401063318

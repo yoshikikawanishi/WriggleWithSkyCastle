@@ -9,6 +9,7 @@ public class Character : MonoBehaviour {
     protected List<string> hit_Tag_List = new List<string> {
         "PlayerAttackTag",
         "PlayerButterflyAttackTag",
+        "PlayerSpiderAttackTag",
         "PlayerKickTag",
         "PlayerBulletTag",
         "PlayerChargeBulletTag"

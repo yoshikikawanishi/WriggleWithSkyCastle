@@ -10,6 +10,7 @@ public class EnemyCollisionDetection : MonoBehaviour {
     protected Dictionary<string, int> damaged_Tag_Dictionary = new Dictionary<string, int>() {
         {"PlayerAttackTag"  , 10 },
         {"PlayerButterflyAttackTag", 8 },
+        { "PlayerSpiderAttackTag", 8 },
         {"PlayerKickTag"  , 10 },
         {"PlayerBulletTag"  , 1 },
         {"PlayerChargeBulletTag"  , 10},
@@ -54,6 +55,8 @@ public class EnemyCollisionDetection : MonoBehaviour {
         _enemy.vanish_Action = Enemy.VanishAction.normal;
         if (key == "PlayerButterflyAttackTag")
             _enemy.vanish_Action = Enemy.VanishAction.blowed;
+        else if (key == "PlayerSpiderAttackTag")
+            _enemy.vanish_Action = Enemy.VanishAction.spider;
 
         _enemy.Damaged(damage);
     }

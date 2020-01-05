@@ -124,6 +124,7 @@ public class GameUIController : MonoBehaviour {
             case PlayerManager.Option.bee:          Set_Option_Text("Bee",      new Color(0.9f, 0.7f, 0.0f, 0.5f)); break;
             case PlayerManager.Option.butterfly:    Set_Option_Text("Butterfly",new Color(0.8f, 1.0f, 0.0f, 0.5f)); break;
             case PlayerManager.Option.mantis:       Set_Option_Text("Mantis",   new Color(0.0f, 1.0f, 0.0f, 0.5f)); break;
+            case PlayerManager.Option.spider:       Set_Option_Text("Spider",   new Color(0.0f, 0.0f, 1.0f, 0.5f)); break;
         }
     }
     
