@@ -6,7 +6,7 @@ using UnityEngine.Tilemaps;
 /// <summary>
 /// 自機に触れると透明になる
 /// </summary>
-public class HiddenSpace : MonoBehaviour {
+public class TileHidden : MonoBehaviour {
     
     private Tilemap map;
 

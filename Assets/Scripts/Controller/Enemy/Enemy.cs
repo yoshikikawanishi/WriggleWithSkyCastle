@@ -20,6 +20,7 @@ public class Enemy : MonoBehaviour {
     private SpriteRenderer _sprite;
     private Color default_Color;
     private BlowingEnemy blowing_Enemy;
+    private SpiderFootingEnemy spider_Footing_Enemy;
 
     private bool is_Exist = true;
     private int default_Life;
@@ -39,6 +40,7 @@ public class Enemy : MonoBehaviour {
         default_Color = _sprite.color;
         default_Life = life;
         blowing_Enemy = gameObject.AddComponent<BlowingEnemy>();
+        spider_Footing_Enemy = gameObject.AddComponent<SpiderFootingEnemy>();
     }
 
 
@@ -72,8 +74,7 @@ public class Enemy : MonoBehaviour {
             blowing_Enemy.Blow_Away_Vanish();
         }
         else if(vanish_Action == VanishAction.spider) {
-            Debug.Log("TODO : 'Enemy' Spider Vanish");
-            Vanish();
+            spider_Footing_Enemy.Generate_Footing_Vanish();
         }
         else {
             Vanish();

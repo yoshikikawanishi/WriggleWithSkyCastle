@@ -2140,6 +2140,8 @@ MonoBehaviour:
     type: 2}
   mantis_Bullet: {fileID: 1088978483044558, guid: 883fdf362bb41dd4cb802b77941f2adb,
     type: 2}
+  spider_Bullet: {fileID: 1587434127945356, guid: 8a4abdd0855d8b34587b69bc17b58e2a,
+    type: 2}
   charge_Bullet: {fileID: 1707343331186852, guid: 8789faa5a916df14d8dcd94aab84cabe,
     type: 2}
 --- !u!114 &114620319733248870

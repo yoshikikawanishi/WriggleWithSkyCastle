@@ -14,6 +14,7 @@ public class PlayerShoot : MonoBehaviour {
     [SerializeField] private GameObject bee_Bullet;
     [SerializeField] private GameObject butterfly_Bullet;
     [SerializeField] private GameObject mantis_Bullet;
+    [SerializeField] private GameObject spider_Bullet;
     [SerializeField] private GameObject charge_Bullet;        
 
     private float charge_Time = 0;
@@ -32,6 +33,7 @@ public class PlayerShoot : MonoBehaviour {
         ObjectPoolManager.Instance.Create_New_Pool(bee_Bullet, 5);
         ObjectPoolManager.Instance.Create_New_Pool(butterfly_Bullet, 5);
         ObjectPoolManager.Instance.Create_New_Pool(mantis_Bullet, 5);
+        ObjectPoolManager.Instance.Create_New_Pool(spider_Bullet, 5);
         ObjectPoolManager.Instance.Create_New_Pool(charge_Bullet, 2);
         //取得
         player_Manager = PlayerManager.Instance;
@@ -107,7 +109,7 @@ public class PlayerShoot : MonoBehaviour {
                 Set_Shoot_Status(mantis_Bullet, 700f, 8f);
                 break;
             case PlayerManager.Option.spider:
-                Debug.Log("TODO : 'PlayerShoot' Spider Shoot");
+                Set_Shoot_Status(spider_Bullet, 400f, 24f);
                 break;
         }
     }

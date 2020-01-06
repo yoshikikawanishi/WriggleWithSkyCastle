@@ -81,7 +81,15 @@ public class PlayerAttackCollision : MonoBehaviour {
             }
         }
         else if (option == PlayerManager.Option.spider) {
-            Debug.Log("TODO : 'PlayerAttackCollision' Spider Attack Animation");
+            if (power < 32) {
+                GetComponent<Animator>().SetTrigger("BlueAttackTrigger");
+            }
+            else if (power < 64) {
+                GetComponent<Animator>().SetTrigger("BlueAttackTrigger2");
+            }
+            else {
+                GetComponent<Animator>().SetTrigger("BlueAttackTrigger3");
+            }
         }
         else {
             if (power < 32) {
