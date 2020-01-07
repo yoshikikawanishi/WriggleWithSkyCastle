@@ -2,50 +2,32 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Rumia : Character {
+public class Rumia : TalkCharacter {
 
 
-    //被弾時の処理
-    //パーティクルの停止、ルーミア発見、セリフ変更
-    protected override void Damaged() {
-        base.Damaged();
-        Stage1_1Scene.Instance.rumia_State = Stage1_1Scene.Rumia.find;
+    protected override float Action_Before_Talk() {
         GetComponent<ParticleSystem>().Stop();
-        GetComponentInChildren<TalkCharacter>().Change_Message_Status("RumiaText", 2, 4);
+        return 0f;
+    }
+
+    protected override IEnumerator Talk() {
+        //通常会話時向きを変える
+        if (start_ID == 2)
+            transform.localScale = new Vector3(-1, 1, 1);
+        return base.Talk();
     }
 
 
-    //ライフがなくなったときの処理
-    //点滅して消滅、ルーミア消滅
-    protected override void Action_In_Life_Become_Zero() {                
-        StartCoroutine("Vanish_Cor");
-        Stage1_1Scene.Instance.rumia_State = Stage1_1Scene.Rumia.delete;
-    }
-
-
-    //点滅して消滅
-    private IEnumerator Vanish_Cor() {
-        GetComponent<BoxCollider2D>().enabled = false;
-        transform.GetChild(0).gameObject.SetActive(false);
-        GetComponent<Animator>().SetBool("VanishBool", true);
-
-        //点滅
-        SpriteRenderer _sprite = GetComponent<SpriteRenderer>();
-        for (int i = 0; i < 10; i++) {
-            _sprite.color = new Color(1, 1, 1, 0);
-            yield return new WaitForSeconds((10 - i) * 0.01f);
-            _sprite.color = new Color(1, 1, 1, 1);
-            yield return new WaitForSeconds((10 - i) * 0.02f);
+    protected override void Action_In_End_Talk() {
+        transform.localScale = new Vector3(1, 1, 1);
+        Stage1_1Scene.Instance.rumia_State = Stage1_1Scene.Rumia.find;
+        if (start_ID == 2) {
+            //セリフの変更
+            Change_Message_Status("RumiaText", 5, 5);
+            //宝箱出す
+            Put_Out_Collection_Box();
         }
-        _sprite.color = new Color(1, 1, 1, 0);
-
-        //アイテムを出す
-        if (!CollectionManager.Instance.Is_Collected("Rumia")) {
-            transform.GetChild(1).gameObject.SetActive(true);
-            transform.GetChild(1).SetParent(null);
-        }
-
-        gameObject.SetActive(false);
     }
+
 
 }

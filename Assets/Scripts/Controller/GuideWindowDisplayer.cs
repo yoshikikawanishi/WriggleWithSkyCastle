@@ -38,7 +38,8 @@ public class GuideWindowDisplayer : MonoBehaviour {
 
 
     //入力を待つ
-    private IEnumerator Wait_Input_Cor() {                
+    private IEnumerator Wait_Input_Cor() {
+        for(float t = 0; t < 1.0f; t += 0.016f) { yield return null; }
         yield return new WaitUntil(Wait_Input);
         Close_Window();
     }
