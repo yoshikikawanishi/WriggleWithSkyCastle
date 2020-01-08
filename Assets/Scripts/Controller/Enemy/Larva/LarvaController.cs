@@ -70,9 +70,9 @@ public class LarvaController : MonoBehaviour {
     //点滅溜めエフェクト
     public IEnumerator Pre_Action_Blink() {
         for(int i = 0; i < 4; i++) {
-            GetComponent<SpriteRenderer>().color = new Color(0.8f, 0.5f, 0.3f);
+            GetComponent<SpriteRenderer>().color = new Color(0.6f, 0.6f, 0.6f);
             yield return new WaitForSeconds(0.1f);
-            GetComponent<SpriteRenderer>().color = new Color(1, 1, 1);
+            GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f);
             yield return new WaitForSeconds(0.1f);
         }
     }

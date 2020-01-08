@@ -29,6 +29,8 @@ public class BossEnemy : MonoBehaviour {
     //クリア検知用
     private bool clear_Trigger = false;
     private bool is_Cleared = false;
+    //無敵化
+    private bool is_Invincible = false;
 
 
     private void Awake() {
@@ -44,6 +46,10 @@ public class BossEnemy : MonoBehaviour {
     //被弾時の処理
     public void Damaged(int damage) {
         if (is_Cleared) {
+            return;
+        }
+        if (is_Invincible) {
+            Play_Invincible_Effect();
             return;
         }
         //被弾
@@ -63,17 +69,22 @@ public class BossEnemy : MonoBehaviour {
 
     //被弾時のエフェクト
     private void Play_Damaged_Effect() {
-        StartCoroutine("Blink");
+        StartCoroutine("Blink", new Color(0.5f, 0.25f, 0.25f));
         //TODO: 被弾時のエフェクト
+    }
+
+    //無敵時のエフェクト
+    private void Play_Invincible_Effect() {
+        StartCoroutine("Blink", new Color(0.7f, 0.7f, 0.7f));
     }
 
 
     //点滅
-    private IEnumerator Blink() {
-        _sprite.color = new Color(1, 0.5f, 0.5f);
+    private IEnumerator Blink(Color blink_Color) {
+        _sprite.color = blink_Color;
         yield return new WaitForSeconds(0.1f);
-        if (_sprite.color == new Color(1, 0.5f, 0.5f))
-            _sprite.color = new Color(1, 1, 1);
+        if (_sprite.color == blink_Color)
+            _sprite.color = new Color(0.5f, 0.5f, 0.5f);
     }
 
 
@@ -128,6 +139,10 @@ public class BossEnemy : MonoBehaviour {
         if(phase <= life.Count) {
             now_Phase = phase;
         }
+    }
+
+    public void Set_Is_Invincible(bool is_Invincible) {
+        this.is_Invincible = is_Invincible;
     }
 
 

@@ -2,3 +2,4 @@
 Stage1_1Scene
 TitleScene
 Stage2_1Scene
+PlayGuide2Scene

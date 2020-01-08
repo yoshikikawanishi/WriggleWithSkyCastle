@@ -1667,6 +1667,26 @@ Prefab:
       propertyPath: is_Count_Up_Param
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 212331726429499064, guid: 19d626d1e33ab2d448279d12954fa6b4,
+        type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: fc6239414e6b2ed4b8e29974db3abb7d, type: 2}
+    - target: {fileID: 212331726429499064, guid: 19d626d1e33ab2d448279d12954fa6b4,
+        type: 2}
+      propertyPath: m_Color.r
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 212331726429499064, guid: 19d626d1e33ab2d448279d12954fa6b4,
+        type: 2}
+      propertyPath: m_Color.g
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 212331726429499064, guid: 19d626d1e33ab2d448279d12954fa6b4,
+        type: 2}
+      propertyPath: m_Color.b
+      value: 0.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 19d626d1e33ab2d448279d12954fa6b4, type: 2}
   m_IsPrefabAsset: 0
