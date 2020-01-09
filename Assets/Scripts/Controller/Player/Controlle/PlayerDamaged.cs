@@ -30,6 +30,7 @@ public class PlayerDamaged : MonoBehaviour {
         }
 
         Put_Out_Power(PlayerManager.Instance.Get_Power() / 8);      //パワーの減少
+        BeetlePowerManager.Instance.StartCoroutine("Increase_Cor", 25);     //飛行パワー増加
         StartCoroutine("Blink");                                    //点滅
         player_SE.Play_Damaged_Sound();                             //効果音
         Occure_Knock_Back();                                        //反動

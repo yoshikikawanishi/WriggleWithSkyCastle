@@ -20,6 +20,7 @@ public class ShootSystemEditer : Editor {
         obj.parent = (Transform)EditorGUILayout.ObjectField("Parent", obj.parent, typeof(Transform), true);
         obj.lifeTime = EditorGUILayout.FloatField("LifeTime", obj.lifeTime);        
         obj.max_Speed = EditorGUILayout.FloatField("MaxSpeed", obj.max_Speed);
+        obj.offset = EditorGUILayout.Vector2Field("Offset", obj.offset);
 
         EditorGUILayout.Space();
 
@@ -78,7 +79,7 @@ public class ShootSystemEditer : Editor {
         if (obj.connect_Bullet) {
             EditorGUILayout.BeginVertical(GUI.skin.box);
             obj.speed_Diff = EditorGUILayout.FloatField("SpeedDiff", obj.speed_Diff);
-            obj.angle_Diff = EditorGUILayout.FloatField("SpeedDiff", obj.angle_Diff);
+            obj.angle_Diff = EditorGUILayout.FloatField("AngleDiff", obj.angle_Diff);
             EditorGUILayout.EndVertical();
         }
 

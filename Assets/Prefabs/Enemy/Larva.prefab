@@ -497,7 +497,7 @@ MonoBehaviour:
     type: 2}
   green_Rice_Bullet: {fileID: 1742974461349758, guid: aee60bc3d16d58d4582e97f7de51b0a0,
     type: 2}
-  red_Bullet: {fileID: 1695308605818196, guid: c0c20a6f0f8954646af2418a3989a0d0, type: 2}
+  red_Bullet: {fileID: 1576648886757804, guid: c0c20a6f0f8954646af2418a3989a0d0, type: 2}
 --- !u!114 &114130120913252434
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -534,7 +534,7 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    speed: 0.01
+    speed: 0.012
     arc_Size: 0
     is_Local_Position: 0
   - curve:
@@ -37941,7 +37941,7 @@ SpriteRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: fc6239414e6b2ed4b8e29974db3abb7d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -37962,7 +37962,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: 803422279c6b6ee42821bee11fb8df96, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

@@ -5,7 +5,6 @@ using UnityEngine;
 public class Mystia : TalkCharacter {
 
     private Stage1_1Scene.Rumia now_Rumia_State;
-    private bool first_Talk = true;
 
 
     //会話のパターンを変える

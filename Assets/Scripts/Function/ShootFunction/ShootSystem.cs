@@ -21,6 +21,7 @@ public class ShootSystem : MonoBehaviour {
     public Transform parent = null;
     public float max_Speed;
     public float lifeTime = 5;
+    public Vector2 offset = new Vector2(0, 0);
 
     public bool is_Acceleration = false;
     public AnimationCurve velocity_Forward;
@@ -238,12 +239,12 @@ public class ShootSystem : MonoBehaviour {
         float speed = max_Speed;
 
         for (int i = 0; i < connect_Num; i++) {
-            var bullet = bullet_Pool.GetObject();                      //生成
+            var bullet = bullet_Pool.GetObject();                               //生成
             bullet_List.Add(bullet);
-            bullet.transform.SetParent(parent);                        //親オブジェクト        
-            bullet.transform.position = transform.position;            //座標
+            bullet.transform.SetParent(parent);                                 //親オブジェクト        
+            bullet.transform.position = transform.position + (Vector3)offset;   //座標
             bullet.transform.rotation = new Quaternion(0, 0, 0, 0);
-            bullet.transform.Rotate(new Vector3(0, 0, 1), angle_Deg);  //回転
+            bullet.transform.Rotate(new Vector3(0, 0, 1), angle_Deg);           //回転
 
             bullet.GetComponent<Rigidbody2D>().velocity = bullet.transform.right * speed;     //初速
             //寿命

@@ -47,9 +47,9 @@ public class YukaTalk : TalkCharacter {
 
     //戦闘開始の処理
     private void Start_Battle() {
-        Debug.Log("Start Battle");
         GetComponent<YukaAttack>().Start_Battle();
         mark_Up_Baloon.SetActive(false);
+        transform.GetChild(1).gameObject.SetActive(false);
         Destroy(this);
     }
 }

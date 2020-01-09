@@ -69,8 +69,8 @@ public class MoveTwoPoints : MonoBehaviour {
         if (end_Move) {
             end_Move = false;
             return true;
-        }
-        return false;
+        }        
+        return false;        
     }
 
 }
