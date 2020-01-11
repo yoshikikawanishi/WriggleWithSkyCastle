@@ -294,6 +294,7 @@ GameObject:
   - component: {fileID: 114533552897129458}
   - component: {fileID: 114482464115055708}
   - component: {fileID: 114987070006240588}
+  - component: {fileID: 114525847672549716}
   - component: {fileID: 114693939641479670}
   - component: {fileID: 114491369291963068}
   - component: {fileID: 114371135488116328}
@@ -2094,6 +2095,17 @@ MonoBehaviour:
   green_Powder: {fileID: 198571098265394092}
   red_Powder: {fileID: 198422458896802936}
   ride_Beetle: {fileID: 198851744792821246}
+--- !u!114 &114525847672549716
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1795115553721778}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3040caac96558b34a8ab36f902440213, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114531651287648218
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2122,6 +2134,7 @@ MonoBehaviour:
   is_Squat: 0
   is_Ride_Beetle: 0
   start_Attack_Frame_Count: 0
+  start_Charge_Attack_Frame_Count: 0
 --- !u!114 &114560024852258848
 MonoBehaviour:
   m_ObjectHideFlags: 1

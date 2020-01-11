@@ -41,6 +41,7 @@ GameObject:
   - component: {fileID: 114993866648598324}
   - component: {fileID: 114668945093239618}
   - component: {fileID: 114360156613587654}
+  - component: {fileID: 114500579039376174}
   - component: {fileID: 114174820341540378}
   - component: {fileID: 114800450731055106}
   - component: {fileID: 114698846180214298}
@@ -2065,6 +2066,17 @@ MonoBehaviour:
   beetle_Prefab: {fileID: 1055836572445632, guid: a6cce539a202788449687c90039adc2b,
     type: 2}
   can_Get_On_Beetle: 0
+--- !u!114 &114500579039376174
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1247424895371406}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3040caac96558b34a8ab36f902440213, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114636590556883488
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2181,6 +2193,7 @@ MonoBehaviour:
   is_Squat: 0
   is_Ride_Beetle: 0
   start_Attack_Frame_Count: 0
+  start_Charge_Attack_Frame_Count: 0
 --- !u!198 &198127356404357138
 ParticleSystem:
   m_ObjectHideFlags: 1

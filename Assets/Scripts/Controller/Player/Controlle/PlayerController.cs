@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour {
     private PlayerTransitionRidingBeetle _transition_Beetle;
     private PlayerJump _jump;
     private PlayerAttack _attack;
+    private PlayerChargeAttack _charge_Attack;
     private PlayerSquat _squat;
     private PlayerShoot _shoot;
     private PlayerGettingOnBeetle _getting_On_Beetle;
@@ -27,13 +28,17 @@ public class PlayerController : MonoBehaviour {
     public bool is_Ride_Beetle = false;
     //攻撃の入力識別用
     public bool start_Attack_Frame_Count = false;
+    public bool start_Charge_Attack_Frame_Count = false;
 
     private int attack_Frame_Count = 0;
+    private int charge_Attack_Frame_Count = 0;
 
     private string now_Animator_Parameter = "IdleBool";
 
     private float SHOOT_INTERVAL = 0.2f;
     private float shoot_Time = 0.2f;
+
+    private float default_Gravity;
 
     //緑ゲージ不足の警告音は飛行中1度だけ鳴らす
     private bool is_Played_Alert = false;   
@@ -48,12 +53,14 @@ public class PlayerController : MonoBehaviour {
         _transition_Beetle = GetComponent<PlayerTransitionRidingBeetle>();
         _jump = GetComponent<PlayerJump>();
         _attack = GetComponent<PlayerAttack>();
+        _charge_Attack = GetComponent<PlayerChargeAttack>();
         _squat = GetComponent<PlayerSquat>();
         _shoot = GetComponent<PlayerShoot>();
         _getting_On_Beetle = GetComponent<PlayerGettingOnBeetle>();
         input = InputManager.Instance;
         //初期設定
         Change_Beetle_Scroll_Speed(NORMAL_SCROLL_SPEED);
+        default_Gravity = _rigid.gravityScale;
     }
 
 
@@ -168,11 +175,40 @@ public class PlayerController : MonoBehaviour {
             }
             else if (attack_Frame_Count > 7) {
                 _attack.Attack();
+                start_Charge_Attack_Frame_Count = true; //チャージアタック
             }
             else return;
             attack_Frame_Count = 0;
             start_Attack_Frame_Count = false;
         }
+        //チャージアタック溜めるかどうか
+        if (start_Charge_Attack_Frame_Count) {
+            charge_Attack_Frame_Count++;
+            //通常攻撃後10フレーム間攻撃ボタン押していたらチャージ開始
+            if(charge_Attack_Frame_Count > 10) {                
+                _rigid.velocity = new Vector2(0, 16);
+                To_Disable_Ride_Beetle();
+
+                if (input.GetKey(Key.Attack)) {
+                    _charge_Attack.Charge();
+                }
+                if (!input.GetKey(Key.Attack) || input.GetKeyDown(Key.Fly)) {
+                    _charge_Attack.Charge_Attack();
+                    Release_Charge();
+                }
+            }
+            //10フレーム押す前に攻撃ボタンを離したときチャージ開始しない
+            else if (input.GetKeyUp(Key.Attack) || input.GetKeyDown(Key.Fly)) {
+                Release_Charge();
+            }            
+        }
+    }
+
+    //チャージ解除
+    private void Release_Charge() {
+        charge_Attack_Frame_Count = 0;
+        start_Charge_Attack_Frame_Count = false;
+        To_Enable_Ride_Beetle();
     }
 
 
