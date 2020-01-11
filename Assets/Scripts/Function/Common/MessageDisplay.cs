@@ -149,7 +149,7 @@ public class MessageDisplay : MonoBehaviour {
                 for (float t = 0; t < speed; t += 0.016f) { yield return null; }
             }
             //1行分表示後決定が押されるのを待つ
-            yield return new WaitForSeconds(waitingTime);
+            for(float t = 0; t < waitingTime; t += 0.016f) { yield return null; }            
             //次の行へ
             messageText.text = "";
         }

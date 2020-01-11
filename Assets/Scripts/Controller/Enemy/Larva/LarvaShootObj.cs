@@ -51,8 +51,8 @@ public class LarvaShootObj : MonoBehaviour {
 
 
     //フェーズ1緑弾
-    public IEnumerator Shoot_Green_Bullet_Cor() {
-        for (int i = 0; i < 3; i++) {
+    public IEnumerator Shoot_Green_Bullet_Cor(int count) {
+        for (int i = 0; i < count; i++) {
             //自機の位置を確認
             AngleCalculater angle_Cal = new AngleCalculater();
             float player_Angle = angle_Cal.Cal_Angle_Two_Points(transform.position, player.transform.position);            
@@ -101,8 +101,8 @@ public class LarvaShootObj : MonoBehaviour {
     public void Shoot_Red_Bullet() {
         _shoot.Set_Bullet_Pool(pool_Manager.Get_Pool(red_Bullet), null);
         List<GameObject> bullet_List = new List<GameObject>();
-        bullet_List = _shoot.Odd_Num_Shoot(1, 0, 10f, 10);
-        _bullet_Acc.Accelerat_Bullet(bullet_List, 1.03f, 4);
+        bullet_List = _shoot.Odd_Num_Shoot(1, 0, 60f, 10);
+        _bullet_Acc.Accelerat_Bullet(bullet_List, 1.01f, 4);
     }
 	
 

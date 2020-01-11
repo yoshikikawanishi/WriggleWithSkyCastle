@@ -198,7 +198,7 @@ public class PlayerController : MonoBehaviour {
                 }
             }
             //10フレーム押す前に攻撃ボタンを離したときチャージ開始しない
-            else if (input.GetKeyUp(Key.Attack) || input.GetKeyDown(Key.Fly)) {
+            else if (!input.GetKey(Key.Attack) || input.GetKeyDown(Key.Fly)) {
                 Release_Charge();
             }            
         }
