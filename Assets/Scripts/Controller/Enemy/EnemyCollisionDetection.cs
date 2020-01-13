@@ -9,6 +9,7 @@ public class EnemyCollisionDetection : MonoBehaviour {
 
     protected Dictionary<string, int> damaged_Tag_Dictionary = new Dictionary<string, int>() {
         {"PlayerAttackTag"  , 10 },
+        {"PlayerChargeAttackTag", 20 },
         {"PlayerButterflyAttackTag", 8 },
         { "PlayerSpiderAttackTag", 8 },
         {"PlayerKickTag"  , 10 },

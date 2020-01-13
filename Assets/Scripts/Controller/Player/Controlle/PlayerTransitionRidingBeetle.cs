@@ -21,7 +21,7 @@ public class PlayerTransitionRidingBeetle : MonoBehaviour {
         if (Time.timeScale == 0) return;
 
         //移動
-        _rigid.velocity = direction * 200f;              
+        _rigid.velocity = direction * 250f;              
         //向き
         if(transform.localScale.x != scale_X) {
             transform.localScale = new Vector3(scale_X, 1, 1);

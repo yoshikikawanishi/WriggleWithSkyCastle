@@ -23,6 +23,7 @@ public class TalkCharacter : MonoBehaviour {
 
     private List<string> talk_Tags = new List<string> {
         "PlayerAttackTag",
+        "PlayerChargeAttackTag",
         "PlayerButterflyAttackTag",
         "PlayerSpiderAttackTag",
     };    

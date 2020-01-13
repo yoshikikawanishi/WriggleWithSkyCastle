@@ -26,7 +26,7 @@ public class PlayerTransition : MonoBehaviour {
         direction = direction > 0 ? 1 : -1;
 
         //空中で慣性つける
-        acc = _controller.is_Landing ? 40f : 35f;
+        acc = _controller.is_Landing ? 40f : 10f;
         
         //移動、加
         if(direction == 1) {            
@@ -65,7 +65,7 @@ public class PlayerTransition : MonoBehaviour {
                 _controller.Change_Animation("IdleBool");
         }
         else {
-            _rigid.velocity *= new Vector2(0.8f, 1);
+            _rigid.velocity *= new Vector2(0.98f, 1);
         }
     }
 }

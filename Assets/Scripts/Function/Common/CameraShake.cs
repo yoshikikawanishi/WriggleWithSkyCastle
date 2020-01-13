@@ -5,48 +5,39 @@ using UnityEngine;
 //画面を揺らすスクリプト
 public class CameraShake : MonoBehaviour {
 
-    public void Shake(float duration, float magnitude) {
-        StartCoroutine(DoShake(duration, magnitude));
+    /// <summary>
+    /// カメラを揺らす
+    /// </summary>
+    /// <param name="duration">期間</param>
+    /// <param name="magnitude">強さ</param>
+    /// <param name="fix_Position">揺らしはじめと終わりの座標をそろえるか</param>
+    public void Shake(float duration, Vector2 magnitude, bool fix_Position) {
+        StartCoroutine(DoShake(duration, magnitude, fix_Position));
     }
 
     //カメラ揺らす
-    private IEnumerator DoShake(float duration, float magnitude) {
+    private IEnumerator DoShake(float duration, Vector2 magnitude, bool fix_Position) {
 
-        GameObject main_Camera = GameObject.FindWithTag("MainCamera");
-        var pos = main_Camera.transform.localPosition;        
-        var elapsed = 0f;
-
-        Remove_Camera_Controller(duration);
+        var pos = transform.position;
+        var elapsed = 0f;        
 
         while (elapsed < duration) {
-            var x = pos.x + Random.Range(-1f, 1f) * magnitude;
-            var y = pos.y + Random.Range(-1f, 1f) * magnitude;
+            var x = Random.Range(-1f, 1f) * magnitude.x;
+            var y = Random.Range(0, 1f) * magnitude.y;
+            if (transform.position.y > 0)
+                y = -y;            
 
-            main_Camera.transform.localPosition = new Vector3(x, y, pos.z) * Time.timeScale;
+            transform.localPosition = transform.position + new Vector3(x, y) * Time.timeScale;
 
             elapsed += Time.deltaTime;
-
             yield return null;
+
+            if (fix_Position)
+                transform.position = pos;
         }
-
-        main_Camera.transform.position = pos;
-
-    }
-
-
-    //揺らしている間、カメラコントローラーを切る
-    public void Remove_Camera_Controller(float duration) {
-        StartCoroutine(DoRemove_Camera_Controller(duration));
-    }
-
-    private IEnumerator DoRemove_Camera_Controller(float duration) {
-        CameraController camera_Controller = GameObject.FindWithTag("MainCamera").GetComponent<CameraController>();
-        if (camera_Controller == null)
-            yield break;
         
-        camera_Controller.enabled = false;
-        yield return new WaitForSeconds(duration);
-        camera_Controller.enabled = true;
+        transform.position = new Vector3(transform.position.x, 0, -10);
+
     }
 
 }

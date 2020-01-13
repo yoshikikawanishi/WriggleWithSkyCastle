@@ -9,6 +9,7 @@ public class SavePoint : MonoBehaviour {
     private List<string> collide_Tags = new List<string> {
         "PlayerBodyTag",
         "PlayerAttackTag",
+        "PlayerChargeAttackTag",
         "PlayerButterflyAttackTag",
         "PlayerSpiderAttackTag"
     };

@@ -36,7 +36,7 @@ public class YukaMovie : SingletonMonoBehaviour<YukaMovie> {
         //自機の固定
         player_Controller.Set_Is_Playable(false);
         player_Controller.To_Disable_Ride_Beetle();
-        player_Controller.Change_Animation("IdleBoole");
+        player_Controller.Change_Animation("IdleBool");
         player.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
 
         //カメラの固定
@@ -79,7 +79,7 @@ public class YukaMovie : SingletonMonoBehaviour<YukaMovie> {
         //自機の固定
         player_Controller.Set_Is_Playable(false);
         player_Controller.To_Disable_Ride_Beetle();
-        player_Controller.Change_Animation("IdleBoole");
+        player_Controller.Change_Animation("IdleBool");
         player.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
 
         _message.Start_Display("YukaText", 20, 23);

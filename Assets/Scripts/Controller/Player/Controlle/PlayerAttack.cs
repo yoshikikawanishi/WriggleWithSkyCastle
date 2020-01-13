@@ -99,8 +99,8 @@ public class PlayerAttack : MonoBehaviour {
     
     //敵と衝突時の処理
     private IEnumerator Do_Hit_Attack_Process() {
-        float force = _controller.is_Landing ? 170f : 60f;                  //ノックバック
-        _rigid.velocity = new Vector2(force * -transform.localScale.x, 20f);
+        float force = _controller.is_Landing ? 170f : 30f;                  //ノックバック
+        _rigid.velocity = new Vector2(force * -transform.localScale.x, 10f);
         BeetlePowerManager.Instance.StartCoroutine("Increase_Cor", 8);      //緑パワーの増加
         player_SE.Play_Hit_Attack_Sound();                                  //効果音        
         if (hit_Stop) {                                                     //ヒットストップ
@@ -138,7 +138,7 @@ public class PlayerAttack : MonoBehaviour {
         _controller.Change_Animation("KickBool");
 
         //キック開始
-        _rigid.velocity = new Vector2(transform.localScale.x * 180f, -200f);
+        _rigid.velocity = new Vector2(transform.localScale.x * Kick_Velocity(), -Kick_Velocity());
         kick_Collision.Make_Collider_Appear();
         player_SE.Play_Kick_Sound();
 
@@ -168,24 +168,26 @@ public class PlayerAttack : MonoBehaviour {
 
     //キック発生中の処理
     private IEnumerator Kicking_Cor() {
-        for (float t = 0; t < 0.3f; t += Time.deltaTime) {
+        for (float t = 0; t < 0.35f; t += Time.deltaTime) {
 
-            _rigid.velocity = new Vector2(transform.localScale.x * 180f, _rigid.velocity.y);
+            _rigid.velocity = new Vector2(transform.localScale.x * Kick_Velocity(), _rigid.velocity.y);
+            _controller.Change_Animation("KickBool");
 
             //敵と衝突時の処理
             if (kick_Collision.Hit_Trigger()) {
                 Do_Hit_Kick_Process();
                 yield return new WaitForSeconds(0.015f);
                 break;
-            }
+            }            
+            /*
             //着地時終了
             if (_controller.is_Landing) {
-                _rigid.velocity = new Vector2(transform.localScale.x * 180f, _rigid.velocity.y);
+                _rigid.velocity = new Vector2(transform.localScale.x * 220f, _rigid.velocity.y);
                 _controller.Change_Animation("KickBool");
                 if (t < 0.2f)
                     t = 0.2f;
             }
-
+            */
             yield return null;
         }
         end_Kick = true;
@@ -195,7 +197,7 @@ public class PlayerAttack : MonoBehaviour {
     private IEnumerator Sliding_Cor() {
         for (float t = 0; t < 0.33f; t += Time.deltaTime) {
 
-            _rigid.velocity = new Vector2(transform.localScale.x * 180f, _rigid.velocity.y);
+            _rigid.velocity = new Vector2(transform.localScale.x * Kick_Velocity(), _rigid.velocity.y);
             _controller.Change_Animation("KickBool");
 
             //敵と衝突時の処理
@@ -213,7 +215,7 @@ public class PlayerAttack : MonoBehaviour {
 
     //キックのヒット時の処理
     private void Do_Hit_Kick_Process() {
-        _rigid.velocity = new Vector2(40f * -transform.localScale.x, 200f); //ノックバック
+        _rigid.velocity = new Vector2(30f * -transform.localScale.x, 160f); //ノックバック
         BeetlePowerManager.Instance.StartCoroutine("Increase_Cor", 8);      //緑ゲージの増加
         player_SE.Play_Hit_Attack_Sound();                                  //効果音
     }
@@ -226,6 +228,21 @@ public class PlayerAttack : MonoBehaviour {
             return true;
         }
         return false;
+    }
+
+    //パワーによって速度を変える
+    private float Kick_Velocity() {
+        int power = PlayerManager.Instance.Get_Power();
+        if (power < 16) {
+            return 180f; 
+        }
+        else if(power < 32) {
+            return 195f;
+        }
+        else if(power < 64) {
+            return 210f;
+        }
+        return 225f;
     }
     #endregion
 }

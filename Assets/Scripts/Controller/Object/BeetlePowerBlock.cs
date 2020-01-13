@@ -8,6 +8,7 @@ public class BeetlePowerBlock : MonoBehaviour {
     private List<string> damaged_Tag_List = new List<string> {
         "PlayerKickTag",
         "PlayerAttackTag",
+        "PlayerChargeAttackTag",
         "PlayerButterflyAttackTag",
         "PlayerSpiderAttackTag",
         "PlayerBulletTag",

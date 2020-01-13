@@ -37,7 +37,7 @@ public class BossEnemy : MonoBehaviour {
         //取得
         _put_Out_Item   = gameObject.AddComponent<PutOutSmallItems>();
         _sprite         = GetComponent<SpriteRenderer>();
-        _camera_Shake   = gameObject.AddComponent<CameraShake>();
+        _camera_Shake   = GameObject.FindWithTag("MainCamera").GetComponent<CameraShake>();
         //初期値代入
         DEFAULT_LIFE = new List<int>(life);
     }    
@@ -118,7 +118,7 @@ public class BossEnemy : MonoBehaviour {
         var effect = Instantiate(clear_Effect_Prefab);
         effect.transform.position = transform.position;
 
-        _camera_Shake.Shake(0.8f, 1.2f);
+        _camera_Shake.Shake(0.8f, new Vector2(1.2f, 1.2f), true);
 
         clear_Trigger = true;
         is_Cleared = true;

@@ -28,10 +28,11 @@ public class PlayerController : MonoBehaviour {
     public bool is_Ride_Beetle = false;
     //攻撃の入力識別用
     public bool start_Attack_Frame_Count = false;
-    public bool start_Charge_Attack_Frame_Count = false;
+    public bool start_Charge_Attack_Frame_Count = false;    
 
     private int attack_Frame_Count = 0;
     private int charge_Attack_Frame_Count = 0;
+    private int kick_Frame_Count = 0;
 
     private string now_Animator_Parameter = "IdleBool";
 
@@ -82,8 +83,8 @@ public class PlayerController : MonoBehaviour {
 
     private void LateUpdate() {
         //速度の制限
-        if(Mathf.Abs(_rigid.velocity.x) > 200f) {
-            _rigid.velocity = new Vector2(_rigid.velocity.x.CompareTo(0) * 200f, _rigid.velocity.y);
+        if(Mathf.Abs(_rigid.velocity.x) > 210f) {
+            _rigid.velocity = new Vector2(_rigid.velocity.x.CompareTo(0) * 210f, _rigid.velocity.y);
         }
     }
 
@@ -91,7 +92,7 @@ public class PlayerController : MonoBehaviour {
     //通常時の操作
     private void Normal_Controlle() {
         //しゃがみ
-        if(Input.GetAxisRaw("Vertical") < 0 && is_Landing) {
+        if(Input.GetAxisRaw("Vertical") < -0.05f && is_Landing) {
             if(!is_Squat)
                 _squat.Squat();
         }
@@ -125,7 +126,8 @@ public class PlayerController : MonoBehaviour {
         if (input.GetKeyDown(Key.Fly) && BeetlePowerManager.Instance.Get_Beetle_Power() > 0) {
             _getting_On_Beetle.Get_On_Beetle(true);
             is_Played_Alert = false;    //警告音を鳴らしたかどうかをリセット
-        }        
+        }
+
     }
 
 
@@ -150,7 +152,7 @@ public class PlayerController : MonoBehaviour {
         //パワーの消費
         BeetlePowerManager.Instance.Decrease_In_Update(10.0f);
         //警告音
-        if (BeetlePowerManager.Instance.Get_Beetle_Power() < 30f) {
+        if (BeetlePowerManager.Instance.Get_Beetle_Power() < 20f) {
             if (!is_Played_Alert) {
                 is_Played_Alert = true;
                 GetComponentInChildren<PlayerSoundEffect>().Play_Alert_Sound();
@@ -169,7 +171,7 @@ public class PlayerController : MonoBehaviour {
         //待ってる間に下が押されたらキック、1度も押されなかったら横攻撃
         if (start_Attack_Frame_Count) {
             attack_Frame_Count++;
-            if (Input.GetAxisRaw("Vertical") < -0.1f) {
+            if (Input.GetAxisRaw("Vertical") < -0.7f) {
                 _attack.Kick();
                 is_Squat = false;
             }
@@ -181,13 +183,12 @@ public class PlayerController : MonoBehaviour {
             attack_Frame_Count = 0;
             start_Attack_Frame_Count = false;
         }
+        
         //チャージアタック溜めるかどうか
         if (start_Charge_Attack_Frame_Count) {
             charge_Attack_Frame_Count++;
             //通常攻撃後10フレーム間攻撃ボタン押していたらチャージ開始
-            if(charge_Attack_Frame_Count > 10) {                
-                _rigid.velocity = new Vector2(0, 16);
-                To_Disable_Ride_Beetle();
+            if(charge_Attack_Frame_Count > 10) {                      
 
                 if (input.GetKey(Key.Attack)) {
                     _charge_Attack.Charge();
@@ -207,8 +208,7 @@ public class PlayerController : MonoBehaviour {
     //チャージ解除
     private void Release_Charge() {
         charge_Attack_Frame_Count = 0;
-        start_Charge_Attack_Frame_Count = false;
-        To_Enable_Ride_Beetle();
+        start_Charge_Attack_Frame_Count = false;        
     }
 
 

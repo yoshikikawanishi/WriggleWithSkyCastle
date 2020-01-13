@@ -6,9 +6,14 @@ public class PlayerChargeAttack : MonoBehaviour {
 
     //コンポーネント
     private PlayerManager player_Manager;
+    private PlayerController _controller;
     private PlayerSoundEffect player_SE;
     private PlayerEffect player_Effect;
     private PlayerAttack _attack;
+    private Animator _anim;
+    private Rigidbody2D _rigid;
+    private PlayerChargeAttackCollision attack_Collision;
+    private CameraShake camera_Shake;
 
     private int player_Power;
     private int charge_Phase = 1;
@@ -19,9 +24,14 @@ public class PlayerChargeAttack : MonoBehaviour {
     private void Start() {
         //取得
         player_Manager = PlayerManager.Instance;
+        _controller = GetComponent<PlayerController>();
         player_SE = GetComponentInChildren<PlayerSoundEffect>();
         player_Effect = GetComponentInChildren<PlayerEffect>();
         _attack = GetComponent<PlayerAttack>();
+        _anim = GetComponent<Animator>();
+        _rigid = GetComponent<Rigidbody2D>();
+        attack_Collision = GetComponentInChildren<PlayerChargeAttackCollision>();
+        camera_Shake = GameObject.FindWithTag("MainCamera").GetComponent<CameraShake>();
     }
 
 
@@ -78,8 +88,21 @@ public class PlayerChargeAttack : MonoBehaviour {
 
     //強攻撃
     private IEnumerator Charge_Attack_Cor() {
-        Debug.Log("Charge_Attack");
-        yield return null;
+        _anim.SetTrigger("AttackTrigger");
+        attack_Collision.Make_Collider_Appear(0.18f);
+        player_SE.Play_Attack_Sound();
+        player_SE.Play_Hit_Attack_Sound();
+
+        _rigid.velocity += new Vector2(transform.localScale.x * 5f, 0); //Rigidbodyのスリープ状態を解除する
+        for (float t = 0; t < 0.18f; t += Time.deltaTime) {
+            //敵と衝突時
+            if (attack_Collision.Hit_Trigger()) {
+                StartCoroutine("Do_Hit_Attack_Process");
+                yield return new WaitForSeconds(0.05f);
+                break;
+            }
+            yield return null;
+        }
     }
 
 
@@ -107,5 +130,19 @@ public class PlayerChargeAttack : MonoBehaviour {
             charge_Span = new float[3] { 0.2f, 0.4f, 0.8f };
         }
     }
-    
+
+
+    //敵と衝突時の処理
+    private IEnumerator Do_Hit_Attack_Process() {
+        float force = _controller.is_Landing ? 170f : 60f;                  //ノックバック
+        _rigid.velocity = new Vector2(force * -transform.localScale.x, 20f);
+        BeetlePowerManager.Instance.StartCoroutine("Increase_Cor", 25);     //緑パワーの増加
+        player_SE.Play_Charge_Shoot_Sound();                                //効果音      
+        camera_Shake.Shake(0.25f, new Vector2(0, 1.2f), false);
+        //ヒットストップ
+        float tmp = Time.timeScale;
+        Time.timeScale = 0.4f;
+        yield return new WaitForSeconds(0.05f);
+        Time.timeScale = tmp;
+    }
 }

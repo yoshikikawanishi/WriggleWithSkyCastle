@@ -77,11 +77,12 @@ public class YukaAttack : MonoBehaviour {
             Play_Burst_Effect();
             if (is_First_Loop) { StartCoroutine(Play_Guide_Message(18, 18)); }
             Start_Spiral_Shoot();
-            yield return new WaitForSeconds(5.0f);
+            yield return new WaitForSeconds(5.0f);            
             
             Shoot_Diffusion_Bullet(new Vector2(-48, 96f), 0);
             yield return new WaitForSeconds(0.5f);
             Shoot_Diffusion_Bullet(new Vector2(-32, -48f), 1);
+            Play_Small_Charge_Effect();
             yield return new WaitForSeconds(0.5f);
             Shoot_Cross_Bullet(new Vector2());
             yield return new WaitForSeconds(6.0f);
@@ -115,6 +116,7 @@ public class YukaAttack : MonoBehaviour {
 
     //交差弾発射
     private void Shoot_Cross_Bullet(Vector2 offset) {
+        UsualSoundManager.Instance.Play_Shoot_Sound();
         ShootSystem[] shoots = cross_Shoot_Obj.GetComponents<ShootSystem>();        
         for (int i = 0; i < shoots.Length; i++) {
             shoots[i].offset = offset;
@@ -124,6 +126,7 @@ public class YukaAttack : MonoBehaviour {
 
     //渦巻き弾発射開始
     private void Start_Spiral_Shoot() {
+        UsualSoundManager.Instance.Play_Shoot_Sound();
         ShootSystem[] shoots = spiral_Shoot_Obj.GetComponents<ShootSystem>();
         for (int i = 0; i < shoots.Length; i++) {
             shoots[i].Shoot();
@@ -132,6 +135,7 @@ public class YukaAttack : MonoBehaviour {
 
     //全方位弾発射
     private void Shoot_Diffusion_Bullet(Vector2 offset, int index) {
+        UsualSoundManager.Instance.Play_Shoot_Sound();
         var child = diffusion_Shoot_Obj.transform.GetChild(index).gameObject;
         ShootSystem[] shoots = child.GetComponents<ShootSystem>();
         for (int i = 0; i < shoots.Length; i++) {
@@ -157,6 +161,11 @@ public class YukaAttack : MonoBehaviour {
 
     private void Stop_Charge_Effect() {
         transform.GetChild(5).gameObject.SetActive(false);
+    }
+
+    //小ためエフェクト
+    private void Play_Small_Charge_Effect() {        
+        transform.GetChild(7).GetComponent<ParticleSystem>().Play();
     }
 
     //放出

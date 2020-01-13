@@ -8,6 +8,7 @@ public class PlayerShoot : MonoBehaviour {
     private PlayerController player_Controller;
     private PlayerEffect player_Effect;
     private PlayerSoundEffect player_SE;
+    private CameraShake camera_Shake;
 
     //弾
     [SerializeField] private GameObject normal_Bullet;
@@ -40,7 +41,8 @@ public class PlayerShoot : MonoBehaviour {
         player_Controller = GetComponent<PlayerController>();
         player_Effect = GetComponentInChildren<PlayerEffect>();
         player_SE = GetComponentInChildren<PlayerSoundEffect>();
-	}
+        camera_Shake = GameObject.FindWithTag("MainCamera").GetComponent<CameraShake>();
+    }
 
 
     //Update
@@ -133,6 +135,7 @@ public class PlayerShoot : MonoBehaviour {
             bullet.transform.position = transform.position;
             bullet.GetComponent<Rigidbody2D>().velocity = new Vector2(500f * transform.localScale.x, 0);
             player_SE.Play_Charge_Shoot_Sound();
+            camera_Shake.Shake(0.25f, new Vector2(0, 1.2f), false);
         }
         charge_Time = 0;
         player_Effect.Start_Shoot_Charge(0);

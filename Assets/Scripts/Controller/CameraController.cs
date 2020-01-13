@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(CameraShake))]
 public class CameraController : MonoBehaviour {
 
     //自機
@@ -53,11 +54,11 @@ public class CameraController : MonoBehaviour {
 
         //左端でスクロールを止める
         if (transform.position.x < left_Side) {
-            transform.position = new Vector3(left_Side, 0, -10);
+            transform.position = new Vector3(left_Side, transform.position.y, -10);
         }
         //右端でスクロールを止める
         if (transform.position.x >= right_Side) {
-            transform.position = new Vector3(right_Side, 0, -10);
+            transform.position = new Vector3(right_Side, transform.position.y, -10);
         }
     }
 
@@ -75,7 +76,7 @@ public class CameraController : MonoBehaviour {
         camera_Center = player.transform.position.x + 80f * stage_Direction;
         distance_Center = camera_Center - transform.position.x;
         if (Mathf.Abs(distance_Center) < 10.0f) {
-            transform.position = new Vector3(camera_Center, 0, -10f);            
+            transform.position = new Vector3(camera_Center, transform.position.y, -10f);            
         }        
         else {
             transform.position += new Vector3(distance_Center.CompareTo(0) * 5.0f, 0, 0);
@@ -95,7 +96,7 @@ public class CameraController : MonoBehaviour {
             return;
         }
         if(Mathf.Abs(player.transform.position.x - transform.position.x) > 245f) {
-            transform.position = new Vector3(player.transform.position.x + 80f * stage_Direction, 0, -10);
+            transform.position = new Vector3(player.transform.position.x + 80f * stage_Direction, transform.position.y, -10);
         }
     }
 

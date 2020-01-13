@@ -24,6 +24,7 @@ TagManager:
   - PlayerKickTag
   - PlayerButterflyAttackTag
   - PlayerSpiderAttackTag
+  - PlayerChargeAttackTag
   layers:
   - Default
   - TransparentFX
