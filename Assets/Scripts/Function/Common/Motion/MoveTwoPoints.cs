@@ -4,6 +4,7 @@ using UnityEngine;
 
 [System.Serializable]
 public class Parameter {
+    public string comment;
     public AnimationCurve curve = AnimationCurve.EaseInOut(0, 0, 1.0f, 1.0f);
     public float speed = 0.01f;
     public float arc_Size = 0;

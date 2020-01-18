@@ -6,7 +6,10 @@ public class NemunoAttack : MonoBehaviour {
 
     //コンポーネント
     private Rigidbody2D _rigid;
+    private SpriteRenderer _sprite;
     private NemunoController _controller;
+    private NemunoShoot _shoot;
+    private NemunoSoundEffect _sound;
     private MoveTwoPoints _move_Two_Points;
 
     private float default_Gravity;    
@@ -17,7 +20,10 @@ public class NemunoAttack : MonoBehaviour {
     private void Awake() {
         //取得
         _rigid = GetComponent<Rigidbody2D>();
+        _sprite = GetComponent<SpriteRenderer>();
         _controller = GetComponent<NemunoController>();
+        _shoot = GetComponentInChildren<NemunoShoot>();
+        _sound = GetComponentInChildren<NemunoSoundEffect>();
         _move_Two_Points = GetComponent<MoveTwoPoints>();
 
         default_Gravity = _rigid.gravityScale;
@@ -25,7 +31,7 @@ public class NemunoAttack : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        StartCoroutine("Back_Jump_Cor", 1);
+        StartCoroutine(Long_Slash_Cor());
 	}
 
 
@@ -100,12 +106,42 @@ public class NemunoAttack : MonoBehaviour {
     }
 
 
-    private IEnumerator Close_Range_Slash() {
-        yield return null;
+    //近接攻撃、一回点滅後攻撃
+    private IEnumerator Close_Slash_Cor() {        
+        _controller.Change_Animation("SlashBool");
+
+        _sound.Play_Before_Slash_Sound();
+        yield return new WaitForSeconds(0.13f);
+        _sprite.color = new Color(0.7f, 0.7f, 0.7f);        
+        yield return new WaitForSeconds(0.13f);
+        _sprite.color = new Color(0.5f, 0.5f, 0.5f);
+        yield return new WaitForSeconds(0.25f);
+
+        _sound.Play_Slash_Sound();
+        yield return new WaitForSeconds(0.5f);
+
+        _controller.Change_Animation("IdleBool");
     }
 
-    private IEnumerator Long_Range_Slash() {
-        yield return null;
+    //遠距離攻撃、２回点滅後攻撃、ショット
+    private IEnumerator Long_Slash_Cor() {
+        yield return new WaitForSeconds(2.0f);
+        _controller.Change_Animation("SlashBool");
+
+        for(int i = 0; i < 2; i++) {
+            _sound.Play_Before_Slash_Sound();
+            yield return new WaitForSeconds(0.1f);
+            _sprite.color = new Color(0.7f, 0.7f, 0.7f);            
+            yield return new WaitForSeconds(0.1f);
+            _sprite.color = new Color(0.5f, 0.5f, 0.5f);
+        }
+        yield return new WaitForSeconds(0.1f);
+
+        _sound.Play_Slash_Sound();
+        _shoot.shoot_Shotgun();
+        yield return new WaitForSeconds(0.5f);
+
+        _controller.Change_Animation("IdleBool");
     }
 
 

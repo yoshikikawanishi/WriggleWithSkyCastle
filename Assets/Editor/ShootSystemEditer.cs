@@ -14,12 +14,13 @@ public class ShootSystemEditer : Editor {
         
         ShootSystem obj = target as ShootSystem;
 
+        //コメント        
+         obj.comment = EditorGUILayout.TextField("Comment", obj.comment);
         //基本設定
         obj.play_On_Awake = EditorGUILayout.Toggle("PlayOnAwake", obj.play_On_Awake);
         obj.bullet = (GameObject)EditorGUILayout.ObjectField("Bullet", obj.bullet, typeof(GameObject), false);
         obj.parent = (Transform)EditorGUILayout.ObjectField("Parent", obj.parent, typeof(Transform), true);
-        obj.lifeTime = EditorGUILayout.FloatField("LifeTime", obj.lifeTime);        
-        obj.max_Speed = EditorGUILayout.FloatField("MaxSpeed", obj.max_Speed);
+        obj.lifeTime = EditorGUILayout.FloatField("LifeTime", obj.lifeTime);                
         obj.offset = EditorGUILayout.Vector2Field("Offset", obj.offset);
         obj.default_Shoot_Sound = EditorGUILayout.Toggle("DefaultShootSound", obj.default_Shoot_Sound);
 
@@ -30,6 +31,8 @@ public class ShootSystemEditer : Editor {
         obj.other_Param = EditorGUILayout.Foldout(obj.other_Param, "Param");
         if (obj.other_Param == true) {
             EditorGUILayout.BeginVertical(GUI.skin.box);
+
+            obj.max_Speed = EditorGUILayout.FloatField("MaxSpeed", obj.max_Speed);
 
             switch (obj.kind) {
                 case ShootSystem.KIND.Odd:
@@ -68,8 +71,9 @@ public class ShootSystemEditer : Editor {
                     break;
 
             }
-            obj.connect_Num = EditorGUILayout.IntField("ConnectNum", obj.connect_Num);
-
+            EditorGUILayout.Space();
+            obj.angle_Noise = EditorGUILayout.FloatField("AngleNoise_Deg", obj.angle_Noise);
+            obj.speed_Noise = EditorGUILayout.FloatField("SpeedNoise", obj.speed_Noise);
             EditorGUILayout.EndVertical();
         }
 
@@ -79,6 +83,7 @@ public class ShootSystemEditer : Editor {
         obj.connect_Bullet = EditorGUILayout.Toggle("ConnectBullet", obj.connect_Bullet);
         if (obj.connect_Bullet) {
             EditorGUILayout.BeginVertical(GUI.skin.box);
+            obj.connect_Num = EditorGUILayout.IntField("ConnectNum", obj.connect_Num);            
             obj.speed_Diff = EditorGUILayout.FloatField("SpeedDiff", obj.speed_Diff);
             obj.angle_Diff = EditorGUILayout.FloatField("AngleDiff", obj.angle_Diff);
             EditorGUILayout.EndVertical();

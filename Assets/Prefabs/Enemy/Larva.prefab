@@ -510,7 +510,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   param:
-  - curve:
+  - comment: 
+    curve:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
@@ -537,7 +538,8 @@ MonoBehaviour:
     speed: 0.012
     arc_Size: 0
     is_Local_Position: 0
-  - curve:
+  - comment: 
+    curve:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
@@ -612,7 +614,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pos_Curve:
-  - x_Curve:
+  - comment: 
+    x_Curve:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
@@ -679,7 +682,8 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 0
     apply_Root_Position: 1
-  - x_Curve:
+  - comment: 
+    x_Curve:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
@@ -806,8 +810,11 @@ MonoBehaviour:
   bullet: {fileID: 1462937219074526, guid: 7491302ffd1b0e14a865430ba2109e07, type: 2}
   parent: {fileID: 0}
   max_Speed: 80
+  speed_Noise: 0
+  angle_Noise: 0
   lifeTime: 10
   offset: {x: 0, y: 0}
+  default_Shoot_Sound: 0
   is_Acceleration: 1
   velocity_Forward:
     serializedVersion: 2

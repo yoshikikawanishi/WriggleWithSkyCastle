@@ -16,10 +16,13 @@ public class ShootSystem : MonoBehaviour {
     public KIND kind;
 
     //基本設定
+    public string comment = "";
     public bool play_On_Awake = false;
     public GameObject bullet = null;
     public Transform parent = null;
     public float max_Speed;
+    public float speed_Noise = 0;
+    public float angle_Noise = 0;
     public float lifeTime = 5;
     public Vector2 offset = new Vector2(0, 0);
     public bool default_Shoot_Sound = false;
@@ -258,6 +261,8 @@ public class ShootSystem : MonoBehaviour {
     public List<GameObject> Turn_Shoot_Bullet(float angle_Deg) {
         List<GameObject> bullet_List = new List<GameObject>();
         float speed = max_Speed;
+        float speed_Noise = Random.Range(-this.speed_Noise, this.speed_Noise);
+        float angle_Noise = Random.Range(-this.angle_Noise, this.angle_Noise);
 
         for (int i = 0; i < connect_Num; i++) {
             var bullet = bullet_Pool.GetObject();                               //生成
@@ -265,9 +270,10 @@ public class ShootSystem : MonoBehaviour {
             bullet.transform.SetParent(parent);                                 //親オブジェクト        
             bullet.transform.position = transform.position + (Vector3)offset;   //座標
             bullet.transform.rotation = new Quaternion(0, 0, 0, 0);
-            bullet.transform.Rotate(new Vector3(0, 0, 1), angle_Deg);           //回転
-
-            bullet.GetComponent<Rigidbody2D>().velocity = bullet.transform.right * speed;     //初速
+            angle_Noise = Random.Range(-this.angle_Noise, this.angle_Noise);    //回転
+            bullet.transform.Rotate(new Vector3(0, 0, 1), angle_Deg + angle_Noise);           
+            speed_Noise = Random.Range(-this.speed_Noise, this.speed_Noise);    //初速 
+            bullet.GetComponent<Rigidbody2D>().velocity = bullet.transform.right * (speed + speed_Noise);
             //寿命
             if (lifeTime > 0) {
                 Delete_Bullet(bullet, lifeTime);                       

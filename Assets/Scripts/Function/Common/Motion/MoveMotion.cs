@@ -4,6 +4,7 @@ using UnityEngine;
 
 [System.Serializable]
 public class Curve {
+    public string comment;
     public AnimationCurve x_Curve;
     public AnimationCurve y_Curve;
     public bool apply_Root_Position;
