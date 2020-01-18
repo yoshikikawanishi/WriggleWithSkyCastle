@@ -40,9 +40,13 @@ public class NemunoController : MonoBehaviour {
     //アニメーション変更
     public void Change_Animation(string next) {
         foreach(AnimatorControllerParameter param in _anim.parameters) {
-            _anim.SetBool(param.name, false);
+            if(param.name.Contains("Bool"))
+                _anim.SetBool(param.name, false);            
         }
-        _anim.SetBool(next, true);
+        if(next.Contains("Bool"))
+            _anim.SetBool(next, true);
+        if (next.Contains("Trigger"))
+            _anim.SetTrigger(next);
     }
 
 
@@ -50,4 +54,28 @@ public class NemunoController : MonoBehaviour {
     public void Start_Battle() {
         start_Battle = true;
     }
+
+
+    //-------------エフェクト--------------
+    public void Play_Charge_Effect(float duration) {
+        transform.Find("Effects").GetChild(0).gameObject.SetActive(true);
+        Invoke("Stop_Charge_Effect", duration);
+    }
+
+    public void Stop_Charge_Effect() {
+        transform.Find("Effects").GetChild(0).gameObject.SetActive(false);
+    }
+
+    public void Play_Small_Charge_Effect() {
+        transform.Find("Effects").GetChild(1).GetComponent<ParticleSystem>().Play();
+    }
+
+    public void Play_Burst_Effect() {
+        transform.Find("Effects").GetChild(2).GetComponent<ParticleSystem>().Play();
+    }
+
+    public void Play_Small_Burst_Effect() {
+        transform.Find("Effects").GetChild(3).GetComponent<ParticleSystem>().Play();
+    }
+
 }

@@ -31,7 +31,7 @@ public class NemunoAttack : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        StartCoroutine(Long_Slash_Cor());
+        StartCoroutine(Barrier_Walk_Cor(1));
 	}
 
 
@@ -141,6 +141,34 @@ public class NemunoAttack : MonoBehaviour {
         _shoot.shoot_Shotgun();
         yield return new WaitForSeconds(0.5f);
 
+        _controller.Change_Animation("IdleBool");
+    }
+
+
+    //バリアを張って歩く
+    // direction == 1 で左端まで歩く、1で右端
+    private IEnumerator Barrier_Walk_Cor(int direction) {
+        transform.localScale = new Vector3(direction, 1, 1);
+        //溜めモーション
+        _controller.Change_Animation("BeforeBarrierTrigger");        
+        for (int i = 0; i < 3; i++) {
+            _sound.Play_Before_Slash_Sound();
+            yield return new WaitForSeconds(0.15f);
+            _sprite.color = new Color(0.7f, 0.7f, 0.7f);
+            yield return new WaitForSeconds(0.15f);
+            _sprite.color = new Color(0.5f, 0.5f, 0.5f);
+        }
+
+        //バリアを張る
+        _controller.Change_Animation("IdleBool");
+        yield return new WaitForSeconds(1.0f);
+
+        //歩く
+        _controller.Change_Animation("DashBool");
+        _move_Two_Points.Start_Move(new Vector3(-160f * direction, transform.position.y), 1);
+        yield return new WaitUntil(_move_Two_Points.End_Move);
+
+        //バリア解除
         _controller.Change_Animation("IdleBool");
     }
 
