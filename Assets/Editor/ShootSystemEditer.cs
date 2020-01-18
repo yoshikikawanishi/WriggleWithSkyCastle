@@ -21,6 +21,7 @@ public class ShootSystemEditer : Editor {
         obj.lifeTime = EditorGUILayout.FloatField("LifeTime", obj.lifeTime);        
         obj.max_Speed = EditorGUILayout.FloatField("MaxSpeed", obj.max_Speed);
         obj.offset = EditorGUILayout.Vector2Field("Offset", obj.offset);
+        obj.default_Shoot_Sound = EditorGUILayout.Toggle("DefaultShootSound", obj.default_Shoot_Sound);
 
         EditorGUILayout.Space();
 

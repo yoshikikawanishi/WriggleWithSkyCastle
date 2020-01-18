@@ -77,6 +77,7 @@ public class PlayerShoot : MonoBehaviour {
             bullet.transform.localScale = transform.localScale;
             bullet.GetComponent<Rigidbody2D>().velocity = new Vector2(bullet_Speed * transform.localScale.x, 0);
             player_SE.Play_Shoot_Sound();
+            bullet.GetComponent<Bullet>().Set_Inactive(10);
         }
     }
 
@@ -96,24 +97,29 @@ public class PlayerShoot : MonoBehaviour {
         else 
             shoot_Num = 5;        
 
-        //弾の種類、速度、幅        
+        //弾の種類、速度、幅、弾        
         switch (option) {
             case PlayerManager.Option.none:
                 Set_Shoot_Status(normal_Bullet, 900f, 12f);
                 break;
             case PlayerManager.Option.bee:
-                Set_Shoot_Status(bee_Bullet, 1000f, 6f);
+                Set_Shoot_Status(bee_Bullet, 1000f, 6f);                
                 break;
             case PlayerManager.Option.butterfly:                
                 Set_Shoot_Status(butterfly_Bullet, 700f, 12f);
+                shoot_Num--;
                 break;
             case PlayerManager.Option.mantis:                
                 Set_Shoot_Status(mantis_Bullet, 700f, 8f);
                 break;
             case PlayerManager.Option.spider:
                 Set_Shoot_Status(spider_Bullet, 400f, 24f);
+                shoot_Num++;
                 break;
         }
+
+        if (shoot_Num <= 0)
+            shoot_Num = 1;
     }
 
 

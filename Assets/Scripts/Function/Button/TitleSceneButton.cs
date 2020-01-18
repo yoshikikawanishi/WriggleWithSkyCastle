@@ -61,6 +61,13 @@ public class TitleSceneButton : MonoBehaviour {
         }        
     }
 
+    //プレイヤーデータボタン
+    public void Player_Data_Button() {
+        if (InputManager.Instance.GetKeyDown(Key.Jump)) {
+            SceneManager.LoadScene("PlayerDataScene");
+        }
+    }
+
 
     //設定ボタン
     public void Setting_Button() {

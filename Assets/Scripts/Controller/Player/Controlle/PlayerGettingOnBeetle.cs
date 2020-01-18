@@ -41,80 +41,37 @@ public class PlayerGettingOnBeetle : MonoBehaviour {
     #region Get On Beetle
 
     //カブトムシに乗る
-    public void Get_On_Beetle(bool is_Stop_Time) {
+    public void Get_On_Beetle() {
         if (!can_Get_On_Beetle) {
             return;
         }
         _controller.is_Ride_Beetle = true;
-        if (is_Stop_Time) {
-            StopAllCoroutines();
-            StartCoroutine("Get_On_Beetle_Cor");
-        }
-        else {
-            Change_To_Beetle_Status();
-        }
+        StopAllCoroutines();
+        StartCoroutine("Get_On_Beetle_Cor");
     }
 
     private IEnumerator Get_On_Beetle_Cor() {
         can_Get_On_Beetle = false;
 
-        //時間停止
-        Time.timeScale = 0;
-        PauseManager.Instance.Set_Is_Pausable(false);
-        
-        //カブトムシ登場        
-        StartCoroutine("Appear_Beetle_Cor");
         player_Effect.Start_Ridding_Beetle_Effect();
-
-        for (float t = 0; t < 0.8f; t += 0.016f) { yield return null; }
-
-        player_Effect.Stop_Ridding_Beetle_Effect();
-        
-        //ステータス変更
+        _controller.Change_Animation("RideBeetleBool");
         Change_To_Beetle_Status();
 
-        PauseManager.Instance.Set_Is_Pausable(true);
-        Time.timeScale = 1;
-
-        beetle.SetActive(false);
+        yield return new WaitForSeconds(0.4f);
+        player_Effect.Stop_Ridding_Beetle_Effect();        
+        
         can_Get_On_Beetle = true;
     }
 
-    //カブトムシ登場
-    public IEnumerator Appear_Beetle_Cor() {
-        //向き
-        int direction = _controller.Get_Beetle_Direction();
-        //生成
-        if (beetle == null)
-            beetle = Instantiate(beetle_Prefab);
-        else
-            beetle.SetActive(true);
-        beetle.transform.position = main_Camera.transform.position + new Vector3(-280f * direction, 140f);
-        beetle.transform.localScale = new Vector3(direction, 1, 1);
-        //移動 
-        float speed = 0.025f;    //速度
-        float now_Location = 0;  //現在の移動距離割合
-        Vector3 start_Pos = beetle.transform.position;
-        Vector3 next_Pos = gameObject.transform.position;
-        Vector3 pos = start_Pos;
-        while (now_Location <= 1) {
-            now_Location += speed;
-            pos = Vector3.Lerp(start_Pos, next_Pos, now_Location);  //直線の軌道
-            pos += new Vector3(0, -48 * Mathf.Sin(now_Location * Mathf.PI), 0); //弧の軌道
-            beetle.transform.position = pos;
-            yield return null;
-        }
-    }
 
     //ステータス変更
     private void Change_To_Beetle_Status() {
-        transform.SetParent(main_Camera.transform);                                         //カメラの子に
-        _controller.Change_Animation("RideBeetleBool");                                     //アニメーション
+        transform.SetParent(main_Camera.transform);                                         //カメラの子に        
         GetComponent<Rigidbody2D>().gravityScale = 0;                                       //重力
         body_Collision.Change_Collider_Size(new Vector2(6f, 6f), default_Collider_Offset);  //当たり判定
         body_Collision.Display_Sprite();
         beetle_Body.SetActive(true);
-        main_Camera.GetComponent<CameraController>().Start_Auto_Scroll(scroll_Speed);  //オートスクロール
+        main_Camera.GetComponent<CameraController>().Start_Auto_Scroll(scroll_Speed);  //オートスクロール        
     }
 
     #endregion
@@ -140,7 +97,7 @@ public class PlayerGettingOnBeetle : MonoBehaviour {
         StartCoroutine("Leaving_Beetle_Cor");        
         _controller.is_Ride_Beetle = false;
 
-        yield return new WaitForSeconds(0.8f);
+        yield return new WaitForSeconds(0.4f);
         can_Get_On_Beetle = true;
     }
 
@@ -156,7 +113,7 @@ public class PlayerGettingOnBeetle : MonoBehaviour {
         beetle.transform.position = gameObject.transform.position;
         beetle.transform.localScale = new Vector3(direction, 1, 1);
         //移動 
-        float speed = 0.025f;    //速度
+        float speed = 0.035f;    //速度
         float now_Location = 0;  //現在の移動距離割合
         Vector3 start_Pos = gameObject.transform.position;
         Vector3 next_Pos = main_Camera.transform.position + new Vector3(280f * direction, 160f);

@@ -9,6 +9,7 @@ public class BossEnemy : MonoBehaviour {
     private PutOutSmallItems _put_Out_Item;
     private SpriteRenderer _sprite;
     private CameraShake _camera_Shake;
+    private PoisonedEnemy poisoned_Enemy;
 
     //体力
     public List<int> life = new List<int>();
@@ -38,13 +39,14 @@ public class BossEnemy : MonoBehaviour {
         _put_Out_Item   = gameObject.AddComponent<PutOutSmallItems>();
         _sprite         = GetComponent<SpriteRenderer>();
         _camera_Shake   = GameObject.FindWithTag("MainCamera").GetComponent<CameraShake>();
+        poisoned_Enemy  = gameObject.AddComponent<PoisonedEnemy>();
         //初期値代入
         DEFAULT_LIFE = new List<int>(life);
     }    
 
 
     //被弾時の処理
-    public void Damaged(int damage) {
+    public void Damaged(int damage, string damaged_Tag) {
         if (is_Cleared) {
             return;
         }
@@ -56,6 +58,10 @@ public class BossEnemy : MonoBehaviour {
         if(life[now_Phase - 1] > 0) {
             life[now_Phase - 1] -= damage;
             Play_Damaged_Effect();
+        }
+        //毒ダメージ
+        if(damaged_Tag == "PlayerSpiderAttackTag") {
+            poisoned_Enemy.Start_Poisoned_Damaged(true);
         }
         //フェーズ終了
         if(life[now_Phase - 1] <= 0) {            

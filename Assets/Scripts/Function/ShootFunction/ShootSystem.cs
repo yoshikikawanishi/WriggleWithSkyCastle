@@ -22,6 +22,7 @@ public class ShootSystem : MonoBehaviour {
     public float max_Speed;
     public float lifeTime = 5;
     public Vector2 offset = new Vector2(0, 0);
+    public bool default_Shoot_Sound = false;
 
     public bool is_Acceleration = false;
     public AnimationCurve velocity_Forward;
@@ -110,6 +111,9 @@ public class ShootSystem : MonoBehaviour {
             for (float t = 0; t < duration; t += 1 / shoot_Rate) {
                 angle = center_Angle_Deg + Random.Range(-arc_Deg / 2, arc_Deg / 2);
                 Turn_Shoot_Bullet(angle);
+                if (default_Shoot_Sound)
+                    UsualSoundManager.Instance.Play_Shoot_Sound_Small();
+                
                 yield return new WaitForSeconds(1 / shoot_Rate);
             }
             angle += center_Angle_Diff;
@@ -128,6 +132,9 @@ public class ShootSystem : MonoBehaviour {
             for (float t = 0; t < duration; t += 1 / shoot_Rate) {
                 Turn_Shoot_Bullet(angle);
                 angle += inter_Angle_Deg;
+                if (default_Shoot_Sound)
+                    UsualSoundManager.Instance.Play_Shoot_Sound_Small();
+
                 yield return new WaitForSeconds(1 / shoot_Rate);
             }
             angle += center_Angle_Diff;
@@ -160,6 +167,9 @@ public class ShootSystem : MonoBehaviour {
             angle += inter_Angle_Deg;            
         }
 
+        if (default_Shoot_Sound)
+            UsualSoundManager.Instance.Play_Shoot_Sound();
+
         return bullet_List;
     }
 
@@ -185,6 +195,9 @@ public class ShootSystem : MonoBehaviour {
             angle += inter_Angle_Deg;
         }
 
+        if (default_Shoot_Sound)
+            UsualSoundManager.Instance.Play_Shoot_Sound();
+
         return bullet_List;
     }
 
@@ -201,6 +214,10 @@ public class ShootSystem : MonoBehaviour {
             bullet_List.AddRange(Turn_Shoot_Bullet(angle));
             bullet_List.Add(bullet);
         }
+
+        if (default_Shoot_Sound)
+            UsualSoundManager.Instance.Play_Shoot_Sound();
+
         return bullet_List;
     }
 
@@ -225,6 +242,10 @@ public class ShootSystem : MonoBehaviour {
             float angle = center_Angle_Deg + inter_Angle_Deg * (i - center);            
             bullet_List.AddRange(Turn_Shoot_Bullet(angle));            
         }
+
+        if (default_Shoot_Sound)
+            UsualSoundManager.Instance.Play_Shoot_Sound();
+
         return bullet_List;
     }
 

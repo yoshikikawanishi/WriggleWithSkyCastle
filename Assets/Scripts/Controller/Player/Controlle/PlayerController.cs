@@ -32,7 +32,6 @@ public class PlayerController : MonoBehaviour {
 
     private int attack_Frame_Count = 0;
     private int charge_Attack_Frame_Count = 0;
-    private int kick_Frame_Count = 0;
 
     private string now_Animator_Parameter = "IdleBool";
 
@@ -124,7 +123,7 @@ public class PlayerController : MonoBehaviour {
         Attack();
         //カブトムシに乗る
         if (input.GetKeyDown(Key.Fly) && BeetlePowerManager.Instance.Get_Beetle_Power() > 0) {
-            _getting_On_Beetle.Get_On_Beetle(true);
+            _getting_On_Beetle.Get_On_Beetle();
             is_Played_Alert = false;    //警告音を鳴らしたかどうかをリセット
         }
 

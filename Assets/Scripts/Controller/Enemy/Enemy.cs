@@ -21,17 +21,11 @@ public class Enemy : MonoBehaviour {
     private Color default_Color;
     private BlowingEnemy blowing_Enemy;
     private SpiderFootingEnemy spider_Footing_Enemy;
+    private PoisonedEnemy poisoned_Enemy;
 
     private bool is_Exist = true;
     private int default_Life;
-    
-    public enum VanishAction {
-        normal,
-        blowed,
-        spider,
-    }
-    [HideInInspector] public VanishAction vanish_Action;
-    
+       
 
 	// Use this for initialization
 	void Awake () {
@@ -41,6 +35,7 @@ public class Enemy : MonoBehaviour {
         default_Life = life;
         blowing_Enemy = gameObject.AddComponent<BlowingEnemy>();
         spider_Footing_Enemy = gameObject.AddComponent<SpiderFootingEnemy>();
+        poisoned_Enemy = gameObject.AddComponent<PoisonedEnemy>();
     }
 
 
@@ -54,13 +49,19 @@ public class Enemy : MonoBehaviour {
 
 
     //被弾時の処理
-    public virtual void Damaged(int damage) {
+    public virtual void Damaged(int damage, string attacked_Tag) {
         life -= damage;
+        //毒ダメージ発生
+        if(attacked_Tag == "PlayerSpiderAttackTag") {
+            poisoned_Enemy.Start_Poisoned_Damaged(false);
+        }
+        //消滅
         if (life <= 0 && is_Exist) {
-            Vanish_Action();
+            Vanish_Action(attacked_Tag);
             is_Exist = false;
             return;
         }
+        //被弾時の点滅
         if (is_Exist) {
             StartCoroutine("Blink");
         }
@@ -69,11 +70,11 @@ public class Enemy : MonoBehaviour {
 
     //消滅前のアクション
     // EnemyCollisionDetectionのDamagedで変更
-    private void Vanish_Action() {
-        if(vanish_Action == VanishAction.blowed && is_Blowed) {
+    private void Vanish_Action(string attacked_Tag) {
+        if(attacked_Tag == "PlayerButterflyAttackTag" && is_Blowed) {
             blowing_Enemy.Blow_Away_Vanish();
         }
-        else if(vanish_Action == VanishAction.spider) {
+        else if(attacked_Tag == "PlayerSpiderAttackTag") {
             spider_Footing_Enemy.Generate_Footing_Vanish();
         }
         else {

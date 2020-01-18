@@ -11,7 +11,7 @@ public class EnemyCollisionDetection : MonoBehaviour {
         {"PlayerAttackTag"  , 10 },
         {"PlayerChargeAttackTag", 20 },
         {"PlayerButterflyAttackTag", 8 },
-        { "PlayerSpiderAttackTag", 8 },
+        { "PlayerSpiderAttackTag", 6 },
         {"PlayerKickTag"  , 10 },
         {"PlayerBulletTag"  , 1 },
         {"PlayerChargeBulletTag"  , 10},
@@ -51,15 +51,7 @@ public class EnemyCollisionDetection : MonoBehaviour {
     protected virtual void Damaged(string key) {
         //ダメージの計算
         int damage = (int)(damaged_Tag_Dictionary[key] * Damage_Rate());
-
-        //消滅するときに行う処理の決定        
-        _enemy.vanish_Action = Enemy.VanishAction.normal;
-        if (key == "PlayerButterflyAttackTag")
-            _enemy.vanish_Action = Enemy.VanishAction.blowed;
-        else if (key == "PlayerSpiderAttackTag")
-            _enemy.vanish_Action = Enemy.VanishAction.spider;
-
-        _enemy.Damaged(damage);
+        _enemy.Damaged(damage, key);
     }
 
 

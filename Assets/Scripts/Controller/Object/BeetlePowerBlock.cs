@@ -31,7 +31,7 @@ public class BeetlePowerBlock : MonoBehaviour {
     }
 
     private void Damaged() {
-        BeetlePowerManager.Instance.StartCoroutine("Increase_Cor", 10);
+        BeetlePowerManager.Instance.StartCoroutine("Increase_Cor", 20);
         //エフェクト
         StartCoroutine(Shake_Cor());
         GameObject main_Camera = GameObject.FindWithTag("MainCamera");

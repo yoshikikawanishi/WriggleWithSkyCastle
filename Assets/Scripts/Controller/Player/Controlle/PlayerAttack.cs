@@ -8,7 +8,6 @@ public class PlayerAttack : MonoBehaviour {
     //コンポーネント
     private PlayerController _controller;
     private PlayerSoundEffect player_SE;
-    private PlayerEffect player_Effect;
     private Animator _anim;
     private Rigidbody2D _rigid;
     private PlayerAttackCollision attack_Collision;
@@ -23,7 +22,6 @@ public class PlayerAttack : MonoBehaviour {
         //取得
         _controller = GetComponent<PlayerController>();
         player_SE = GetComponentInChildren<PlayerSoundEffect>();
-        player_Effect = GetComponentInChildren<PlayerEffect>();
         _anim = GetComponent<Animator>();
         _rigid = GetComponent<Rigidbody2D>();
         attack_Collision = GetComponentInChildren<PlayerAttackCollision>();
@@ -90,10 +88,12 @@ public class PlayerAttack : MonoBehaviour {
     //オプションが蜂の時のショット    
     private void Bee_Shoot() {
         ObjectPool bullet_Pool = ObjectPoolManager.Instance.Get_Pool("PlayerBeeBullet");
-        var bullet = bullet_Pool.GetObject();
-        bullet.transform.position = transform.position;
-        bullet.transform.localScale = transform.localScale;
-        bullet.GetComponent<Rigidbody2D>().velocity = new Vector2(900f * transform.localScale.x, 0);
+        for (int i = 0; i < 2; i++) {
+            var bullet = bullet_Pool.GetObject();
+            bullet.transform.position = transform.position + new Vector3(0, i * 6f);
+            bullet.transform.localScale = transform.localScale;
+            bullet.GetComponent<Rigidbody2D>().velocity = new Vector2(900f * transform.localScale.x, 0);
+        }
         player_SE.Play_Shoot_Sound();
     }
     

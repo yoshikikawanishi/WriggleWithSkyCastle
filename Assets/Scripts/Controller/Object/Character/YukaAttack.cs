@@ -108,7 +108,7 @@ public class YukaAttack : MonoBehaviour {
     private IEnumerator Play_Guide_Message(int start_ID, int end_ID) {
         MessageDisplay _message = GetComponent<MessageDisplay>();
         Time.timeScale = 0;
-        _message.Start_Display_Auto("YukaText", start_ID, end_ID, 1.0f, 0.07f);
+        _message.Start_Display_Auto("YukaText", start_ID, end_ID, 1.0f, 0.05f);
         yield return new WaitUntil(_message.End_Message);
         Time.timeScale = 1;
     }
@@ -151,6 +151,8 @@ public class YukaAttack : MonoBehaviour {
         bullet.transform.position = new Vector3(camera.transform.position.x + offset_X, 180f, 0);
         bullet.GetComponent<Rigidbody2D>().velocity = new Vector2(0, -80f);
         bullet.GetComponent<Bullet>().Set_Inactive(5.0f);
+
+        UsualSoundManager.Instance.Play_Shoot_Sound();
     }
 
 
