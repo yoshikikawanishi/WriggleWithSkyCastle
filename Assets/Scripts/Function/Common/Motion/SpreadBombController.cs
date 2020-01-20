@@ -28,6 +28,9 @@ public class SpreadBombController : MonoBehaviour {
             transform.localScale += new Vector3(spread_Speed, spread_Speed, 0);
         }
         transform.Rotate(0, 0, angler_Velocity);
+
+        if (_sprite == null)
+            return;
         if (life_Time > 0) {
             _sprite.color -= new Color(0, 0, 0, 1.1f / life_Time * Time.deltaTime);
         }

@@ -1,9 +1,2 @@
 #SceneName
 Stage1_1Scene
-Stage2_1Scene
-Stage2_2Scene
-TitleScene
-ConfigScene
-PlayerDataScene
-Stage1_BossScene
-PlayGuide2Scene

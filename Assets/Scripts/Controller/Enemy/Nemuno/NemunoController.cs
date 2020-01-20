@@ -23,6 +23,8 @@ public class NemunoController : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+        Debug.Log("BossBattleTest");
+        start_Battle = true;
 	}
 	
 

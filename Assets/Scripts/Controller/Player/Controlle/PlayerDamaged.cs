@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class PlayerDamaged : MonoBehaviour {
 
+    //被弾時の弾消しボム
+    [SerializeField] private GameObject bomb_Prefab;    
+
     //コンポーネント
     private PlayerSoundEffect player_SE;    
 
@@ -34,7 +37,8 @@ public class PlayerDamaged : MonoBehaviour {
         StartCoroutine("Blink");                                    //点滅
         player_SE.Play_Damaged_Sound();                             //効果音
         Occure_Knock_Back();                                        //反動
-        body_Collision.Become_Invincible();                         //無敵化     
+        body_Collision.Become_Invincible();                         //無敵化  
+        Play_Delete_Bullet_Bomb();                                  //弾消しようのボム
 
         yield return new WaitForSeconds(invincible_Time_Length + 1.0f);    //無敵時間
 
@@ -75,6 +79,14 @@ public class PlayerDamaged : MonoBehaviour {
             Vector2 velocity = new Vector2(Random.Range(-15f, 15f) * i, Random.Range(300f, 500f));
             p.GetComponent<Rigidbody2D>().velocity = velocity;
         }
+    }
+
+
+    //ボムを出す
+    private void Play_Delete_Bullet_Bomb() {        
+        var bomb = Instantiate(bomb_Prefab);
+        bomb.transform.position = transform.position;
+        bomb.transform.localScale = new Vector3(1, 1, 1);
     }
 
 
