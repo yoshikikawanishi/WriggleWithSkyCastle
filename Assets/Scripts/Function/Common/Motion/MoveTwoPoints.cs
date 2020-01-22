@@ -74,4 +74,15 @@ public class MoveTwoPoints : MonoBehaviour {
         return false;        
     }
 
+
+    //ステータスの変更
+    public void Change_Paramter(float speed, float arc_Size, int index) {
+        this.param[index].speed = speed;
+        this.param[index].arc_Size = arc_Size;
+    }
+
+    //速度変化の変更
+    public void Change_Transition_Curve(AnimationCurve curve, int index) {
+        this.param[index].curve = curve;
+    }
 }

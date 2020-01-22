@@ -19,7 +19,7 @@ public class NemunoShoot : MonoBehaviour {
         //取得
         _accelerator = GetComponent<BulletAccelerator>();
         //オブジェクトプール
-        ObjectPoolManager.Instance.Create_New_Pool(yellow_Rice_Bullet, 32);
+        ObjectPoolManager.Instance.Create_New_Pool(yellow_Rice_Bullet, 48);
 	}
 	
 	
@@ -51,22 +51,22 @@ public class NemunoShoot : MonoBehaviour {
         Vector3 pos = transform.position + new Vector3(transform.parent.localScale.x * -24f, 0);
 
         //弾の生成
-        for (int i = 0; i < 32; i++) {
+        for (int i = 0; i < 48; i++) {
             var bullet = ObjectPoolManager.Instance.Get_Pool(yellow_Rice_Bullet).GetObject();
             bullet.transform.position = pos + new Vector3(0, -21f + i * 1.5f);
             bullet_List.Add(bullet);
-            yield return new WaitForSeconds(0.005f);
+            yield return new WaitForSeconds(0.004f);
         }
         yield return new WaitForSeconds(0.3f);
 
         //回転と加速
         float angle = 0, speed = 0;
-        for (int i = 0; i < 32; i++) {
+        for (int i = 0; i < 48; i++) {
             if (bullet_List[i].activeSelf == false)
                 continue;
             angle = Random.Range(-180f, 180f);
             bullet_List[i].transform.Rotate(new Vector3(0, 0, angle));
-            speed = Random.Range(0.8f, 1.5f);
+            speed = Random.Range(0.6f, 1.5f);
             bullet_List[i].GetComponent<Rigidbody2D>().velocity = bullet_List[i].transform.right * speed;
         }
         _accelerator.Accelerat_Bullet(bullet_List, 1.05f, 1.5f);

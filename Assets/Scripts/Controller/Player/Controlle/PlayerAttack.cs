@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour {
 
+    [SerializeField] private GameObject mantis_Attack_Bullet;
 
     //コンポーネント
     private PlayerController _controller;
@@ -26,7 +27,9 @@ public class PlayerAttack : MonoBehaviour {
         _rigid = GetComponent<Rigidbody2D>();
         attack_Collision = GetComponentInChildren<PlayerAttackCollision>();
         kick_Collision = GetComponentInChildren<PlayerKickCollision>();
-        player_Manager = PlayerManager.Instance;        
+        player_Manager = PlayerManager.Instance;
+        //オブジェクトプール
+        ObjectPoolManager.Instance.Create_New_Pool(mantis_Attack_Bullet, 5);
     }
 
 
@@ -35,12 +38,12 @@ public class PlayerAttack : MonoBehaviour {
     //攻撃用フィールド変数
     private float attack_Time = 0.18f;
     private float attack_Span = 0.17f;
-    private bool hit_Stop = true;
+    private bool knock_Back = true;
 
-    private void Set_Attack_Status(float attack_Time, float attack_Span, bool hit_Stop) {
+    private void Set_Attack_Status(float attack_Time, float attack_Span, bool knock_Back) {
         this.attack_Time = attack_Time;
         this.attack_Span = attack_Span;
-        this.hit_Stop = hit_Stop;
+        this.knock_Back = knock_Back;
     }
 
 
@@ -51,7 +54,7 @@ public class PlayerAttack : MonoBehaviour {
             switch (player_Manager.Get_Option()) {
                 case PlayerManager.Option.none:     Set_Attack_Status(0.18f, 0.17f, true); break;
                 case PlayerManager.Option.bee:      Set_Attack_Status(0.10f, 0.08f, true); break;
-                case PlayerManager.Option.butterfly: Set_Attack_Status(0.18f, 0.17f, false); break;
+                case PlayerManager.Option.butterfly: Set_Attack_Status(0.18f, 0.13f, false); break;
                 case PlayerManager.Option.mantis:   Set_Attack_Status(0.24f, 0.40f, true); break;
                 case PlayerManager.Option.spider:   Set_Attack_Status(0.18f, 0.17f, true); break;
             }
@@ -69,6 +72,10 @@ public class PlayerAttack : MonoBehaviour {
 
         if (player_Manager.Get_Option() == PlayerManager.Option.bee)    //オプションが蜂の時ショット
             Bee_Shoot();
+        else if (player_Manager.Get_Option() == PlayerManager.Option.mantis) //オプションがカマキリの時ショット
+            Mantis_Shoot();
+        else if (player_Manager.Get_Option() == PlayerManager.Option.butterfly)  //オプションがチョウの時浮く
+            _rigid.velocity = new Vector2(_rigid.velocity.x, 200f);
 
         _rigid.velocity += new Vector2(transform.localScale.x * 5f, 0); //Rigidbodyのスリープ状態を解除する
         for (float t = 0; t < attack_Time; t += Time.deltaTime) {
@@ -88,27 +95,44 @@ public class PlayerAttack : MonoBehaviour {
     //オプションが蜂の時のショット    
     private void Bee_Shoot() {
         ObjectPool bullet_Pool = ObjectPoolManager.Instance.Get_Pool("PlayerBeeBullet");
-        for (int i = 0; i < 2; i++) {
+        for (int i = 0; i < 3; i++) {
             var bullet = bullet_Pool.GetObject();
-            bullet.transform.position = transform.position + new Vector3(0, i * 6f);
+            bullet.transform.position = transform.position + new Vector3(0, -6f + i * 6f);
             bullet.transform.localScale = transform.localScale;
             bullet.GetComponent<Rigidbody2D>().velocity = new Vector2(900f * transform.localScale.x, 0);
+        }
+        player_SE.Play_Shoot_Sound();
+    }
+
+    //オプションがカマキリの時ショット
+    private void Mantis_Shoot() {
+        ObjectPool bullet_Pool = ObjectPoolManager.Instance.Get_Pool("PlayerMantisAttackBullet");
+        float angle;
+        Vector3 pos;
+        for(int i = 0; i < 8; i++) {
+            var bullet = bullet_Pool.GetObject();
+            angle = Random.Range(-30f, 70f) * Mathf.Deg2Rad;
+            pos = new Vector2(Mathf.Cos(angle) * transform.localScale.x, Mathf.Sin(angle) * 0.5f) * 24f;
+            bullet.transform.position = transform.position + pos;
+            bullet.GetComponent<Rigidbody2D>().velocity = (bullet.transform.position - transform.position) * Random.Range(20f, 50f);
+            bullet.GetComponent<Bullet>().Set_Inactive(5.0f);
         }
         player_SE.Play_Shoot_Sound();
     }
     
     //敵と衝突時の処理
     private IEnumerator Do_Hit_Attack_Process() {
-        float force = _controller.is_Landing ? 170f : 30f;                  //ノックバック
-        _rigid.velocity = new Vector2(force * -transform.localScale.x, 10f);
-        BeetlePowerManager.Instance.StartCoroutine("Increase_Cor", 8);      //緑パワーの増加
-        player_SE.Play_Hit_Attack_Sound();                                  //効果音        
-        if (hit_Stop) {                                                     //ヒットストップ
-            float tmp = Time.timeScale;
-            Time.timeScale = 0.5f;
-            yield return new WaitForSeconds(0.05f);
-            Time.timeScale = tmp;
+        if (knock_Back) {
+            float force = _controller.is_Landing ? 170f : 30f;                  //ノックバック
+            _rigid.velocity = new Vector2(force * -transform.localScale.x, 10f);
         }
+        BeetlePowerManager.Instance.StartCoroutine("Increase_Cor", 8);      //緑パワーの増加
+        player_SE.Play_Hit_Attack_Sound();                                  //効果音                                                               
+        float tmp = Time.timeScale;                                         //ヒットストップ
+        Time.timeScale = 0.5f;
+        yield return new WaitForSeconds(0.05f);
+        Time.timeScale = tmp;
+
     }
 
     #endregion 

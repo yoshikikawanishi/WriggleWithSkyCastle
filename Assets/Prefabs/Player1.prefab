@@ -2358,6 +2358,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ed5a45d3592e2c41914651162845896, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mantis_Attack_Bullet: {fileID: 1442723051553964, guid: a88133849503c794fa0e2bd55522f1e5,
+    type: 2}
 --- !u!198 &198061559200902938
 ParticleSystem:
   m_ObjectHideFlags: 1

@@ -10,5 +10,7 @@ public class InstanceObject : MonoBehaviour {
         obj1.transform.position = new Vector3(1, 1, 0);
         var obj2 = GameObject.Instantiate(Resources.Load("UsualSounds") as GameObject);
         obj2.transform.position = new Vector3(1, 1, 0);
+        var obj3 = GameObject.Instantiate(Resources.Load("BGM") as GameObject);
+        obj3.transform.position = new Vector3(1, 1, 0);
     }
 }

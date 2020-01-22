@@ -6,6 +6,8 @@ public class NemunoController : MonoBehaviour {
 
     //コンポーネント
     private Animator _anim;
+    private Rigidbody2D _rigid;
+    private CapsuleCollider2D _collider;
     private BossEnemy _boss_Controller;
     private NemunoAttack _attack;
 
@@ -16,6 +18,8 @@ public class NemunoController : MonoBehaviour {
     private void Awake() {
         //取得
         _anim = GetComponent<Animator>();
+        _rigid = GetComponent<Rigidbody2D>();
+        _collider = GetComponent<CapsuleCollider2D>();
         _boss_Controller = GetComponent<BossEnemy>();
         _attack = GetComponent<NemunoAttack>();
     }
@@ -23,8 +27,7 @@ public class NemunoController : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        Debug.Log("BossBattleTest");
-        start_Battle = true;
+        
 	}
 	
 
@@ -55,6 +58,19 @@ public class NemunoController : MonoBehaviour {
     //戦闘開始
     public void Start_Battle() {
         start_Battle = true;
+    }
+
+
+    //空に飛ぶとき、重力を消してあたりはんていをtriggerにする
+    public void Change_Fly_Parameter() {
+        _rigid.gravityScale = 0;
+        _collider.isTrigger = true;
+    }
+
+    //地上に降りるとき、重力を付けて当たり判定をつける
+    public void Change_Land_Paramter() {
+        _rigid.gravityScale = 32f;
+        _collider.isTrigger = false;
     }
 
 

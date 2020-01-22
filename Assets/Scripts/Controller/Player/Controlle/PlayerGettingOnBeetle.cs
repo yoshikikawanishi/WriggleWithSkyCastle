@@ -71,7 +71,8 @@ public class PlayerGettingOnBeetle : MonoBehaviour {
         body_Collision.Change_Collider_Size(new Vector2(6f, 6f), default_Collider_Offset);  //当たり判定
         body_Collision.Display_Sprite();
         beetle_Body.SetActive(true);
-        main_Camera.GetComponent<CameraController>().Start_Auto_Scroll(scroll_Speed);  //オートスクロール        
+        main_Camera.GetComponent<CameraController>().Start_Auto_Scroll(scroll_Speed);       //オートスクロール
+        GetComponent<PlayerTransitionRidingBeetle>().Change_Body_Direction((int)transform.localScale.x);    //向きの固定
     }
 
     #endregion

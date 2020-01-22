@@ -85,20 +85,28 @@ public class YukaAttack : MonoBehaviour {
             Play_Small_Charge_Effect();
             yield return new WaitForSeconds(0.5f);
             Shoot_Cross_Bullet(new Vector2());
-            yield return new WaitForSeconds(6.0f);
+            yield return new WaitForSeconds(5.0f);
 
+            _move_Two_Points.Start_Move(new Vector3(transform.position.x, -80f));
+            yield return new WaitForSeconds(1.0f);
             
             for(int i = 0; i < 3; i++) {
-                Drop_Flower_Bullet(240f - i * 80f);
-                yield return new WaitForSeconds(0.8f);
+                Drop_Flower_Bullet(240f - i * 120f);
+                yield return new WaitForSeconds(1.0f);
             }
             if (is_First_Loop) { StartCoroutine(Play_Guide_Message(19, 19)); }
-            for (int i = 3; i < 7; i++) {
-                Drop_Flower_Bullet(240f - i * 80f);
-                yield return new WaitForSeconds(0.8f);
+            for (int i = 3; i < 5; i++) {
+                Drop_Flower_Bullet(240f - i * 120f);
+                yield return new WaitForSeconds(1.0f);
+            }
+            yield return new WaitForSeconds(1.0f);
+            for(int i = 0; i < 5; i++) {
+                Drop_Flower_Bullet(-180f + i * 120f);
+                yield return new WaitForSeconds(1.0f);
             }
             yield return new WaitForSeconds(2.5f);
 
+            _move_Two_Points.Start_Move(new Vector3(transform.position.x, -32f));
             is_First_Loop = false;
         }
     }

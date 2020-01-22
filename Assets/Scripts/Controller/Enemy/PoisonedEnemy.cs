@@ -46,7 +46,7 @@ public class PoisonedEnemy : MonoBehaviour {
             yield break;
 
         is_Poisoned = true;
-        for (int i = 0; i < 8; i++) {
+        for (int i = 0; i < 16; i++) {
             enemy_Controller.Damaged(1, "");
             yield return new WaitForSeconds(0.8f);
         }

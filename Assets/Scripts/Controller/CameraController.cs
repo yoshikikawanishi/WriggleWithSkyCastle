@@ -86,7 +86,7 @@ public class CameraController : MonoBehaviour {
 
     //強制スクロール
     private void Auto_Scroll() {
-        transform.position += new Vector3(auto_Scroll_Speed * stage_Direction, 0, 0);   
+        transform.position += new Vector3(auto_Scroll_Speed * player.transform.localScale.x, 0, 0);   
     }
 
 

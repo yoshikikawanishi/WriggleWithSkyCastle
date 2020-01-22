@@ -76,6 +76,8 @@ public class PlayerShoot : MonoBehaviour {
             bullet.transform.position += new Vector3(0, (-width * shoot_Num) / 2) + new Vector3(0, width * i);
             bullet.transform.localScale = transform.localScale;
             bullet.GetComponent<Rigidbody2D>().velocity = new Vector2(bullet_Speed * transform.localScale.x, 0);
+            if (player_Manager.Get_Option() == PlayerManager.Option.spider)
+                Add_Diffusion_Shoot_Vel(bullet, shoot_Num, i);
             player_SE.Play_Shoot_Sound();
             bullet.GetComponent<Bullet>().Set_Inactive(10);
         }
@@ -128,6 +130,13 @@ public class PlayerShoot : MonoBehaviour {
         bullet_Pool = ObjectPoolManager.Instance.Get_Pool(bullet);
         bullet_Speed = speed;
         this.width = width;
+    }
+
+
+    //蜘蛛拡散弾の縦方向の速度を加算
+    private void Add_Diffusion_Shoot_Vel(GameObject bullet, int shoot_Num, int index) {
+        float center = (shoot_Num - 1) / 2;
+        bullet.GetComponent<Rigidbody2D>().velocity += new Vector2(0, (center - index) * -130f);
     }
 
 
