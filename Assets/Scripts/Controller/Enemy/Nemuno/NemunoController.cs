@@ -96,4 +96,9 @@ public class NemunoController : MonoBehaviour {
         transform.Find("Effects").GetChild(3).GetComponent<ParticleSystem>().Play();
     }
 
+    public void Play_Slash_Effect() {
+        var obj = transform.Find("Effects").GetChild(5).gameObject;        
+        obj.GetComponent<Animator>().SetTrigger("PlayEffectTrigger");
+    }
+
 }

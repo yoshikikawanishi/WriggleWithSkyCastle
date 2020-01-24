@@ -273,6 +273,7 @@ public class NemunoAttack : MonoBehaviour {
         _sprite.color = new Color(0.5f, 0.5f, 0.5f);
         yield return new WaitForSeconds(0.20f);
 
+        _controller.Play_Slash_Effect();
         _sound.Play_Slash_Sound();
         yield return new WaitForSeconds(0.5f);
 

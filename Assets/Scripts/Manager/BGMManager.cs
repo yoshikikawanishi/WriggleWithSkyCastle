@@ -20,7 +20,8 @@ public class BGMManager : SingletonMonoBehaviour<BGMManager> {
 
     public void Change_BGM(AudioClip next_BGM) {
         if(now_BGM != next_BGM) {
-            audio_Source.PlayOneShot(next_BGM);
+            audio_Source.clip = next_BGM;
+            audio_Source.Play();
             now_BGM = next_BGM;
         }
     }
