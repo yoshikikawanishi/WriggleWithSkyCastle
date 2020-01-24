@@ -947,7 +947,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   life: c8000000c8000000
-  power_Value: 0
+  power_Value: 5
   score_Value: 0
   phase_Change_Bomb_Prefab: {fileID: 1730907649405400, guid: 786f47875ab0c7c4eaa2bbc58d46fd91,
     type: 2}

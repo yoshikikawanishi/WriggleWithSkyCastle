@@ -40,7 +40,7 @@ public class NemunoAttack : MonoBehaviour {
 
 
     #region Phase1
-    //フェーズ１
+    //==========================================フェーズ１===================================
     public void Phase1() {
         if (start_Phase[0]) {
             start_Phase[0] = false;
@@ -48,13 +48,8 @@ public class NemunoAttack : MonoBehaviour {
         }
     }
 
-    private IEnumerator Phase1_Cor() {
-        AttackKind next_Attack = AttackKind.close_Slash;
-        AttackKind pre_Attack = AttackKind.barrier;
-        AttackKind two_Pre_Attack = AttackKind.long_Slash;
-        float start_Time = Time.time;
-
-        //Aメロ
+    private IEnumerator Phase1_Cor() {     
+        //Aメロ(約22秒)
         for (int i = 0; i < 4; i++) {
             //移動
             for (int j = 1; j <= 2; j++) {
@@ -64,37 +59,34 @@ public class NemunoAttack : MonoBehaviour {
             }
             yield return new WaitForSeconds(0.5f);
 
-            //攻撃
-            next_Attack = Select_Next_Attack(pre_Attack, two_Pre_Attack);
-            switch (next_Attack) {
-                case AttackKind.close_Slash:
+            //攻撃            
+            switch (i % 3) {
+                case 0:
                     Jump_Next_Player();
                     yield return new WaitForSeconds(1.1f);
                     StartCoroutine("Close_Slash_Cor");
                     yield return new WaitForSeconds(1.3f);
                     break;
-                case AttackKind.long_Slash:
+                case 1:
                     StartCoroutine("Back_Jump_Cor");
                     yield return new WaitForSeconds(1.3f);
-                    StartCoroutine("Long_Slash_Cor");
+                    StartCoroutine("Long_Slash_Cor", 8);
                     yield return new WaitForSeconds(1.5f);
                     break;
-                case AttackKind.barrier:
-                    StartCoroutine("Barrier_Walk_Cor");
+                case 2:
+                    StartCoroutine("Barrier_Walk_Cor", 160f);
                     yield return new WaitForSeconds(5.5f);
                     break;
             }
-            two_Pre_Attack = pre_Attack;
-            pre_Attack = next_Attack;
         }
 
         yield return new WaitForSeconds(1.1f);
 
-        //Bメロ
+        //Bメロ(約30秒)
         for (int i = 0; i < 4; i++) {
             StartCoroutine("Back_Jump_Cor");
             yield return new WaitForSeconds(1.0f);
-            StartCoroutine("Jump_Slash_Cor");
+            StartCoroutine("Jump_Slash_Cor", 32);
             yield return new WaitForSeconds(3.5f);
             if (i == 3)
                 break;
@@ -104,7 +96,7 @@ public class NemunoAttack : MonoBehaviour {
 
         yield return new WaitForSeconds(1.0f);
 
-        //サビ前移動
+        //サビ前移動(サビまでの時間調整)
         _controller.Change_Fly_Parameter();
         _controller.Change_Animation("ForwardJumpBool");
         transform.localScale = new Vector3(-1, 1, 1);
@@ -116,7 +108,7 @@ public class NemunoAttack : MonoBehaviour {
         _controller.Play_Charge_Effect(4.3f);
         yield return new WaitForSeconds(4.3f);
 
-        //弾幕
+        //サビ弾幕(曲開始から56秒)
         for (int i = 0; i < 2; i++) {
             _controller.Play_Burst_Effect();
             _shoot.Start_Knife_Shoot();
@@ -131,6 +123,8 @@ public class NemunoAttack : MonoBehaviour {
     
     private void Stop_Phase1() {
         StopCoroutine("Phase1_Cor");
+        StopAllCoroutines();
+        _controller.Change_Animation("IdleBool");
         _controller.Change_Land_Paramter();
         _shoot.Stop_Knife_Shoot();
     }
@@ -138,7 +132,7 @@ public class NemunoAttack : MonoBehaviour {
 
 
     #region Phase2
-    //フェーズ２
+    //================================フェーズ２======================================
     public void Phase2() {
         if (start_Phase[1]) {
             start_Phase[1] = false;
@@ -148,25 +142,95 @@ public class NemunoAttack : MonoBehaviour {
     }
 
     private IEnumerator Phase2_Cor() {
-        yield return null;
+        yield return new WaitForSeconds(2.0f);
+
+        Raise_Move_Speed();
+        AttackKind next_Attack = AttackKind.close_Slash;
+        AttackKind pre_Attack = AttackKind.barrier;
+        AttackKind two_Pre_Attack = AttackKind.long_Slash;       
+
+        //通常攻撃
+        for (int i = 0; i < 8; i++) {
+            //移動
+            for (int j = 1; j <= 2; j++) {
+                float distance = ((int)Random.Range(0, 2) - 0.5f) * 160f;
+                StartCoroutine("Dash_Cor", distance);
+                yield return new WaitForSeconds(0.65f);
+            }
+
+            //攻撃     
+            next_Attack = Select_Next_Attack(pre_Attack, two_Pre_Attack);
+            switch (next_Attack) {
+                case AttackKind.close_Slash:
+                    Jump_Next_Player();
+                    yield return new WaitForSeconds(0.8f);
+                    StartCoroutine("Close_Slash_Cor");
+                    yield return new WaitForSeconds(1.3f);
+                    break;
+                case AttackKind.long_Slash:
+                    StartCoroutine("Back_Jump_Cor");
+                    yield return new WaitForSeconds(1.0f);
+                    StartCoroutine("Long_Slash_Cor", 14);
+                    yield return new WaitForSeconds(1.3f);
+                    StartCoroutine("Long_Slash_Cor", 14);
+                    yield return new WaitForSeconds(1.3f);
+                    break;
+                case AttackKind.barrier:
+                    StartCoroutine("Barrier_Walk_Cor", 192f);
+                    yield return new WaitForSeconds(4.5f);
+                    break;
+                case AttackKind.jump_Slash:
+                    for(int j = 0; j < 2; j++) {
+                        StartCoroutine("Back_Jump_Cor");
+                        yield return new WaitForSeconds(1.0f);
+                        StartCoroutine("Jump_Slash_Cor", 50);
+                        yield return new WaitForSeconds(3.8f);
+                        StartCoroutine("High_Jump_Cor", transform.localScale.x);
+                        yield return new WaitForSeconds(2.5f);
+                    }
+                    break;
+            }
+            two_Pre_Attack = pre_Attack;
+            pre_Attack = next_Attack;
+        }
+
+        yield return new WaitForSeconds(1.1f);
+
+        yield return new WaitForSeconds(1.0f);
+
+        //弾幕攻撃
     }
 
     public void Stop_Phase2() {
         StopCoroutine("Phase2_Cor");
+        StopAllCoroutines();
+        _controller.Change_Animation("IdleBool");
+        _controller.Change_Land_Paramter();
+    }
+
+    //移動速度の上昇
+    private void Raise_Move_Speed() {
+        _move_Two_Points.Change_Paramter(0.027f, 48f, 0);    //通常ジャンプ用
+        _move_Two_Points.Change_Paramter(0.016f, 0, 1);     //バリア突進用
+        _move_Two_Points.Change_Paramter(0.032f, 0, 3);      //ダッシュ用
     }
     #endregion
 
 
     #region AttackFunctions   
-
-    //次の攻撃を選ぶ、前回は0、前々回は25, それ以外は75ででる
+    //=======================================攻撃、移動用関数===========================================
+    //次の攻撃を乱数で選ぶ、前回は0%、前々回は20%, それ以外2種類は40%づつででる
     private AttackKind Select_Next_Attack(AttackKind pre_Attack, AttackKind two_Pre_Attack) {
-        List<AttackKind> list = new List<AttackKind>{ AttackKind.close_Slash, AttackKind.long_Slash, AttackKind.barrier };
+        List<AttackKind> list = new List<AttackKind>{ AttackKind.close_Slash, AttackKind.long_Slash, AttackKind.barrier, AttackKind.jump_Slash };
         list.Remove(pre_Attack);
         list.Remove(two_Pre_Attack);
-        AttackKind other_Attack = list[0];
-        
-        return other_Attack;
+
+        int rate = Random.Range(0, 100);
+        if (rate < 40)
+            return list[0];
+        else if (rate < 80)
+            return list[1];
+        return two_Pre_Attack;        
     }
 
 
@@ -282,7 +346,7 @@ public class NemunoAttack : MonoBehaviour {
 
 
     //遠距離攻撃、２回点滅後攻撃、ショット
-    private IEnumerator Long_Slash_Cor() {        
+    private IEnumerator Long_Slash_Cor(int num) {        
         _controller.Change_Animation("SlashBool");
 
         for(int i = 0; i < 2; i++) {
@@ -295,7 +359,7 @@ public class NemunoAttack : MonoBehaviour {
         yield return new WaitForSeconds(0.1f);
 
         _sound.Play_Slash_Sound();
-        _shoot.Shoot_Shotgun();
+        _shoot.Shoot_Shotgun(num);
         yield return new WaitForSeconds(0.5f);
 
         _controller.Change_Animation("IdleBool");
@@ -303,8 +367,8 @@ public class NemunoAttack : MonoBehaviour {
 
 
     //バリアを張って歩く
-    // direction == 1 で左端まで歩く、1で右端
-    private IEnumerator Barrier_Walk_Cor() {       
+    // walk_Time_Span秒歩く
+    private IEnumerator Barrier_Walk_Cor(float walk_Length) {       
         //溜めモーション
         _controller.Change_Animation("BeforeBarrierTrigger");        
         for (int i = 0; i < 3; i++) {
@@ -325,7 +389,7 @@ public class NemunoAttack : MonoBehaviour {
         transform.localScale = new Vector3(direction, 1, 1);
 
         _controller.Change_Animation("DashBool");
-        _move_Two_Points.Start_Move(new Vector3(transform.position.x -160f * direction, transform.position.y), 1);
+        _move_Two_Points.Start_Move(new Vector3(transform.position.x - walk_Length * direction, transform.position.y), 1);
         yield return new WaitForSeconds(2.0f);
 
         //バリア解除
@@ -335,7 +399,7 @@ public class NemunoAttack : MonoBehaviour {
 
 
     //ジャンプして弾幕出す
-    private IEnumerator Jump_Slash_Cor() {
+    private IEnumerator Jump_Slash_Cor(int num) {
         //ジャンプ
         _controller.Change_Animation("ForwardJumpBool");
         _controller.Change_Fly_Parameter();
@@ -343,14 +407,12 @@ public class NemunoAttack : MonoBehaviour {
         yield return new WaitForSeconds(1.0f);
         //ショット
         _controller.Change_Animation("SlashBool");
-        _shoot.StartCoroutine("Shoot_Jump_Slash_Cor");
+        _shoot.StartCoroutine("Shoot_Jump_Slash_Cor", num);
         yield return new WaitForSeconds(1.3f);
         //落下
         _controller.Change_Animation("IdleBool");
         _controller.Change_Land_Paramter();
-    }
-
-  
+    } 
 
     #endregion
 }

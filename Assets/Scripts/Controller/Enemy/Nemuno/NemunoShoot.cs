@@ -24,11 +24,12 @@ public class NemunoShoot : MonoBehaviour {
 	
 	
     //遠距離斬撃用のショットガン
-    public void Shoot_Shotgun() {       
+    public void Shoot_Shotgun(int num) {       
         GameObject player = GameObject.FindWithTag("PlayerTag");
         if (player == null)
             return;
 
+        slash_Shotgun_Odd.connect_Num = num;
         //自機が前方にいたら自機狙い 
         if ((player.transform.position.x - transform.position.x) * transform.parent.localScale.x < 0)
             slash_Shotgun_Odd.Shoot();
@@ -46,22 +47,22 @@ public class NemunoShoot : MonoBehaviour {
 
 
     //空中斬撃用
-    public IEnumerator Shoot_Jump_Slash_Cor() {
+    public IEnumerator Shoot_Jump_Slash_Cor(int num) {
         List<GameObject> bullet_List = new List<GameObject>();
         Vector3 pos = transform.position + new Vector3(transform.parent.localScale.x * -24f, 0);
 
         //弾の生成
-        for (int i = 0; i < 48; i++) {
+        for (int i = 0; i < num; i++) {
             var bullet = ObjectPoolManager.Instance.Get_Pool(yellow_Rice_Bullet).GetObject();
             bullet.transform.position = pos + new Vector3(0, -21f + i * 1.5f);
             bullet_List.Add(bullet);
-            yield return new WaitForSeconds(0.004f);
+            yield return new WaitForSeconds(0.16f / num);
         }
         yield return new WaitForSeconds(0.3f);
 
         //回転と加速
         float angle = 0, speed = 0;
-        for (int i = 0; i < 48; i++) {
+        for (int i = 0; i < num; i++) {
             if (bullet_List[i].activeSelf == false)
                 continue;
             angle = Random.Range(-180f, 180f);
