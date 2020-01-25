@@ -53,7 +53,7 @@ public class NemunoAttack : MonoBehaviour {
         for (int i = 0; i < 4; i++) {
             //移動
             for (int j = 1; j <= 2; j++) {
-                float distance = ((int)Random.Range(0, 2) - 0.5f) * 128f;
+                float distance = ((int)Random.Range(0, 2) - 0.5f) * 80f;
                 StartCoroutine("Dash_Cor", distance);
                 yield return new WaitForSeconds(0.7f);
             }
@@ -150,10 +150,10 @@ public class NemunoAttack : MonoBehaviour {
         AttackKind two_Pre_Attack = AttackKind.long_Slash;       
 
         //通常攻撃
-        for (int i = 0; i < 8; i++) {
+        for (int i = 0; i < 4; i++) {
             //移動
             for (int j = 1; j <= 2; j++) {
-                float distance = ((int)Random.Range(0, 2) - 0.5f) * 160f;
+                float distance = ((int)Random.Range(0, 2) - 0.5f) * 120f;
                 StartCoroutine("Dash_Cor", distance);
                 yield return new WaitForSeconds(0.65f);
             }
@@ -194,11 +194,18 @@ public class NemunoAttack : MonoBehaviour {
             pre_Attack = next_Attack;
         }
 
-        yield return new WaitForSeconds(1.1f);
+        //弾幕前溜め
+        _controller.Change_Fly_Parameter();
+        _controller.Change_Animation("ShootBool");
+        transform.localScale = new Vector3(1, 1, 1);
+        _controller.Play_Charge_Effect(4.0f);
 
-        yield return new WaitForSeconds(1.0f);
+        _move_Two_Points.Start_Move(new Vector3(160f, 8f), 4);
+        yield return new WaitForSeconds(4.0f);
 
         //弾幕攻撃
+        _controller.Play_Burst_Effect();
+
     }
 
     public void Stop_Phase2() {
@@ -211,8 +218,8 @@ public class NemunoAttack : MonoBehaviour {
     //移動速度の上昇
     private void Raise_Move_Speed() {
         _move_Two_Points.Change_Paramter(0.027f, 48f, 0);    //通常ジャンプ用
-        _move_Two_Points.Change_Paramter(0.016f, 0, 1);     //バリア突進用
-        _move_Two_Points.Change_Paramter(0.032f, 0, 3);      //ダッシュ用
+        _move_Two_Points.Change_Paramter(0.014f, 0, 1);     //バリア突進用
+        _move_Two_Points.Change_Paramter(0.03f, 0, 3);      //ダッシュ用
     }
     #endregion
 
@@ -360,6 +367,7 @@ public class NemunoAttack : MonoBehaviour {
 
         _sound.Play_Slash_Sound();
         _shoot.Shoot_Shotgun(num);
+        _controller.Play_Purple_Circle_Effect();
         yield return new WaitForSeconds(0.5f);
 
         _controller.Change_Animation("IdleBool");
@@ -380,9 +388,11 @@ public class NemunoAttack : MonoBehaviour {
         }
 
         //バリアを張る
+        _controller.Play_Small_Charge_Effect();
         _controller.Change_Animation("IdleBool");
         _barrier.Start_Barrier();
         yield return new WaitForSeconds(1.0f);
+        _controller.Play_Small_Burst_Effect();
 
         //歩く
         int direction = (transform.position.x - player.transform.position.x).CompareTo(0);
@@ -407,7 +417,8 @@ public class NemunoAttack : MonoBehaviour {
         yield return new WaitForSeconds(1.0f);
         //ショット
         _controller.Change_Animation("SlashBool");
-        _shoot.StartCoroutine("Shoot_Jump_Slash_Cor", num);
+        _controller.Play_Yellow_Circle_Effect();
+        _shoot.StartCoroutine("Shoot_Jump_Slash_Cor", num);        
         yield return new WaitForSeconds(1.3f);
         //落下
         _controller.Change_Animation("IdleBool");

@@ -1021,12 +1021,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 7
       objectReference: {fileID: 0}
-    - target: {fileID: 114230423531908934, guid: 1da3d68948d99a94bb4072af4c9b2dbe,
-        type: 2}
-      propertyPath: phase_Change_Bomb_Prefab
-      value: 
-      objectReference: {fileID: 1736861288342968, guid: 675f49615979bbc458f93a55dfd74bd8,
-        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1da3d68948d99a94bb4072af4c9b2dbe, type: 2}
   m_IsPrefabAsset: 0

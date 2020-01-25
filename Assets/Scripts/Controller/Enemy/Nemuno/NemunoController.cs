@@ -96,9 +96,23 @@ public class NemunoController : MonoBehaviour {
         transform.Find("Effects").GetChild(3).GetComponent<ParticleSystem>().Play();
     }
 
+    public void Play_Yellow_Circle_Effect() {
+        var orgin = transform.Find("Effects").GetChild(4).gameObject;
+        var obj = Instantiate(orgin);
+        obj.transform.position = transform.position;
+        obj.SetActive(true);        
+    }
+
     public void Play_Slash_Effect() {
         var obj = transform.Find("Effects").GetChild(5).gameObject;        
         obj.GetComponent<Animator>().SetTrigger("PlayEffectTrigger");
+    }
+
+    public void Play_Purple_Circle_Effect() {
+        var orgin = transform.Find("Effects").GetChild(6).gameObject;
+        var obj = Instantiate(orgin);
+        obj.transform.position = transform.position;
+        obj.SetActive(true);
     }
 
 }
