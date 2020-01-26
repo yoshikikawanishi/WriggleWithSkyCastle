@@ -26,7 +26,7 @@ public class PlayerTransition : MonoBehaviour {
         direction = direction > 0 ? 1 : -1;
 
         //空中で慣性つける
-        acc = _controller.is_Landing ? 40f : 20f;
+        acc = _controller.is_Landing ? 40f : 35f;
         
         //移動、加
         if(direction == 1) {            
