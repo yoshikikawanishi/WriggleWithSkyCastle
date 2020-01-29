@@ -44,11 +44,12 @@ public class NemunoAttack : MonoBehaviour {
     public void Phase1() {
         if (start_Phase[0]) {
             start_Phase[0] = false;
+            _controller.Play_Battle_Effect();
             StartCoroutine("Phase1_Cor");
         }
     }
 
-    private IEnumerator Phase1_Cor() {     
+    private IEnumerator Phase1_Cor() {                   
         //Aメロ(約22秒)
         for (int i = 0; i < 4; i++) {
             //移動
@@ -87,7 +88,7 @@ public class NemunoAttack : MonoBehaviour {
             StartCoroutine("Back_Jump_Cor");
             yield return new WaitForSeconds(1.0f);
             StartCoroutine("Jump_Slash_Cor", 32);
-            yield return new WaitForSeconds(3.5f);
+            yield return new WaitForSeconds(3.7f);
             if (i == 3)
                 break;
             StartCoroutine("High_Jump_Cor", transform.localScale.x);
@@ -105,8 +106,8 @@ public class NemunoAttack : MonoBehaviour {
         _controller.Change_Animation("ShootBool");
         transform.localScale = new Vector3(1, 1, 1);
         //サビ前溜め
-        _controller.Play_Charge_Effect(4.3f);
-        yield return new WaitForSeconds(4.3f);
+        _controller.Play_Charge_Effect(3.5f);
+        yield return new WaitForSeconds(3.5f);
 
         //サビ弾幕(曲開始から56秒)
         for (int i = 0; i < 2; i++) {
@@ -114,10 +115,13 @@ public class NemunoAttack : MonoBehaviour {
             _shoot.Start_Knife_Shoot();
             yield return new WaitForSeconds(8.0f);
             _shoot.Stop_Knife_Shoot();
+            if (i == 1) {
+                _controller.Change_Land_Paramter();
+                _controller.Change_Animation("IdleBool");
+            }
             yield return new WaitForSeconds(4.0f);
         }
-
-        _controller.Change_Land_Paramter();
+        
         StartCoroutine("Phase1_Cor");
     }
     
@@ -126,6 +130,8 @@ public class NemunoAttack : MonoBehaviour {
         StopAllCoroutines();
         _controller.Change_Animation("IdleBool");
         _controller.Change_Land_Paramter();
+        _controller.Stop_Charge_Effect();
+        _controller.Quit_Battle_Effect();
         _shoot.Stop_Knife_Shoot();
     }
     #endregion
@@ -136,7 +142,7 @@ public class NemunoAttack : MonoBehaviour {
     public void Phase2() {
         if (start_Phase[1]) {
             start_Phase[1] = false;
-            Stop_Phase1();
+            Stop_Phase1();            
             StartCoroutine("Phase2_Cor");
         }
     }
@@ -144,6 +150,7 @@ public class NemunoAttack : MonoBehaviour {
     private IEnumerator Phase2_Cor() {
         yield return new WaitForSeconds(2.0f);
 
+        _controller.Play_Battle_Effect();
         Raise_Move_Speed();
         AttackKind next_Attack = AttackKind.close_Slash;
         AttackKind pre_Attack = AttackKind.barrier;
@@ -204,8 +211,14 @@ public class NemunoAttack : MonoBehaviour {
         yield return new WaitForSeconds(4.0f);
 
         //弾幕攻撃
+        _controller.Change_Animation("ShootBool");
         _controller.Play_Burst_Effect();
+        _shoot.Start_Kunai_Shoot();
 
+        yield return new WaitForSeconds(9.0f);
+        _controller.Change_Land_Paramter();
+        yield return new WaitForSeconds(1.0f);
+        StartCoroutine("Phase2_Cor");
     }
 
     public void Stop_Phase2() {
@@ -213,6 +226,9 @@ public class NemunoAttack : MonoBehaviour {
         StopAllCoroutines();
         _controller.Change_Animation("IdleBool");
         _controller.Change_Land_Paramter();
+        _controller.Stop_Charge_Effect();
+        _controller.Quit_Battle_Effect();
+        _shoot.Stop_Kunai_Shoot();
     }
 
     //移動速度の上昇
@@ -244,6 +260,7 @@ public class NemunoAttack : MonoBehaviour {
     //前方向にジャンプする
     private IEnumerator Forward_Jump_Cor(float jump_Distance) {
         _controller.Change_Animation("ForwardJumpBool");
+        _controller.Change_Fly_Parameter();
         yield return new WaitForSeconds(0.2f);        
 
         float x = transform.position.x + jump_Distance;
@@ -253,6 +270,7 @@ public class NemunoAttack : MonoBehaviour {
         _move_Two_Points.Start_Move(new Vector3(x, transform.position.y), 0);
         yield return new WaitUntil(_move_Two_Points.End_Move);
 
+        _controller.Change_Land_Paramter();
         _controller.Change_Animation("IdleBool");
     }
 
@@ -262,12 +280,14 @@ public class NemunoAttack : MonoBehaviour {
         int direction = (transform.position.x - player.transform.position.x).CompareTo(0);        
         transform.localScale = new Vector3(direction, 1, 1);
 
+        _controller.Change_Fly_Parameter();
         _controller.Change_Animation("BackJumpBool");
         yield return new WaitForSeconds(0.2f);        
 
         _move_Two_Points.Start_Move(new Vector3(160f * direction, transform.position.y), 0);
         yield return new WaitUntil(_move_Two_Points.End_Move);
 
+        _controller.Change_Land_Paramter();
         _controller.Change_Animation("IdleBool");
     }
 
@@ -276,11 +296,13 @@ public class NemunoAttack : MonoBehaviour {
     private IEnumerator High_Jump_Cor(int direction) {
         transform.localScale = new Vector3(direction, 1, 1);
         _controller.Change_Animation("ForwardJumpBool");
+        _controller.Change_Fly_Parameter();
         yield return new WaitForSeconds(0.2f);
 
         _move_Two_Points.Start_Move(new Vector3(190f * -direction, -80f), 5);
         yield return new WaitUntil(_move_Two_Points.End_Move);
 
+        _controller.Change_Land_Paramter();
         _controller.Change_Animation("IdleBool");
     }
 
@@ -414,7 +436,9 @@ public class NemunoAttack : MonoBehaviour {
         _controller.Change_Animation("ForwardJumpBool");
         _controller.Change_Fly_Parameter();
         _move_Two_Points.Start_Move(transform.position + new Vector3(0, 80f), 2);
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitUntil(_move_Two_Points.End_Move);
+        yield return null;
+        _controller.Change_Fly_Parameter();
         //ショット
         _controller.Change_Animation("SlashBool");
         _controller.Play_Yellow_Circle_Effect();

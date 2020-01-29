@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class NemunoController : MonoBehaviour {
 
+    //背景エフェクト
+    [SerializeField] private GameObject back_Design;
+
     //コンポーネント
     private Animator _anim;
     private Rigidbody2D _rigid;
@@ -63,7 +66,7 @@ public class NemunoController : MonoBehaviour {
 
     //空に飛ぶとき、重力を消してあたりはんていをtriggerにする
     public void Change_Fly_Parameter() {
-        _rigid.gravityScale = 0;
+        _rigid.gravityScale = 0;        
         _collider.isTrigger = true;
     }
 
@@ -113,6 +116,19 @@ public class NemunoController : MonoBehaviour {
         var obj = Instantiate(orgin);
         obj.transform.position = transform.position;
         obj.SetActive(true);
+    }
+
+    //戦闘中の画面エフェクト
+    public void Play_Battle_Effect() {
+        back_Design.SetActive(true);
+        back_Design.transform.localScale = new Vector3(0, 0, 1);
+        BackGroundEffector.Instance.Start_Change_Color(new Color(0.45f, 0.4f, 0.35f), 0.1f);
+    }
+
+    //戦闘中の画面エフェクト消す
+    public void Quit_Battle_Effect() {
+        back_Design.SetActive(false);
+        BackGroundEffector.Instance.Start_Change_Color(new Color(0.85f, 0.8f, 0.7f), 0.1f);
     }
 
 }

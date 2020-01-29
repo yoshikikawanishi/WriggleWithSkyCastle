@@ -9,6 +9,8 @@ public class NemunoShoot : MonoBehaviour {
     [SerializeField] private ShootSystem slash_Shotgun_Odd;
     [SerializeField] private ShootSystem slash_Shootgun_Forward;
     [SerializeField] private ShootSystem knife_Shoot;
+    [Space]
+    [SerializeField] private GameObject phase2_Kunai_Shoot_Obj;
 
     //コンポーネント
     private BulletAccelerator _accelerator;
@@ -83,4 +85,21 @@ public class NemunoShoot : MonoBehaviour {
     public void Stop_Knife_Shoot() {
         knife_Shoot.Stop_Shoot();
     }
+
+
+    //フェーズ２クナイ弾開始
+    public void Start_Kunai_Shoot() {
+        ShootSystem[] shoots = phase2_Kunai_Shoot_Obj.GetComponentsInChildren<ShootSystem>();
+        foreach(ShootSystem s in shoots) {
+            s.Shoot();
+        }
+    }
+
+    public void Stop_Kunai_Shoot() {
+        ShootSystem[] shoots = phase2_Kunai_Shoot_Obj.GetComponentsInChildren<ShootSystem>();
+        foreach (ShootSystem s in shoots) {
+            s.Stop_Shoot();
+        }
+    }
+
 }

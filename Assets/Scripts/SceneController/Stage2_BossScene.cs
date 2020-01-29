@@ -6,12 +6,20 @@ public class Stage2_BossScene : MonoBehaviour {
 
     //コンポーネント
     private Stage2_BossMovie _movie;
+    //ネムノ
+    private NemunoController nemuno_Controller;
+    private NemunoAttack nemuno_Attack;
+    private BossEnemy boss_Enemy;
 
 
 	// Use this for initialization
 	void Start () {
         //取得
         _movie = GetComponent<Stage2_BossMovie>();
+        var nemuno = GameObject.Find("Nemuno");
+        nemuno_Controller = nemuno.GetComponent<NemunoController>();
+        nemuno_Attack = nemuno.GetComponent<NemunoAttack>();
+        boss_Enemy = nemuno.GetComponent<BossEnemy>();
 
         //ボス前ムービー開始
         _movie.Start_Before_Boss_Movie();
@@ -19,6 +27,10 @@ public class Stage2_BossScene : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+        //クリア時
+        if (boss_Enemy.Clear_Trigger()) {
+            nemuno_Attack.Stop_Phase2();
+            _movie.Start_Clear_Movie();
+        }
 	}
 }

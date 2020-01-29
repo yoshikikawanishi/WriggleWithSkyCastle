@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 114271391560882384}
   - component: {fileID: 61853340937234398}
   m_Layer: 9
-  m_Name: PinkVisibleOutsideMaskBullet
+  m_Name: PinkKunaiBullet
   m_TagString: EnemyBulletTag
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -58,4 +58,9 @@ public class Stage2_BossMovie : MonoBehaviour {
         nemuno.GetComponent<NemunoController>().Start_Battle();
         BGMManager.Instance.Change_BGM(BGMManager.Instance.stage2_Boss_BGM);
     }
+
+
+    public void Start_Clear_Movie() {
+        Debug.Log("TODO:Clear Movie");
+    }
 }

@@ -22,7 +22,7 @@ public class MoveTwoPoints : MonoBehaviour {
 
     private int index = 0;
     private bool end_Move = false;
-    
+   
 
     //移動開始
     public void Start_Move(Vector3 next_Pos) {
@@ -68,7 +68,6 @@ public class MoveTwoPoints : MonoBehaviour {
     //移動終了検知用
     public bool End_Move() {
         if (end_Move) {
-            end_Move = false;
             return true;
         }        
         return false;        
