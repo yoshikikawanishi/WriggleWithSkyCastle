@@ -1007,6 +1007,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   kind: 2
+  comment: 
   play_On_Awake: 0
   bullet: {fileID: 1462937219074526, guid: 7491302ffd1b0e14a865430ba2109e07, type: 2}
   parent: {fileID: 0}
@@ -1143,6 +1144,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   kind: 2
+  comment: 
   play_On_Awake: 0
   bullet: {fileID: 1742974461349758, guid: aee60bc3d16d58d4582e97f7de51b0a0, type: 2}
   parent: {fileID: 0}
@@ -1249,7 +1251,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c9048ccf0aa56442ba7e89fea6de129, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  life: 2c010000
+  life: c8000000
   power_Value: 0
   score_Value: 50
   phase_Change_Bomb_Prefab: {fileID: 1736861288342968, guid: 675f49615979bbc458f93a55dfd74bd8,
@@ -1281,6 +1283,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   kind: 2
+  comment: 
   play_On_Awake: 0
   bullet: {fileID: 1742974461349758, guid: aee60bc3d16d58d4582e97f7de51b0a0, type: 2}
   parent: {fileID: 0}
@@ -1366,6 +1369,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   kind: 5
+  comment: 
   play_On_Awake: 0
   bullet: {fileID: 1632546210349180, guid: 3d2faf7ce32d60b48a386c00a166f105, type: 2}
   parent: {fileID: 0}
@@ -1374,7 +1378,7 @@ MonoBehaviour:
   angle_Noise: 0
   lifeTime: 10
   offset: {x: 0, y: 0}
-  default_Shoot_Sound: 0
+  default_Shoot_Sound: 1
   is_Acceleration: 0
   velocity_Forward:
     serializedVersion: 2
@@ -1426,6 +1430,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   kind: 2
+  comment: 
   play_On_Awake: 0
   bullet: {fileID: 1025434327628990, guid: 7bcf7b0f0356e844295e7fcde436a763, type: 2}
   parent: {fileID: 0}
@@ -1591,6 +1596,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   kind: 5
+  comment: 
   play_On_Awake: 0
   bullet: {fileID: 1742974461349758, guid: aee60bc3d16d58d4582e97f7de51b0a0, type: 2}
   parent: {fileID: 0}
@@ -1640,6 +1646,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   kind: 2
+  comment: 
   play_On_Awake: 0
   bullet: {fileID: 1576648886757804, guid: c0c20a6f0f8954646af2418a3989a0d0, type: 2}
   parent: {fileID: 0}
@@ -1779,6 +1786,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   kind: 2
+  comment: 
   play_On_Awake: 0
   bullet: {fileID: 1462937219074526, guid: 7491302ffd1b0e14a865430ba2109e07, type: 2}
   parent: {fileID: 0}

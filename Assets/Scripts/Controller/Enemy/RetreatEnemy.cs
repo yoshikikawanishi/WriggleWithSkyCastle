@@ -11,6 +11,10 @@ public class RetreatEnemy : MonoBehaviour {
     private bool is_Active = true;
 
 
+    private void OnEnable() {
+        is_Active = true;
+    }
+
     // Use this for initialization
     void Start () {
         //取得
@@ -37,10 +41,9 @@ public class RetreatEnemy : MonoBehaviour {
         for (float t = 0; t < end_Time; t += Time.deltaTime) {       
             transform.localPosition = start_Pos + new Vector2(x_Move.Evaluate(t), y_Move.Evaluate(t));
             yield return null;
-        }
+        }        
 
         //最後まで移動したら消す        
         gameObject.SetActive(false);
-
     }
 }

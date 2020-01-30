@@ -90,13 +90,11 @@ public class NemunoAttack : MonoBehaviour {
             StartCoroutine("Jump_Slash_Cor", 32);
             yield return new WaitForSeconds(3.7f);
             if (i == 3)
-                break;
+                transform.localScale = new Vector3(-1, 1, 1);
             StartCoroutine("High_Jump_Cor", transform.localScale.x);
             yield return new WaitForSeconds(3.0f);
         }
-
-        yield return new WaitForSeconds(1.0f);
-
+        
         //サビ前移動(サビまでの時間調整)
         _controller.Change_Fly_Parameter();
         _controller.Change_Animation("ForwardJumpBool");
@@ -106,8 +104,8 @@ public class NemunoAttack : MonoBehaviour {
         _controller.Change_Animation("ShootBool");
         transform.localScale = new Vector3(1, 1, 1);
         //サビ前溜め
-        _controller.Play_Charge_Effect(3.5f);
-        yield return new WaitForSeconds(3.5f);
+        _controller.Play_Charge_Effect(1.5f);
+        yield return new WaitForSeconds(1.5f);
 
         //サビ弾幕(曲開始から56秒)
         for (int i = 0; i < 2; i++) {
@@ -132,6 +130,7 @@ public class NemunoAttack : MonoBehaviour {
         _controller.Change_Land_Paramter();
         _controller.Stop_Charge_Effect();
         _controller.Quit_Battle_Effect();
+        _barrier.Stop_Barrier();
         _shoot.Stop_Knife_Shoot();
     }
     #endregion
@@ -202,13 +201,16 @@ public class NemunoAttack : MonoBehaviour {
         }
 
         //弾幕前溜め
+        StartCoroutine("High_Jump_Cor", -1);
+        yield return new WaitForSeconds(2.5f);
+
         _controller.Change_Fly_Parameter();
         _controller.Change_Animation("ShootBool");
         transform.localScale = new Vector3(1, 1, 1);
-        _controller.Play_Charge_Effect(4.0f);
+        _controller.Play_Charge_Effect(2.0f);
 
         _move_Two_Points.Start_Move(new Vector3(160f, 8f), 4);
-        yield return new WaitForSeconds(4.0f);
+        yield return new WaitForSeconds(2.0f);
 
         //弾幕攻撃
         _controller.Change_Animation("ShootBool");
@@ -228,6 +230,7 @@ public class NemunoAttack : MonoBehaviour {
         _controller.Change_Land_Paramter();
         _controller.Stop_Charge_Effect();
         _controller.Quit_Battle_Effect();
+        _barrier.Stop_Barrier();
         _shoot.Stop_Kunai_Shoot();
     }
 

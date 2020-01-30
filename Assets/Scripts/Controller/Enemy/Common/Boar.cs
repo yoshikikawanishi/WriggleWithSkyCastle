@@ -2,64 +2,38 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Boar : Enemy {
+public class Boar : MonoBehaviour {
+
+    [SerializeField] private GameObject honey_Bullet;
 
     private GameObject player;
-    private Rigidbody2D _rigid;
 
-    private bool is_Rushing = false;
-    private float walk_Time = 0;
-
+    private bool can_Shoot = true;
+    private float SHOOT_INTERVAL = 1.0f;
 
 	// Use this for initialization
 	void Start () {
         //取得
         player = GameObject.FindWithTag("PlayerTag");
-        _rigid = GetComponent<Rigidbody2D>();
+        //弾のオブジェクトプール
+        ObjectPoolManager.Instance.Create_New_Pool(honey_Bullet, 1);
 	}
-
 	
 	// Update is called once per frame
 	void Update () {
-        //自機を探す
-        if (Search_Player()) {
-            //突進開始
-            if (!is_Rushing) {
-                StartCoroutine("Start_Rush_Cor");
-            }
-            //突進
-            else if (Mathf.Abs(_rigid.velocity.x) < 180f) {
-                _rigid.velocity += new Vector2(-transform.localScale.x * 5, 0);
-            }
+		if(Is_Exist_Player_Forward() && can_Shoot) {
+            StartCoroutine("Shoot_Cor");
+            can_Shoot = false;
         }
-        else {
-            is_Rushing = false;
-            //自機を見失って減速
-            if (Mathf.Abs(_rigid.velocity.x) >= 0.01f) {
-                _rigid.velocity *= new Vector2(0.995f, 1);
-            }
-            //自機未発見時歩く
-            else {
-                if(walk_Time < 2.0f) {
-                    walk_Time += Time.deltaTime;
-                    transform.position += new Vector3(transform.localScale.x * -0.2f, 0);
-                }
-                else {
-                    transform.localScale = transform.localScale * new Vector2(-1, 1);
-                    walk_Time = 0;
-                }
-            }
-        }
-
-    }
+	}
 
 
     //正面にいる自機を見つける
-    private bool Search_Player() {
+    private bool Is_Exist_Player_Forward() {
         Vector2 distance = player.transform.position - transform.position;
         distance *= new Vector2(transform.localScale.x, 1);
-        if(-256f < distance.x && distance.x < 0) {
-            if(Mathf.Abs(distance.y) < 96f) {
+        if (-320f < distance.x && distance.x < 0) {
+            if (Mathf.Abs(distance.y) < 48f) {
                 return true;
             }
         }
@@ -67,20 +41,46 @@ public class Boar : Enemy {
     }
 
 
-    //突進開始
-    private IEnumerator Start_Rush_Cor() {
-        yield return new WaitForSeconds(0.5f);
-        is_Rushing = true;
+    //アニメーション再生とはちみつ弾の発射
+    private IEnumerator Shoot_Cor() {
+        yield return null;
+        //弾の生成
+        var bullet = ObjectPoolManager.Instance.Get_Pool(honey_Bullet).GetObject();
+        bullet.transform.position = transform.position + new Vector3(-16f, 0);
+        //弾の発射
+        Vector2 speed = Calculate_Velocity(player.transform.position, 45f);
+        bullet.GetComponent<Rigidbody2D>().velocity = speed;
+        //弾の消去
+        bullet.GetComponent<Bullet>().Set_Inactive(5.0f);
+
+        yield return new WaitForSeconds(SHOOT_INTERVAL);
+        can_Shoot = true;
     }
 
 
-    //攻撃を受けると後ずさる
-    //direction == 1 で右方向に後ずさる -1で左
-    public void Guard(int direction) {
-        if (is_Rushing) {
-            GetComponent<Rigidbody2D>().velocity = new Vector2(direction * 80f, 5f);
+    /// <summary>
+    /// 標的に命中する射出速度の計算
+    /// </summary>
+    /// <param name="aim_Pos">標的の座標</param>
+    /// <returns>射出速度</returns>
+    private Vector3 Calculate_Velocity(Vector3 aim_Pos, float angle) {
+        Vector3 start_Pos = transform.position;
+        float gravity = honey_Bullet.GetComponent<Rigidbody2D>().gravityScale * 10;        
+        float rad = angle * Mathf.PI / 180;
+        float x = start_Pos.x - aim_Pos.x;
+        float y = start_Pos.y - aim_Pos.y;
+
+        Debug.Log(gravity);
+        // 斜方投射の公式を初速度について解く
+        float speed = Mathf.Sqrt(gravity * Mathf.Pow(x, 2) / (2 * Mathf.Pow(Mathf.Cos(rad), 2) * (x * Mathf.Tan(rad) + y)));
+
+        if (float.IsNaN(speed)) {
+            // 条件を満たす初速を算出できなければ
+            return new Vector3(-80f, 80f);
         }
-        transform.localScale = new Vector3(direction, 1);        
+        else {
+            return (new Vector3(aim_Pos.x - start_Pos.x, x * Mathf.Tan(rad), aim_Pos.z - start_Pos.z).normalized * speed);
+        }
     }
 
 }
