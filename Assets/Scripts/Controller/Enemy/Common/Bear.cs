@@ -2,19 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Boar : MonoBehaviour {
+public class Bear : MonoBehaviour {
 
     [SerializeField] private GameObject honey_Bullet;
 
     private GameObject player;
+    private Animator _anim;
 
     private bool can_Shoot = true;
-    private float SHOOT_INTERVAL = 1.0f;
+    private float SHOOT_INTERVAL = 1.5f;
+
 
 	// Use this for initialization
 	void Start () {
         //取得
         player = GameObject.FindWithTag("PlayerTag");
+        _anim = GetComponent<Animator>();
         //弾のオブジェクトプール
         ObjectPoolManager.Instance.Create_New_Pool(honey_Bullet, 1);
 	}
@@ -33,7 +36,7 @@ public class Boar : MonoBehaviour {
         Vector2 distance = player.transform.position - transform.position;
         distance *= new Vector2(transform.localScale.x, 1);
         if (-320f < distance.x && distance.x < 0) {
-            if (Mathf.Abs(distance.y) < 48f) {
+            if (-100f < distance.y && distance.y < 48f) {
                 return true;
             }
         }
@@ -43,7 +46,8 @@ public class Boar : MonoBehaviour {
 
     //アニメーション再生とはちみつ弾の発射
     private IEnumerator Shoot_Cor() {
-        yield return null;
+        //アニメーション
+        _anim.SetTrigger("AttackTrigger");
         //弾の生成
         var bullet = ObjectPoolManager.Instance.Get_Pool(honey_Bullet).GetObject();
         bullet.transform.position = transform.position + new Vector3(-16f, 0);
