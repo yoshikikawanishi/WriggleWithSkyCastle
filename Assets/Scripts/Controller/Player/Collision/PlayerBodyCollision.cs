@@ -11,6 +11,7 @@ public class PlayerBodyCollision : MonoBehaviour {
     private List<string> damaged_Tag_List = new List<string>() {
         "EnemyTag",
         "EnemyBulletTag",
+        "DamagedGroundTag",
     };
 
     //1フレーム内に２回以上被弾しないようにする
@@ -33,6 +34,7 @@ public class PlayerBodyCollision : MonoBehaviour {
 
 
     private void LateUpdate() {
+        //１フレーム内に２回以上被弾しないようにする
         if (is_Damaged) {
             is_Damaged = false;
         }    
@@ -110,5 +112,12 @@ public class PlayerBodyCollision : MonoBehaviour {
         gameObject.layer = LayerMask.NameToLayer("InvincibleLayer");
         yield return new WaitForSeconds(span);
         gameObject.layer = LayerMask.NameToLayer("PlayerLayer");
+    }
+
+    public bool Is_Invincible() {
+        if(gameObject.layer == LayerMask.NameToLayer("InvincibleLayer")) {
+            return true;
+        }
+        return false;
     }
 }

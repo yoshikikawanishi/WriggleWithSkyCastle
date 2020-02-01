@@ -136,11 +136,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   kind: 0
+  comment: 
   play_On_Awake: 0
   bullet: {fileID: 1718384387265616, guid: 831c8cb0f4923194d9142ab5fd39d434, type: 2}
   parent: {fileID: 0}
   max_Speed: 60
+  speed_Noise: 0
+  angle_Noise: 0
   lifeTime: 10
+  offset: {x: 0, y: 0}
+  default_Shoot_Sound: 0
   is_Acceleration: 0
   velocity_Forward:
     serializedVersion: 2
@@ -181,12 +186,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   is_Pooled: 1
-  is_Blowed: 0
   life: 1
   power_Value: 0
   score_Value: 5
   drop_Life_Probability: 0.1
-  vanish_Action: 0
+  drop_Option_Box_Probability: 0
 --- !u!114 &114758515158919348
 MonoBehaviour:
   m_ObjectHideFlags: 1

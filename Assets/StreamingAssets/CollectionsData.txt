@@ -1,5 +1,5 @@
 #Key	#IsCollected
 test	False
 orb	False
-Rumia	False
+Rumia	True
 Mystia	False

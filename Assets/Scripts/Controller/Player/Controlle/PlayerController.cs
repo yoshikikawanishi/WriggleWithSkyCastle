@@ -38,8 +38,6 @@ public class PlayerController : MonoBehaviour {
     private float SHOOT_INTERVAL = 0.2f;
     private float shoot_Time = 0.2f;
 
-    private float default_Gravity;
-
     //緑ゲージ不足の警告音は飛行中1度だけ鳴らす
     private bool is_Played_Alert = false;   
 
@@ -60,7 +58,6 @@ public class PlayerController : MonoBehaviour {
         input = InputManager.Instance;
         //初期設定
         Change_Beetle_Scroll_Speed(NORMAL_SCROLL_SPEED);
-        default_Gravity = _rigid.gravityScale;
     }
 
 

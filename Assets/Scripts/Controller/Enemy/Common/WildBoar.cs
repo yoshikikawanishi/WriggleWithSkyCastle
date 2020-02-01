@@ -11,6 +11,12 @@ public class WildBoar : Enemy {
     private bool is_Rushing = false;
     private float walk_Time = 0;
 
+    private List<string> repelled_Attack_Tags = new List<string>() {
+        "PlayerAttackTag",
+        "PlayerSpiderAttackTag",
+        "PlayerButterflyAttackTag"
+    };
+
 
 	// Use this for initialization
 	void Start () {
@@ -79,9 +85,13 @@ public class WildBoar : Enemy {
 
 
     public override void Damaged(int damage, string attacked_Tag) {
-        int direction = transform.localScale.x.CompareTo(0);
+        int direction = transform.localScale.x.CompareTo(0);    
+        //突進中は被弾時反動ではじかれる
         if (is_Rushing) {
-            GetComponent<Rigidbody2D>().velocity = new Vector2(direction * 80f, 5f);
+            foreach(string tag in repelled_Attack_Tags) {
+                if(attacked_Tag == tag)
+                    GetComponent<Rigidbody2D>().velocity = new Vector2(direction * 80f, 5f);
+            }            
         }
         base.Damaged(damage, attacked_Tag);
     }

@@ -12,10 +12,10 @@ public class PoisonedEnemy : MonoBehaviour {
 
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
         _sprite = GetComponent<SpriteRenderer>();
         default_Color = _sprite.color;
-        poisoned_Color = default_Color - new Color(0.1f, 0.2f, 0);
+        poisoned_Color = default_Color * new Color(0.9f, 0.8f, 1.0f, 1.0f);
 	}
 	
 	// Update is called once per frame
@@ -26,6 +26,9 @@ public class PoisonedEnemy : MonoBehaviour {
         }
 	}
 
+    void OnEnable() {
+        is_Poisoned = false;   
+    }
 
     /// <summary>
     /// 毒の継続ダメージを発生させる、色を変える
@@ -48,7 +51,7 @@ public class PoisonedEnemy : MonoBehaviour {
         is_Poisoned = true;
         for (int i = 0; i < 16; i++) {
             enemy_Controller.Damaged(1, "");
-            yield return new WaitForSeconds(0.8f);
+            yield return new WaitForSeconds(0.4f);
         }
         is_Poisoned = false;
         if (Compare_Color(_sprite.color, poisoned_Color))

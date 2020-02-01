@@ -15,7 +15,8 @@ public class PlayerFootCollision : MonoBehaviour {
     private List<string> LANDING_TAG_LIST = new List<string> {
         "GroundTag",
         "ThroughGroundTag",
-        "SandbackGroundTag"
+        "SandbackGroundTag",
+        "DamagedGroundTag"
     };
 
     

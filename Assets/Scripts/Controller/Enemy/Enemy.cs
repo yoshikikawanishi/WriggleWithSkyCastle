@@ -10,16 +10,15 @@ using UnityEngine;
 public class Enemy : MonoBehaviour {
     
     [SerializeField] private bool is_Pooled = false;
-    [SerializeField] private bool is_Blowed = false;
     [Space]
     [SerializeField] private int life = 5;
     [SerializeField] private int power_Value = 0;
     [SerializeField] private int score_Value = 0;
-    [SerializeField] private float drop_Life_Probability = 1;    
+    [SerializeField] private float drop_Life_Probability = 1;
+    [SerializeField] private float drop_Option_Box_Probability = 0;
 
     private SpriteRenderer _sprite;
-    private Color default_Color;
-    private BlowingEnemy blowing_Enemy;
+    private Color default_Color, damaged_Color;    
     private SpiderFootingEnemy spider_Footing_Enemy;
     private PoisonedEnemy poisoned_Enemy;
 
@@ -32,8 +31,8 @@ public class Enemy : MonoBehaviour {
         //取得
         _sprite = GetComponent<SpriteRenderer>();
         default_Color = _sprite.color;
+        damaged_Color = default_Color * new Color(1.0f, 0.7f, 0.7f, 1.0f);
         default_Life = life;
-        blowing_Enemy = gameObject.AddComponent<BlowingEnemy>();
         spider_Footing_Enemy = gameObject.AddComponent<SpiderFootingEnemy>();
         poisoned_Enemy = gameObject.AddComponent<PoisonedEnemy>();
     }
@@ -71,10 +70,7 @@ public class Enemy : MonoBehaviour {
     //消滅前のアクション
     // EnemyCollisionDetectionのDamagedで変更
     private void Vanish_Action(string attacked_Tag) {
-        if(attacked_Tag == "PlayerButterflyAttackTag" && is_Blowed) {
-            blowing_Enemy.Blow_Away_Vanish();
-        }
-        else if(attacked_Tag == "PlayerSpiderAttackTag") {
+        if(attacked_Tag == "PlayerSpiderAttackTag") {
             spider_Footing_Enemy.Generate_Footing_Vanish();
         }
         else {
@@ -115,14 +111,19 @@ public class Enemy : MonoBehaviour {
             var life_Item = ObjectPoolManager.Instance.Get_Pool("LifeUpItem").GetObject();
             life_Item.transform.position = transform.position;
         }
+
+        Debug.Log("TODO: Drop Option Box");
+        if (Random.Range(1, 100) <= drop_Option_Box_Probability) {
+            
+        }
     }
 
     //点滅
     private IEnumerator Blink() {
-        _sprite.color = new Color(1, 0.5f, 0.5f);
+        _sprite.color = damaged_Color;
         yield return new WaitForSeconds(0.1f);
         //色が点滅中に変わっていないことを確認
-        if (_sprite.color == new Color(1, 0.5f, 0.5f))        
+        if (_sprite.color == damaged_Color)        
             _sprite.color = default_Color;
     }	
 

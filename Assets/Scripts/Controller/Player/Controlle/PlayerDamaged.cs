@@ -21,7 +21,9 @@ public class PlayerDamaged : MonoBehaviour {
 
 
     //被弾時の処理
-    public IEnumerator Damaged() {          
+    public IEnumerator Damaged() {
+        if (GetComponentInChildren<PlayerBodyCollision>().Is_Invincible())
+            yield break;
         if (PlayerManager.Instance.Reduce_Life() == 0) 
             yield break;
 

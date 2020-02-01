@@ -25,6 +25,7 @@ TagManager:
   - PlayerButterflyAttackTag
   - PlayerSpiderAttackTag
   - PlayerChargeAttackTag
+  - DamagedGroundTag
   layers:
   - Default
   - TransparentFX
