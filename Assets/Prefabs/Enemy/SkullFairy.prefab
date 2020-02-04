@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 212730297293796994}
   - component: {fileID: 61969084915051364}
   - component: {fileID: 50962488793693136}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: Skull
   m_TagString: SandbackGroundTag
   m_Icon: {fileID: 0}

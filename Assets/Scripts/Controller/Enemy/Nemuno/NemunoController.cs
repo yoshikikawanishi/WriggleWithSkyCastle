@@ -122,7 +122,7 @@ public class NemunoController : MonoBehaviour {
     public void Play_Battle_Effect() {
         back_Design.SetActive(true);
         back_Design.transform.localScale = new Vector3(0, 0, 1);
-        BackGroundEffector.Instance.Start_Change_Color(new Color(0.45f, 0.4f, 0.35f), 0.1f);
+        BackGroundEffector.Instance.Start_Change_Color(new Color(0.45f, 0.35f, 0.35f), 0.1f);
     }
 
     //戦闘中の画面エフェクト消す

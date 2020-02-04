@@ -10,16 +10,19 @@ public class NemunoShoot : MonoBehaviour {
     [SerializeField] private ShootSystem slash_Shootgun_Forward;
     [SerializeField] private ShootSystem knife_Shoot;
     [Space]
+    [SerializeField] private GameObject big_Slash_Bullet;
     [SerializeField] private GameObject phase2_Kunai_Shoot_Obj;
 
     //コンポーネント
     private BulletAccelerator _accelerator;
+    private NemunoController nemuno_Controller;
 
 
 	// Use this for initialization
 	void Start () {
         //取得
         _accelerator = GetComponent<BulletAccelerator>();
+        nemuno_Controller = transform.parent.GetComponent<NemunoController>();
         //オブジェクトプール
         ObjectPoolManager.Instance.Create_New_Pool(yellow_Rice_Bullet, 48);
 	}
@@ -57,6 +60,7 @@ public class NemunoShoot : MonoBehaviour {
         for (int i = 0; i < num; i++) {
             var bullet = ObjectPoolManager.Instance.Get_Pool(yellow_Rice_Bullet).GetObject();
             bullet.transform.position = pos + new Vector3(0, -21f + i * 1.5f);
+            bullet.transform.rotation = new Quaternion(0, 0, 0, 0);
             bullet_List.Add(bullet);
             yield return new WaitForSeconds(0.16f / num);
         }
@@ -73,6 +77,8 @@ public class NemunoShoot : MonoBehaviour {
             bullet_List[i].GetComponent<Rigidbody2D>().velocity = bullet_List[i].transform.right * speed;
         }
         _accelerator.Accelerat_Bullet(bullet_List, 1.05f, 1.5f);
+        UsualSoundManager.Instance.Play_Shoot_Sound();
+        nemuno_Controller.Play_Burst_Effect();
     }
 
 
@@ -86,20 +92,53 @@ public class NemunoShoot : MonoBehaviour {
         knife_Shoot.Stop_Shoot();
     }
 
+    //フェーズ２巨大斬撃発射
+    public void Shoot_Big_Slash_Bullet() {
+        var effect = Instantiate(Resources.Load("Effect/BurstEffect_Yellow") as GameObject);
+        effect.transform.position = transform.position;
+        Destroy(effect, 3.0f);
+        var bullet = Instantiate(big_Slash_Bullet);
+        bullet.transform.position = new Vector3(270f, 0);
+    }
 
     //フェーズ２クナイ弾開始
     public void Start_Kunai_Shoot() {
+        StartCoroutine("Shoot_Kunai_Cor");
+    }
+
+    private IEnumerator Shoot_Kunai_Cor() {
         ShootSystem[] shoots = phase2_Kunai_Shoot_Obj.GetComponentsInChildren<ShootSystem>();
-        foreach(ShootSystem s in shoots) {
-            s.Shoot();
-        }
+        int i = 0; 
+        while (true) {
+            shoots[0].Shoot(); shoots[1].Shoot();
+            shoots[4].Shoot(); shoots[5].Shoot();
+            shoots[8].Shoot(); shoots[9].Shoot();
+            UsualSoundManager.Instance.Play_Shoot_Sound();
+            nemuno_Controller.Play_Burst_Effect();
+            yield return new WaitForSeconds(3.5f);
+
+            shoots[2].Shoot(); shoots[3].Shoot();
+            shoots[6].Shoot(); shoots[7].Shoot();
+            shoots[10].Shoot(); shoots[11].Shoot();
+            UsualSoundManager.Instance.Play_Shoot_Sound();
+            nemuno_Controller.Play_Burst_Effect();
+            yield return new WaitForSeconds(3.5f);
+
+            i++;
+            if(i % 6 == 0) {
+                Shoot_Big_Slash_Bullet();                
+                nemuno_Controller.Play_Burst_Effect();
+                yield return new WaitForSeconds(4.0f);
+            }
+        }        
     }
 
     public void Stop_Kunai_Shoot() {
+        StopCoroutine("Shoot_Kunai_Cor");
         ShootSystem[] shoots = phase2_Kunai_Shoot_Obj.GetComponentsInChildren<ShootSystem>();
-        foreach (ShootSystem s in shoots) {
-            s.Stop_Shoot();
-        }
+        for(int i = 0; i < shoots.Length; i++) {
+            shoots[i].Stop_Shoot();
+        }        
     }
 
 }

@@ -751,11 +751,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   is_Pooled: 1
-  is_Blowed: 0
   life: 1
   power_Value: 0
   score_Value: 2
   drop_Life_Probability: 0.1
+  drop_Option_Box_Probability: 0
 --- !u!58 &105462739
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -8874,11 +8874,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   is_Pooled: 1
-  is_Blowed: 0
   life: 1
   power_Value: 0
   score_Value: 2
   drop_Life_Probability: 0.1
+  drop_Option_Box_Probability: 0
 --- !u!58 &526800671
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -9238,11 +9238,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   is_Pooled: 1
-  is_Blowed: 0
   life: 1
   power_Value: 0
   score_Value: 2
   drop_Life_Probability: 0.1
+  drop_Option_Box_Probability: 0
 --- !u!58 &553589732
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -10163,11 +10163,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   is_Pooled: 1
-  is_Blowed: 0
   life: 1
   power_Value: 0
   score_Value: 1
   drop_Life_Probability: 0.1
+  drop_Option_Box_Probability: 0
 --- !u!58 &698840547
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -11848,11 +11848,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4198465449994586, guid: 5afb5e98fd7e50347ab387db3868cf32, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 2595.406
+      value: 2596
       objectReference: {fileID: 0}
     - target: {fileID: 4198465449994586, guid: 5afb5e98fd7e50347ab387db3868cf32, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -6.0647306
+      value: -16
       objectReference: {fileID: 0}
     - target: {fileID: 4198465449994586, guid: 5afb5e98fd7e50347ab387db3868cf32, type: 2}
       propertyPath: m_LocalPosition.z
@@ -12274,11 +12274,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   is_Pooled: 1
-  is_Blowed: 0
   life: 6
   power_Value: 3
   score_Value: 6
   drop_Life_Probability: 0.1
+  drop_Option_Box_Probability: 0
 --- !u!95 &983762260
 Animator:
   serializedVersion: 3
@@ -13583,11 +13583,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   is_Pooled: 1
-  is_Blowed: 0
   life: 6
   power_Value: 3
   score_Value: 6
   drop_Life_Probability: 0.1
+  drop_Option_Box_Probability: 0
 --- !u!95 &1178654075
 Animator:
   serializedVersion: 3
@@ -14106,11 +14106,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4198465449994586, guid: 5afb5e98fd7e50347ab387db3868cf32, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 2785
+      value: 2785.9
       objectReference: {fileID: 0}
     - target: {fileID: 4198465449994586, guid: 5afb5e98fd7e50347ab387db3868cf32, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -75
+      value: -81.6
       objectReference: {fileID: 0}
     - target: {fileID: 4198465449994586, guid: 5afb5e98fd7e50347ab387db3868cf32, type: 2}
       propertyPath: m_LocalPosition.z
@@ -14596,57 +14596,6 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2e7c21d7678320a468b2d48c5ce9bf53, type: 2}
   m_IsPrefabAsset: 0
---- !u!1001 &1373697383
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 1958108612}
-    m_Modifications:
-    - target: {fileID: 4509231397101048, guid: 800ef77cffa83f74e9d7be1498e41a57, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 2864
-      objectReference: {fileID: 0}
-    - target: {fileID: 4509231397101048, guid: 800ef77cffa83f74e9d7be1498e41a57, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: -52
-      objectReference: {fileID: 0}
-    - target: {fileID: 4509231397101048, guid: 800ef77cffa83f74e9d7be1498e41a57, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4509231397101048, guid: 800ef77cffa83f74e9d7be1498e41a57, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4509231397101048, guid: 800ef77cffa83f74e9d7be1498e41a57, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4509231397101048, guid: 800ef77cffa83f74e9d7be1498e41a57, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4509231397101048, guid: 800ef77cffa83f74e9d7be1498e41a57, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4509231397101048, guid: 800ef77cffa83f74e9d7be1498e41a57, type: 2}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1411507079774492, guid: 800ef77cffa83f74e9d7be1498e41a57, type: 2}
-      propertyPath: m_Name
-      value: SavePoint (1)
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 800ef77cffa83f74e9d7be1498e41a57, type: 2}
-  m_IsPrefabAsset: 0
---- !u!4 &1373697384 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4509231397101048, guid: 800ef77cffa83f74e9d7be1498e41a57,
-    type: 2}
-  m_PrefabInternal: {fileID: 1373697383}
 --- !u!1001 &1388548401
 Prefab:
   m_ObjectHideFlags: 0
@@ -15748,11 +15697,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   is_Pooled: 1
-  is_Blowed: 0
   life: 6
   power_Value: 3
   score_Value: 6
   drop_Life_Probability: 0.1
+  drop_Option_Box_Probability: 0
 --- !u!58 &1607667313
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -16084,11 +16033,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   is_Pooled: 1
-  is_Blowed: 0
   life: 1
   power_Value: 0
   score_Value: 5
   drop_Life_Probability: 0.1
+  drop_Option_Box_Probability: 0
 --- !u!58 &1620839577
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -19712,11 +19661,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   is_Pooled: 1
-  is_Blowed: 0
   life: 1
   power_Value: 0
   score_Value: 1
   drop_Life_Probability: 0.1
+  drop_Option_Box_Probability: 0
 --- !u!58 &1759188009
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -20083,11 +20032,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   is_Pooled: 1
-  is_Blowed: 0
   life: 6
   power_Value: 3
   score_Value: 6
   drop_Life_Probability: 0.1
+  drop_Option_Box_Probability: 0
 --- !u!58 &1808268263
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -20662,11 +20611,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   is_Pooled: 1
-  is_Blowed: 0
   life: 15
   power_Value: 3
   score_Value: 2
   drop_Life_Probability: 0.1
+  drop_Option_Box_Probability: 0
 --- !u!61 &1914277700
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -21022,7 +20971,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 563737463}
-  - {fileID: 1373697384}
   m_Father: {fileID: 0}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

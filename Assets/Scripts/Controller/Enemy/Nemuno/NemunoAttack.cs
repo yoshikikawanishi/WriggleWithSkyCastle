@@ -7,6 +7,7 @@ public class NemunoAttack : MonoBehaviour {
     //コンポーネント
     private SpriteRenderer _sprite;
     private NemunoController _controller;
+    private BossEnemy _boss_Enemy;
     private NemunoShoot _shoot;
     private NemunoBarrier _barrier;
     private NemunoSoundEffect _sound;
@@ -28,6 +29,7 @@ public class NemunoAttack : MonoBehaviour {
         //取得
         _sprite = GetComponent<SpriteRenderer>();
         _controller = GetComponent<NemunoController>();
+        _boss_Enemy = GetComponent<BossEnemy>();
         _shoot = GetComponentInChildren<NemunoShoot>();
         _barrier = GetComponentInChildren<NemunoBarrier>();
         _sound = GetComponentInChildren<NemunoSoundEffect>();
@@ -156,7 +158,7 @@ public class NemunoAttack : MonoBehaviour {
         AttackKind two_Pre_Attack = AttackKind.long_Slash;       
 
         //通常攻撃
-        for (int i = 0; i < 4; i++) {
+        while(_boss_Enemy.life[1] > 100) {
             //移動
             for (int j = 1; j <= 2; j++) {
                 float distance = ((int)Random.Range(0, 2) - 0.5f) * 120f;
@@ -203,24 +205,27 @@ public class NemunoAttack : MonoBehaviour {
         //弾幕前溜め
         StartCoroutine("High_Jump_Cor", -1);
         yield return new WaitForSeconds(2.5f);
-
-        _controller.Change_Fly_Parameter();
-        _controller.Change_Animation("ShootBool");
+        
         transform.localScale = new Vector3(1, 1, 1);
-        _controller.Play_Charge_Effect(2.0f);
+        _controller.Play_Charge_Effect(4.4f);
 
-        _move_Two_Points.Start_Move(new Vector3(160f, 8f), 4);
-        yield return new WaitForSeconds(2.0f);
+        //巨大斬撃発射
+        _controller.Change_Animation("SlashBool");
+        yield return new WaitForSeconds(0.8f);
+        _shoot.Shoot_Big_Slash_Bullet();
+        _sound.Play_Slash_Sound();
 
-        //弾幕攻撃
+        //移動
         _controller.Change_Animation("ShootBool");
+        _controller.Change_Fly_Parameter();
+        yield return new WaitForSeconds(1.0f);        
+        _move_Two_Points.Start_Move(new Vector3(160f, 8f), 4);
+        yield return new WaitForSeconds(3.0f);
+
+        //クナイ弾開始
         _controller.Play_Burst_Effect();
         _shoot.Start_Kunai_Shoot();
-
-        yield return new WaitForSeconds(9.0f);
-        _controller.Change_Land_Paramter();
-        yield return new WaitForSeconds(1.0f);
-        StartCoroutine("Phase2_Cor");
+        
     }
 
     public void Stop_Phase2() {
@@ -250,11 +255,11 @@ public class NemunoAttack : MonoBehaviour {
         List<AttackKind> list = new List<AttackKind>{ AttackKind.close_Slash, AttackKind.long_Slash, AttackKind.barrier, AttackKind.jump_Slash };
         list.Remove(pre_Attack);
         list.Remove(two_Pre_Attack);
-
+        Debug.Log(list.ToString());
         int rate = Random.Range(0, 100);
-        if (rate < 40)
+        if (rate < 45)
             return list[0];
-        else if (rate < 80)
+        else if (rate < 90)
             return list[1];
         return two_Pre_Attack;        
     }
@@ -422,7 +427,7 @@ public class NemunoAttack : MonoBehaviour {
         //歩く
         int direction = (transform.position.x - player.transform.position.x).CompareTo(0);
         transform.localScale = new Vector3(direction, 1, 1);
-
+        
         _controller.Change_Animation("DashBool");
         _move_Two_Points.Start_Move(new Vector3(transform.position.x - walk_Length * direction, transform.position.y), 1);
         yield return new WaitForSeconds(2.0f);
@@ -445,6 +450,7 @@ public class NemunoAttack : MonoBehaviour {
         //ショット
         _controller.Change_Animation("SlashBool");
         _controller.Play_Yellow_Circle_Effect();
+        _sound.Play_Before_Slash_Sound();
         _shoot.StartCoroutine("Shoot_Jump_Slash_Cor", num);        
         yield return new WaitForSeconds(1.3f);
         //落下

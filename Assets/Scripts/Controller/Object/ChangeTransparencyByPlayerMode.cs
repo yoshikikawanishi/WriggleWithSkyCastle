@@ -4,9 +4,9 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 
 /// <summary>
-/// 自機が通常時または飛行時に半透明になり、当たり判定を消すTilemapオブジェクトにアタッチ
+/// 自機が通常時または飛行時に半透明になり当たり判定を消す(Tilemapオブジェクトにもアタッチできる)
 /// </summary>
-public class TileTransparent : MonoBehaviour {
+public class ChangeTransparencyByPlayerMode : MonoBehaviour {
 
     private enum PlayerState {
         normal,
@@ -16,16 +16,20 @@ public class TileTransparent : MonoBehaviour {
 
     //コンポーネント
     private PlayerController player_Controller;
+    private SpriteRenderer _sprite;
     private Tilemap _tilemap;
-    private TilemapCollider2D _collider;
+
+    private LayerMask default_Layer;
 
 	
     // Use this for initialization
 	void Start () {
         //取得
         player_Controller = GameObject.FindWithTag("PlayerTag").GetComponent<PlayerController>();
-        _tilemap = GetComponent<Tilemap>();
-        _collider = GetComponent<TilemapCollider2D>();
+        if ((_sprite = GetComponent<SpriteRenderer>()) == null) {
+            _tilemap = GetComponent<Tilemap>();            
+        }
+        default_Layer = gameObject.layer;        
 	}
 
 
@@ -60,17 +64,27 @@ public class TileTransparent : MonoBehaviour {
 
     //透明になる
     private void Become_Transparent() {
-        if (_collider.enabled) {
-            _tilemap.color = new Color(1, 1, 1, 0.4f);
-            _collider.enabled = false;
+        if (gameObject.layer == default_Layer) {
+            if (_sprite == null) {
+                _tilemap.color = new Color(1, 1, 1, 0.4f);                
+            }
+            else {
+                _sprite.color = new Color(1, 1, 1, 0.4f);
+            }
+            gameObject.layer = LayerMask.NameToLayer("InvincibleLayer");
         }
     }
 
     //具現化する
     private void Become_Appearance() {
-        if (!_collider.enabled) {
-            _tilemap.color = new Color(1, 1, 1, 1);
-            _collider.enabled = true;
+        if (gameObject.layer == LayerMask.NameToLayer("InvincibleLayer")) {
+            if (_sprite == null) {
+                _tilemap.color = new Color(1, 1, 1, 1f);
+            }
+            else {
+                _sprite.color = new Color(1, 1, 1, 1f);
+            }
+            gameObject.layer = default_Layer;
         }
     }
 

@@ -43,7 +43,7 @@ public class NemunoBarrier : MonoBehaviour {
             transform.Rotate(new Vector3(0, 0, 1f));
             transform.position = nemuno.transform.position;
         }
-        //場アリア停止中
+        //ばリア停止中
         else {
             if (_collider.enabled) {
                 _collider.enabled = false;
