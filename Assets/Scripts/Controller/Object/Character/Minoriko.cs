@@ -49,6 +49,7 @@ public class Minoriko : MonoBehaviour {
     private void OnBecameVisible() {
         is_Visible = true;
         Stop_Potate_Shoot();
+        GetComponent<MoveTwoPoints>().Start_Move(transform.position + new Vector3(0, 80f));
     }
 
     private void OnBecameInvisible() {

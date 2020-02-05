@@ -28,6 +28,6 @@ public class VerticalVibeMotion : MonoBehaviour {
         }
 
         transform.position = new Vector3(transform.position.x, center_Pos + Mathf.Sin(Mathf.Deg2Rad * angle) * amplitude);
-        angle = (angle + angular_Speed) % 360f * Time.timeScale;
+        angle = (angle + angular_Speed * Time.timeScale) % 360f;
 	}
 }
