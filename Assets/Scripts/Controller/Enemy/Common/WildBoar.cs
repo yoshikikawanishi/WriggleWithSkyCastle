@@ -14,7 +14,8 @@ public class WildBoar : Enemy {
     private List<string> repelled_Attack_Tags = new List<string>() {
         "PlayerAttackTag",
         "PlayerSpiderAttackTag",
-        "PlayerButterflyAttackTag"
+        "PlayerButterflyAttackTag",
+        "PlayerKickTag",
     };
 
 
@@ -90,7 +91,7 @@ public class WildBoar : Enemy {
         if (is_Rushing) {
             foreach(string tag in repelled_Attack_Tags) {
                 if(attacked_Tag == tag)
-                    GetComponent<Rigidbody2D>().velocity = new Vector2(direction * 80f, 5f);
+                    GetComponent<Rigidbody2D>().velocity = new Vector2(direction * 100f, 5f);
             }            
         }
         base.Damaged(damage, attacked_Tag);
