@@ -91,6 +91,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   deleted_Obj_Tag:
   - BombTag
+  - GroundTag
   is_Delete_Invisible: 1
 --- !u!212 &212760551804292406
 SpriteRenderer:

@@ -48,8 +48,11 @@ public class TitleSceneButton : MonoBehaviour {
         EventSystem.current.SetSelectedGameObject(null);
         FadeInOut.Instance.Start_Fade_Out(new Color(0, 0, 0), 0.02f);
         yield return new WaitForSeconds(1.0f);
-        SceneManagement.Instance.Delete_Visit_Scene();
-        DataManager.Instance.Initialize_Player_Data();
+
+        SceneManagement.Instance.Delete_Visit_Scene();  //シーン進行度
+        DataManager.Instance.Initialize_Player_Data();  //自機のデータ
+        PlayerPrefs.DeleteKey("YukaTutorial");          //２面チュートリアル
+
         DataManager.Instance.Load_Player_Data();
     }
 

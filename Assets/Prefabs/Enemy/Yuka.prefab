@@ -1569,7 +1569,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c08b4a557d4000c44ae04eba2b276714, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collection_Name: test
+  collection_Name: Yuka
 --- !u!114 &114857762986136162
 MonoBehaviour:
   m_ObjectHideFlags: 1

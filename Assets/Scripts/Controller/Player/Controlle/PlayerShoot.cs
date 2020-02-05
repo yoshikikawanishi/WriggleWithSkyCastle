@@ -8,6 +8,7 @@ public class PlayerShoot : MonoBehaviour {
     private PlayerController player_Controller;
     private PlayerEffect player_Effect;
     private PlayerSoundEffect player_SE;
+    private GameObject main_Camera;
     private CameraShake camera_Shake;
 
     //弾
@@ -16,7 +17,7 @@ public class PlayerShoot : MonoBehaviour {
     [SerializeField] private GameObject butterfly_Bullet;
     [SerializeField] private GameObject mantis_Bullet;
     [SerializeField] private GameObject spider_Bullet;
-    [SerializeField] private GameObject charge_Bullet;        
+    [SerializeField] private GameObject charge_Shoot_Obj;
 
     private float charge_Time = 0;
     private float[] charge_Span = new float[3] { 0.3f, 1.0f, 2.0f };
@@ -35,13 +36,13 @@ public class PlayerShoot : MonoBehaviour {
         ObjectPoolManager.Instance.Create_New_Pool(butterfly_Bullet, 5);
         ObjectPoolManager.Instance.Create_New_Pool(mantis_Bullet, 5);
         ObjectPoolManager.Instance.Create_New_Pool(spider_Bullet, 5);
-        ObjectPoolManager.Instance.Create_New_Pool(charge_Bullet, 2);
         //取得
         player_Manager = PlayerManager.Instance;
         player_Controller = GetComponent<PlayerController>();
         player_Effect = GetComponentInChildren<PlayerEffect>();
         player_SE = GetComponentInChildren<PlayerSoundEffect>();
-        camera_Shake = GameObject.FindWithTag("MainCamera").GetComponent<CameraShake>();
+        main_Camera = GameObject.FindWithTag("MainCamera");
+        camera_Shake = main_Camera.GetComponent<CameraShake>();
     }
 
 
@@ -146,15 +147,30 @@ public class PlayerShoot : MonoBehaviour {
     //チャージショット
     public void Charge_Shoot() {
         if (charge_Phase == 3) {
-            GameObject bullet = ObjectPoolManager.Instance.Get_Pool(charge_Bullet).GetObject();
-            bullet.transform.position = transform.position;
-            bullet.GetComponent<Rigidbody2D>().velocity = new Vector2(500f * transform.localScale.x, 0);
-            player_SE.Play_Charge_Shoot_Sound();
-            camera_Shake.Shake(0.25f, new Vector2(0, 1.2f), false);
+            StartCoroutine("Charge_Shoot_Cor");
         }
         charge_Time = 0;
         player_Effect.Start_Shoot_Charge(0);
         player_SE.Stop_Charge_Sound();
+    }
+
+    private IEnumerator Charge_Shoot_Cor() {
+        if (BeetlePowerManager.Instance.beetle_Power < 50)
+            yield break;
+        //パワー減らす
+        BeetlePowerManager.Instance.Decrease(50);
+        //生成
+        var obj = Instantiate(charge_Shoot_Obj);
+        obj.transform.position = transform.position + new Vector3(transform.localScale.x + 128f, 0);        
+        ShootSystem[] shoots = obj.GetComponentsInChildren<ShootSystem>();
+
+        player_SE.Play_Charge_Shoot_Sound();
+        camera_Shake.Shake(0.25f, new Vector2(0, 1.2f), false);
+
+        //ショット
+        shoots[0].Shoot();
+        yield return new WaitForSeconds(1f / 14f);
+        shoots[1].Shoot();
     }
 
 

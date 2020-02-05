@@ -51,7 +51,7 @@ public class WildBoar : Enemy {
             else {
                 if(walk_Time < 2.0f) {
                     walk_Time += Time.deltaTime;
-                    transform.position += new Vector3(transform.localScale.x * -0.2f, 0);
+                    transform.position += new Vector3(transform.localScale.x * -0.2f, 0) * Time.timeScale;
                 }
                 else {
                     transform.localScale = transform.localScale * new Vector2(-1, 1);

@@ -20,6 +20,8 @@ public class PlayerController : MonoBehaviour {
     private PlayerGettingOnBeetle _getting_On_Beetle;
     //キー入力用
     private InputManager input;
+    //収集アイテム
+    private CollectionManager collection_Manager;
 
     //状態
     public bool is_Playable = true;
@@ -56,6 +58,7 @@ public class PlayerController : MonoBehaviour {
         _shoot = GetComponent<PlayerShoot>();
         _getting_On_Beetle = GetComponent<PlayerGettingOnBeetle>();
         input = InputManager.Instance;
+        collection_Manager = CollectionManager.Instance;
         //初期設定
         Change_Beetle_Scroll_Speed(NORMAL_SCROLL_SPEED);
     }
@@ -220,11 +223,13 @@ public class PlayerController : MonoBehaviour {
             }
         }
         //チャージショット
-        if (input.GetKey(Key.Shoot)) {
-            _shoot.Charge();
-        }        
-        if (input.GetKeyUp(Key.Shoot)) {
-            _shoot.Charge_Shoot();
+        if (collection_Manager.Is_Collected("Yuka")) {
+            if (input.GetKey(Key.Shoot)) {
+                _shoot.Charge();
+            }
+            if (input.GetKeyUp(Key.Shoot)) {
+                _shoot.Charge_Shoot();
+            }
         }
     }
 

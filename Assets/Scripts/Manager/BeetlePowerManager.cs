@@ -64,6 +64,12 @@ public class BeetlePowerManager : SingletonMonoBehaviour<BeetlePowerManager> {
             yield return new WaitForSeconds(0.01f);
         }
     }
+
+
+    //チャージショット時の減少
+    public void Decrease(int amount) {
+        beetle_Power -= amount;
+    }
     
 
 }
