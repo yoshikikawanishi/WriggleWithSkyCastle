@@ -115,14 +115,14 @@ public class NemunoShoot : MonoBehaviour {
             shoots[8].Shoot(); shoots[9].Shoot();
             UsualSoundManager.Instance.Play_Shoot_Sound();
             nemuno_Controller.Play_Burst_Effect();
-            yield return new WaitForSeconds(3.5f);
+            yield return new WaitForSeconds(4.5f);
 
             shoots[2].Shoot(); shoots[3].Shoot();
             shoots[6].Shoot(); shoots[7].Shoot();
             shoots[10].Shoot(); shoots[11].Shoot();
             UsualSoundManager.Instance.Play_Shoot_Sound();
             nemuno_Controller.Play_Burst_Effect();
-            yield return new WaitForSeconds(3.5f);
+            yield return new WaitForSeconds(4.5f);
 
             i++;
             if(i % 6 == 0) {

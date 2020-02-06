@@ -71,7 +71,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1063685313600276}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3198, y: 160, z: 0}
+  m_LocalPosition: {x: 3646, y: 160, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4671697439152830}
@@ -291,9 +291,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   is_Pooled: 1
-  life: 5
-  power_Value: 0
-  score_Value: 0
+  life: 18
+  power_Value: 3
+  score_Value: 5
   drop_Life_Probability: 1
   drop_Option_Box_Probability: 0
 --- !u!114 &114484500174670558

@@ -86,6 +86,6 @@ public class NemunoBarrier : MonoBehaviour {
     private IEnumerator Blink() {
         _sprite.color = new Color(0.7f, 0.7f, 0.7f, _sprite.color.a);
         yield return new WaitForSeconds(0.2f);
-        _sprite.color = new Color(1, 1, 1, _sprite.color.a);
+        _sprite.color = new Color(1f, 1f, 1f, _sprite.color.a);
     }
 }

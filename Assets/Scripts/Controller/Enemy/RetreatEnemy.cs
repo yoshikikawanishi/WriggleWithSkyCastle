@@ -36,7 +36,10 @@ public class RetreatEnemy : MonoBehaviour {
     //退場する
     private IEnumerator Retreate_Cor() {
         float end_Time = x_Move.keys[x_Move.length - 1].time;
-        Vector2 start_Pos = transform.localPosition;        
+
+        yield return new WaitForSeconds(1.0f);
+
+        Vector2 start_Pos = transform.localPosition;
 
         for (float t = 0; t < end_Time; t += Time.deltaTime) {       
             transform.localPosition = start_Pos + new Vector2(x_Move.Evaluate(t), y_Move.Evaluate(t));

@@ -20338,6 +20338,7 @@ MonoBehaviour:
   max_Size: 5
   life_Time: 0.7
   angler_Velocity: 0
+  in_Fixed_Update: 1
 --- !u!212 &926506050
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -31749,7 +31750,7 @@ SpriteRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -31960,6 +31961,7 @@ MonoBehaviour:
   max_Size: 1
   life_Time: 0
   angler_Velocity: 0.15
+  in_Fixed_Update: 1
 --- !u!1 &1976430191
 GameObject:
   m_ObjectHideFlags: 0
@@ -32447,7 +32449,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c9048ccf0aa56442ba7e89fea6de129, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  life: 01000000c8000000
+  life: fa000000fa000000
   power_Value: 5
   score_Value: 0
   phase_Change_Bomb_Prefab: {fileID: 1736861288342968, guid: 675f49615979bbc458f93a55dfd74bd8,
@@ -32634,6 +32636,7 @@ MonoBehaviour:
   max_Size: 2
   life_Time: 0.5
   angler_Velocity: 0
+  in_Fixed_Update: 1
 --- !u!212 &2133554466
 SpriteRenderer:
   m_ObjectHideFlags: 0

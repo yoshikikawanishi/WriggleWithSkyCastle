@@ -10,6 +10,7 @@ public class SpreadBombController : MonoBehaviour {
     [SerializeField] private float max_Size = 1;
     [SerializeField] private float life_Time = 0;
     [SerializeField] private float angler_Velocity = 0;
+    [SerializeField] private bool in_Fixed_Update = true;
 
     private SpriteRenderer _sprite;
 
@@ -24,10 +25,29 @@ public class SpreadBombController : MonoBehaviour {
 
     //FixedUpdate
     private void FixedUpdate() {
+        if (!in_Fixed_Update) {
+            return;
+        }
         if (transform.localScale.x < max_Size) {
             transform.localScale += new Vector3(spread_Speed, spread_Speed, 0);
         }
-        transform.Rotate(0, 0, angler_Velocity);
+        transform.Rotate(0, 0, angler_Velocity * Time.timeScale);
+
+        if (_sprite == null)
+            return;
+        if (life_Time > 0) {
+            _sprite.color -= new Color(0, 0, 0, 1.1f / life_Time * Time.deltaTime);
+        }
+    }
+
+    private void Update() {
+        if (in_Fixed_Update) {
+            return;
+        }
+        if (transform.localScale.x < max_Size) {
+            transform.localScale += new Vector3(spread_Speed, spread_Speed, 0);
+        }
+        transform.Rotate(0, 0, angler_Velocity * Time.timeScale);
 
         if (_sprite == null)
             return;

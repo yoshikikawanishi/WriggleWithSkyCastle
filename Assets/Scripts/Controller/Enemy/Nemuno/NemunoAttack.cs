@@ -15,6 +15,10 @@ public class NemunoAttack : MonoBehaviour {
     //自機
     private GameObject player;
 
+    //攻撃前の移動中
+    private bool is_Walking_Before_Attack = false;
+
+
     private enum AttackKind {
         close_Slash,
         long_Slash,
@@ -41,6 +45,7 @@ public class NemunoAttack : MonoBehaviour {
     }
 
 
+
     #region Phase1
     //==========================================フェーズ１===================================
     public void Phase1() {
@@ -56,7 +61,7 @@ public class NemunoAttack : MonoBehaviour {
         for (int i = 0; i < 4; i++) {
             //移動
             for (int j = 1; j <= 2; j++) {
-                float distance = ((int)Random.Range(0, 2) - 0.5f) * 80f;
+                float distance = ((int)Random.Range(0, 2) - 0.5f) * 100f;
                 StartCoroutine("Dash_Cor", distance);
                 yield return new WaitForSeconds(0.7f);
             }
@@ -66,9 +71,9 @@ public class NemunoAttack : MonoBehaviour {
             switch (i % 3) {
                 case 0:
                     Jump_Next_Player();
-                    yield return new WaitForSeconds(1.1f);
+                    yield return new WaitForSeconds(0.9f);
                     StartCoroutine("Close_Slash_Cor");
-                    yield return new WaitForSeconds(1.3f);
+                    yield return new WaitForSeconds(1.5f);
                     break;
                 case 1:
                     StartCoroutine("Back_Jump_Cor");
@@ -77,7 +82,7 @@ public class NemunoAttack : MonoBehaviour {
                     yield return new WaitForSeconds(1.5f);
                     break;
                 case 2:
-                    StartCoroutine("Barrier_Walk_Cor", 160f);
+                    StartCoroutine("Barrier_Walk_Cor", 180f);
                     yield return new WaitForSeconds(5.5f);
                     break;
             }
@@ -161,7 +166,7 @@ public class NemunoAttack : MonoBehaviour {
         while(_boss_Enemy.life[1] > 100) {
             //移動
             for (int j = 1; j <= 2; j++) {
-                float distance = ((int)Random.Range(0, 2) - 0.5f) * 120f;
+                float distance = ((int)Random.Range(0, 2) - 0.5f) * 130f;
                 StartCoroutine("Dash_Cor", distance);
                 yield return new WaitForSeconds(0.65f);
             }
@@ -184,7 +189,7 @@ public class NemunoAttack : MonoBehaviour {
                     yield return new WaitForSeconds(1.3f);
                     break;
                 case AttackKind.barrier:
-                    StartCoroutine("Barrier_Walk_Cor", 192f);
+                    StartCoroutine("Barrier_Walk_Cor", 210f);
                     yield return new WaitForSeconds(4.5f);
                     break;
                 case AttackKind.jump_Slash:
@@ -194,7 +199,7 @@ public class NemunoAttack : MonoBehaviour {
                         StartCoroutine("Jump_Slash_Cor", 50);
                         yield return new WaitForSeconds(3.8f);
                         StartCoroutine("High_Jump_Cor", transform.localScale.x);
-                        yield return new WaitForSeconds(2.5f);
+                        yield return new WaitForSeconds(2.1f);
                     }
                     break;
             }
@@ -220,7 +225,7 @@ public class NemunoAttack : MonoBehaviour {
         _controller.Change_Fly_Parameter();
         yield return new WaitForSeconds(1.0f);        
         _move_Two_Points.Start_Move(new Vector3(160f, 8f), 4);
-        yield return new WaitForSeconds(3.0f);
+        yield return new WaitForSeconds(4.0f);
 
         //クナイ弾開始
         _controller.Play_Burst_Effect();

@@ -90,7 +90,7 @@ public class ShootSystem : MonoBehaviour {
 
     //ショット用のコルーチン
     private IEnumerator Shoot_Cor() {        
-        for (int i = 0; i < loop_Count; i++) {
+        for (int i = 0; i < loop_Count; i++) {            
             switch (kind) {
                 case KIND.Odd: Odd_Num_Shoot(); break;
                 case KIND.Even: Even_Num_Shoot(); break;
@@ -98,8 +98,8 @@ public class ShootSystem : MonoBehaviour {
                 case KIND.nWay: nWay_Shoot(); break;
             }
 
-            center_Angle_Deg += center_Angle_Diff;
-            yield return new WaitForSeconds(span);            
+            center_Angle_Deg += center_Angle_Diff;            
+            yield return new WaitForSeconds(span - Time.deltaTime);            
         }
     }
 
@@ -265,7 +265,7 @@ public class ShootSystem : MonoBehaviour {
         float angle_Noise = Random.Range(-this.angle_Noise, this.angle_Noise);
 
         for (int i = 0; i < connect_Num; i++) {
-            var bullet = bullet_Pool.GetObject();                               //生成
+            var bullet = bullet_Pool.GetObject();                               //生成            
             bullet_List.Add(bullet);
             bullet.transform.SetParent(parent);                                 //親オブジェクト        
             bullet.transform.position = transform.position + (Vector3)offset;   //座標

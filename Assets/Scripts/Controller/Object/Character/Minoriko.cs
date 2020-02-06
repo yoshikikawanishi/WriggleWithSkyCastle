@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Minoriko : MonoBehaviour {
+public class Minoriko : Enemy {
 
     [SerializeField] private GameObject normal_Shoot_Obj;
     [SerializeField] private ShootSystem potate_Shoot;
@@ -29,6 +29,9 @@ public class Minoriko : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        //自機が自分より右にいるとき何もしない
+        if (player.transform.position.x > transform.position.x)
+            return;
         //自機が指定の座標を過ぎたら焼き芋弾発射開始
 		if(player.transform.position.x >  start_Potate_Shoot_Position && !start_Potate_Shoot) {
             start_Potate_Shoot = true;
@@ -46,15 +49,15 @@ public class Minoriko : MonoBehaviour {
         }
 	}
 
+    //画面内に入ったとき呼ばれる
+    //ショット開始
     private void OnBecameVisible() {
+        if (is_Visible || player.transform.position.x > transform.position.x)
+            return;
         is_Visible = true;
         Stop_Potate_Shoot();
         GetComponent<MoveTwoPoints>().Start_Move(transform.position + new Vector3(0, 80f));
-    }
-
-    private void OnBecameInvisible() {
-        is_Visible = false;
-    }
+    }    
 
 
     //通常ショットを打つ
@@ -75,5 +78,17 @@ public class Minoriko : MonoBehaviour {
 
     private void Stop_Potate_Shoot() {
         potate_Shoot.Stop_Shoot();
+    }
+
+
+    //消滅時
+    public override void Vanish() {
+        Play_Vanish_Effect();
+        Put_Out_Item();
+        StopAllCoroutines();
+
+        GetComponent<MoveTwoPoints>().Start_Move(transform.position + new Vector3(0, -80f));
+        this.enabled = false;
+        gameObject.layer = LayerMask.NameToLayer("InvincibleLayer");
     }
 }
