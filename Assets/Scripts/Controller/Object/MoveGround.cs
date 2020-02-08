@@ -29,4 +29,11 @@ public class MoveGround : MonoBehaviour {
             player.transform.rotation = new Quaternion(0, 0, 0, 0);
         }
     }
+
+
+    private void OnBecameInvisible() {
+        if(player.transform.parent == this.transform) {
+            player.transform.SetParent(null);
+        }
+    }
 }

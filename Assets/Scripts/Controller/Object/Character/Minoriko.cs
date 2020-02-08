@@ -5,10 +5,12 @@ using UnityEngine;
 public class Minoriko : Enemy {
 
     [SerializeField] private GameObject normal_Shoot_Obj;
-    [SerializeField] private ShootSystem potate_Shoot;
+    [SerializeField] private ShootSystem normal_Potate_Shoot;
+    [SerializeField] private ShootSystem screen_Potate_Shoot;
     [Space]
     [SerializeField] private float start_Potate_Shoot_Position;
-    
+    [Space]
+    [SerializeField] private GameObject clear_Effect_Bomb;
 
     private GameObject player;
 
@@ -17,7 +19,7 @@ public class Minoriko : Enemy {
 
     //ノーマルショットの時間計測用
     private float normal_Shoot_Time;
-    private float NORMAL_SHOOT_SPAN = 5.5f;
+    private float NORMAL_SHOOT_SPAN = 8.5f;
 
 	// Use this for initialization
 	void Start () {
@@ -44,7 +46,7 @@ public class Minoriko : Enemy {
             }
             else {
                 normal_Shoot_Time = 0;
-                Shoot_Normal();
+                StartCoroutine("Shoot_Normal_Cor");
             }
         }
 	}
@@ -60,24 +62,27 @@ public class Minoriko : Enemy {
     }    
 
 
-    //通常ショットを打つ
-    private void Shoot_Normal() {
+    //通常ショットと通常焼き芋弾を撃つ
+    private IEnumerator Shoot_Normal_Cor() {
         GameObject shoot_Obj = Instantiate(normal_Shoot_Obj);
         shoot_Obj.transform.position = transform.position;
         shoot_Obj.SetActive(true);
         Destroy(shoot_Obj, 2.0f);
+
+        yield return new WaitForSeconds(2.0f);        
+        normal_Potate_Shoot.Shoot();        
     }
 
 
-    //焼き芋弾を開始する
+    //画面外からの焼き芋弾を開始する
     //発射する本体はカメラの子供に配置すること
     private void Start_Potate_Shoot() {
-        potate_Shoot.transform.position = new Vector3(potate_Shoot.transform.position.x, Random.Range(-32f, 120f));
-        potate_Shoot.Shoot();
+        screen_Potate_Shoot.transform.position = new Vector3(screen_Potate_Shoot.transform.position.x, Random.Range(-32f, 120f));
+        screen_Potate_Shoot.Shoot();
     }
 
     private void Stop_Potate_Shoot() {
-        potate_Shoot.Stop_Shoot();
+        screen_Potate_Shoot.Stop_Shoot();
     }
 
 
@@ -87,8 +92,14 @@ public class Minoriko : Enemy {
         Put_Out_Item();
         StopAllCoroutines();
 
-        GetComponent<MoveTwoPoints>().Start_Move(transform.position + new Vector3(0, -80f));
+        //無敵化、移動
+        GetComponent<MoveTwoPoints>().Start_Move(new Vector3(transform.position.x, -80f));
         this.enabled = false;
         gameObject.layer = LayerMask.NameToLayer("InvincibleLayer");
+
+        //エフェクト
+        var effect = Instantiate(clear_Effect_Bomb);
+        effect.transform.position = transform.position;
+        Destroy(effect, 5.0f);
     }
 }

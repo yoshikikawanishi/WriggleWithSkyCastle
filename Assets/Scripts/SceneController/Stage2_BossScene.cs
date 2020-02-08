@@ -21,6 +21,8 @@ public class Stage2_BossScene : MonoBehaviour {
         nemuno_Attack = nemuno.GetComponent<NemunoAttack>();
         boss_Enemy = nemuno.GetComponent<BossEnemy>();
 
+        //フェードイン
+        FadeInOut.Instance.Start_Fade_In(new Color(0, 0, 0), 0.02f);
         //ボス前ムービー開始
         _movie.Start_Before_Boss_Movie();
 	}

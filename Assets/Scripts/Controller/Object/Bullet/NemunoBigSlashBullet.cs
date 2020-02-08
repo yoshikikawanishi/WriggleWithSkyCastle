@@ -35,13 +35,13 @@ public class NemunoBigSlashBullet : MonoBehaviour {
 
     private IEnumerator Deposit_Blocks_Cor() {        
         //ブロックの生成
-        for (int i = 0; i < 6; i++) {
-            yield return new WaitForSeconds(1.3f);
+        for (int i = 0; i < 5; i++) {
+            yield return new WaitForSeconds(1.5f);
             GameObject blocks;
             if (i % 2 == 0) 
-                blocks = Instantiate(normal_Appear_Blocks);                            
+                blocks = Instantiate(fly_Appear_Blocks);                            
             else 
-                blocks = Instantiate(fly_Appear_Blocks);            
+                blocks = Instantiate(normal_Appear_Blocks);            
             blocks.transform.position = transform.position;
         }
     }

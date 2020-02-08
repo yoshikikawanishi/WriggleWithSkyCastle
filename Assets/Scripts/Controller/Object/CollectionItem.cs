@@ -9,6 +9,10 @@ public class CollectionItem : MonoBehaviour {
 
     [SerializeField] private string collection_Name;
 
+    //取得時に表示したいガイドがあれそのキャンバスの名前を入れる
+    //キャンバスのプレハブはResources/UIフォルダに入れる
+    [SerializeField] private string guide_Canvas_Name;
+
 
     private void OnTriggerEnter2D(Collider2D collision) {
         if(collision.tag == "PlayerBodyTag") {
@@ -24,7 +28,15 @@ public class CollectionItem : MonoBehaviour {
         GetComponent<AudioSource>().Play();
         gameObject.layer = LayerMask.NameToLayer("InvincibleLayer");
 
+        //アイテムを初めて取得したときのガイド表示
         Display_Guide_In_First_Item();
+
+        yield return new WaitForSeconds(0.5f);
+
+        //表示したいガイドがあれば表示
+        if(guide_Canvas_Name != "") {
+            Display_Specific_Guide();
+        }
 
         yield return new WaitForSeconds(0.5f);
         
@@ -34,6 +46,7 @@ public class CollectionItem : MonoBehaviour {
     }
 
 
+    //アイテムを初めて取得したときのガイド表示
     private void Display_Guide_In_First_Item() {        
         //アイテムを初めて取得するかどうか
         var data_Dictionary = CollectionManager.Instance.Get_Collections_Data();
@@ -46,7 +59,12 @@ public class CollectionItem : MonoBehaviour {
         }
 
         //ガイドウィンドウの表示
-        GetComponent<GuideWindowDisplayer>().Open_Window("UI/GuideInFirstItem");
-        
+        GetComponent<GuideWindowDisplayer>().Open_Window("UI/GuideInFirstItem");        
+    }
+
+
+    //アイテム取得時にガイドを表示する
+    private void Display_Specific_Guide() {        
+        GetComponent<GuideWindowDisplayer>().Open_Window("UI/" + guide_Canvas_Name);
     }
 }

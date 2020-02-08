@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerCore : MonoBehaviour {
+    
 
     private float time = 0;
 
@@ -12,8 +13,9 @@ public class PlayerCore : MonoBehaviour {
         "SandbackGroundTag"
     };
 
+
     private void OnTriggerStay2D(Collider2D collision) {
-       foreach(string tag in tag_List) {
+        foreach(string tag in tag_List) {
             if(collision.tag == tag) {
                 time += Time.deltaTime;
             }

@@ -9,8 +9,9 @@ public class NemunoShoot : MonoBehaviour {
     [SerializeField] private ShootSystem slash_Shotgun_Odd;
     [SerializeField] private ShootSystem slash_Shootgun_Forward;
     [SerializeField] private ShootSystem knife_Shoot;
+    [SerializeField] private ShootSystem kunai_Shoot;
     [Space]
-    [SerializeField] private GameObject big_Slash_Bullet;
+    [SerializeField] private GameObject big_Slash_Bullet;    
     [SerializeField] private GameObject phase2_Kunai_Shoot_Obj;
 
     //コンポーネント
@@ -101,6 +102,7 @@ public class NemunoShoot : MonoBehaviour {
         bullet.transform.position = new Vector3(270f, 0);
     }
 
+
     //フェーズ２クナイ弾開始
     public void Start_Kunai_Shoot() {
         StartCoroutine("Shoot_Kunai_Cor");
@@ -110,6 +112,7 @@ public class NemunoShoot : MonoBehaviour {
         ShootSystem[] shoots = phase2_Kunai_Shoot_Obj.GetComponentsInChildren<ShootSystem>();
         int i = 0; 
         while (true) {
+            kunai_Shoot.Shoot();
             shoots[0].Shoot(); shoots[1].Shoot();
             shoots[4].Shoot(); shoots[5].Shoot();
             shoots[8].Shoot(); shoots[9].Shoot();
@@ -117,12 +120,13 @@ public class NemunoShoot : MonoBehaviour {
             nemuno_Controller.Play_Burst_Effect();
             yield return new WaitForSeconds(4.5f);
 
+            kunai_Shoot.Shoot();
             shoots[2].Shoot(); shoots[3].Shoot();
             shoots[6].Shoot(); shoots[7].Shoot();
             shoots[10].Shoot(); shoots[11].Shoot();
             UsualSoundManager.Instance.Play_Shoot_Sound();
             nemuno_Controller.Play_Burst_Effect();
-            yield return new WaitForSeconds(4.5f);
+            yield return new WaitForSeconds(4.5f);            
 
             i++;
             if(i % 6 == 0) {

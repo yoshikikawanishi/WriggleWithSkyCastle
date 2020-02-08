@@ -52,16 +52,15 @@ public class WoodLift : MonoBehaviour {
             while(lift.transform.position.y < 150f) {
                 lift.transform.position += new Vector3(0, lift_Speed);
                 yield return new WaitForSeconds(0.016f);
-            }
-            lift.SetActive(false);
+            }            
         }
         else {
             while (lift.transform.position.y > -150f) {
                 lift.transform.position += new Vector3(0, -lift_Speed);
                 yield return new WaitForSeconds(0.016f);
-            }
-            lift.SetActive(false);
+            }            
         }
+        lift.SetActive(false);
     }
 
 

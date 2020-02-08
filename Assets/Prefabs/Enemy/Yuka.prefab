@@ -1258,7 +1258,7 @@ MonoBehaviour:
     type: 2}
   clear_Converge_Effect_Prefab: {fileID: 1205548953361234, guid: 9ddf76b505b93354b90d8b070fead1d0,
     type: 2}
-  clear_Effect_Prefab: {fileID: 1143129098506850, guid: 7a41ee48a9ab59c47864f837fe247c44,
+  clear_Effect_Prefab: {fileID: 1844696841656212, guid: ffec3cd4ff0877e46a8d34dd9762b18a,
     type: 2}
 --- !u!114 &114422221333373642
 MonoBehaviour:
@@ -1398,7 +1398,7 @@ MonoBehaviour:
   center_Angle_Deg: 0
   arc_Deg: 360
   shoot_Rate: 7
-  duration: 5
+  duration: 7
   connect_Bullet: 1
   connect_Num: 2
   speed_Diff: 0
@@ -1570,6 +1570,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collection_Name: Yuka
+  guide_Canvas_Name: GuideAboutChargeShoot
 --- !u!114 &114857762986136162
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1625,7 +1626,7 @@ MonoBehaviour:
   center_Angle_Deg: 90
   arc_Deg: 360
   shoot_Rate: 7
-  duration: 5
+  duration: 7
   connect_Bullet: 1
   connect_Num: 2
   speed_Diff: 0
@@ -11112,7 +11113,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.9716981, g: 0.6079392, b: 0.6004361, a: 0.22352941}
+      maxColor: {r: 0.6, g: 0.972549, b: 0.60503715, a: 0.22352941}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}

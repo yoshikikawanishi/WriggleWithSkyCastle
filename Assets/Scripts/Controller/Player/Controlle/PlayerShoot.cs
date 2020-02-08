@@ -161,7 +161,7 @@ public class PlayerShoot : MonoBehaviour {
         BeetlePowerManager.Instance.Decrease(50);
         //生成
         var obj = Instantiate(charge_Shoot_Obj);
-        obj.transform.position = transform.position + new Vector3(transform.localScale.x + 128f, 0);        
+        obj.transform.position = transform.position + new Vector3(transform.localScale.x * 128f, 0);        
         ShootSystem[] shoots = obj.GetComponentsInChildren<ShootSystem>();
 
         player_SE.Play_Charge_Shoot_Sound();

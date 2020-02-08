@@ -27,6 +27,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
+--- !u!1 &1296092191262052
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4145829858385886}
+  - component: {fileID: 114543274697941254}
+  m_Layer: 9
+  m_Name: PotateShoot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1370666583745778
 GameObject:
   m_ObjectHideFlags: 0
@@ -77,6 +93,19 @@ Transform:
   m_Father: {fileID: 4308477944273844}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4145829858385886
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1296092191262052}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4673449410553100}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4308477944273844
 Transform:
   m_ObjectHideFlags: 1
@@ -102,6 +131,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4308477944273844}
+  - {fileID: 4145829858385886}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -166,8 +196,11 @@ MonoBehaviour:
   drop_Life_Probability: 100
   drop_Option_Box_Probability: 0
   normal_Shoot_Obj: {fileID: 1282178626915448}
-  potate_Shoot: {fileID: 0}
+  normal_Potate_Shoot: {fileID: 114543274697941254}
+  screen_Potate_Shoot: {fileID: 0}
   start_Potate_Shoot_Position: 2000
+  clear_Effect_Bomb: {fileID: 1785264517201712, guid: 8bfd6d950a5a242448948b2838b118af,
+    type: 2}
 --- !u!114 &114337666092908694
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -189,7 +222,7 @@ MonoBehaviour:
   angle_Noise: 0
   lifeTime: 8
   offset: {x: 0, y: 0}
-  default_Shoot_Sound: 0
+  default_Shoot_Sound: 1
   is_Acceleration: 1
   velocity_Forward:
     serializedVersion: 2
@@ -319,6 +352,56 @@ MonoBehaviour:
     speed: 0.01
     arc_Size: 0
     is_Local_Position: 0
+--- !u!114 &114543274697941254
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1296092191262052}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56c010cd9f9233b49ad32f8e11513d35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  kind: 0
+  comment: 
+  play_On_Awake: 0
+  bullet: {fileID: 1798116787944428, guid: 9e6565de85f430b43ae6415f6e617d06, type: 2}
+  parent: {fileID: 0}
+  max_Speed: 70
+  speed_Noise: 0
+  angle_Noise: 0
+  lifeTime: 10
+  offset: {x: 0, y: 0}
+  default_Shoot_Sound: 1
+  is_Acceleration: 0
+  velocity_Forward:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  velocity_Lateral:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  other_Param: 1
+  num: 3
+  inter_Angle_Deg: 30
+  center_Angle_Deg: 0
+  arc_Deg: 360
+  shoot_Rate: 30
+  duration: 5
+  connect_Bullet: 0
+  connect_Num: 1
+  speed_Diff: 15
+  angle_Diff: 0
+  looping: 1
+  loop_Count: 3
+  span: 0.5
+  center_Angle_Diff: 0
 --- !u!114 &114919930602685182
 MonoBehaviour:
   m_ObjectHideFlags: 1

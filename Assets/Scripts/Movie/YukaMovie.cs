@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class YukaMovie : SingletonMonoBehaviour<YukaMovie> {
 
+    [SerializeField] private GameObject boss_Battle_Canvas;
     //コンポーネント
     private MessageDisplay _message;
 
@@ -16,8 +17,8 @@ public class YukaMovie : SingletonMonoBehaviour<YukaMovie> {
         _message = GetComponent<MessageDisplay>();
         yuka = GameObject.Find("Yuka");
 
-        //Debug.Log("<color=#ff0000ff>Delete Yuka Tutorial Data </color>");
-        //PlayerPrefs.DeleteKey("YukaTutorial");
+        Debug.Log("<color=#ff0000ff>Delete Yuka Tutorial Data </color>");
+        PlayerPrefs.DeleteKey("YukaTutorial");
 	}
 	
 
@@ -59,8 +60,10 @@ public class YukaMovie : SingletonMonoBehaviour<YukaMovie> {
         //戦闘開始
         player_Controller.Set_Is_Playable(true);
         player_Controller.To_Enable_Ride_Beetle();
-        BackGroundEffector.Instance.Start_Change_Color(new Color(0.5f, 0.5f, 0.5f), 0.1f);
+        BackGroundEffector.Instance.Start_Change_Color(new Color(0.4f, 0.4f, 0.4f), 0.1f);
         yuka.GetComponent<YukaAttack>().Start_Battle();
+        if (boss_Battle_Canvas != null)
+            boss_Battle_Canvas.SetActive(true);
     }
 
 

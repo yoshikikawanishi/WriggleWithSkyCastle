@@ -163,7 +163,7 @@ public class NemunoAttack : MonoBehaviour {
         AttackKind two_Pre_Attack = AttackKind.long_Slash;       
 
         //通常攻撃
-        while(_boss_Enemy.life[1] > 100) {
+        while(_boss_Enemy.life[1] > 150) {
             //移動
             for (int j = 1; j <= 2; j++) {
                 float distance = ((int)Random.Range(0, 2) - 0.5f) * 130f;
@@ -230,7 +230,7 @@ public class NemunoAttack : MonoBehaviour {
         //クナイ弾開始
         _controller.Play_Burst_Effect();
         _shoot.Start_Kunai_Shoot();
-        
+                
     }
 
     public void Stop_Phase2() {
@@ -369,15 +369,16 @@ public class NemunoAttack : MonoBehaviour {
 
 
     //近接攻撃、一回点滅後攻撃
-    private IEnumerator Close_Slash_Cor() {        
+    private IEnumerator Close_Slash_Cor() {
+        yield return new WaitForSeconds(0.1f);
         _controller.Change_Animation("SlashBool");
 
         _sound.Play_Before_Slash_Sound();
-        yield return new WaitForSeconds(0.10f);
+        yield return new WaitForSeconds(0.09f);
         _sprite.color = new Color(0.7f, 0.7f, 0.7f);        
-        yield return new WaitForSeconds(0.10f);
+        yield return new WaitForSeconds(0.09f);
         _sprite.color = new Color(0.5f, 0.5f, 0.5f);
-        yield return new WaitForSeconds(0.20f);
+        yield return new WaitForSeconds(0.18f);
 
         _controller.Play_Slash_Effect();
         _sound.Play_Slash_Sound();

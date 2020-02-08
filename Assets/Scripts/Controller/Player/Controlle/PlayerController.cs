@@ -147,7 +147,7 @@ public class PlayerController : MonoBehaviour {
         //カブトムシから降りる
         if (input.GetKeyDown(Key.Fly) || BeetlePowerManager.Instance.Get_Beetle_Power() <= 0) {
             _getting_On_Beetle.Get_Off_Beetle();            
-        }
+        }        
         //パワーの消費
         BeetlePowerManager.Instance.Decrease_In_Update(10.0f);
         //警告音
@@ -156,7 +156,11 @@ public class PlayerController : MonoBehaviour {
                 is_Played_Alert = true;
                 GetComponentInChildren<PlayerSoundEffect>().Play_Alert_Sound();
             }
-        }            
+        }
+        //画面の天井より上にいるとき直す
+        if (transform.position.y > 124f) {
+            transform.position = new Vector3(transform.position.x, 124f);
+        }
     }
 
 

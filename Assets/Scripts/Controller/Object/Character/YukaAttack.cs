@@ -67,47 +67,63 @@ public class YukaAttack : MonoBehaviour {
         GetComponent<Animator>().SetBool("AttackBool", true);
         _move_Two_Points.Start_Move(new Vector3(transform.position.x + 96f, -32f));
         yield return new WaitUntil(_move_Two_Points.End_Move);
-
-        bool is_First_Loop = true;
+        
+        int loop_Count = 0;
         while (true) {
+            //チャージ
             Play_Charge_Effect();
             yield return new WaitForSeconds(1.5f);
             Stop_Charge_Effect();
 
-            Play_Burst_Effect();
-            if (is_First_Loop) { StartCoroutine(Play_Guide_Message(18, 18)); }
-            Start_Spiral_Shoot();
-            yield return new WaitForSeconds(5.0f);            
-            
-            Shoot_Diffusion_Bullet(new Vector2(-48, 96f), 0);
-            yield return new WaitForSeconds(0.5f);
-            Shoot_Diffusion_Bullet(new Vector2(-32, -48f), 1);
-            Play_Small_Charge_Effect();
-            yield return new WaitForSeconds(0.5f);
-            Shoot_Cross_Bullet(new Vector2());
-            yield return new WaitForSeconds(5.0f);
+            //ラルバ助言
+            if (loop_Count == 0) { StartCoroutine(Play_Guide_Message(18, 18)); }
 
+            if (loop_Count % 2 == 0) {
+                //花形弾幕と交差弾
+                Play_Burst_Effect();
+                Shoot_Diffusion_Bullet(new Vector2(-64f, 64f), 0);
+                yield return new WaitForSeconds(0.5f);
+                Shoot_Diffusion_Bullet(new Vector2(32f, -32f), 1);
+                yield return new WaitForSeconds(3.0f);
+                Shoot_Cross_Bullet(new Vector2(0, 0));
+                yield return new WaitForSeconds(1.0f);
+                Shoot_Cross_Bullet(new Vector2(0, 0));
+                yield return new WaitForSeconds(5.0f);               
+            }
+            else {
+                //渦巻き弾
+                Play_Burst_Effect();
+                Start_Spiral_Shoot();
+                yield return new WaitForSeconds(7.0f);
+            }
+
+            //降りる
             _move_Two_Points.Start_Move(new Vector3(transform.position.x, -80f));
             yield return new WaitForSeconds(1.0f);
             
-            for(int i = 0; i < 3; i++) {
+            //花落とし
+            for(int i = 0; i < 1; i++) {
                 Drop_Flower_Bullet(240f - i * 120f);
                 yield return new WaitForSeconds(1.0f);
             }
-            if (is_First_Loop) { StartCoroutine(Play_Guide_Message(19, 19)); }
-            for (int i = 3; i < 5; i++) {
+
+            //ラルバ助言
+            if (loop_Count == 0) { StartCoroutine(Play_Guide_Message(19, 19)); }
+
+            //花落とし続き
+            for (int i = 1; i < 5; i++) {
                 Drop_Flower_Bullet(240f - i * 120f);
                 yield return new WaitForSeconds(1.0f);
             }
-            yield return new WaitForSeconds(1.0f);
-            for(int i = 0; i < 5; i++) {
+            yield return new WaitForSeconds(1.0f);            
+            for (int i = 0; i < 5; i++) {
                 Drop_Flower_Bullet(-180f + i * 120f);
                 yield return new WaitForSeconds(1.0f);
             }
             yield return new WaitForSeconds(2.5f);
 
-            _move_Two_Points.Start_Move(new Vector3(transform.position.x, -32f));
-            is_First_Loop = false;
+            _move_Two_Points.Start_Move(new Vector3(transform.position.x, -32f));            
+            loop_Count++;
         }
     }
     
@@ -130,6 +146,7 @@ public class YukaAttack : MonoBehaviour {
             shoots[i].offset = offset;
             shoots[i].Shoot();
         }
+        Play_Burst_Effect();
     }
 
     //渦巻き弾発射開始
@@ -139,6 +156,7 @@ public class YukaAttack : MonoBehaviour {
         for (int i = 0; i < shoots.Length; i++) {
             shoots[i].Shoot();
         }
+        Play_Burst_Effect();
     }
 
     //全方位弾発射
@@ -150,6 +168,7 @@ public class YukaAttack : MonoBehaviour {
             shoots[i].offset = offset;
             shoots[i].Shoot();
         }
+        Play_Burst_Effect();
     }
 
     //花弾を落とす
