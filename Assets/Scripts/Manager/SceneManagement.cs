@@ -8,6 +8,18 @@ public class SceneManagement : SingletonMonoBehaviour<SceneManagement> {
 
     private bool is_First_Visit = true;
 
+    private new void Awake() {
+        base.Awake();
+        #if UNITY_EDITOR
+        if (DebugModeManager.Instance.Delete_Visited_Scene_Date) {
+            Delete_Visit_Scene();
+            Debug.Log("<color=#ff0000ff>Delete Visited Scene Data </color>");
+        }
+        is_First_Visit = DebugModeManager.Instance.Is_First_Visit_Scene_In_Testplay;
+        #endif
+    }
+
+
 
     // Use this for initialization
     void Start() {

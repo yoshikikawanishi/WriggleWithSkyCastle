@@ -5,6 +5,15 @@ using UnityEngine.SceneManagement;
 
 public class DataManager : SingletonMonoBehaviour<DataManager> {
 
+    private new void Awake() {
+        base.Awake();
+        #if UNITY_EDITOR
+        if (DebugModeManager.Instance.Delete_Player_Data) {
+            Initialize_Player_Data();
+            Debug.Log("<color=#ff0000ff>Delete Player Data </color>");
+        }
+        #endif
+    }
 
     //プレイヤーデータのセーブ
     public void Save_Player_Data(Vector2 save_Point) {       

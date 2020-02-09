@@ -27,6 +27,7 @@ GameObject:
   - component: {fileID: 114070222757887022}
   - component: {fileID: 114983600466901070}
   - component: {fileID: 114752986096458988}
+  - component: {fileID: 114748077910222806}
   m_Layer: 8
   m_Name: CommonScripts
   m_TagString: Untagged
@@ -83,6 +84,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dontDestroyOnLoad: 1
+  option: 0
   life: 3
   stock: 3
   power: 0
@@ -99,6 +101,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dontDestroyOnLoad: 1
+--- !u!114 &114748077910222806
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1346960129056838}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac73cc3ce07820d4295f81dfdad444e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dontDestroyOnLoad: 0
+  Delete_Collection_Data: 0
+  Delete_Visited_Scene_Date: 1
+  Is_First_Visit_Scene_In_Testplay: 0
+  Delete_Player_Data: 0
+  Delete_Yuka_Data: 0
 --- !u!114 &114752986096458988
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -136,8 +155,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dontDestroyOnLoad: 1
-  pause_Canvas_Prefab: {fileID: 1205608993799736, guid: 9b8249d267ffc2b46a8993c0a93bb15d,
-    type: 2}
 --- !u!114 &114983600466901070
 MonoBehaviour:
   m_ObjectHideFlags: 1

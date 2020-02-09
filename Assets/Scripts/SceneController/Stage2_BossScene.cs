@@ -7,7 +7,6 @@ public class Stage2_BossScene : MonoBehaviour {
     //コンポーネント
     private Stage2_BossMovie _movie;
     //ネムノ
-    private NemunoController nemuno_Controller;
     private NemunoAttack nemuno_Attack;
     private BossEnemy boss_Enemy;
 
@@ -17,7 +16,6 @@ public class Stage2_BossScene : MonoBehaviour {
         //取得
         _movie = GetComponent<Stage2_BossMovie>();
         var nemuno = GameObject.Find("Nemuno");
-        nemuno_Controller = nemuno.GetComponent<NemunoController>();
         nemuno_Attack = nemuno.GetComponent<NemunoAttack>();
         boss_Enemy = nemuno.GetComponent<BossEnemy>();
 

@@ -26,6 +26,16 @@ public class PlayerManager : SingletonMonoBehaviour<PlayerManager> {
     private int MAX_POWER = 128;
     private int MAX_SCORE = 9999999;
 
+
+    private new void Awake() {
+        base.Awake();
+        #if UNITY_EDITOR
+        Set_Life(DebugModeManager.Instance.Player_Life);
+        Set_Power(DebugModeManager.Instance.Player_Power);
+        #endif
+    }
+
+
     //Reduce
     public int Reduce_Life() {
         life--;
