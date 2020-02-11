@@ -65,7 +65,7 @@ public class PlayerTransition : MonoBehaviour {
                 _controller.Change_Animation("IdleBool");
         }
         else {
-            _rigid.velocity *= new Vector2(0.95f, 1);
+            _rigid.velocity *= new Vector2(0.9f, 1);
         }
     }
 }

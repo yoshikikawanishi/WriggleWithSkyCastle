@@ -17,13 +17,19 @@ public class MoveGround : MonoBehaviour {
 
 
     private void OnTriggerEnter2D(Collider2D collision) {
+        if(!player.activeSelf) {
+            return;
+        }
         if(collision.tag == "PlayerFootTag") {
             player.transform.SetParent(transform);            
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision) {
-        if(collision.tag == "PlayerFootTag") {
+        if (!player.activeSelf) {
+            return;
+        }
+        if (collision.tag == "PlayerFootTag") {
             player.transform.SetParent(null);
             player.transform.localScale = new Vector3(1, 1, 1);
             player.transform.rotation = new Quaternion(0, 0, 0, 0);
@@ -32,7 +38,8 @@ public class MoveGround : MonoBehaviour {
 
 
     private void OnBecameInvisible() {
-        if(player.transform.parent == this.transform) {
+        
+        if (player.transform.parent == this.transform) {
             player.transform.SetParent(null);
         }
     }

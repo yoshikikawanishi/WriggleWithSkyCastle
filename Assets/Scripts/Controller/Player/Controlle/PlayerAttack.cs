@@ -142,21 +142,26 @@ public class PlayerAttack : MonoBehaviour {
 
     //キック用フィールド変数
     private bool end_Kick = false;
-
+    private bool accept_Input = true;
 
     //キック
     public void Kick() {
-        if (can_Attack) {
+        if (accept_Input) {
             kick_Collision.is_Hit_Kick = false;
-            if (_controller.is_Landing) 
-                StartCoroutine("Kick_Cor", true);            
-            else 
+            if (_controller.is_Landing)
+                StartCoroutine("Kick_Cor", true);
+            else
                 StartCoroutine("Kick_Cor", false);
-        }        
+        }
     }
 
 
     private IEnumerator Kick_Cor(bool is_Sliding) {
+        accept_Input = false;
+
+        while (!can_Attack) {
+            yield return null;
+        }
         can_Attack = false;
         _controller.Set_Is_Playable(false);
         _controller.Change_Animation("KickBool");
@@ -172,7 +177,7 @@ public class PlayerAttack : MonoBehaviour {
         else 
             StartCoroutine("Kicking_Cor");
 
-        yield return new WaitUntil(End_Kick);    
+        yield return new WaitUntil(End_Kick);        
 
         //キック終了
         if (_controller.is_Landing)
@@ -187,6 +192,7 @@ public class PlayerAttack : MonoBehaviour {
         yield return new WaitForSeconds(time);
         
         can_Attack = true;
+        accept_Input = true;
     }
 
 
@@ -200,18 +206,10 @@ public class PlayerAttack : MonoBehaviour {
             //敵と衝突時の処理
             if (kick_Collision.Hit_Trigger()) {
                 Do_Hit_Kick_Process();
-                yield return new WaitForSeconds(0.015f);
+                accept_Input = true;                    //敵に当たったとき次のキック入力を受け付ける
+                yield return new WaitForSeconds(0.05f);
                 break;
             }            
-            /*
-            //着地時終了
-            if (_controller.is_Landing) {
-                _rigid.velocity = new Vector2(transform.localScale.x * 220f, _rigid.velocity.y);
-                _controller.Change_Animation("KickBool");
-                if (t < 0.2f)
-                    t = 0.2f;
-            }
-            */
             yield return null;
         }
         end_Kick = true;

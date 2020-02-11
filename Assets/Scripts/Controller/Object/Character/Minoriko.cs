@@ -58,12 +58,15 @@ public class Minoriko : Enemy {
             return;
         is_Visible = true;
         Stop_Potate_Shoot();
-        GetComponent<MoveTwoPoints>().Start_Move(transform.position + new Vector3(0, 80f));
+        GetComponent<MoveTwoPoints>().Start_Move(transform.position + new Vector3(0, 48f));
     }    
 
 
     //通常ショットと通常焼き芋弾を撃つ
     private IEnumerator Shoot_Normal_Cor() {
+        StartCoroutine("Blink_Cor");
+        yield return new WaitForSeconds(1.0f);
+
         GameObject shoot_Obj = Instantiate(normal_Shoot_Obj);
         shoot_Obj.transform.position = transform.position;
         shoot_Obj.SetActive(true);
@@ -93,7 +96,7 @@ public class Minoriko : Enemy {
         StopAllCoroutines();
 
         //無敵化、移動
-        GetComponent<MoveTwoPoints>().Start_Move(new Vector3(transform.position.x, -80f));
+        GetComponent<MoveTwoPoints>().Start_Move(new Vector3(transform.position.x, -48f));
         this.enabled = false;
         gameObject.layer = LayerMask.NameToLayer("InvincibleLayer");
 
@@ -101,5 +104,20 @@ public class Minoriko : Enemy {
         var effect = Instantiate(clear_Effect_Bomb);
         effect.transform.position = transform.position;
         Destroy(effect, 5.0f);
+
+        //会話できるようにする
+        transform.GetChild(2).gameObject.SetActive(true);
+    }
+
+
+    //白く点滅する
+    private IEnumerator Blink_Cor() {
+        SpriteRenderer _sprite = GetComponent<SpriteRenderer>();
+        for (int i = 0; i < 3; i++) {
+            _sprite.color = new Color(0.7f, 0.7f, 0.7f);
+            yield return new WaitForSeconds(0.1f);
+            _sprite.color = new Color(0.5f, 0.5f, 0.5f);
+            yield return new WaitForSeconds(0.1f);
+        }
     }
 }

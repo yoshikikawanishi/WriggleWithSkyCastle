@@ -3,9 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerCore : MonoBehaviour {
-    
 
+    private PlayerDamaged player_Damaged;
     private float time = 0;
+
+    private void Start() {
+        player_Damaged = transform.parent.GetComponent<PlayerDamaged>();
+    }
 
     private List<string> tag_List = new List<string> {
         "GroundTag",
@@ -21,7 +25,8 @@ public class PlayerCore : MonoBehaviour {
             }
         }
         if(time >= 0.05f) {
-            PlayerManager.Instance.Set_Life(0);
+            time = 0;
+            player_Damaged.StartCoroutine("Damaged");
         }
     }
 

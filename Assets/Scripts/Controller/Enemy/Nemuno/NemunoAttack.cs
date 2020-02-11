@@ -64,7 +64,7 @@ public class NemunoAttack : MonoBehaviour {
                 StartCoroutine("Dash_Cor", distance);
                 yield return new WaitForSeconds(0.7f);
             }
-            yield return new WaitForSeconds(0.2f);
+            yield return new WaitForSeconds(0.3f);
 
             //攻撃            
             switch (i % 3) {
@@ -91,7 +91,7 @@ public class NemunoAttack : MonoBehaviour {
         for (int i = 0; i < 4; i++) {
             StartCoroutine("Back_Jump_Cor");
             yield return new WaitForSeconds(1.0f);
-            StartCoroutine("Jump_Slash_Cor", 32);
+            StartCoroutine("Jump_Slash_Cor", 28);
             yield return new WaitForSeconds(3.0f);
             if (i == 3)
                 break;
@@ -218,7 +218,7 @@ public class NemunoAttack : MonoBehaviour {
                         StartCoroutine("Back_Jump_Cor");
                         yield return new WaitForSeconds(1.0f);
                         StartCoroutine("Long_Slash_Cor", 14);
-                        yield return new WaitForSeconds(1.0f);
+                        yield return new WaitForSeconds(1.5f);
                         StartCoroutine("Long_Slash_Cor", 14);
                         yield return new WaitForSeconds(1.3f);
                         break;
@@ -230,7 +230,7 @@ public class NemunoAttack : MonoBehaviour {
                         for (int j = 0; j < 2; j++) {
                             StartCoroutine("Back_Jump_Cor");
                             yield return new WaitForSeconds(1.0f);
-                            StartCoroutine("Jump_Slash_Cor", 50);
+                            StartCoroutine("Jump_Slash_Cor", 40);
                             yield return new WaitForSeconds(3.2f);
                             StartCoroutine("High_Jump_Cor", transform.localScale.x);
                             yield return new WaitForSeconds(2.5f);

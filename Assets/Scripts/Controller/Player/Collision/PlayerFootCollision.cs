@@ -62,4 +62,13 @@ public class PlayerFootCollision : MonoBehaviour {
         player_SE.Play_Land_Sound();
     }
 
+
+    //判定を消す、戻す
+    public void Disappear() {
+        gameObject.SetActive(false);
+    }
+
+    public void Appear() {
+        gameObject.SetActive(true);
+    }
 }

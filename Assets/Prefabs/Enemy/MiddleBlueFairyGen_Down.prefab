@@ -44,9 +44,9 @@ GameObject:
   - component: {fileID: 114040625454257514}
   - component: {fileID: 114213249484031648}
   - component: {fileID: 114497106044975250}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: MiddleBlueFairy
-  m_TagString: Untagged
+  m_TagString: EnemyTag
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

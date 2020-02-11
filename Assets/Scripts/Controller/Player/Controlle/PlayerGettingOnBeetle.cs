@@ -12,6 +12,7 @@ public class PlayerGettingOnBeetle : MonoBehaviour {
 
     private PlayerController _controller;
     private PlayerBodyCollision body_Collision;
+    private PlayerFootCollision foot_Collision;
     private PlayerEffect player_Effect;
 
     public bool can_Get_On_Beetle = true;
@@ -29,6 +30,7 @@ public class PlayerGettingOnBeetle : MonoBehaviour {
         main_Camera = GameObject.FindWithTag("MainCamera");
         beetle_Body = transform.Find("BeetleBody").gameObject;
         body_Collision = GetComponentInChildren<PlayerBodyCollision>();
+        foot_Collision = GetComponentInChildren<PlayerFootCollision>();
         _controller = GetComponent<PlayerController>();
         player_Effect = GetComponentInChildren<PlayerEffect>();
 
@@ -66,10 +68,12 @@ public class PlayerGettingOnBeetle : MonoBehaviour {
 
     //ステータス変更
     private void Change_To_Beetle_Status() {
+        transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));                        //回転
         transform.SetParent(main_Camera.transform);                                         //カメラの子に        
         GetComponent<Rigidbody2D>().gravityScale = 0;                                       //重力
         body_Collision.Change_Collider_Size(new Vector2(6f, 6f), default_Collider_Offset);  //当たり判定
         body_Collision.Display_Sprite();
+        foot_Collision.Disappear();
         beetle_Body.SetActive(true);
         main_Camera.GetComponent<CameraController>().Start_Auto_Scroll(scroll_Speed);       //オートスクロール
         GetComponent<PlayerTransitionRidingBeetle>().Change_Body_Direction((int)transform.localScale.x);    //向きの固定        
@@ -134,10 +138,12 @@ public class PlayerGettingOnBeetle : MonoBehaviour {
         string anim_Parm = _controller.is_Landing ? "IdleBool" : "JumpBool";    //アニメーション
         _controller.Change_Animation(anim_Parm);
 
+        transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));    //回転
         transform.SetParent(null);                                      //親子関係解除                 
         GetComponent<Rigidbody2D>().gravityScale = default_Gravity;     //重力
         body_Collision.Back_Default_Collider();                         //当たり判定
         body_Collision.Hide_Sprite();
+        foot_Collision.Appear();
         beetle_Body.SetActive(false);
         main_Camera.GetComponent<CameraController>().Quit_Auto_Scroll();//オートスクロール
     }

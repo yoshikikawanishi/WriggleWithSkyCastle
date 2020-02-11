@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Stage2_BossMovie : MonoBehaviour {
 
@@ -61,6 +62,19 @@ public class Stage2_BossMovie : MonoBehaviour {
 
 
     public void Start_Clear_Movie() {
-        Debug.Log("TODO:Clear Movie");
+        StartCoroutine("Clear_Movie_Cor");
+    }
+
+    private IEnumerator Clear_Movie_Cor() {
+        yield return new WaitForSeconds(2.0f);
+
+        //会話
+        _message.Start_Display("NemunoText", 1, 1);
+        yield return new WaitUntil(_message.End_Message);
+
+        //シーン遷移
+        FadeInOut.Instance.Start_Fade_Out(new Color(0, 0, 0), 0.02f);
+        yield return new WaitForSeconds(2.0f);
+        SceneManager.LoadScene("Stage3_1Scene");
     }
 }

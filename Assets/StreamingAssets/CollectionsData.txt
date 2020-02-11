@@ -1,6 +1,7 @@
 #Key	#IsCollected
 test	False
 orb	False
-Rumia	False
+Rumia	True
 Mystia	False
 Yuka	True
+Shizuha	True

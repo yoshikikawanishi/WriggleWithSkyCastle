@@ -60,7 +60,7 @@ public class NemunoShoot : MonoBehaviour {
         //弾の生成
         for (int i = 0; i < num; i++) {
             var bullet = ObjectPoolManager.Instance.Get_Pool(yellow_Rice_Bullet).GetObject();
-            bullet.transform.position = pos + new Vector3(0, -21f + i * 1.5f);
+            bullet.transform.position = pos + new Vector3(0, -21f + i * 1.7f);
             bullet.transform.rotation = new Quaternion(0, 0, 0, 0);
             bullet_List.Add(bullet);
             yield return new WaitForSeconds(0.16f / num);
