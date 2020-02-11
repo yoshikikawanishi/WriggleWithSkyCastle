@@ -45,7 +45,6 @@ public class NemunoAttack : MonoBehaviour {
     }
 
 
-
     #region Phase1
     //==========================================フェーズ１===================================
     public void Phase1() {
@@ -57,7 +56,7 @@ public class NemunoAttack : MonoBehaviour {
     }
 
     private IEnumerator Phase1_Cor() {                   
-        //Aメロ(約22秒)
+        //Aメロ(約22秒)地上攻撃
         for (int i = 0; i < 4; i++) {
             //移動
             for (int j = 1; j <= 2; j++) {
@@ -65,7 +64,7 @@ public class NemunoAttack : MonoBehaviour {
                 StartCoroutine("Dash_Cor", distance);
                 yield return new WaitForSeconds(0.7f);
             }
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.2f);
 
             //攻撃            
             switch (i % 3) {
@@ -86,22 +85,36 @@ public class NemunoAttack : MonoBehaviour {
                     yield return new WaitForSeconds(5.5f);
                     break;
             }
-        }
+        }        
 
-        yield return new WaitForSeconds(1.1f);
-
-        //Bメロ(約30秒)
+        //Bメロ(約20秒)ジャンプ小弾幕攻撃
         for (int i = 0; i < 4; i++) {
             StartCoroutine("Back_Jump_Cor");
             yield return new WaitForSeconds(1.0f);
             StartCoroutine("Jump_Slash_Cor", 32);
-            yield return new WaitForSeconds(3.7f);
-            if (i == 3)
-                transform.localScale = new Vector3(-1, 1, 1);
-            StartCoroutine("High_Jump_Cor", transform.localScale.x);
             yield return new WaitForSeconds(3.0f);
+            if (i == 3)
+                break;
+            StartCoroutine("High_Jump_Cor", transform.localScale.x);
+            yield return new WaitForSeconds(2.2f);
         }
-        
+
+        yield return new WaitForSeconds(1.0f);
+
+        //Aメロ(約5秒)        
+        StartCoroutine("Back_Jump_Cor");
+        yield return new WaitForSeconds(1.3f);
+        StartCoroutine("Long_Slash_Cor", 10);
+        yield return new WaitForSeconds(2.0f);
+        Jump_Next_Player();
+        yield return new WaitForSeconds(0.8f);
+        StartCoroutine("Close_Slash_Cor");
+        yield return new WaitForSeconds(1.5f);
+
+        //大ジャンプ
+        StartCoroutine("High_Jump_Cor", -1);
+        yield return new WaitForSeconds(2.5f);
+
         //サビ前移動(サビまでの時間調整)
         _controller.Change_Fly_Parameter();
         _controller.Change_Animation("ForwardJumpBool");
@@ -110,12 +123,14 @@ public class NemunoAttack : MonoBehaviour {
         yield return new WaitForSeconds(1.0f);
         _controller.Change_Animation("ShootBool");
         transform.localScale = new Vector3(1, 1, 1);
-        //サビ前溜め
-        _controller.Play_Charge_Effect(1.5f);
-        yield return new WaitForSeconds(1.5f);
 
         //サビ弾幕(曲開始から56秒)
         for (int i = 0; i < 2; i++) {
+            //溜め
+            _controller.Play_Charge_Effect(2.5f);
+            yield return new WaitForSeconds(2.5f);
+
+            //ショット
             _controller.Play_Burst_Effect();
             _shoot.Start_Knife_Shoot();
             yield return new WaitForSeconds(8.0f);
@@ -124,7 +139,7 @@ public class NemunoAttack : MonoBehaviour {
                 _controller.Change_Land_Paramter();
                 _controller.Change_Animation("IdleBool");
             }
-            yield return new WaitForSeconds(4.0f);
+            yield return new WaitForSeconds(1.5f);
         }
         
         StartCoroutine("Phase1_Cor");
@@ -154,83 +169,104 @@ public class NemunoAttack : MonoBehaviour {
     }
 
     private IEnumerator Phase2_Cor() {
-        yield return new WaitForSeconds(2.0f);
+        gameObject.layer = LayerMask.NameToLayer("InvincibleLayer");    //無敵化
+        yield return new WaitForSeconds(1.0f);
 
         _controller.Play_Battle_Effect();
         Raise_Move_Speed();
         AttackKind next_Attack = AttackKind.close_Slash;
-        AttackKind pre_Attack = AttackKind.barrier;
-        AttackKind two_Pre_Attack = AttackKind.long_Slash;       
+        AttackKind pre_Attack = AttackKind.jump_Slash;
+        AttackKind two_Pre_Attack = AttackKind.barrier;
 
-        //通常攻撃
-        while(_boss_Enemy.life[1] > 150) {
-            //移動
-            for (int j = 1; j <= 2; j++) {
-                float distance = ((int)Random.Range(0, 2) - 0.5f) * 130f;
-                StartCoroutine("Dash_Cor", distance);
-                yield return new WaitForSeconds(0.65f);
-            }
+        //大ジャンプ
+        StartCoroutine("High_Jump_Cor", -1);
+        yield return new WaitForSeconds(1.0f);
 
-            //攻撃     
-            next_Attack = Select_Next_Attack(pre_Attack, two_Pre_Attack);
-            switch (next_Attack) {
-                case AttackKind.close_Slash:
-                    Jump_Next_Player();
-                    yield return new WaitForSeconds(0.8f);
-                    StartCoroutine("Close_Slash_Cor");
-                    yield return new WaitForSeconds(1.3f);
-                    break;
-                case AttackKind.long_Slash:
-                    StartCoroutine("Back_Jump_Cor");
-                    yield return new WaitForSeconds(1.0f);
-                    StartCoroutine("Long_Slash_Cor", 14);
-                    yield return new WaitForSeconds(1.3f);
-                    StartCoroutine("Long_Slash_Cor", 14);
-                    yield return new WaitForSeconds(1.3f);
-                    break;
-                case AttackKind.barrier:
-                    StartCoroutine("Barrier_Walk_Cor", 210f);
-                    yield return new WaitForSeconds(4.5f);
-                    break;
-                case AttackKind.jump_Slash:
-                    for(int j = 0; j < 2; j++) {
+        //溜め
+        transform.localScale = new Vector3(1, 1, 1);
+        _controller.Play_Charge_Effect(2.0f);
+        yield return new WaitForSeconds(2.0f);
+
+        gameObject.layer = LayerMask.NameToLayer("EnemyLayer");         //無敵化解除
+
+        //ブロック弾発射
+        _controller.Play_Burst_Effect();
+        UsualSoundManager.Instance.Play_Shoot_Sound();
+        _shoot.StartCoroutine("Play_Square_Blocks_Attack");
+        yield return new WaitForSeconds(8.0f);
+
+        while (true) {
+            //地上攻撃
+            for (int i = 0; i < 5; i++) {
+                //移動
+                for (int j = 1; j <= 2; j++) {
+                    float distance = ((int)Random.Range(0, 2) - 0.5f) * 130f;
+                    StartCoroutine("Dash_Cor", distance);
+                    yield return new WaitForSeconds(0.65f);
+                }
+
+                //攻撃     
+                next_Attack = Select_Next_Attack(pre_Attack, two_Pre_Attack);
+                switch (next_Attack) {
+                    case AttackKind.close_Slash:
+                        Jump_Next_Player();
+                        yield return new WaitForSeconds(0.6f);
+                        StartCoroutine("Close_Slash_Cor");
+                        yield return new WaitForSeconds(1.3f);
+                        break;
+                    case AttackKind.long_Slash:
                         StartCoroutine("Back_Jump_Cor");
                         yield return new WaitForSeconds(1.0f);
-                        StartCoroutine("Jump_Slash_Cor", 50);
-                        yield return new WaitForSeconds(3.8f);
-                        StartCoroutine("High_Jump_Cor", transform.localScale.x);
-                        yield return new WaitForSeconds(2.1f);
-                    }
-                    break;
+                        StartCoroutine("Long_Slash_Cor", 14);
+                        yield return new WaitForSeconds(1.0f);
+                        StartCoroutine("Long_Slash_Cor", 14);
+                        yield return new WaitForSeconds(1.3f);
+                        break;
+                    case AttackKind.barrier:
+                        StartCoroutine("Barrier_Walk_Cor", 210f);
+                        yield return new WaitForSeconds(4.5f);
+                        break;
+                    case AttackKind.jump_Slash:
+                        for (int j = 0; j < 2; j++) {
+                            StartCoroutine("Back_Jump_Cor");
+                            yield return new WaitForSeconds(1.0f);
+                            StartCoroutine("Jump_Slash_Cor", 50);
+                            yield return new WaitForSeconds(3.2f);
+                            StartCoroutine("High_Jump_Cor", transform.localScale.x);
+                            yield return new WaitForSeconds(2.5f);
+                        }
+                        break;
+                }
+                two_Pre_Attack = pre_Attack;
+                pre_Attack = next_Attack;
+
             }
-            two_Pre_Attack = pre_Attack;
-            pre_Attack = next_Attack;
-        }
 
-        //弾幕前溜め
-        StartCoroutine("High_Jump_Cor", -1);
-        yield return new WaitForSeconds(2.5f);
+            //弾幕前溜め
+            StartCoroutine("High_Jump_Cor", -1);
+            yield return new WaitForSeconds(2.5f);
+
+            transform.localScale = new Vector3(1, 1, 1);
+            _controller.Play_Charge_Effect(4.0f);
+
+            //移動
+            _controller.Change_Animation("ShootBool");
+            _controller.Change_Fly_Parameter();
+            yield return new WaitForSeconds(1.0f);
+            _move_Two_Points.Start_Move(new Vector3(160f, 8f), 4);
+            yield return new WaitForSeconds(3.0f);
+
+            //弾幕攻撃
+            _controller.Play_Burst_Effect();
+            _shoot.Start_Kunai_Shoot();
+            UsualSoundManager.Instance.Play_Shoot_Sound();
+            yield return new WaitForSeconds(6.0f);
+
+            _controller.Change_Land_Paramter();
+            _controller.Change_Animation("IdleBool");
+            yield return new WaitForSeconds(2.0f);
+        }  
         
-        transform.localScale = new Vector3(1, 1, 1);
-        _controller.Play_Charge_Effect(4.4f);
-
-        //巨大斬撃発射
-        _controller.Change_Animation("SlashBool");
-        yield return new WaitForSeconds(0.8f);
-        _shoot.Shoot_Big_Slash_Bullet();
-        _sound.Play_Slash_Sound();
-
-        //移動
-        _controller.Change_Animation("ShootBool");
-        _controller.Change_Fly_Parameter();
-        yield return new WaitForSeconds(1.0f);        
-        _move_Two_Points.Start_Move(new Vector3(160f, 8f), 4);
-        yield return new WaitForSeconds(4.0f);
-
-        //クナイ弾開始
-        _controller.Play_Burst_Effect();
-        _shoot.Start_Kunai_Shoot();
-                
     }
 
     public void Stop_Phase2() {
@@ -260,7 +296,7 @@ public class NemunoAttack : MonoBehaviour {
         List<AttackKind> list = new List<AttackKind>{ AttackKind.close_Slash, AttackKind.long_Slash, AttackKind.barrier, AttackKind.jump_Slash };
         list.Remove(pre_Attack);
         list.Remove(two_Pre_Attack);
-        Debug.Log(list.ToString());
+
         int rate = Random.Range(0, 100);
         if (rate < 45)
             return list[0];
@@ -371,7 +407,7 @@ public class NemunoAttack : MonoBehaviour {
     //近接攻撃、一回点滅後攻撃
     private IEnumerator Close_Slash_Cor() {
         yield return new WaitForSeconds(0.1f);
-        _controller.Change_Animation("SlashBool");
+        _controller.Change_Animation("SlashTrigger");
 
         _sound.Play_Before_Slash_Sound();
         yield return new WaitForSeconds(0.09f);
@@ -390,7 +426,7 @@ public class NemunoAttack : MonoBehaviour {
 
     //遠距離攻撃、２回点滅後攻撃、ショット
     private IEnumerator Long_Slash_Cor(int num) {        
-        _controller.Change_Animation("SlashBool");
+        _controller.Change_Animation("SlashTrigger");
 
         for(int i = 0; i < 2; i++) {
             _sound.Play_Before_Slash_Sound();
@@ -454,11 +490,13 @@ public class NemunoAttack : MonoBehaviour {
         yield return null;
         _controller.Change_Fly_Parameter();
         //ショット
-        _controller.Change_Animation("SlashBool");
+        _controller.Change_Animation("SlashTrigger");
         _controller.Play_Yellow_Circle_Effect();
         _sound.Play_Before_Slash_Sound();
-        _shoot.StartCoroutine("Shoot_Jump_Slash_Cor", num);        
-        yield return new WaitForSeconds(1.3f);
+        _shoot.StartCoroutine("Shoot_Jump_Slash_Cor", num);
+        yield return new WaitForSeconds(0.5f);
+        _sound.Play_Slash_Sound();
+        yield return new WaitForSeconds(0.8f);
         //落下
         _controller.Change_Animation("IdleBool");
         _controller.Change_Land_Paramter();

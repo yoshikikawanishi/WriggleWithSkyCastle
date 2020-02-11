@@ -132,7 +132,7 @@ MonoBehaviour:
   play_On_Awake: 0
   bullet: {fileID: 1192208651321600, guid: c5876a98535762f4a93a8df296c0156e, type: 2}
   parent: {fileID: 0}
-  max_Speed: 70
+  max_Speed: 120
   speed_Noise: 0
   angle_Noise: 0
   lifeTime: 10

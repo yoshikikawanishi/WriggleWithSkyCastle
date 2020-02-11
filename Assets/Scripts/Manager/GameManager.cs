@@ -6,6 +6,11 @@ using UnityEngine.SceneManagement;
 public class GameManager : SingletonMonoBehaviour<GameManager> {
 
 
+    private void Awake() {
+        //フレームレートの固定化
+        Application.targetFrameRate = 60;
+    }
+
     //ミス時の処理
     public void Miss() {
         //TODO:エフェクト

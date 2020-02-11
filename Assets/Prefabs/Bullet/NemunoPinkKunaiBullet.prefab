@@ -132,7 +132,7 @@ MonoBehaviour:
   play_On_Awake: 0
   bullet: {fileID: 1882840218936906, guid: a462dff2bf198654cb17f086166b4308, type: 2}
   parent: {fileID: 0}
-  max_Speed: 70
+  max_Speed: 120
   speed_Noise: 0
   angle_Noise: 0
   lifeTime: 10
@@ -153,7 +153,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   other_Param: 1
   num: 2
-  inter_Angle_Deg: 45
+  inter_Angle_Deg: 40
   center_Angle_Deg: 0
   arc_Deg: 360
   shoot_Rate: 30

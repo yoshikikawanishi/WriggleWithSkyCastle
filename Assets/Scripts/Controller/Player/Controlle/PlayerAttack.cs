@@ -128,7 +128,7 @@ public class PlayerAttack : MonoBehaviour {
         }
         BeetlePowerManager.Instance.StartCoroutine("Increase_Cor", 8);      //緑パワーの増加
         player_SE.Play_Hit_Attack_Sound();                                  //効果音                                                               
-        float tmp = Time.timeScale;                                         //ヒットストップ
+        float tmp = Time.timeScale;                                         //ヒットストップ        
         Time.timeScale = 0.5f;
         yield return new WaitForSeconds(0.05f);
         Time.timeScale = tmp;
