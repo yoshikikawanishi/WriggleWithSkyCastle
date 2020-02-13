@@ -2,6 +2,6 @@
 test	False
 orb	False
 Rumia	True
-Mystia	False
+Mystia	True
 Yuka	True
 Shizuha	True

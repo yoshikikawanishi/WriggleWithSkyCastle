@@ -81,14 +81,13 @@ public class YukaAttack : MonoBehaviour {
             if (loop_Count % 2 == 0) {
                 //花形弾幕と交差弾
                 Play_Burst_Effect();
-                Shoot_Diffusion_Bullet(new Vector2(-64f, 64f), 0);
-                yield return new WaitForSeconds(0.5f);
-                Shoot_Diffusion_Bullet(new Vector2(32f, -32f), 1);
-                yield return new WaitForSeconds(3.0f);
                 Shoot_Cross_Bullet(new Vector2(0, 0));
                 yield return new WaitForSeconds(1.0f);
                 Shoot_Cross_Bullet(new Vector2(0, 0));
-                yield return new WaitForSeconds(5.0f);               
+                Shoot_Diffusion_Bullet(new Vector2(-64f, 64f), 0);
+                yield return new WaitForSeconds(0.5f);
+                Shoot_Diffusion_Bullet(new Vector2(32f, -32f), 1);                
+                yield return new WaitForSeconds(8.0f);               
             }
             else {
                 //渦巻き弾

@@ -9,7 +9,7 @@ public class PlayerTransition : MonoBehaviour {
     private PlayerController _controller;
 
     //速度、加速度
-    private float MAX_SPEED = 170f;
+    private float max_Speed = 170f;
     private float acc = 20f;
 
     
@@ -32,15 +32,15 @@ public class PlayerTransition : MonoBehaviour {
         if(direction == 1) {            
             _rigid.velocity += new Vector2(acc, 0);
             transform.localScale = new Vector3(1, 1, 1);
-            if(_rigid.velocity.x > MAX_SPEED) {
-                _rigid.velocity = new Vector2(MAX_SPEED, _rigid.velocity.y);
+            if(_rigid.velocity.x > max_Speed) {
+                _rigid.velocity = new Vector2(max_Speed, _rigid.velocity.y);
             }
         }
         if(direction == -1){
             _rigid.velocity += new Vector2(-acc, 0);
             transform.localScale = new Vector3(-1, 1, 1);
-            if(_rigid.velocity.x < -MAX_SPEED) {
-                _rigid.velocity = new Vector2(-MAX_SPEED, _rigid.velocity.y);
+            if(_rigid.velocity.x < -max_Speed) {
+                _rigid.velocity = new Vector2(-max_Speed, _rigid.velocity.y);
             }
         }
         //アニメーション
@@ -67,5 +67,19 @@ public class PlayerTransition : MonoBehaviour {
         else {
             _rigid.velocity *= new Vector2(0.9f, 1);
         }
+    }
+
+
+    //最高速の変更
+    public void Set_Max_Speed(float speed) {
+        max_Speed = speed;
+        if(max_Speed < 1) {
+            max_Speed = 1;
+        }
+    }
+
+    //最高速の取得
+    public float Get_Max_Speed() {
+        return max_Speed;
     }
 }

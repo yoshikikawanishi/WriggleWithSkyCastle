@@ -52,7 +52,7 @@ public class Stage1_BossMovie : MonoBehaviour {
 
         //セリフ2
         if (is_First_Visit) {
-            _message.Start_Display("LarvaText", 1, 1);
+            _message.Start_Display("LarvaText", 2, 5);
             yield return new WaitUntil(_message.End_Message);
         }
 
@@ -74,7 +74,7 @@ public class Stage1_BossMovie : MonoBehaviour {
     private IEnumerator Play_Clear_Movie_Cor() {
         yield return new WaitForSeconds(3.0f);
 
-        _message.Start_Display("LarvaText", 1, 1);
+        _message.Start_Display("LarvaText", 6, 9);
         yield return new WaitUntil(_message.End_Message);
 
         FadeInOut.Instance.Start_Fade_Out(new Color(0, 0, 0), 0.01f);

@@ -89,7 +89,7 @@ public class YukaMovie : SingletonMonoBehaviour<YukaMovie> {
         player_Controller.Change_Animation("IdleBool");
         player.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
 
-        _message.Start_Display("YukaText", 20, 23);
+        _message.Start_Display("YukaText", 20, 21);
         yield return new WaitUntil(_message.End_Message);
 
         //自機の固定外す

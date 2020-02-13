@@ -197,7 +197,7 @@ public class NemunoAttack : MonoBehaviour {
 
         while (true) {
             //地上攻撃
-            for (int i = 0; i < 5; i++) {
+            for (int i = 0; i < 3; i++) {
                 //移動
                 for (int j = 1; j <= 2; j++) {
                     float distance = ((int)Random.Range(0, 2) - 0.5f) * 130f;
@@ -358,6 +358,9 @@ public class NemunoAttack : MonoBehaviour {
     //自機の隣にジャンプする
     private void Jump_Next_Player() {
         float jump_Distance = player.transform.position.x - transform.position.x;
+        if(Mathf.Abs(jump_Distance) > 200f) {
+            jump_Distance = 200 * jump_Distance.CompareTo(0);
+        }
         //自機が右にいるとき
         if (jump_Distance > 0) {
             transform.localScale = new Vector3(-1, 1, 1);
