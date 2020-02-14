@@ -14,12 +14,7 @@ public class ConfigButton : MonoBehaviour {
     [SerializeField] private GameObject ride_Button;
     [SerializeField] private GameObject slow_Button;
     [SerializeField] private GameObject shoot_Button;
-    [SerializeField] private GameObject pause_Button;
-    [Space]
-    [SerializeField] private GameObject BGM_Set_Slider;
-    [SerializeField] private GameObject SE_Set_Slider;
-    [Space]
-    [SerializeField] private AudioMixer audio_Mixer;           
+    [SerializeField] private GameObject pause_Button;       
     
     private bool wait_Input = false;
 
@@ -94,6 +89,8 @@ public class ConfigButton : MonoBehaviour {
         wait_Input = false;
         //色を戻す
         button.GetComponent<Image>().color = new Color(1, 1, 1);
+        //保存する
+        InputManager.Instance.keyConfig.SaveConfigFile();
         yield return null;
     }
 
@@ -151,8 +148,7 @@ public class ConfigButton : MonoBehaviour {
 
     //タイトルに戻る
     public void Back_Title_Button() {
-        if (!wait_Input && InputManager.Instance.GetKeyDown(Key.Jump)) {
-            InputManager.Instance.keyConfig.SaveConfigFile();
+        if (!wait_Input && InputManager.Instance.GetKeyDown(Key.Jump)) {            
             SceneManager.LoadScene("TitleScene");
         }
     }

@@ -28,6 +28,7 @@ GameObject:
   - component: {fileID: 114983600466901070}
   - component: {fileID: 114752986096458988}
   - component: {fileID: 114748077910222806}
+  - component: {fileID: 114497487359273378}
   m_Layer: 8
   m_Name: CommonScripts
   m_TagString: Untagged
@@ -89,6 +90,19 @@ MonoBehaviour:
   stock: 3
   power: 0
   score: 0
+--- !u!114 &114497487359273378
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1346960129056838}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2cd0982a69763b4f86fde0a9551854a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dontDestroyOnLoad: 1
+  audio_Mixer: {fileID: 24100000, guid: 99e0dad0e338c1f43a4b809f4ca302ab, type: 2}
 --- !u!114 &114576009339083856
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -117,6 +131,8 @@ MonoBehaviour:
   Delete_Visited_Scene_Date: 1
   Is_First_Visit_Scene_In_Testplay: 0
   Delete_Player_Data: 0
+  Player_Life: 3
+  Player_Power: 0
   Delete_Yuka_Data: 0
 --- !u!114 &114752986096458988
 MonoBehaviour:

@@ -8,10 +8,7 @@ public class BossCollisionDetection : EnemyCollisionDetection {
     
 
     private void Awake() {
-        _boss_Enemy = GetComponent<BossEnemy>();
-
-        //キックの火力を下げる
-        damaged_Tag_Dictionary["PlayerKickTag"] = 6;
+        _boss_Enemy = GetComponent<BossEnemy>();        
     }
 
 

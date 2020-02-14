@@ -14,7 +14,7 @@ public class BGMManager : SingletonMonoBehaviour<BGMManager> {
 
 	// Use this for initialization
 	void Start () {
-        audio_Source = GetComponent<AudioSource>();	
+        audio_Source = GetComponent<AudioSource>();        
 	}
 	
 

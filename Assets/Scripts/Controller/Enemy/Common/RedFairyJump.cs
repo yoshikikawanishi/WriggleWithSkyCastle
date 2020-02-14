@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class RedFairyJump : MonoBehaviour {
 
+    //ジャンプ力
+    [SerializeField] private Vector2 jump_Velocity = new Vector2(50f, 180f);
     //当たり判定検知用
     private ChildColliderTrigger foot_Collision;
     private ChildColliderTrigger side_Collision;
@@ -35,7 +37,7 @@ public class RedFairyJump : MonoBehaviour {
 
         //ジャンプ
         if (foot_Collision.Hit_Trigger()) {
-            _rigid.velocity = new Vector2(transform.localScale.x * -50f, 180f);
+            _rigid.velocity = new Vector2(transform.localScale.x * -jump_Velocity.x, jump_Velocity.y);
         }
         //壁で反転
         if (side_Collision.Hit_Trigger()) {

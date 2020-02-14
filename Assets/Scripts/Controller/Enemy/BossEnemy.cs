@@ -32,6 +32,8 @@ public class BossEnemy : MonoBehaviour {
     private bool is_Cleared = false;
     //無敵化
     private bool is_Invincible = false;
+    //最後に被弾してからの経過時間
+    private float damaged_Span_Time = 0;
 
 
     private void Awake() {
@@ -42,8 +44,13 @@ public class BossEnemy : MonoBehaviour {
         poisoned_Enemy  = gameObject.AddComponent<PoisonedEnemy>();
         //初期値代入
         DEFAULT_LIFE = new List<int>(life);
-    }    
+    }
 
+    private void Update() {
+        if(damaged_Span_Time < 0.8f) {
+            damaged_Span_Time += Time.deltaTime;
+        }
+    }
 
     //被弾時の処理
     public void Damaged(int damage, string damaged_Tag) {
@@ -54,6 +61,13 @@ public class BossEnemy : MonoBehaviour {
             Play_Invincible_Effect();
             return;
         }
+        //連続で被弾時ダメージ減らす
+        if(damaged_Span_Time < 0.8f) {
+            damage = (int)(damage * 0.4f);
+            if (damage < 1)
+                damage = 1;
+        }
+        
         //被弾
         if(life[now_Phase - 1] > 0) {
             life[now_Phase - 1] -= damage;
@@ -62,6 +76,10 @@ public class BossEnemy : MonoBehaviour {
         //毒ダメージ
         if(damaged_Tag == "PlayerSpiderAttackTag") {
             poisoned_Enemy.Start_Poisoned_Damaged(true);
+        }
+        else {
+            //毒以外でダメージ間のインターバルリセット
+            damaged_Span_Time = 0;
         }
         //フェーズ終了
         if(life[now_Phase - 1] <= 0) {            

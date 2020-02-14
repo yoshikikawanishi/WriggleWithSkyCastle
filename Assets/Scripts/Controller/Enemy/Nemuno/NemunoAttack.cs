@@ -204,6 +204,7 @@ public class NemunoAttack : MonoBehaviour {
                     StartCoroutine("Dash_Cor", distance);
                     yield return new WaitForSeconds(0.65f);
                 }
+                yield return new WaitForSeconds(0.15f);
 
                 //攻撃     
                 next_Attack = Select_Next_Attack(pre_Attack, two_Pre_Attack);
