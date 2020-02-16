@@ -16,12 +16,10 @@ public class PlayerGettingOnBeetle : MonoBehaviour {
     private PlayerEffect player_Effect;
 
     public bool can_Get_On_Beetle = true;
+    private bool disable_Get_On_Beetle = false;
 
     private float default_Gravity;
-    private Vector2 default_Collider_Offset;
-
-
-    private float scroll_Speed = 1f;
+    private Vector2 default_Collider_Offset;    
 
 
     //Start
@@ -47,6 +45,8 @@ public class PlayerGettingOnBeetle : MonoBehaviour {
         if (!can_Get_On_Beetle) {
             return;
         }
+        if (disable_Get_On_Beetle)
+            return;
         _controller.is_Ride_Beetle = true;
         StopAllCoroutines();
         StartCoroutine("Get_On_Beetle_Cor");
@@ -56,9 +56,9 @@ public class PlayerGettingOnBeetle : MonoBehaviour {
         can_Get_On_Beetle = false;
 
         player_Effect.Start_Ridding_Beetle_Effect();
-        _controller.Change_Animation("RideBeetleBool");
-        Change_To_Beetle_Status();
+        _controller.Change_Animation("RideBeetleBool");        
 
+        Change_To_Beetle_Status();
         yield return new WaitForSeconds(0.4f);
         player_Effect.Stop_Ridding_Beetle_Effect();        
         
@@ -75,7 +75,7 @@ public class PlayerGettingOnBeetle : MonoBehaviour {
         body_Collision.Display_Sprite();
         foot_Collision.Disappear();
         beetle_Body.SetActive(true);
-        main_Camera.GetComponent<CameraController>().Start_Auto_Scroll(scroll_Speed);       //オートスクロール
+        Change_Scroll_Speed_By_Power();                                                     //オートスクロール
         GetComponent<PlayerTransitionRidingBeetle>().Change_Body_Direction((int)transform.localScale.x);    //向きの固定        
     }
 
@@ -152,25 +152,40 @@ public class PlayerGettingOnBeetle : MonoBehaviour {
 
 
     //飛行無効化
-    public void To_Disable() {
+    public void To_Disable() {        
         if (_controller.is_Ride_Beetle) {
             Get_Off_Beetle();
         }
-        can_Get_On_Beetle = false;
+        disable_Get_On_Beetle = true;
     }
 
     //無効化解除
     public void To_Enable() {
-        can_Get_On_Beetle = true;
+        disable_Get_On_Beetle = false;
     }
 
     //スクロール速度変更
-    public void Set_Scroll_Speed(float speed) {
-        scroll_Speed = speed;
+    private void Change_Scroll_Speed(float speed) {        
         if (_controller.Get_Is_Ride_Beetle()) {
             main_Camera.GetComponent<CameraController>().Start_Auto_Scroll(speed);
         }
-    }
+    }    
 
+    //自機のパワーによってスクロールの速度を決定
+    private void Change_Scroll_Speed_By_Power() {
+        int power = PlayerManager.Instance.Get_Power();
+        float scroll_Speed;
+        if (power < 16)
+            scroll_Speed = 0.7f;
+        else if (power < 32)
+            scroll_Speed = 0.8f;
+        else if (power < 64)
+            scroll_Speed = 0.9f;
+        else if (power < 128)
+            scroll_Speed = 1.0f;
+        else
+            scroll_Speed = 1.1f;
+        Change_Scroll_Speed(scroll_Speed);
+    }
     
 }

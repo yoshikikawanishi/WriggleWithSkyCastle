@@ -16,7 +16,6 @@ public class PlayerChargeBulletSmall : MonoBehaviour {
     private ObjectPool green_Rice_Pool;
     private ObjectPool yellow_Rice_Pool;
 
-    private GameObject main_Camera;
 
 
     // Use this for initialization
@@ -25,8 +24,6 @@ public class PlayerChargeBulletSmall : MonoBehaviour {
         ObjectPoolManager.Instance.Create_New_Pool(yellow_Rice_Bullet, 10);
         green_Rice_Pool = ObjectPoolManager.Instance.Get_Pool(green_Rice_Bullet);
         yellow_Rice_Pool = ObjectPoolManager.Instance.Get_Pool(yellow_Rice_Bullet);
-
-        main_Camera = GameObject.FindWithTag("MainCamera");
     }
 
     //OnEnable

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using MBLDefine;
 
 [RequireComponent(typeof(CameraShake))]
 public class CameraController : MonoBehaviour {
@@ -86,7 +87,12 @@ public class CameraController : MonoBehaviour {
 
     //強制スクロール
     private void Auto_Scroll() {
-        transform.position += new Vector3(auto_Scroll_Speed * player.transform.localScale.x, 0, 0);   
+        //低速時
+        if (InputManager.Instance.GetKey(Key.Slow)) 
+            transform.position += new Vector3(0.3f * player.transform.localScale.x, 0, 0);
+        //高速時
+        else
+            transform.position += new Vector3(auto_Scroll_Speed * player.transform.localScale.x, 0, 0);   
     }
 
 

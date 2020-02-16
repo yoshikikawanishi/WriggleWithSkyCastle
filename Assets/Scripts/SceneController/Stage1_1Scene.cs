@@ -13,10 +13,11 @@ public class Stage1_1Scene : SingletonMonoBehaviour<Stage1_1Scene> {
 
 
     private void Start() {
-        //フェードイン
+        //オープニング
         if (SceneManagement.Instance.Is_First_Visit()) {
-            FadeInOut.Instance.Start_Fade_In(new Color(0, 0, 0), 0.02f);
+            GetComponent<OpeningMovie>().Start_Movie();            
         }
+        
     }
 
 }

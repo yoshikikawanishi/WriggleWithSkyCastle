@@ -22,7 +22,7 @@ public class GameUIController : MonoBehaviour {
 
     private int score_Text_Value = 0;
     private int power_Text_Value = 0;
-    private int stock_Text_Value = 0;
+    private int stock_Text_Value = 32;
     private int life_Image_Number = 0;
     private int beetle_Power_Slider_Value = 0;
     private PlayerManager.Option now_Option;
@@ -70,7 +70,7 @@ public class GameUIController : MonoBehaviour {
 
     //ストックUIの変更
     private void Change_Stock_UI() {
-        if(stock_Text_Value != player_Manager.Get_Stock()) {
+        if(stock_Text_Value != player_Manager.Get_Stock()) {            
             stock_Text_Value = player_Manager.Get_Stock();
             stock_Text.text = "× " + stock_Text_Value.ToString();
         }

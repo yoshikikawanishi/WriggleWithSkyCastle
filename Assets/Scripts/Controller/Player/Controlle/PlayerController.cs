@@ -5,8 +5,6 @@ using MBLDefine;
 
 public class PlayerController : MonoBehaviour {
 
-    [SerializeField] private float NORMAL_SCROLL_SPEED = 1f;
-
     //コンポーネント
     private Rigidbody2D _rigid;
     private Animator _anim;
@@ -58,9 +56,7 @@ public class PlayerController : MonoBehaviour {
         _shoot = GetComponent<PlayerShoot>();
         _getting_On_Beetle = GetComponent<PlayerGettingOnBeetle>();
         input = InputManager.Instance;
-        collection_Manager = CollectionManager.Instance;
-        //初期設定
-        Change_Beetle_Scroll_Speed(NORMAL_SCROLL_SPEED);
+        collection_Manager = CollectionManager.Instance;        
     }
 
 
@@ -134,12 +130,10 @@ public class PlayerController : MonoBehaviour {
     private void Beetle_Controlle() {
         //移動
         Vector2 direction = new Vector2(0, 0);
-        direction = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-        Change_Beetle_Scroll_Speed(NORMAL_SCROLL_SPEED);
+        direction = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));        
         if (input.GetKey(Key.Slow)) {
             direction *= 0.3f;
-            Change_Beetle_Scroll_Speed(0.3f);
-        }
+        }        
         _transition_Beetle.Transition(direction);        
 
         //ショット
@@ -165,7 +159,6 @@ public class PlayerController : MonoBehaviour {
 
 
     //近接攻撃
-    //注意：攻撃発生までにis_Playableがfalseになっても、攻撃は続行する
     public void Attack() {
         //入力を受け取ったら、少しだけ待つ
         if (input.GetKeyDown(Key.Attack)) {
@@ -279,11 +272,6 @@ public class PlayerController : MonoBehaviour {
     //カブトムシ無効化解除
     public void To_Enable_Ride_Beetle() {
         _getting_On_Beetle.To_Enable();
-    }
-
-    //カブトムシ時のスクロール速度変化
-    public void Change_Beetle_Scroll_Speed(float speed) {
-        _getting_On_Beetle.Set_Scroll_Speed(speed);
     }
 
     //カブトムシ時の方向変更

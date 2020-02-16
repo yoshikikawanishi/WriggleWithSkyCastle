@@ -20,9 +20,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager> {
         BeetlePowerManager.Instance.Set_Beetle_Power(0);
         //復活
         PlayerManager.Instance.Reduce_Stock();
-        if (PlayerManager.Instance.Get_Stock() != 0) {                        
-            StartCoroutine("Revive");
-        }
+        StartCoroutine("Revive");        
     }
 
 
@@ -53,20 +51,6 @@ public class GameManager : SingletonMonoBehaviour<GameManager> {
         //エフェクト
         Play_Revive_Effect(player);
     }   
-
-
-    //ゲームオーバー時の処理
-    public void Game_Over() {        
-        StartCoroutine("Game_Over_Cor");        
-    }  
-    
-    private IEnumerator Game_Over_Cor() {        
-        yield return new WaitForSeconds(1.0f);
-        //シーン遷移
-        SceneManager.LoadScene("GameOverScene");
-        //セーブデータの変更
-        DataManager.Instance.Change_Data_In_Game_Over();
-    }
 
 
     //復活時のエフェクト

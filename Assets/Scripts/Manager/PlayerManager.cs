@@ -46,10 +46,7 @@ public class PlayerManager : SingletonMonoBehaviour<PlayerManager> {
     }
 
     public int Reduce_Stock() {
-        stock--;
-        if (stock == 0) {
-            GameManager.Instance.Game_Over();
-        }
+        stock--;        
         return stock;
     }    
 
@@ -120,12 +117,7 @@ public class PlayerManager : SingletonMonoBehaviour<PlayerManager> {
         if(stock > MAX_STOCK) {
             return;
         }
-        if (stock >= 0) {
-            this.stock = stock;
-        }
-        if (stock == 0) {
-            GameManager.Instance.Game_Over();
-        }
+        this.stock = stock;       
     }  
     
     public void Set_Power(int power) {

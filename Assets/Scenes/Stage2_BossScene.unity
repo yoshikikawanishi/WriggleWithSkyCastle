@@ -2389,6 +2389,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 114345466913152936, guid: d92b6a874b1bdf040a5b6ba49087e1dc,
+        type: 2}
+      propertyPath: back_Design
+      value: 
+      objectReference: {fileID: 1915972721}
     - target: {fileID: 114862670052294154, guid: d92b6a874b1bdf040a5b6ba49087e1dc,
         type: 2}
       propertyPath: phase2_Kunai_Shoot_Obj
@@ -2399,11 +2404,6 @@ Prefab:
       propertyPath: Phase2_Square_Blocks
       value: 
       objectReference: {fileID: 699703066}
-    - target: {fileID: 114345466913152936, guid: d92b6a874b1bdf040a5b6ba49087e1dc,
-        type: 2}
-      propertyPath: back_Design
-      value: 
-      objectReference: {fileID: 1915972721}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d92b6a874b1bdf040a5b6ba49087e1dc, type: 2}
   m_IsPrefabAsset: 0

@@ -84,9 +84,7 @@ public class YukaAttack : MonoBehaviour {
                 Shoot_Cross_Bullet(new Vector2(0, 0));
                 yield return new WaitForSeconds(1.0f);
                 Shoot_Cross_Bullet(new Vector2(0, 0));
-                Shoot_Diffusion_Bullet(new Vector2(-64f, 64f), 0);
-                yield return new WaitForSeconds(0.5f);
-                Shoot_Diffusion_Bullet(new Vector2(32f, -32f), 1);                
+                Shoot_Diffusion_Bullet(new Vector2(0, 0), 0);                              
                 yield return new WaitForSeconds(8.0f);               
             }
             else {
