@@ -17,6 +17,11 @@ public class BulletAccelerator : MonoBehaviour {
         StartCoroutine(Accelerate_Bullet_Routine(bullet_List, acc_Rate, acc_Time));          
     }
 
+    public void Accelerat_Bullet(GameObject bullet, float acc_Rate, float acc_Time) {
+        List<GameObject> bullet_List = new List<GameObject> { bullet };
+        StartCoroutine(Accelerate_Bullet_Routine(bullet_List, acc_Rate, acc_Time));
+    }
+
 
     //加速させるコルーチン
     private IEnumerator Accelerate_Bullet_Routine(List<GameObject> bullet_List, float acc_Rate, float acc_Time) {        

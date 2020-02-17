@@ -151,6 +151,8 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  is_Change_Sorting_Layer: 0
+  sorting_Order: -5
   other_Param: 1
   num: 2
   inter_Angle_Deg: 40

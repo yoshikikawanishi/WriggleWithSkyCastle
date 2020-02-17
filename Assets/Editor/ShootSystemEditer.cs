@@ -87,9 +87,7 @@ public class ShootSystemEditer : Editor {
             obj.speed_Diff = EditorGUILayout.FloatField("SpeedDiff", obj.speed_Diff);
             obj.angle_Diff = EditorGUILayout.FloatField("AngleDiff", obj.angle_Diff);
             EditorGUILayout.EndVertical();
-        }
-
-        EditorGUILayout.Space();
+        }        
 
         //ループ
         obj.looping = EditorGUILayout.Toggle("Looping", obj.looping);
@@ -99,9 +97,7 @@ public class ShootSystemEditer : Editor {
             obj.span = EditorGUILayout.FloatField("Span", obj.span);
             obj.center_Angle_Diff = EditorGUILayout.FloatField("Angle_Diff", obj.center_Angle_Diff);
             EditorGUILayout.EndVertical();
-        }
-
-        EditorGUILayout.Space();
+        }        
 
         //加速度
         obj.is_Acceleration = EditorGUILayout.Toggle("VelocityOverTime", obj.is_Acceleration);        
@@ -114,6 +110,13 @@ public class ShootSystemEditer : Editor {
             obj.velocity_Forward = EditorGUILayout.CurveField("Forward", obj.velocity_Forward);
             obj.velocity_Lateral = EditorGUILayout.CurveField("Lateral", obj.velocity_Lateral);
             EditorGUILayout.EndVertical();
+        }
+
+        //描画順
+        obj.is_Change_Sorting_Order = EditorGUILayout.Toggle("ChangeSortingOrder", obj.is_Change_Sorting_Order);
+        if (obj.is_Change_Sorting_Order) {
+            obj.sorting_Order = EditorGUILayout.IntField("SortingOrder", obj.sorting_Order);
+            obj.sorting_Order_Diff = EditorGUILayout.IntField("SortingOrder_Diff", obj.sorting_Order_Diff);
         }
 
         EditorUtility.SetDirty(obj);

@@ -31,6 +31,9 @@ public class ShootSystem : MonoBehaviour {
     public AnimationCurve velocity_Forward;
     public AnimationCurve velocity_Lateral;
 
+    public bool is_Change_Sorting_Order = false;
+    public int sorting_Order = -5;
+    public int sorting_Order_Diff = 0;
 
     //その他設定
     public bool other_Param = true;    
@@ -46,13 +49,13 @@ public class ShootSystem : MonoBehaviour {
     public bool connect_Bullet = false;
     public int connect_Num = 1;
     public float speed_Diff = 15f;
-    public float angle_Diff = 0;
+    public float angle_Diff = 0;    
 
     //繰り返し時、値の変更用
     public bool looping = true;
     public int loop_Count = 1;       
     public float span = 1.0f;
-    public float center_Angle_Diff = 0;
+    public float center_Angle_Diff = 0;    
 
     private ObjectPool bullet_Pool; //弾
 
@@ -99,7 +102,7 @@ public class ShootSystem : MonoBehaviour {
             }
 
             center_Angle_Deg += center_Angle_Diff;            
-            yield return new WaitForSeconds(span - Time.deltaTime);            
+            yield return new WaitForSeconds(span - Time.deltaTime);                
         }
     }
 
@@ -282,7 +285,11 @@ public class ShootSystem : MonoBehaviour {
             if (is_Acceleration) {
                 StartCoroutine(Accelerate_Bullet_Cor(bullet, max_Speed));
             }
-
+            //描画順変更
+            if (is_Change_Sorting_Order) {
+                bullet.GetComponent<SpriteRenderer>().sortingOrder = sorting_Order;
+                sorting_Order += sorting_Order_Diff;
+            }
             //パラメータ変更
             speed -= speed_Diff;
             angle_Deg += angle_Diff;
@@ -305,15 +312,18 @@ public class ShootSystem : MonoBehaviour {
 
     //弾の加速(単体)
     public IEnumerator Accelerate_Bullet_Cor(GameObject bullet, float max_Speed) {
-        Rigidbody2D bullet_Rigid = bullet.GetComponent<Rigidbody2D>();        
-        
+        Rigidbody2D bullet_Rigid = bullet.GetComponent<Rigidbody2D>();
+        //float xt = velocity_Forward.keys[velocity_Forward.length - 1].time;
+        //float yt = velocity_Lateral.keys[velocity_Lateral.length - 1].time;
+        //float end_Time = Mathf.Max(xt, yt);
+
         float forward = max_Speed;
         float lateral = 0;
-        for(float t = 0; t < lifeTime; t += Time.deltaTime) {
+        for(float t = 0; t < lifeTime; t += Time.deltaTime) {            
             if(!bullet.activeSelf) {
                 yield break;
             }
-            forward = max_Speed * velocity_Forward.Evaluate(t);                 //前方向
+            forward = max_Speed * velocity_Forward.Evaluate(t);                 //前方向            
             lateral = max_Speed * velocity_Lateral.Evaluate(t);                 //横方向
             bullet_Rigid.velocity = bullet.transform.right * forward + bullet.transform.up * lateral;     //速度代入
             float dirVelocity = Mathf.Atan2(bullet_Rigid.velocity.y, bullet_Rigid.velocity.x) * Mathf.Rad2Deg;    //進行方向に回転
