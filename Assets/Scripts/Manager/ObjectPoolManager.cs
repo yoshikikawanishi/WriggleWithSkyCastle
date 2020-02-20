@@ -44,8 +44,21 @@ public class ObjectPoolManager : SingletonMonoBehaviour<ObjectPoolManager> {
         }
     }
 
+    //オブジェクトをtime秒後に非アクティブ化
+    public void Set_Inactive(GameObject obj, float time) {
+        StartCoroutine(Set_Inactive_Cor(obj, time));                
+    }
 
-    //表示
+    private IEnumerator Set_Inactive_Cor(GameObject obj, float time) {
+        if (time > Time.deltaTime)
+            yield return new WaitForSeconds(time - Time.deltaTime);
+        else
+            yield return null;
+        obj.SetActive(false);
+    }
+
+
+    //現在オブジェクトプールされているオブジェクトの表示
     public void Debug_Print() {
         foreach(string key in pool_Dictionary.Keys) {
             Debug.Log(key);

@@ -25,7 +25,7 @@ public class BigFrogMovie : SingletonMonoBehaviour<BigFrogMovie> {
 
         //カメラの移動、固定        
         camera_Controller.enabled = false;
-        camera_Move.Start_Move(new Vector3(3200f, 0, -10));
+        camera_Move.Start_Move(new Vector3(3312f, 0, -10));
         yield return new WaitUntil(camera_Move.End_Move);
 
         //戦闘開始

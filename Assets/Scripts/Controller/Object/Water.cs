@@ -38,7 +38,7 @@ public class Water : MonoBehaviour {
     private void Play_Surface_Effect(Vector2 pos) {
         var effect = surface_Effect_Pool.GetObject();
         effect.transform.position = new Vector3(pos.x, surface_Height);
-        effect.GetComponent<ParticleSystem>().Play();
+        
     }
 
     //自機が水面の高さにいるかどうか、誤差16まで許す
