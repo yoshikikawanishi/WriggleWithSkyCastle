@@ -7,16 +7,12 @@ public class NemunoAttack : MonoBehaviour {
     //コンポーネント
     private SpriteRenderer _sprite;
     private NemunoController _controller;
-    private BossEnemy _boss_Enemy;
     private NemunoShoot _shoot;
     private NemunoBarrier _barrier;
     private NemunoSoundEffect _sound;
     private MoveTwoPoints _move_Two_Points;
     //自機
     private GameObject player;
-
-    //攻撃前の移動中
-    private bool is_Walking_Before_Attack = false;
 
 
     private enum AttackKind {
@@ -32,8 +28,7 @@ public class NemunoAttack : MonoBehaviour {
     private void Awake() {
         //取得
         _sprite = GetComponent<SpriteRenderer>();
-        _controller = GetComponent<NemunoController>();
-        _boss_Enemy = GetComponent<BossEnemy>();
+        _controller = GetComponent<NemunoController>();        
         _shoot = GetComponentInChildren<NemunoShoot>();
         _barrier = GetComponentInChildren<NemunoBarrier>();
         _sound = GetComponentInChildren<NemunoSoundEffect>();

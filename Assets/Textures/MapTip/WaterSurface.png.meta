@@ -1,18 +1,13 @@
 fileFormatVersion: 2
-guid: 4b840beb47f017a4791d745fa4d7755d
+guid: 89c2b19de74325c4686fcd989655b86d
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Rail_0
-    21300002: Rail_1
-    21300004: Rail_2
-    21300006: Rail_3
-    21300008: Rail_4
-    21300010: Rail_5
-    21300012: Rail_6
-    21300014: Rail_7
-    21300016: Rail_8
-    21300018: Rail_9
-    21300020: Rail_10
+    21300000: WaterSurface_0
+    21300002: WaterSurface_1
+    21300004: WaterSurface_2
+    21300006: WaterSurface_3
+    21300008: WaterSurface_4
+    21300010: WaterSurface_5
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -128,210 +123,70 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Rail_0
+      name: WaterSurface_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 66
+        y: 32
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3cfe494a55b732c44bb5100a0be99072
+      spriteID: e97eb5e3956dda2479128ec57d89554d
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Rail_1
+      name: WaterSurface_1
       rect:
         serializedVersion: 2
-        x: 33
-        y: 66
+        x: 32
+        y: 32
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 61b4999e45c2d0a4980da3ff9ea4cfa5
+      spriteID: 7ee90b317347f144a9806dcb195eb752
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Rail_2
+      name: WaterSurface_2
       rect:
         serializedVersion: 2
-        x: 66
-        y: 66
+        x: 64
+        y: 32
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 544d19c172c0b394995cf38eea7a1bf8
+      spriteID: 4429fa717e1cfe642bbc8177b6335eee
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Rail_3
-      rect:
-        serializedVersion: 2
-        x: 99
-        y: 66
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e059ee52ccbeb82429a5b86186cc1b5c
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Rail_4
+      name: WaterSurface_3
       rect:
         serializedVersion: 2
         x: 0
-        y: 33
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: fd951de49eaba904396798f56ff3fc44
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Rail_5
-      rect:
-        serializedVersion: 2
-        x: 33
-        y: 33
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 64b0daf5ef55ad84d814aa4f05567b80
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Rail_6
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e74d2715a5583384a88d8a1cf663a937
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Rail_7
-      rect:
-        serializedVersion: 2
-        x: 33
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ad8d64f84d6a7ee4296fc0d3e039e262
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Rail_8
-      rect:
-        serializedVersion: 2
-        x: 66
-        y: 33
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a3df3fcb35038ee468d312477c84b4bb
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Rail_9
-      rect:
-        serializedVersion: 2
-        x: 66
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c0d6edd58ce48e846b4ef4c1046ceeb3
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Rail_10
-      rect:
-        serializedVersion: 2
-        x: 99
         y: 0
         width: 32
         height: 32
@@ -342,7 +197,47 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3ba01caed10d7974ab38d52a41dac8f5
+      spriteID: 8171afe7e3ba5a4439d6a21b2f5d1edc
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WaterSurface_4
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c531addf04039b74fa19bb7507ea8cdc
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WaterSurface_5
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2d5a2e2edeb9c3f469c526dbaaecfa7f
       vertices: []
       indices: 
       edges: []
@@ -350,7 +245,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 90717d3b1c61da343bece6391fbd4de4
+    spriteID: 71bcf7b763cd33a4a8be282335fce5b0
     vertices: []
     indices: 
     edges: []

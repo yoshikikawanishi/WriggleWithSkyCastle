@@ -111,7 +111,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   amplitude: 32
-  angular_Speed: 0.5
+  angular_Speed: 0.8
   start_Angular: 0
 --- !u!114 &114265580437097180
 MonoBehaviour:

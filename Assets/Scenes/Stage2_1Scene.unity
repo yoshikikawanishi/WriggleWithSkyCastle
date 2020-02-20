@@ -1182,6 +1182,9 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  is_Change_Sorting_Order: 0
+  sorting_Order: -5
+  sorting_Order_Diff: 0
   other_Param: 0
   num: 1
   inter_Angle_Deg: 0
@@ -10804,6 +10807,9 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  is_Change_Sorting_Order: 0
+  sorting_Order: -5
+  sorting_Order_Diff: 0
   other_Param: 0
   num: 1
   inter_Angle_Deg: 0
@@ -11270,6 +11276,9 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  is_Change_Sorting_Order: 0
+  sorting_Order: -5
+  sorting_Order_Diff: 0
   other_Param: 0
   num: 1
   inter_Angle_Deg: 0
@@ -12986,6 +12995,9 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  is_Change_Sorting_Order: 0
+  sorting_Order: -5
+  sorting_Order_Diff: 0
   other_Param: 0
   num: 1
   inter_Angle_Deg: 0
@@ -16442,9 +16454,9 @@ Transform:
   - {fileID: 1445103309}
   - {fileID: 681300994}
   - {fileID: 1915362526}
+  - {fileID: 1854311861}
   - {fileID: 614737425}
   - {fileID: 1967218895}
-  - {fileID: 1854311861}
   - {fileID: 1043144384}
   - {fileID: 1960098843}
   - {fileID: 2067532823}
@@ -22426,6 +22438,9 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  is_Change_Sorting_Order: 0
+  sorting_Order: -5
+  sorting_Order_Diff: 0
   other_Param: 0
   num: 1
   inter_Angle_Deg: 0
@@ -26774,6 +26789,9 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  is_Change_Sorting_Order: 0
+  sorting_Order: -5
+  sorting_Order_Diff: 0
   other_Param: 0
   num: 1
   inter_Angle_Deg: 0
