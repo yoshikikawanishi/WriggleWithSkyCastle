@@ -7,6 +7,8 @@ public class BigFrog : MonoBehaviour {
     [SerializeField] private ShootSystem bubble_Shoot_Left;
     [SerializeField] private ShootSystem bubble_Shoot_Right;
     [SerializeField] private ShootSystem sleeping_Bubble_Shoot;
+    [Space]
+    [SerializeField] private GameObject collection_Box;
 
     private BossEnemy boss_Enemy;
     private Animator _anim;
@@ -53,6 +55,7 @@ public class BigFrog : MonoBehaviour {
         StopCoroutine("Attack_Cor");
         StopCoroutine("Bubble_Shoot_Cor");
         _anim.SetTrigger("SleepTrigger");
+        collection_Box.SetActive(true);
     }
 
 

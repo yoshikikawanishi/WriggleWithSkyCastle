@@ -4,15 +4,17 @@ using UnityEngine;
 
 public class WaterFall : MonoBehaviour {
 
+    [SerializeField] private GameObject[] drop_Rock = new GameObject[3];
+
     private PlayerController player_Controller;
     private PlayerTransition player_Transition;
     private Rigidbody2D player_Rigid;
-
+    private Renderer _renderer;
    
     private float player_Default_Speed;
 
     private float player_Speed_In_Hit_WaterFall = 50f;
-    private float water_Fall_Power = 900f;
+    private float water_Fall_Power = 900f;    
 
     private bool is_Hit_Player = false;
 
@@ -28,8 +30,11 @@ public class WaterFall : MonoBehaviour {
         }
         player_Controller = player.GetComponent<PlayerController>();
         player_Transition = player.GetComponent<PlayerTransition>();
-        player_Rigid = player.GetComponent<Rigidbody2D>();       
+        player_Rigid = player.GetComponent<Rigidbody2D>();
+        _renderer = GetComponent<Renderer>();
         player_Default_Speed = player_Transition.Get_Max_Speed();
+
+        StartCoroutine("Drop_Rock_Cor");
 	}
 	
 
@@ -39,8 +44,7 @@ public class WaterFall : MonoBehaviour {
             return;
         if (player_Controller.Get_Is_Ride_Beetle()) 
             return;
-        
-        
+                
         if (is_Hit_Player) {
             //下に押さえつける
             player_Rigid.AddForce(new Vector2(0, -water_Fall_Power));
@@ -50,7 +54,7 @@ public class WaterFall : MonoBehaviour {
             }
         }
        
-	}
+	}    
 
 
     private void OnTriggerEnter2D(Collider2D collision) {
@@ -67,5 +71,26 @@ public class WaterFall : MonoBehaviour {
         }
     }
 
+
+    //岩を落とす
+    private IEnumerator Drop_Rock_Cor() {
+        int loop_Count = 0;
+        float random = 0;        
+
+        while (true) {
+            yield return new WaitForSeconds(Random.Range(2f, 3f));
+            yield return new WaitUntil(Is_Visible);
+
+            var rock = Instantiate(drop_Rock[loop_Count % 3]);
+            random = Random.Range(-48f, 48f);
+            rock.transform.position = new Vector3(transform.position.x + random, 180f);
+
+            loop_Count++;
+        }
+    }
+
+    private bool Is_Visible() {
+        return _renderer.isVisible;
+    }
 
 }

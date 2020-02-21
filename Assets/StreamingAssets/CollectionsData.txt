@@ -5,3 +5,4 @@ Rumia	True
 Mystia	True
 Yuka	True
 Shizuha	True
+BigFrog	True

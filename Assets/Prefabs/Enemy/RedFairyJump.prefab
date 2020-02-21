@@ -307,6 +307,7 @@ MonoBehaviour:
   - GroundTag
   - SandbackGroundTag
   - ThroughGroundTag
+  - DamagedGroundTag
 --- !u!114 &114666880503742076
 MonoBehaviour:
   m_ObjectHideFlags: 1
