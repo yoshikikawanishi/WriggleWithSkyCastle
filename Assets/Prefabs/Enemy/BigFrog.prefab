@@ -30,6 +30,38 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1513663290989288
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4108775850969306}
+  - component: {fileID: 114642025158935444}
+  m_Layer: 10
+  m_Name: SleepingBubbleShoot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1534179203747312
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4775270065072422}
+  - component: {fileID: 114803396767812760}
+  m_Layer: 10
+  m_Name: BubbleShootLeft
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1580509168969348
 GameObject:
   m_ObjectHideFlags: 0
@@ -44,6 +76,7 @@ GameObject:
   - component: {fileID: 114396867651878330}
   - component: {fileID: 61461117076252390}
   - component: {fileID: 114835788021397160}
+  - component: {fileID: 95701698387166848}
   m_Layer: 10
   m_Name: BigFrog
   m_TagString: EnemyTag
@@ -59,9 +92,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4295792612145958}
-  - component: {fileID: 114803396767812760}
+  - component: {fileID: 114759543045889952}
   m_Layer: 10
-  m_Name: BubbleShoot
+  m_Name: BubbleShootRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -78,9 +111,24 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4176876347996216}
+  - {fileID: 4108775850969306}
+  - {fileID: 4775270065072422}
   - {fileID: 4295792612145958}
   m_Father: {fileID: 0}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4108775850969306
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1513663290989288}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4106915575053752}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4176876347996216
 Transform:
@@ -89,7 +137,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1211932503758334}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -314.09985, y: 41.699997, z: 0}
+  m_LocalPosition: {x: -339.2, y: 63.1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4106915575053752}
@@ -106,7 +154,20 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4106915575053752}
-  m_RootOrder: 1
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4775270065072422
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1534179203747312}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4106915575053752}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &61461117076252390
 BoxCollider2D:
@@ -124,8 +185,8 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 80, y: 80}
-    newSize: {x: 32, y: 32}
+    oldSize: {x: 73, y: 79}
+    newSize: {x: 73, y: 77}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -149,7 +210,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 32, y: 32}
+    oldSize: {x: 64, y: 70}
     newSize: {x: 32, y: 32}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -158,6 +219,24 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 32, y: 32}
   m_EdgeRadius: 0
+--- !u!95 &95701698387166848
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1580509168969348}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: fae9fa6f85fcb1e47be71c1b9cbf3ab0, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &114067947694621188
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -169,7 +248,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54001b5de28925749b1cb3d1b4468072, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bubble_Shoot: {fileID: 114803396767812760}
+  bubble_Shoot_Left: {fileID: 114803396767812760}
+  bubble_Shoot_Right: {fileID: 114759543045889952}
+  sleeping_Bubble_Shoot: {fileID: 114642025158935444}
 --- !u!114 &114130135435493192
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -229,12 +310,226 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1dc6558f475549845ba82acb7d1b6c0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114803396767812760
+--- !u!114 &114642025158935444
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1513663290989288}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56c010cd9f9233b49ad32f8e11513d35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  kind: 3
+  comment: 
+  play_On_Awake: 1
+  bullet: {fileID: 1319821717479526, guid: df2d8186c3523914da4b78b0b07105bf, type: 2}
+  parent: {fileID: 0}
+  max_Speed: 50
+  speed_Noise: 30
+  angle_Noise: 10
+  lifeTime: 8
+  offset: {x: -40, y: 0}
+  default_Shoot_Sound: 0
+  is_Acceleration: 1
+  velocity_Forward:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 136
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.67774934
+      value: 0.99842274
+      inSlope: -0.0042349044
+      outSlope: -0.0042349044
+      tangentMode: 136
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1.4897697
+      value: 0.004741804
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 136
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  velocity_Lateral:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 136
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  is_Change_Sorting_Order: 0
+  sorting_Order: -5
+  sorting_Order_Diff: 0
+  other_Param: 1
+  num: 1
+  inter_Angle_Deg: 20
+  center_Angle_Deg: 180
+  arc_Deg: 20
+  shoot_Rate: 10
+  duration: 1
+  connect_Bullet: 0
+  connect_Num: 1
+  speed_Diff: 0
+  angle_Diff: 0
+  looping: 1
+  loop_Count: 100
+  span: 6
+  center_Angle_Diff: 0
+--- !u!114 &114759543045889952
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1869568284615228}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56c010cd9f9233b49ad32f8e11513d35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  kind: 3
+  comment: 
+  play_On_Awake: 0
+  bullet: {fileID: 1319821717479526, guid: df2d8186c3523914da4b78b0b07105bf, type: 2}
+  parent: {fileID: 0}
+  max_Speed: 80
+  speed_Noise: 30
+  angle_Noise: 10
+  lifeTime: 8
+  offset: {x: 40, y: 0}
+  default_Shoot_Sound: 1
+  is_Acceleration: 1
+  velocity_Forward:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 136
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 136
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 2
+      value: 0.00001
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 136
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 2.1
+      value: 0.5
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 136
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  velocity_Lateral:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 136
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 2
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 136
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 2.05
+      value: -0.4
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 136
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 2.1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 136
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  is_Change_Sorting_Order: 0
+  sorting_Order: -5
+  sorting_Order_Diff: 0
+  other_Param: 1
+  num: 1
+  inter_Angle_Deg: 20
+  center_Angle_Deg: 0
+  arc_Deg: 20
+  shoot_Rate: 10
+  duration: 1
+  connect_Bullet: 0
+  connect_Num: 1
+  speed_Diff: 0
+  angle_Diff: 0
+  looping: 0
+  loop_Count: 1
+  span: 1
+  center_Angle_Diff: 0
+--- !u!114 &114803396767812760
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1534179203747312}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 56c010cd9f9233b49ad32f8e11513d35, type: 3}
@@ -401,8 +696,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 8e742691290345842b862fb1a3e2fe4a, type: 3}
+  m_SortingOrder: -6
+  m_Sprite: {fileID: 21300000, guid: 30fa69a3f51445d429b728cec9dd8dc6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -447,13 +742,13 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -3
   m_Sprite: {fileID: 21300000, guid: cd394ff8e68d1264da8434bd02964ec5, type: 3}
   m_Color: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 32, y: 32}
+  m_Size: {x: 73, y: 77}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
