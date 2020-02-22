@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class WaterFall : MonoBehaviour {
 
-    [SerializeField] private GameObject[] drop_Rock = new GameObject[3];
+    [SerializeField] private GameObject[] drop_Rock = new GameObject[3];    
 
     private PlayerController player_Controller;
     private PlayerTransition player_Transition;
@@ -81,7 +81,9 @@ public class WaterFall : MonoBehaviour {
             yield return new WaitForSeconds(Random.Range(2f, 3f));
             yield return new WaitUntil(Is_Visible);
 
-            var rock = Instantiate(drop_Rock[loop_Count % 3]);
+            if (drop_Rock[loop_Count % drop_Rock.Length] == null)
+                continue;
+            var rock = Instantiate(drop_Rock[loop_Count % drop_Rock.Length]);
             random = Random.Range(-48f, 48f);
             rock.transform.position = new Vector3(transform.position.x + random, 180f);
 

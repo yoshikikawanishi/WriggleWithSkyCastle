@@ -1,0 +1,4 @@
+#ID	#NAME	#ICON	#MESSAGE
+1	にとり	non	ああああ
+2	にとり	non	いいいい
+3	にとり	non	うううう

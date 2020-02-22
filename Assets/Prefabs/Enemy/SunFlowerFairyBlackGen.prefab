@@ -244,9 +244,9 @@ MonoBehaviour:
   connect_Num: 1
   speed_Diff: 15
   angle_Diff: 0
-  looping: 0
-  loop_Count: 1
-  span: 1
+  looping: 1
+  loop_Count: 10
+  span: 7
   center_Angle_Diff: 0
 --- !u!114 &114806141138912336
 MonoBehaviour:

@@ -1,3 +1,2 @@
 #SceneName
-TitleScene
 Stage3_1Scene

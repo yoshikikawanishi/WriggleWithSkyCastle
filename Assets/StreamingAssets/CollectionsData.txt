@@ -6,3 +6,4 @@ Mystia	True
 Yuka	True
 Shizuha	True
 BigFrog	True
+Nitori	True

@@ -71,7 +71,8 @@ public class TalkCharacter : MonoBehaviour {
             PauseManager.Instance.Set_Is_Pausable(false);
 
             yield return new WaitForSeconds(Action_Before_Talk());
-            
+            player.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
+
             //メッセージ表示
             _message.Start_Display(fileName, start_ID, end_ID);
             yield return new WaitUntil(_message.End_Message);
