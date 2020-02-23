@@ -5,12 +5,23 @@ using UnityEngine;
 public class PlayerAttackCollision : MonoBehaviour {
 
     private bool is_Hit_Attack = false;
+    private BoxCollider2D _collider;
+    private GameObject player;
 
     private List<string> hit_Attack_Tag_List = new List<string> {
         "EnemyTag",
         "SandbackTag",
         "SandbackGroundTag"
     };
+
+
+    private void Awake() {
+        _collider = GetComponent<BoxCollider2D>();
+    }
+
+    private void Start() {
+        player = transform.parent.gameObject;
+    }
 
 
     private void OnTriggerEnter2D(Collider2D collision) {
@@ -118,5 +129,17 @@ public class PlayerAttackCollision : MonoBehaviour {
 
     private void Set_Tag(string tag) {
         gameObject.tag = tag;
+    }
+
+
+    /// <summary>
+    /// 当たり判定の範囲を返す
+    /// </summary>
+    /// <returns>長さ２のVector2配列、要素0 : 左下の座標、要素1 : 右上の座標</returns>
+    public Vector2[] Get_Collision_Range() {        
+        Vector2 center = (Vector2)transform.position + _collider.offset * player.transform.localScale.x;
+        Vector2 left_Bottom = center - new Vector2(_collider.size.x, _collider.size.y) * (Vector2)transform.localScale / 2;
+        Vector2 right_Top = center + new Vector2(_collider.size.x, _collider.size.y) * (Vector2)transform.localScale / 2;        
+        return new Vector2[2] { left_Bottom, right_Top };
     }
 }

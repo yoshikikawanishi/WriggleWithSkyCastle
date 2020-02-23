@@ -1508,7 +1508,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7479347f67febc24c815f84f00f76392, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  next_Scene: Stage1_BossScene
+  next_Scene: Stage3_2Scene
   change_Effect_Type: 1
   fade_Out_Color: {r: 0, g: 0, b: 0, a: 0}
 --- !u!61 &319603917

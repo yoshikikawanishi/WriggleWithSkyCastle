@@ -111,10 +111,18 @@ public class Enemy : MonoBehaviour {
             var life_Item = ObjectPoolManager.Instance.Get_Pool("LifeUpItem").GetObject();
             life_Item.transform.position = transform.position;
         }
-
-        Debug.Log("TODO: Drop Option Box");
+        
         if (Random.Range(1, 100) <= drop_Option_Box_Probability) {
-            
+            int r = Random.Range(0, 4);
+            string kind = "";
+            switch (r) {
+                case 0: kind = "Bee"; break;
+                case 1: kind = "Butterfly"; break;
+                case 2: kind = "Mantis"; break;
+                case 3: kind = "Spider"; break;
+            }
+            var box = Instantiate(Resources.Load("Object/OptionBox" + kind) as GameObject);
+            box.transform.position = transform.position + new Vector3(0, 8f);
         }
     }
 

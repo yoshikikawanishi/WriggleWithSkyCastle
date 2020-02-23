@@ -19,8 +19,19 @@ public class OptionItem : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D collision) {
         if(collision.tag == "PlayerBodyTag") {
-            PlayerManager.Instance.Set_Option(option);
-            Destroy(gameObject);
+            Aquire_Option();
         }
+    }
+
+    private void Aquire_Option() {
+        //初入手時ガイドを出す
+        if(PlayerManager.Instance.Get_Option() == PlayerManager.Option.none) {            
+            if(PlayerPrefs.GetString("OPTION") == "none") {
+                GuideWindowDisplayer _guide = gameObject.AddComponent<GuideWindowDisplayer>();
+                _guide.Open_Window("UI/GuideOption");
+            }
+        }
+        PlayerManager.Instance.Set_Option(option);
+        Destroy(gameObject, Time.deltaTime * 10);
     }
 }
