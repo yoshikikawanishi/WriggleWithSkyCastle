@@ -17489,6 +17489,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 114965344020361258, guid: ad841176ffea4c14cb8b8908df271e4f,
+        type: 2}
+      propertyPath: collection_Name
+      value: LightFairy
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ad841176ffea4c14cb8b8908df271e4f, type: 2}
   m_IsPrefabAsset: 0

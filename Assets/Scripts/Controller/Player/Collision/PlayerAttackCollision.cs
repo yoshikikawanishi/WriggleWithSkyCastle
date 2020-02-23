@@ -72,6 +72,11 @@ public class PlayerAttackCollision : MonoBehaviour {
         int direction = transform.localScale.x.CompareTo(0);
         transform.localScale = new Vector3(direction, 1, 1) * scale;
         transform.localPosition = position;
+        //のビールアーム入手後範囲広げる
+        if (CollectionManager.Instance.Is_Collected("Nitori")) {
+            Debug.Log("Test");
+            transform.localScale *= 1.2f;
+        }
     }
 
 

@@ -3,7 +3,8 @@ test	False
 orb	False
 Rumia	True
 Mystia	True
-Yuka	True
-Shizuha	True
+Yuka	False
+Shizuha	False
 BigFrog	True
 Nitori	True
+LightFairy	True

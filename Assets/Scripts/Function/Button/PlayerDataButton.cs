@@ -23,11 +23,14 @@ public class PlayerDataButton : MonoBehaviour {
     }
 
 
-    public void Display_Item_Comment(string item_Name) {
-        if (item_Dic.ContainsKey(item_Name))
-            item_Comment_Text.text = item_Dic[item_Name];
-        else
-            Debug.Log("There is no item comment");
+    public void Display_Item_Comment(string collection_Name) {
+        //取得済みのアイテムなら表示
+        if (CollectionManager.Instance.Is_Collected(collection_Name)) {
+            if (item_Dic.ContainsKey(collection_Name))
+                item_Comment_Text.text = item_Dic[collection_Name];
+            else
+                Debug.Log("There is no item comment");
+        }
     }
 
 
@@ -35,5 +38,16 @@ public class PlayerDataButton : MonoBehaviour {
     /*---------------------------------------アイテムとそのコメント----------------------------------------*/
     private Dictionary<string, string> item_Dic = new Dictionary<string, string>() {
         { "Rumia", "ルーミアのリボン" },
+        { "Mystia", "a" },
+        { "LightFairy", "b" },
+        { "Yuka", "c" },
+        //TODO : メディスン
+        { "Shizuha", "d" },
+        { "Minoriko", "e" },
+        { "BigFrog", "f" },
+        //TODO : 雛
+        { "Nitori", "g" },
+
     };
+
 }
