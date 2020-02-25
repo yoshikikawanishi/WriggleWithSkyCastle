@@ -113,8 +113,9 @@ public class PlayerAttack : MonoBehaviour {
             var bullet = bullet_Pool.GetObject();
             angle = Random.Range(-30f, 70f) * Mathf.Deg2Rad;
             pos = new Vector2(Mathf.Cos(angle) * transform.localScale.x, Mathf.Sin(angle) * 0.5f) * 24f;
-            bullet.transform.position = transform.position + pos;
+            bullet.transform.position = transform.position + pos;            
             bullet.GetComponent<Rigidbody2D>().velocity = (bullet.transform.position - transform.position) * Random.Range(20f, 50f);
+            bullet.GetComponent<Rigidbody2D>().velocity += _rigid.velocity;
             bullet.GetComponent<Bullet>().Set_Inactive(5.0f);
         }
         player_SE.Play_Shoot_Sound();

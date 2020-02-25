@@ -313,13 +313,13 @@ public class ShootSystem : MonoBehaviour {
     //弾の加速(単体)
     public IEnumerator Accelerate_Bullet_Cor(GameObject bullet, float max_Speed) {
         Rigidbody2D bullet_Rigid = bullet.GetComponent<Rigidbody2D>();
-        //float xt = velocity_Forward.keys[velocity_Forward.length - 1].time;
-        //float yt = velocity_Lateral.keys[velocity_Lateral.length - 1].time;
-        //float end_Time = Mathf.Max(xt, yt);
+        float xt = velocity_Forward.keys[velocity_Forward.keys.Length - 1].time;
+        float yt = velocity_Lateral.keys[velocity_Lateral.keys.Length - 1].time;
+        float end_Time = Mathf.Max(xt, yt);
 
         float forward = max_Speed;
         float lateral = 0;
-        for(float t = 0; t < lifeTime; t += Time.deltaTime) {            
+        for(float t = 0; t < end_Time; t += Time.deltaTime) {            
             if(!bullet.activeSelf) {
                 yield break;
             }

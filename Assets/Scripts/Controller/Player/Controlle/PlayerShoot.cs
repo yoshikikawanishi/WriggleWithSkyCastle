@@ -117,7 +117,7 @@ public class PlayerShoot : MonoBehaviour {
                 break;
             case PlayerManager.Option.spider:
                 Set_Shoot_Status(spider_Bullet, 400f, 24f);
-                shoot_Num++;
+                shoot_Num += 2;
                 break;
         }
 

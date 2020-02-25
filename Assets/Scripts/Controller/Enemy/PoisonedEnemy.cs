@@ -50,7 +50,7 @@ public class PoisonedEnemy : MonoBehaviour {
 
         is_Poisoned = true;
         for (int i = 0; i < 16; i++) {
-            enemy_Controller.Damaged(1, "");
+            enemy_Controller.Damaged(1, "Poison");
             yield return new WaitForSeconds(0.4f);
         }
         is_Poisoned = false;
@@ -66,7 +66,7 @@ public class PoisonedEnemy : MonoBehaviour {
 
         is_Poisoned = true;
         for (int i = 0; i < 8; i++) {
-            _boss.Damaged(1, "");
+            _boss.Damaged(1, "Poison");
             yield return new WaitForSeconds(0.8f);
         }
         is_Poisoned = false;

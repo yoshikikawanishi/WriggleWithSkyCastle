@@ -70,7 +70,7 @@ public class Enemy : MonoBehaviour {
     //消滅前のアクション
     // EnemyCollisionDetectionのDamagedで変更
     private void Vanish_Action(string attacked_Tag) {
-        if(attacked_Tag == "PlayerSpiderAttackTag") {
+        if(attacked_Tag == "PlayerSpiderAttackTag" || attacked_Tag == "Poison") {
             spider_Footing_Enemy.Generate_Footing_Vanish();
         }
         else {
@@ -106,21 +106,28 @@ public class Enemy : MonoBehaviour {
     protected void Put_Out_Item() {
         gameObject.AddComponent<PutOutSmallItems>().Put_Out_Item(power_Value, score_Value);
         
+        //回復アイテム
         if (Random.Range(1, 100) <= drop_Life_Probability) {
             ObjectPoolManager.Instance.Create_New_Pool(Resources.Load("Object/LifeUpItem") as GameObject, 2);
             var life_Item = ObjectPoolManager.Instance.Get_Pool("LifeUpItem").GetObject();
             life_Item.transform.position = transform.position;
         }
-        
+        //オプションボックス
         if (Random.Range(1, 100) <= drop_Option_Box_Probability) {
-            int r = Random.Range(0, 4);
+            //オプションの決定
             string kind = "";
-            switch (r) {
-                case 0: kind = "Bee"; break;
-                case 1: kind = "Butterfly"; break;
-                case 2: kind = "Mantis"; break;
-                case 3: kind = "Spider"; break;
+            while (true) {
+                int r = Random.Range(0, 4);                
+                switch (r) {
+                    case 0: kind = "Bee"; break;
+                    case 1: kind = "Butterfly"; break;
+                    case 2: kind = "Mantis"; break;
+                    case 3: kind = "Spider"; break;
+                }
+                if (kind != PlayerManager.Instance.Get_Option().ToString())
+                    break;
             }
+            //生成
             var box = Instantiate(Resources.Load("Object/OptionBox" + kind) as GameObject);
             box.transform.position = transform.position + new Vector3(0, 8f);
         }

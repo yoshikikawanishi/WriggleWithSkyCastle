@@ -74,7 +74,6 @@ public class PlayerAttackCollision : MonoBehaviour {
         transform.localPosition = position;
         //のビールアーム入手後範囲広げる
         if (CollectionManager.Instance.Is_Collected("Nitori")) {
-            Debug.Log("Test");
             transform.localScale *= 1.2f;
         }
     }
