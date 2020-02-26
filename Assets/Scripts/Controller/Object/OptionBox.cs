@@ -19,7 +19,8 @@ public class OptionBox : MonoBehaviour {
         "PlayerAttackTag",
         "PlayerChargeAttackTag",
         "PlayerButterflyAttackTag",
-        "PlayerSpiderAttackTag"
+        "PlayerSpiderAttackTag",
+        "PlayerBulletTag",
     };
 
     private List<string> ground_Tags = new List<string> {
@@ -31,7 +32,7 @@ public class OptionBox : MonoBehaviour {
 
     private Rigidbody2D _rigid;
     private bool is_Falling = true;
-
+    private bool is_Opened = false;
 
     //start
     private void Start() {
@@ -51,8 +52,9 @@ public class OptionBox : MonoBehaviour {
     private void OnTriggerEnter2D(Collider2D collision) {
         //箱を開ける判定
         foreach (string tag in open_Tags) {
-            if(collision.tag == tag) {
+            if(collision.tag == tag && !is_Opened) {
                 StartCoroutine("Open_Cor");
+                is_Opened = true;
             }
         }
         //着地の判定
@@ -67,6 +69,7 @@ public class OptionBox : MonoBehaviour {
 
     //OnTriggerExit
     private void OnTriggerExit2D(Collider2D collision) {
+        //落下判定
         foreach (string tag in ground_Tags) {
             if (collision.tag == tag) {
                 is_Falling = true;

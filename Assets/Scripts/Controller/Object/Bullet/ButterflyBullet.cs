@@ -38,16 +38,16 @@ public class ButterflyBullet : MonoBehaviour {
     }
 
 
-    //霊夢より右にいる一番近くの敵を探す
+    //自機より右にいる一番近くの敵を探す
     private void Find_Nearest_Enemy() {
         target = null;
-        float min_Distance = 10000;
+        float min_Distance = 500;
         float distance = 0;
         GameObject[] enemy_List = GameObject.FindGameObjectsWithTag("EnemyTag");
         foreach (GameObject enemy in enemy_List) {
-            distance = Vector2.Distance(transform.position, enemy.transform.position);
+            distance = transform.position.x - enemy.transform.position.x;
             //一番近くて、無敵化していない敵を探す
-            if (distance < min_Distance && enemy.activeSelf && enemy.layer != 10) {
+            if (0 < distance && distance < min_Distance && enemy.activeSelf && enemy.layer != 10) {
                 min_Distance = distance;
                 target = enemy;
             }
