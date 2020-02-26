@@ -47,7 +47,7 @@ public class BossEnemy : MonoBehaviour {
     }
 
     private void Update() {
-        if(damaged_Span_Time < 0.8f) {
+        if(damaged_Span_Time < 0.6f) {
             damaged_Span_Time += Time.deltaTime;
         }
     }
@@ -62,7 +62,7 @@ public class BossEnemy : MonoBehaviour {
             return;
         }
         //連続で被弾時ダメージ減らす
-        if(damaged_Span_Time < 0.8f) {
+        if(damaged_Span_Time < 0.6f) {
             damage = (int)(damage * 0.4f);
             if (damage < 1)
                 damage = 1;

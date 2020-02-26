@@ -13,8 +13,12 @@ public class GrassGround : MonoBehaviour {
     };
 
     private Tilemap _tilemap;
+
     private PlayerAttackCollision player_Attack_Collision;
-    private GameObject leaf_Effect_Prefab;
+
+    private GameObject leaf_Effect_Prefab;  //消滅時のエフェクト
+    private TileBase grass_Tile_Top;        //最上部のタイル
+    private TileBase grass_Tile_Bottom;     //最下部のタイル
 
     readonly private Vector2Int CELL_SIZE = new Vector2Int(32, 32);
 
@@ -24,6 +28,8 @@ public class GrassGround : MonoBehaviour {
         //取得
         _tilemap = GetComponent<Tilemap>();
         player_Attack_Collision = GameObject.FindWithTag("PlayerTag").GetComponentInChildren<PlayerAttackCollision>();
+        grass_Tile_Top =    Resources.Load("GrassGroundTop") as TileBase;
+        grass_Tile_Bottom = Resources.Load("GrassGroundBottom") as TileBase;
         //エフェクトのオブジェクトプール
         leaf_Effect_Prefab = Resources.Load("Effect/LeafEffect") as GameObject;
         ObjectPoolManager.Instance.Create_New_Pool(leaf_Effect_Prefab, 4);
@@ -87,6 +93,9 @@ public class GrassGround : MonoBehaviour {
                 Play_Delete_Effect(_tilemap.GetCellCenterWorld(new Vector3Int(x, y, 0)));   //エフェクト出す
             }
         }
+
+        //最上部と最下部の入れ替え
+        Swap_Surface_Tile(left_Bottom_Cell, right_Top_Cell);
     }    
 
 
@@ -95,5 +104,28 @@ public class GrassGround : MonoBehaviour {
         var effect = ObjectPoolManager.Instance.Get_Pool(leaf_Effect_Prefab).GetObject();
         effect.transform.position = pos;
         ObjectPoolManager.Instance.Set_Inactive(effect, 2.5f);
+    }
+
+
+    //消した後表面になるタイルを入れ替える
+    //引数は消すタイルの範囲
+    private void Swap_Surface_Tile(Vector2Int left_Bottom_Cell, Vector2Int right_Top_Cell) {
+        //最下部の入れ替え、消すタイルの一個上にタイルがあれば入れ替え
+        int bottom_Height = right_Top_Cell.y + 1;
+        for(int i = left_Bottom_Cell.x; i <= right_Top_Cell.x; i++) {
+            if(_tilemap.HasTile(new Vector3Int(i, bottom_Height, 0))) {                     //タイルがあれば
+                if (!_tilemap.HasTile(new Vector3Int(i, bottom_Height + 1, 0))) /*上のタイルが最上部のタイルの場合入れ替えない*/
+                    continue;
+               _tilemap.SetTile(new Vector3Int(i, bottom_Height, 0), grass_Tile_Bottom);    //入れ替え
+            }
+        }
+
+        //最上部の入れ替え、消すタイルの一個下にタイルがあれば入れ替え
+        int top_Height = left_Bottom_Cell.y - 1;
+        for(int i = left_Bottom_Cell.x; i <= right_Top_Cell.x; i++) {
+            if (_tilemap.HasTile(new Vector3Int(i, top_Height, 0))) {
+                _tilemap.SetTile(new Vector3Int(i, top_Height, 0), grass_Tile_Top);
+            }
+        }
     }
 }

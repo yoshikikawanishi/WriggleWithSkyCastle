@@ -32,6 +32,14 @@ public class OptionItem : MonoBehaviour {
             }
         }
         PlayerManager.Instance.Set_Option(option);
+        Play_Get_Effect();
         Destroy(gameObject, Time.deltaTime * 10);
+    }
+
+
+    private void Play_Get_Effect() {
+        var effect = Instantiate(Resources.Load("Effect/GetOptionEffect") as GameObject);
+        effect.transform.position = transform.position;
+        Destroy(effect, 2.0f);
     }
 }

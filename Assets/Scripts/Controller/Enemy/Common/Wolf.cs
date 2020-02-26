@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Wolf : MonoBehaviour {
-  
+
+    private Rigidbody2D _rigid;
 
     [SerializeField] private int move_Length = 32;
     [SerializeField] private float move_Speed = 1;    
@@ -12,12 +13,14 @@ public class Wolf : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+        _rigid = GetComponent<Rigidbody2D>();
         StartCoroutine("Wolf_Action_Cor");
     }
 	
 
     private void FixedUpdate() {
-        if (move_Count * move_Speed < move_Length) {
+        //横移動
+        if (move_Count * move_Speed < move_Length) {            
             transform.position += new Vector3(move_Speed * -transform.localScale.x, 0) * Time.timeScale;
             move_Count++;
         }
@@ -30,8 +33,7 @@ public class Wolf : MonoBehaviour {
 
     //ジャンプ、着地後に横移動開始
     private IEnumerator Wolf_Action_Cor() {
-        //取得
-        Rigidbody2D _rigid = GetComponent<Rigidbody2D>();
+        //取得        
         Animator _anim = GetComponent<Animator>();
         ChildColliderTrigger body_Collider = GetComponentInChildren<ChildColliderTrigger>();
 

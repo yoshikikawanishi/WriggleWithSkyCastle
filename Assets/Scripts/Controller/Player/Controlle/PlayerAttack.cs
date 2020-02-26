@@ -55,7 +55,7 @@ public class PlayerAttack : MonoBehaviour {
                 case PlayerManager.Option.none:     Set_Attack_Status(0.18f, 0.17f, true); break;
                 case PlayerManager.Option.bee:      Set_Attack_Status(0.10f, 0.08f, true); break;
                 case PlayerManager.Option.butterfly: Set_Attack_Status(0.18f, 0.13f, false); break;
-                case PlayerManager.Option.mantis:   Set_Attack_Status(0.24f, 0.40f, true); break;
+                case PlayerManager.Option.mantis:   Set_Attack_Status(0.24f, 0.60f, true); break;
                 case PlayerManager.Option.spider:   Set_Attack_Status(0.18f, 0.17f, true); break;
             }
             StartCoroutine("Attack_Cor");
@@ -130,7 +130,7 @@ public class PlayerAttack : MonoBehaviour {
         BeetlePowerManager.Instance.StartCoroutine("Increase_Cor", 8);      //緑パワーの増加
         player_SE.Play_Hit_Attack_Sound();                                  //効果音                                                               
         float tmp = Time.timeScale;                                         //ヒットストップ        
-        Time.timeScale = 0.5f;
+        Time.timeScale = 0.4f;
         yield return new WaitForSeconds(0.05f);
         Time.timeScale = tmp;
 

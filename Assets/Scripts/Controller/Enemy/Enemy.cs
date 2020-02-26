@@ -118,13 +118,13 @@ public class Enemy : MonoBehaviour {
             string kind = "";
             while (true) {
                 int r = Random.Range(0, 4);                
-                switch (r) {
+                switch (r) {                    
                     case 0: kind = "Bee"; break;
                     case 1: kind = "Butterfly"; break;
                     case 2: kind = "Mantis"; break;
                     case 3: kind = "Spider"; break;
-                }
-                if (kind != PlayerManager.Instance.Get_Option().ToString())
+                }                
+                if (kind.ToLower() != PlayerManager.Instance.Get_Option().ToString())
                     break;
             }
             //生成

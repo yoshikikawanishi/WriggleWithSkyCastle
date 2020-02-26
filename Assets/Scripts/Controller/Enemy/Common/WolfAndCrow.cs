@@ -39,7 +39,7 @@ public class WolfAndCrow : MonoBehaviour {
 
     //横移動
     private void Move_Horizon() {
-        if (move_Count * move_Speed < move_Length) {
+        if (move_Count * move_Speed < move_Length) {            
             transform.position += new Vector3(move_Speed * direction, 0) * Time.timeScale;
             move_Count++;
         }

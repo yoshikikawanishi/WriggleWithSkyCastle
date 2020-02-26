@@ -65,6 +65,7 @@ public class PlayerAttackCollision : MonoBehaviour {
             case PlayerManager.Option.bee:          Set_Size(0.6f, new Vector2(7, 0));  break;
             case PlayerManager.Option.butterfly:    Set_Size(1.0f, new Vector2(10, 0)); break;
             case PlayerManager.Option.mantis:       Set_Size(1.5f, new Vector2(14, 0)); break;
+            case PlayerManager.Option.spider:       Set_Size(1.0f, new Vector2(10, 0)); break;
         }
     }
 

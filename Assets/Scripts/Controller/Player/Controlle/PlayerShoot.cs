@@ -116,7 +116,7 @@ public class PlayerShoot : MonoBehaviour {
                 Set_Shoot_Status(mantis_Bullet, 700f, 8f);
                 break;
             case PlayerManager.Option.spider:
-                Set_Shoot_Status(spider_Bullet, 400f, 24f);
+                Set_Shoot_Status(spider_Bullet, 400f, 0f);
                 shoot_Num += 2;
                 break;
         }
