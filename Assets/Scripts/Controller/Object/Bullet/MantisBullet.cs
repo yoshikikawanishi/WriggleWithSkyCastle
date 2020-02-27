@@ -9,6 +9,7 @@ public class MantisBullet : MonoBehaviour {
         "GroundTag",
         "SandbackTag",
         "SandbackGroundTag",
+        "DamagedGroundTag",
     };
 
     private Rigidbody2D _rigid;

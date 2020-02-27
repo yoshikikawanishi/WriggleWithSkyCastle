@@ -62,9 +62,8 @@ public class BigFrog : MonoBehaviour {
     private IEnumerator Attack_Cor() {
         while (true) {
             Roar();
-            yield return new WaitForSeconds(1.5f);
+            yield return new WaitForSeconds(2.5f);
             StartCoroutine("Blink_Cor");
-            yield return new WaitForSeconds(1.0f);
             StartCoroutine("Bubble_Shoot_Cor");
             yield return new WaitForSeconds(5.0f);
         }
@@ -84,6 +83,8 @@ public class BigFrog : MonoBehaviour {
         if (direction == 0) { direction = 1; }
         transform.localScale = new Vector3(direction, 1, 1);
         ShootSystem shoot = (direction > 0) ? bubble_Shoot_Left : bubble_Shoot_Right;
+
+        yield return new WaitForSeconds(1.0f);
 
         //ショット
         _anim.SetBool("OpenMouseBool", true);

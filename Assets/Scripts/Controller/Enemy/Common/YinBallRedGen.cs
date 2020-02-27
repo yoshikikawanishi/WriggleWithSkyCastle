@@ -26,9 +26,18 @@ public class YinBallRedGen : MonoBehaviour {
         //カメラが160左についたら生成開始
 		if(main_Camera.transform.position.x > transform.position.x - 120f) {
             is_Generated = true;
-            GetComponent<SpreadBombController>().enabled = true;
-            transform.GetChild(0).gameObject.SetActive(true);
-            transform.SetParent(main_Camera.transform);
+            StartCoroutine("Generate_Cor");
         }
 	}
+
+
+    private IEnumerator Generate_Cor() {
+        //溜め
+        GetComponent<ParticleSystem>().Play();
+        transform.SetParent(main_Camera.transform);
+        yield return new WaitForSeconds(0.5f);
+        //生成開始
+        GetComponent<SpreadBombController>().enabled = true;
+        transform.GetChild(0).gameObject.SetActive(true);        
+    }
 }

@@ -60,6 +60,7 @@ public class PlayerShoot : MonoBehaviour {
 
     private ObjectPool bullet_Pool;
     private int shoot_Num;
+    private int loop_Count;
     private float bullet_Speed;
     private float width;
 
@@ -71,16 +72,23 @@ public class PlayerShoot : MonoBehaviour {
 
         Change_Shoot_Status();
 
-        for (int i = 0; i < shoot_Num; i++) {
-            GameObject bullet = bullet_Pool.GetObject();
-            bullet.transform.position = transform.position;
-            bullet.transform.position += new Vector3(0, (-width * shoot_Num) / 2) + new Vector3(0, width * i);
-            bullet.transform.localScale = transform.localScale;
-            bullet.GetComponent<Rigidbody2D>().velocity = new Vector2(bullet_Speed * transform.localScale.x, 0);
-            if (player_Manager.Get_Option() == PlayerManager.Option.spider)
-                Add_Diffusion_Shoot_Vel(bullet, shoot_Num, i);
-            player_SE.Play_Shoot_Sound();
-            bullet.GetComponent<Bullet>().Set_Inactive(10);
+        StartCoroutine("Shoot_Cor");
+    }
+
+    private IEnumerator Shoot_Cor() {
+        for (int i = 0; i < loop_Count; i++) {
+            for (int j = 0; j < shoot_Num; j++) {
+                GameObject bullet = bullet_Pool.GetObject();
+                bullet.transform.position = transform.position;
+                bullet.transform.position += new Vector3(0, (-width * shoot_Num) / 2) + new Vector3(0, width * j);
+                bullet.transform.localScale = transform.localScale;
+                bullet.GetComponent<Rigidbody2D>().velocity = new Vector2(bullet_Speed * transform.localScale.x, 0);
+                if (player_Manager.Get_Option() == PlayerManager.Option.spider)
+                    Add_Diffusion_Shoot_Vel(bullet, shoot_Num, j);
+                player_SE.Play_Shoot_Sound();
+                bullet.GetComponent<Bullet>().Set_Inactive(10);
+            }
+            yield return new WaitForSeconds(0.2f / loop_Count - Time.deltaTime);
         }
     }
 
@@ -103,20 +111,20 @@ public class PlayerShoot : MonoBehaviour {
         //弾の種類、速度、幅、弾        
         switch (option) {
             case PlayerManager.Option.none:
-                Set_Shoot_Status(normal_Bullet, 900f, 12f);
+                Set_Shoot_Status(normal_Bullet, 900f, 12f, 2);
                 break;
             case PlayerManager.Option.bee:
-                Set_Shoot_Status(bee_Bullet, 1000f, 6f);                
+                Set_Shoot_Status(bee_Bullet, 1000f, 6f, 4);                
                 break;
             case PlayerManager.Option.butterfly:                
-                Set_Shoot_Status(butterfly_Bullet, 700f, 12f);
+                Set_Shoot_Status(butterfly_Bullet, 700f, 12f, 4);
                 shoot_Num--;
                 break;
             case PlayerManager.Option.mantis:                
-                Set_Shoot_Status(mantis_Bullet, 700f, 8f);
+                Set_Shoot_Status(mantis_Bullet, 700f, 8f, 2);
                 break;
             case PlayerManager.Option.spider:
-                Set_Shoot_Status(spider_Bullet, 400f, 0f);
+                Set_Shoot_Status(spider_Bullet, 400f, 0f, 3);
                 shoot_Num += 2;
                 break;
         }
@@ -126,11 +134,12 @@ public class PlayerShoot : MonoBehaviour {
     }
 
 
-    //弾の種類、速度、幅を代入する
-    private void Set_Shoot_Status(GameObject bullet, float speed, float width) {
+    //弾の種類、速度、幅、回数を代入する
+    private void Set_Shoot_Status(GameObject bullet, float speed, float width, int loop_Count) {
         bullet_Pool = ObjectPoolManager.Instance.Get_Pool(bullet);
         bullet_Speed = speed;
         this.width = width;
+        this.loop_Count = loop_Count;
     }
 
 

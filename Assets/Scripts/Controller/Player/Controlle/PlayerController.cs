@@ -209,14 +209,20 @@ public class PlayerController : MonoBehaviour {
 
 
     //ショット
+    private bool is_Buffered_Input = false;
+
     public void Shoot() {
         //通常ショット
         if (shoot_Time < SHOOT_INTERVAL) {
             shoot_Time += Time.deltaTime;
+            if (input.GetKeyDown(Key.Shoot))
+                is_Buffered_Input = true;
         }
         else {
-            if (input.GetKeyDown(Key.Shoot)) {
+            if (input.GetKeyDown(Key.Shoot) || is_Buffered_Input) {
                 _shoot.Shoot();
+                shoot_Time = 0;
+                is_Buffered_Input = false;
             }
         }
         //チャージショット

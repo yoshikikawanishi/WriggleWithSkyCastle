@@ -1,10 +1,10 @@
 #Key	#IsCollected
 test	False
 orb	False
-Rumia	True
-Mystia	True
-Yuka	False
+Rumia	False
+Mystia	False
+Yuka	True
 Shizuha	False
-BigFrog	True
-Nitori	True
+BigFrog	False
+Nitori	False
 LightFairy	True

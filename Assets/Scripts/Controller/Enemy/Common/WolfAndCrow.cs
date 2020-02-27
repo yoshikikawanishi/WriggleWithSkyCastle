@@ -56,7 +56,8 @@ public class WolfAndCrow : MonoBehaviour {
             return false;
 
         if(Mathf.Abs(player.transform.position.x - transform.position.x) < 16f) {
-            return true;
+            if(player.transform.position.y < transform.position.y + 64f)
+                return true;
         }
         return false;
     }

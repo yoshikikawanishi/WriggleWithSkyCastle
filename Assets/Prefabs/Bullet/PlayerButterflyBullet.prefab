@@ -105,6 +105,7 @@ MonoBehaviour:
   - SandbackTag
   - GroundTag
   - SandbackGroundTag
+  - DamagedGroundTag
   is_Delete_Invisible: 1
 --- !u!114 &114878408726542208
 MonoBehaviour:

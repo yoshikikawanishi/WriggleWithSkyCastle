@@ -1007,6 +1007,9 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  is_Change_Sorting_Order: 0
+  sorting_Order: -5
+  sorting_Order_Diff: 0
   other_Param: 1
   num: 1
   inter_Angle_Deg: 0
@@ -1085,6 +1088,9 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  is_Change_Sorting_Order: 0
+  sorting_Order: -5
+  sorting_Order_Diff: 0
   other_Param: 1
   num: 3
   inter_Angle_Deg: 40
@@ -1111,7 +1117,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c9048ccf0aa56442ba7e89fea6de129, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  life: 400100000e010000
+  life: 900100007c010000
   power_Value: 16
   score_Value: 20
   phase_Change_Bomb_Prefab: {fileID: 1493121116874872, guid: 20dc9e0b24cf99a4c902f6c82ea5650b,
@@ -1182,6 +1188,9 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  is_Change_Sorting_Order: 0
+  sorting_Order: -5
+  sorting_Order_Diff: 0
   other_Param: 1
   num: 1
   inter_Angle_Deg: 147
@@ -1232,6 +1241,9 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  is_Change_Sorting_Order: 0
+  sorting_Order: -5
+  sorting_Order_Diff: 0
   other_Param: 1
   num: 1
   inter_Angle_Deg: 0

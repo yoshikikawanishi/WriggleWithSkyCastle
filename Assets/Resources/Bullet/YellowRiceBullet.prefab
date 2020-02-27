@@ -104,6 +104,7 @@ MonoBehaviour:
   - BombTag
   - GroundTag
   - SandbackGroundTag
+  - DamagedGroundTag
   is_Delete_Invisible: 1
 --- !u!212 &212293083010908354
 SpriteRenderer:
