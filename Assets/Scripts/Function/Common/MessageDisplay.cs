@@ -24,6 +24,11 @@ public class MessageDisplay : MonoBehaviour {
     
     //メッセージ表示の速度
     private float textSpeed = 0.07f;
+
+    //メッセージ表示後に選択画面を生成するか
+    public bool is_Display_Selection_After_Message = false;
+    //メッセージ表示後に生成する選択画面、シーン上に配置する
+    [SerializeField] private Canvas selection_Canvas;
    
 
     // Update is called once per frame
@@ -89,7 +94,7 @@ public class MessageDisplay : MonoBehaviour {
 
 
     //メッセージ表示
-    private IEnumerator Print_Message() {
+    protected IEnumerator Print_Message() {
         //効果音の取得
         AudioSource sound = messagePanel.GetComponent<AudioSource>();
         //1行ずつ表示
@@ -110,9 +115,22 @@ public class MessageDisplay : MonoBehaviour {
             }
             //1行分表示後決定が押されるのを待つ
             yield return new WaitUntil(Wait_Input_Z);
+            //終了
+            if (i == end_ID)
+                break;
             //次の行へ
             messageText.text = "";
         }
+
+        //選択画面を表示する（選択時の処理は選択画面キャンバスに個別で入れること）
+        if (is_Display_Selection_After_Message) {
+            yield return new WaitForSeconds(0.2f);
+            selection_Canvas.gameObject.SetActive(true);
+            selection_Canvas.GetComponentInChildren<Button>().Select();
+            yield return new WaitUntil(Wait_Input_Z);
+            selection_Canvas.gameObject.SetActive(false);
+        }
+
         //表示終了
         messagePanel.SetActive(false);
         endMessage = true;
@@ -120,7 +138,7 @@ public class MessageDisplay : MonoBehaviour {
 
 
     //Zが入力されるのを待つ
-    private bool Wait_Input_Z() {
+    protected bool Wait_Input_Z() {
         if (InputManager.Instance.GetKeyDown(MBLDefine.Key.Jump)) {
             return true;
         }
@@ -129,7 +147,7 @@ public class MessageDisplay : MonoBehaviour {
 
 
     //メッセージ表示
-    private IEnumerator Print_Message_Auto(float waitingTime, float speed) {
+    protected IEnumerator Print_Message_Auto(float waitingTime, float speed) {
         //効果音の取得
         AudioSource sound = messagePanel.GetComponent<AudioSource>();
         //1行ずつ表示

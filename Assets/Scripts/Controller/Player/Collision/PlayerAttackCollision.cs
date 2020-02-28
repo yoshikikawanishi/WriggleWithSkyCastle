@@ -5,8 +5,11 @@ using UnityEngine;
 public class PlayerAttackCollision : MonoBehaviour {
 
     private bool is_Hit_Attack = false;
+    private Vector2 offset;
     private BoxCollider2D _collider;
     private GameObject player;
+
+    private readonly string HIT_EFFECT_NAME = "HitEffect";
 
     private List<string> hit_Attack_Tag_List = new List<string> {
         "EnemyTag",
@@ -21,6 +24,9 @@ public class PlayerAttackCollision : MonoBehaviour {
 
     private void Start() {
         player = transform.parent.gameObject;
+        //ヒットエフェクトのオブジェクトプール
+        GameObject effect = Resources.Load("Effect/" + HIT_EFFECT_NAME) as GameObject;
+        ObjectPoolManager.Instance.Create_New_Pool(effect, 2);
     }
 
 
@@ -28,6 +34,7 @@ public class PlayerAttackCollision : MonoBehaviour {
         foreach (string tag in hit_Attack_Tag_List) {
             if (collision.tag == tag && !is_Hit_Attack) {
                 is_Hit_Attack = true;
+                Play_Hit_Effect(collision.transform.position);
             }
         }
     }
@@ -39,6 +46,14 @@ public class PlayerAttackCollision : MonoBehaviour {
             return true;
         }
         return false;
+    }
+
+
+    private void Play_Hit_Effect(Vector2 pos) {
+        GameObject effect = ObjectPoolManager.Instance.Get_Pool(HIT_EFFECT_NAME).GetObject();
+        offset = transform.position + new Vector3(player.transform.localScale.x * transform.localScale.x * 20, 0);
+        effect.transform.position = offset + (pos - offset) / 10;
+        ObjectPoolManager.Instance.Set_Inactive(effect, 1.5f);
     }
 
 

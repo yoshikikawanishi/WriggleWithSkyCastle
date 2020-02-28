@@ -3,19 +3,29 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerKickCollision : MonoBehaviour {
-    
-    public bool is_Hit_Kick = false;
 
+    private CircleCollider2D _collider;
+
+    public bool is_Hit_Kick = false;
+    private Vector2 offset;
+
+    private readonly string HIT_EFFECT_NAME = "HitEffect";  //PlayerAttackCollisionの方でオブジェクトプール
     private List<string> hit_Attack_Tag_List = new List<string> {
         "EnemyTag",
         "SandbackTag",
         "SandbackGroundTag"
     };
 
+
+    private void Start() {
+        _collider = GetComponent<CircleCollider2D>();
+    }
+
     private void OnTriggerEnter2D(Collider2D collision) {
         foreach (string tag in hit_Attack_Tag_List) {
             if (collision.tag == tag && !is_Hit_Kick) {
                 is_Hit_Kick = true;
+                Play_Hit_Effect();
             }
         }
     }
@@ -31,12 +41,12 @@ public class PlayerKickCollision : MonoBehaviour {
 
 
     public void Make_Collider_Appear() {
-        GetComponent<CircleCollider2D>().enabled = true;
+        _collider.enabled = true;
         Play_Animation();
     }
 
     public void Make_Collider_Disappear() {
-        GetComponent<CircleCollider2D>().enabled = false;
+        _collider.enabled = false;
         Stop_Animation();
     }
 
@@ -54,6 +64,13 @@ public class PlayerKickCollision : MonoBehaviour {
     private void Stop_Animation() {
         transform.GetChild(0).GetComponent<Animator>().SetBool("KickBool1", false);
         transform.GetChild(0).GetComponent<Animator>().SetBool("KickBool2", false);
+    }
+
+    private void Play_Hit_Effect() {
+        GameObject effect = ObjectPoolManager.Instance.Get_Pool(HIT_EFFECT_NAME).GetObject();
+        offset = new Vector2(_collider.offset.x * transform.parent.localScale.x, _collider.offset.y);
+        effect.transform.position = transform.position + (Vector3)offset;
+        ObjectPoolManager.Instance.Set_Inactive(effect, 1.5f);
     }
 
 }

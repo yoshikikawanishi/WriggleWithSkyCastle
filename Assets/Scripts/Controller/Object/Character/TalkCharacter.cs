@@ -31,8 +31,10 @@ public class TalkCharacter : MonoBehaviour {
 
     //Start
     protected void Start() {
-        //スクリプト
-        _message = gameObject.AddComponent<MessageDisplay>();
+        //スクリプト取得
+        _message = GetComponent<MessageDisplay>();
+        if(_message == null)
+            _message = gameObject.AddComponent<MessageDisplay>();
         //会話マークの生成
         mark_Up_Baloon = Instantiate(Resources.Load("Object/MarkUpBaloon") as GameObject);
         mark_Up_Baloon.transform.position = transform.position + (Vector3)baloon_Pos;
