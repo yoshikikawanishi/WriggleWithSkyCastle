@@ -95,7 +95,7 @@ public class PlayerAttack : MonoBehaviour {
     //オプションが蜂の時のショット    
     private void Bee_Shoot() {
         ObjectPool bullet_Pool = ObjectPoolManager.Instance.Get_Pool("PlayerBeeBullet");
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 2; i++) {
             var bullet = bullet_Pool.GetObject();
             bullet.transform.position = transform.position + new Vector3(0, -6f + i * 6f);
             bullet.transform.localScale = transform.localScale;
