@@ -99,10 +99,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73e9097613b8f774b99955e1a2390e6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  deleted_Obj_Tag:
-  - GroundTag
-  - SandbackGroundTag
-  - DamagedGroundTag
+  deleted_Obj_Tag: []
   is_Delete_Invisible: 0
 --- !u!212 &212442203884102950
 SpriteRenderer:
@@ -140,7 +137,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -4
   m_Sprite: {fileID: 21300006, guid: 1b7a767b47f5a66468bbc71de7775d66, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.4}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.5019608}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

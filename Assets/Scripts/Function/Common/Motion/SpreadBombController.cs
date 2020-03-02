@@ -7,6 +7,7 @@ public class SpreadBombController : MonoBehaviour {
 
 
     [SerializeField] private float spread_Speed = 0;
+    [SerializeField] private float default_Size = 0;
     [SerializeField] private float max_Size = 1;
     [SerializeField] private float life_Time = 0;
     [SerializeField] private float angler_Velocity = 0;
@@ -21,6 +22,10 @@ public class SpreadBombController : MonoBehaviour {
             Destroy(gameObject, life_Time);
         }
         _sprite = GetComponent<SpriteRenderer>();
+    }
+
+    private void OnEnable() {
+        transform.localScale = new Vector3(1, 1, 1) * default_Size;    
     }
 
     //FixedUpdate

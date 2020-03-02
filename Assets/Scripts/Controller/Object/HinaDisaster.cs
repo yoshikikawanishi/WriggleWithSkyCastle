@@ -12,7 +12,7 @@ public class HinaDisaster : MonoBehaviour {
     private ShootSystem[] _shoots = new ShootSystem[3];
     //カメラが動けばカウントを増やす
     private int camera_Move_Count = 0;
-    private readonly int CAMERA_COUNT_SPAN = 200;
+    private readonly int CAMERA_COUNT_SPAN = 250;
     //生成した回数
     private int generate_Count = 0;
     //生成位置の乱数範囲

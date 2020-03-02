@@ -5,7 +5,7 @@ Rumia	True
 Mystia	True
 Yuka	True
 Shizuha	False
-BigFrog	False
+BigFrog	True
 Nitori	True
 LightFairy	True
 Medicine	True

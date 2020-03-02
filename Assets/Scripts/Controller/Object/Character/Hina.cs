@@ -6,56 +6,79 @@ using MBLDefine;
 public class Hina : TalkCharacter {
 
     //厄、毛玉ザコ敵生成用
-    [SerializeField] private HinaDisaster hina_Disaster;
-    //選択ボタン押下後の会話範囲
-    private readonly int AFTER_EVENT_START_ID = 4;
-    private readonly int AFTER_EVENT_END_ID = 4;
+    [SerializeField] private HinaDisaster hina_Disaster;    
 
     private GameObject disaster_Effect;
+    private GameObject player;
+
+    private bool is_Player_Having_Disaster;
 
 
-    protected override float Action_Before_Talk() {
-        if(start_ID == 1)
+    private new void Start() {
+        base.Start();
+        //取得
+        player = GameObject.FindWithTag("PlayerTag");
+    }
+
+    private void Update() {
+        //収集アイテム獲得イベント
+        Play_Collection_Event();
+    }
+
+
+    //==========================会話関連==========================    
+    protected override float Action_Before_Talk() {        
+        if(start_ID == 1 && !is_Player_Having_Disaster)
             Infect_Disaster_Effect_To_Player();
         return 0;
     }
 
-    protected override void Action_In_End_Talk() {
-        //えんがちょイベント終了後
-        if (start_ID == 1) {            
-            Change_Message_Status("HinaText", AFTER_EVENT_START_ID, AFTER_EVENT_END_ID);
-        }        
-    }
 
-
-    //ボタン関数
+    //=================ボタン関数===================
     //はいボタン押下時
+    //厄を払う
     public void Yes_Button() {
-        if (InputManager.Instance.GetKeyDown(Key.Jump)) {
-            Debug.Log("えんがちょした");
-            Delete_Disaster_Effect_In_Player();
+        if (InputManager.Instance.GetKeyDown(Key.Jump)) {            
+            Delete_Disaster_Effect_In_Player();            
         }
     }
 
 
     //いいえボタン押下時
+    //厄攻撃開始
     public void No_Button() {
         if (InputManager.Instance.GetKeyDown(Key.Jump)) {
             hina_Disaster.Start_Generate();
-            Debug.Log("えんがちょしなかった");
+            //セリフを変える
+            Change_Message_Status("HinaText", 3, 3);
+            GetComponent<MessageDisplay>().is_Display_Selection_After_Message = false;
         }
     }
 
-
+    //===============厄イベント関連==========================
     //自機に厄エフェクトをまとわせる
-    private void Infect_Disaster_Effect_To_Player() {
-        GameObject player = GameObject.FindWithTag("PlayerTag");
+    private void Infect_Disaster_Effect_To_Player() {        
         GameObject effect = transform.Find("HinaDisaster").gameObject;
         disaster_Effect = Instantiate(effect, player.transform);
+
+        player.GetComponentInChildren<PlayerEffect>().Play_Dark_Powder_Effect();
+        is_Player_Having_Disaster = true;
     }
 
     //自機の厄エフェクトをはずす
     private void Delete_Disaster_Effect_In_Player() {
         Destroy(disaster_Effect);
+
+        player.GetComponentInChildren<PlayerEffect>().Play_Green_Powder_Effect();
+        is_Player_Having_Disaster = false;
+    }
+
+    //アイテム獲得イベント
+    private void Play_Collection_Event() {
+        //厄をまとったままステージ右端まで行ったとき
+        if (is_Player_Having_Disaster && player.transform.position.x > 5300f) {
+            Delete_Disaster_Effect_In_Player();
+            GetComponent<HinaMovie>().Start_Hina_Movie();
+        }
     }
 }

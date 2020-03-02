@@ -24,6 +24,8 @@ public class PlayerShoot : MonoBehaviour {
 
     //チャージ段階
     private int charge_Phase = 0;
+    //チャージショットに必要なパワー
+    private readonly int essential_Power_In_Charge_Shoot = 15;
     //パワー
     private int player_Power = 0;
 
@@ -164,10 +166,10 @@ public class PlayerShoot : MonoBehaviour {
     }
 
     private IEnumerator Charge_Shoot_Cor() {
-        if (BeetlePowerManager.Instance.beetle_Power < 50)
+        if (BeetlePowerManager.Instance.beetle_Power < essential_Power_In_Charge_Shoot)
             yield break;
         //パワー減らす
-        BeetlePowerManager.Instance.Decrease(50);
+        BeetlePowerManager.Instance.Decrease(essential_Power_In_Charge_Shoot);
         //生成
         var obj = Instantiate(charge_Shoot_Obj);
         obj.transform.position = transform.position + new Vector3(transform.localScale.x * 128f, 0);        

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class MessageDisplay : MonoBehaviour {
     
@@ -126,6 +127,7 @@ public class MessageDisplay : MonoBehaviour {
         if (is_Display_Selection_After_Message) {
             yield return new WaitForSeconds(0.2f);
             selection_Canvas.gameObject.SetActive(true);
+            EventSystem.current.SetSelectedGameObject(null);
             selection_Canvas.GetComponentInChildren<Button>().Select();
             yield return new WaitUntil(Wait_Input_Z);
             selection_Canvas.gameObject.SetActive(false);

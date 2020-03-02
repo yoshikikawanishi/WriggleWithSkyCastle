@@ -9,6 +9,7 @@ public class PlayerEffect : MonoBehaviour {
     [SerializeField] private ParticleSystem green_Powder;
     [SerializeField] private ParticleSystem red_Powder;
     [SerializeField] private ParticleSystem ride_Beetle;
+    [SerializeField] private ParticleSystem dark_Powder;
 
     private ParticleSystem[] shoot_Charge_Particle = new ParticleSystem[3];
 
@@ -41,7 +42,8 @@ public class PlayerEffect : MonoBehaviour {
     /// 緑パウダーエフェクトを再生する
     /// </summary>
     public void Play_Green_Powder_Effect() {
-        green_Powder.Play();
+        if(green_Powder != null)
+            green_Powder.Play();
     }
 
 
@@ -49,9 +51,17 @@ public class PlayerEffect : MonoBehaviour {
     /// 赤パウダーエフェクトを再生する
     /// </summary>
     public void Play_Red_Powder_Effect() {
-        red_Powder.Play();
+        if(red_Powder != null)
+            red_Powder.Play();
     }
 
+    /// <summary>
+    /// 黒パウダーエフェクトを再生する
+    /// </summary>
+    public void Play_Dark_Powder_Effect() {
+        if(dark_Powder != null)
+            dark_Powder.Play();
+    }
 
     /// <summary>
     /// カブトムシ乗り時の収束エフェクトを再生を開始する
