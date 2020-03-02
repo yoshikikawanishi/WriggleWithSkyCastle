@@ -16,6 +16,8 @@ public class ShootEnemy : MonoBehaviour {
 
     private IEnumerator Shoot_Cor() {
         ShootSystem _shoot = GetComponent<ShootSystem>();
+        Renderer _renderer = GetComponent<Renderer>();
+
         if (_shoot == null)
             yield break;
 
@@ -23,7 +25,11 @@ public class ShootEnemy : MonoBehaviour {
         if (loop_Count < 0)
             loop_Count = 100;
         for (int i = 0; i < loop_Count; i++) {
-            if (GetComponent<Renderer>().isVisible) {
+            if(_renderer == null) {
+                _shoot.Shoot();
+                UsualSoundManager.Instance.Play_Shoot_Sound();
+            }
+            else if (_renderer.isVisible) {
                 _shoot.Shoot();
                 UsualSoundManager.Instance.Play_Shoot_Sound();
             }

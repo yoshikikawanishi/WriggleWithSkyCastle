@@ -5,6 +5,8 @@ using MBLDefine;
 
 public class Hina : TalkCharacter {
 
+    //厄、毛玉ザコ敵生成用
+    [SerializeField] private HinaDisaster hina_Disaster;
     //選択ボタン押下後の会話範囲
     private readonly int AFTER_EVENT_START_ID = 4;
     private readonly int AFTER_EVENT_END_ID = 4;
@@ -39,6 +41,7 @@ public class Hina : TalkCharacter {
     //いいえボタン押下時
     public void No_Button() {
         if (InputManager.Instance.GetKeyDown(Key.Jump)) {
+            hina_Disaster.Start_Generate();
             Debug.Log("えんがちょしなかった");
         }
     }

@@ -2,9 +2,10 @@
 test	False
 orb	False
 Rumia	True
-Mystia	False
+Mystia	True
 Yuka	True
 Shizuha	False
 BigFrog	False
 Nitori	True
 LightFairy	True
+Medicine	True

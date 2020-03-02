@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 114617657390434298}
   - component: {fileID: 61854760742548044}
   - component: {fileID: 68668691010172310}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: BigFrogShrine
   m_TagString: SandbackGroundTag
   m_Icon: {fileID: 0}

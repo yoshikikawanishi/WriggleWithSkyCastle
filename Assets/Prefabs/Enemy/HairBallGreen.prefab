@@ -43,6 +43,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4491362729097026}
   - component: {fileID: 114140477513206980}
+  - component: {fileID: 114884328307817902}
   m_Layer: 9
   m_Name: Shoot
   m_TagString: Untagged
@@ -143,7 +144,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   kind: 1
   comment: 
-  play_On_Awake: 1
+  play_On_Awake: 0
   bullet: {fileID: 1264497897957820, guid: 10743456fb1ae8549a95a7adf5d4901f, type: 2}
   parent: {fileID: 0}
   max_Speed: 100
@@ -224,6 +225,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 151a4e5617b28c34f873d3f94dcce539, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114884328307817902
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1246983243951990}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af31272f1f3ee8b4da76f39de104ea4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  start_Time: 0.5
+  loop_Count: 1
+  span: 2
 --- !u!114 &114919445363946754
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4417674152317624}
   - component: {fileID: 114347158916709708}
+  - component: {fileID: 114500970243211854}
   m_Layer: 9
   m_Name: Shoot
   m_TagString: Untagged
@@ -38,11 +39,11 @@ GameObject:
   - component: {fileID: 212865167608092810}
   - component: {fileID: 58730585626775086}
   - component: {fileID: 50164595114597242}
+  - component: {fileID: 95063856594351610}
   - component: {fileID: 114657873409480886}
   - component: {fileID: 114323564285576840}
   - component: {fileID: 114345136792833730}
   - component: {fileID: 114951054045972572}
-  - component: {fileID: 95063856594351610}
   m_Layer: 9
   m_Name: HairBallBlue
   m_TagString: EnemyTag
@@ -171,7 +172,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   kind: 1
   comment: 
-  play_On_Awake: 1
+  play_On_Awake: 0
   bullet: {fileID: 1468941422163832, guid: 6460f3807754d0441984dff5b087135d, type: 2}
   parent: {fileID: 0}
   max_Speed: 100
@@ -211,6 +212,20 @@ MonoBehaviour:
   loop_Count: 1
   span: 1
   center_Angle_Diff: 0
+--- !u!114 &114500970243211854
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1135882202725438}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af31272f1f3ee8b4da76f39de104ea4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  start_Time: 0.5
+  loop_Count: 1
+  span: 2
 --- !u!114 &114657873409480886
 MonoBehaviour:
   m_ObjectHideFlags: 1

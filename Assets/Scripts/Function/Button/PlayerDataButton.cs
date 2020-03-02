@@ -38,10 +38,10 @@ public class PlayerDataButton : MonoBehaviour {
     /*---------------------------------------アイテムとそのコメント----------------------------------------*/
     private Dictionary<string, string> item_Dic = new Dictionary<string, string>() {
         { "Rumia", "ルーミアのリボン" },
-        { "Mystia", "a" },
+        { "Mystia", "鳥獣伎楽の楽譜\nファンに高値で売れる" },
         { "LightFairy", "b" },
-        { "Yuka", "c" },
-        //TODO : メディスン
+        { "Yuka", "蠢符「リトルバグストーム」\nチャージショットを撃てるようになる" },
+        { "Medicine", "もたせると　どくを　かいふくする\n人形が持っていても意味がない" },
         { "Shizuha", "d" },
         { "Minoriko", "e" },
         { "BigFrog", "f" },
