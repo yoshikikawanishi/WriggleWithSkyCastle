@@ -43,9 +43,7 @@ public class Rumia : TalkCharacter {
         if (start_ID == 2) {
             //セリフの変更
             Change_Message_Status("RumiaText", 5, 5);
-            //宝箱出す
-            if (CollectionManager.Instance.Is_Collected("Rumia"))
-                return;
+            //宝箱出す           
             var box = transform.GetChild(0).gameObject;
             box.transform.position = new Vector3(766f, -19f);
             box.transform.SetParent(null);

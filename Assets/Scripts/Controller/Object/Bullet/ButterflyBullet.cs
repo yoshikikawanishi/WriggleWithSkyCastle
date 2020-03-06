@@ -6,23 +6,33 @@ public class ButterflyBullet : MonoBehaviour {
 
     //コンポーネント
     private Rigidbody2D _rigid;
+    //自機
+    private GameObject player;
 
     //一番近くの敵
     private GameObject target;
+
+    [SerializeField] private float speed = 500f;
+    [SerializeField] private float homing_Speed = 120f;
+    [SerializeField] private float start_Homing_Time = 0f;
 
 
     // Use this for initialization
     void Awake() {
         //コンポーネント
         _rigid = GetComponent<Rigidbody2D>();
+        //自機
+        player = GameObject.FindWithTag("PlayerTag");
     }
 
 
     //OnEnable
-    private void OnEnable() {
-        Find_Nearest_Enemy();
-        transform.rotation = new Quaternion(0, 0, 0, 0);
-    }
+    private void OnEnable() {        
+        transform.rotation = new Quaternion(0, 0, 0, 0);    //初期化
+        //初めの数秒はホーミングしない
+        target = null;
+        Invoke("Find_Nearest_Enemy", start_Homing_Time);
+    }    
 
 
     // Update is called once per frame
@@ -33,21 +43,24 @@ public class ButterflyBullet : MonoBehaviour {
             To_Homing();
         }
         else {
-            _rigid.velocity = transform.right * 500f;
+            _rigid.velocity = transform.right * speed;
         }
     }
 
 
     //自機より右にいる一番近くの敵を探す
-    private void Find_Nearest_Enemy() {
+    private void Find_Nearest_Enemy() {        
         target = null;
-        float min_Distance = 500;
+        if (player == null)
+            return;
+
+        float min_Distance = 800;
         float distance = 0;
         GameObject[] enemy_List = GameObject.FindGameObjectsWithTag("EnemyTag");
         foreach (GameObject enemy in enemy_List) {
-            distance = transform.position.x - enemy.transform.position.x;
+            distance = enemy.transform.position.x - player.transform.position.x;
             //一番近くて、無敵化していない敵を探す
-            if (0 < distance && distance < min_Distance && enemy.activeSelf && enemy.layer != 10) {
+            if (-64f < distance && distance < min_Distance && enemy.activeSelf && enemy.layer != 10) {
                 min_Distance = distance;
                 target = enemy;
             }
@@ -58,8 +71,8 @@ public class ButterflyBullet : MonoBehaviour {
     //ホーミング
     private void To_Homing() {
         transform.LookAt2D(target.transform, Vector2.right);
-        _rigid.velocity += (Vector2)transform.right * 120f;
-        _rigid.velocity = _rigid.velocity.normalized * 500f;
+        _rigid.velocity += (Vector2)transform.right * homing_Speed;
+        _rigid.velocity = _rigid.velocity.normalized * speed;
         float dirVelocity = Mathf.Atan2(_rigid.velocity.y, _rigid.velocity.x) * Mathf.Rad2Deg;    //進行方向に回転
         transform.rotation = Quaternion.AngleAxis(dirVelocity, new Vector3(0, 0, 1));
     }

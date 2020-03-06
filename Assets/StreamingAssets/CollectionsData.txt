@@ -3,9 +3,11 @@ test	False
 orb	False
 Rumia	True
 Mystia	True
-Yuka	True
+Yuka	False
 Shizuha	False
-BigFrog	True
-Nitori	True
-LightFairy	True
-Medicine	True
+BigFrog	False
+Nitori	False
+LightFairy	False
+Medicine	False
+Hina	False
+Momizi	True

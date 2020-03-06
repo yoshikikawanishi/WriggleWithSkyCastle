@@ -106,36 +106,29 @@ public class NemunoAttack : MonoBehaviour {
         StartCoroutine("Close_Slash_Cor");
         yield return new WaitForSeconds(1.5f);
 
-        //大ジャンプ
+        //弾幕前溜め
         StartCoroutine("High_Jump_Cor", -1);
         yield return new WaitForSeconds(2.5f);
 
-        //サビ前移動(サビまでの時間調整)
-        _controller.Change_Fly_Parameter();
-        _controller.Change_Animation("ForwardJumpBool");
-        transform.localScale = new Vector3(-1, 1, 1);
-        _move_Two_Points.Start_Move(new Vector3(160f, 16f), 4);
-        yield return new WaitForSeconds(1.0f);
-        _controller.Change_Animation("ShootBool");
         transform.localScale = new Vector3(1, 1, 1);
+        _controller.Play_Charge_Effect(4.0f);
 
-        //サビ弾幕(曲開始から56秒)
-        for (int i = 0; i < 2; i++) {
-            //溜め
-            _controller.Play_Charge_Effect(2.5f);
-            yield return new WaitForSeconds(2.5f);
+        //移動
+        _controller.Change_Animation("ShootBool");
+        _controller.Change_Fly_Parameter();
+        yield return new WaitForSeconds(1.0f);
+        _move_Two_Points.Start_Move(new Vector3(160f, 8f), 4);
+        yield return new WaitForSeconds(3.0f);
 
-            //ショット
-            _controller.Play_Burst_Effect();
-            _shoot.Start_Knife_Shoot();
-            yield return new WaitForSeconds(8.0f);
-            _shoot.Stop_Knife_Shoot();
-            if (i == 1) {
-                _controller.Change_Land_Paramter();
-                _controller.Change_Animation("IdleBool");
-            }
-            yield return new WaitForSeconds(1.5f);
-        }
+        //弾幕攻撃
+        _controller.Play_Burst_Effect();
+        _shoot.Start_Kunai_Shoot();
+        UsualSoundManager.Instance.Play_Shoot_Sound();
+        yield return new WaitForSeconds(6.0f);
+
+        _controller.Change_Land_Paramter();
+        _controller.Change_Animation("IdleBool");
+        yield return new WaitForSeconds(2.0f);       
         
         StartCoroutine("Phase1_Cor");
     }
@@ -237,30 +230,35 @@ public class NemunoAttack : MonoBehaviour {
                 pre_Attack = next_Attack;
 
             }
-
-            //弾幕前溜め
+            //大ジャンプ
             StartCoroutine("High_Jump_Cor", -1);
             yield return new WaitForSeconds(2.5f);
-
-            transform.localScale = new Vector3(1, 1, 1);
-            _controller.Play_Charge_Effect(4.0f);
-
-            //移動
-            _controller.Change_Animation("ShootBool");
+            //サビ前移動(サビまでの時間調整)
             _controller.Change_Fly_Parameter();
+            _controller.Change_Animation("ForwardJumpBool");
+            transform.localScale = new Vector3(-1, 1, 1);
+            _move_Two_Points.Start_Move(new Vector3(160f, 16f), 4);
             yield return new WaitForSeconds(1.0f);
-            _move_Two_Points.Start_Move(new Vector3(160f, 8f), 4);
-            yield return new WaitForSeconds(3.0f);
+            _controller.Change_Animation("ShootBool");
+            transform.localScale = new Vector3(1, 1, 1);
 
-            //弾幕攻撃
-            _controller.Play_Burst_Effect();
-            _shoot.Start_Kunai_Shoot();
-            UsualSoundManager.Instance.Play_Shoot_Sound();
-            yield return new WaitForSeconds(6.0f);
-
-            _controller.Change_Land_Paramter();
-            _controller.Change_Animation("IdleBool");
-            yield return new WaitForSeconds(2.0f);
+            //サビ弾幕(曲開始から56秒)
+            for (int i = 0; i < 2; i++) {
+                //溜め
+                _controller.Play_Charge_Effect(2.5f);
+                yield return new WaitForSeconds(1.0f);
+                _shoot.Start_Knife_Shoot();
+                yield return new WaitForSeconds(6.0f);
+                //ショット
+                _controller.Play_Burst_Effect();
+                UsualSoundManager.Instance.Play_Shoot_Sound();
+                yield return new WaitForSeconds(1.5f);
+                if (i == 1) {
+                    _controller.Change_Land_Paramter();
+                    _controller.Change_Animation("IdleBool");
+                }
+            }
+            yield return new WaitForSeconds(4.0f);
         }  
         
     }

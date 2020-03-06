@@ -21,31 +21,9 @@ public class OptionBox : MonoBehaviour {
         "PlayerButterflyAttackTag",
         "PlayerSpiderAttackTag",
         "PlayerBulletTag",
-    };
+    };   
 
-    private List<string> ground_Tags = new List<string> {
-        "GroundTag",
-        "ThroughGroundTag",
-        "DamagedGroundTag",
-        "SandbackGroundTag",
-    };
-
-    private Rigidbody2D _rigid;
-    private bool is_Falling = true;
     private bool is_Opened = false;
-
-    //start
-    private void Start() {
-        _rigid = GetComponent<Rigidbody2D>();
-    }
-
-
-    //update
-    private void Update() {
-        if (is_Falling) {
-            _rigid.MovePosition(transform.position + new Vector3(0, -40f) * Time.deltaTime);
-        }
-    }
 
 
     //OnTriggerEnter
@@ -56,35 +34,13 @@ public class OptionBox : MonoBehaviour {
                 StartCoroutine("Open_Cor");
                 is_Opened = true;
             }
-        }
-        //着地の判定
-        foreach(string tag in ground_Tags) {
-            if(collision.tag == tag) {
-                is_Falling = false;
-                _rigid.velocity = Vector2.zero;
-            }
-        }
+        }        
     }
 
-
-    //OnTriggerExit
-    private void OnTriggerExit2D(Collider2D collision) {
-        //落下判定
-        foreach (string tag in ground_Tags) {
-            if (collision.tag == tag) {
-                is_Falling = true;
-                _rigid.velocity = Vector2.zero;
-            }
-        }
-    }
 
 
     //箱を開ける
-    private IEnumerator Open_Cor() {
-        //判定を消す
-        _rigid.velocity = Vector2.zero;
-        is_Falling = false;
-        GetComponent<BoxCollider2D>().enabled = false;
+    private IEnumerator Open_Cor() {      
         //効果音
         GetComponent<AudioSource>().Play();
         //画像をスライスして、アニメーション再生する
@@ -109,18 +65,7 @@ public class OptionBox : MonoBehaviour {
             transform.GetChild(0).GetComponent<OptionItem>().option = po;
         }
         transform.GetChild(0).gameObject.SetActive(true);
-        transform.GetChild(0).SetParent(null);
-
-        yield return new WaitForSeconds(3.0f);
-        //点滅して消える
-        Renderer _renderer = GetComponent<Renderer>();
-        for(int i = 1; i < 20; i++) {
-            _renderer.enabled = false;
-            yield return new WaitForSeconds(0.01f);
-            _renderer.enabled = true;
-            yield return new WaitForSeconds(1.0f / i);
-        }
-        Destroy(gameObject);
+        transform.GetChild(0).SetParent(null);        
     }
 
 }

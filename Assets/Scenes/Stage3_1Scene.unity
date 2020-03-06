@@ -15990,7 +15990,7 @@ Prefab:
     - target: {fileID: 114965344020361258, guid: ad841176ffea4c14cb8b8908df271e4f,
         type: 2}
       propertyPath: guide_Canvas_Name
-      value: GuideLongArm
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 212307917471595424, guid: ad841176ffea4c14cb8b8908df271e4f,
         type: 2}

@@ -8,7 +8,7 @@ public class NemunoShoot : MonoBehaviour {
     [Space]
     [SerializeField] private ShootSystem slash_Shotgun_Odd;
     [SerializeField] private ShootSystem slash_Shootgun_Forward;
-    [SerializeField] private ShootSystem knife_Shoot;
+    [SerializeField] private GameObject knife_Shoot_Obj;
     [SerializeField] private ShootSystem kunai_Shoot;
     [Space]  
     [SerializeField] private GameObject phase2_Kunai_Shoot_Obj;
@@ -83,17 +83,27 @@ public class NemunoShoot : MonoBehaviour {
     }
 
 
-    //ナイフ渦巻き弾開始
+    //ナイフ弾開始
     public void Start_Knife_Shoot() {
-        knife_Shoot.Shoot();
+        StartCoroutine("Knife_Shoot_Cor");
     }
 
-    //ナイフ渦巻き弾終了
+    private IEnumerator Knife_Shoot_Cor() {
+        ShootSystem[] _shoots = knife_Shoot_Obj.GetComponents<ShootSystem>();
+        _shoots[1].Shoot();
+        yield return new WaitForSeconds(0.4f);
+        _shoots[0].Shoot();
+    }
+
+    //ナイフ弾終了
     public void Stop_Knife_Shoot() {
-        knife_Shoot.Stop_Shoot();
+        ShootSystem[] _shoots = knife_Shoot_Obj.GetComponents<ShootSystem>();
+        _shoots[0].Stop_Shoot();
+        _shoots[1].Stop_Shoot();        
     }
 
-   
+
+
     //フェーズ２移行時のブロック弾
     public IEnumerator Play_Square_Blocks_Attack() {
         MoveMotion[] moves = Phase2_Square_Blocks.GetComponentsInChildren<MoveMotion>();

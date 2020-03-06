@@ -21,14 +21,13 @@ public class Mystia : TalkCharacter {
     }
 
     protected override float Action_Before_Talk() {
-        if (CollectionManager.Instance.Is_Collected("Mystia")) {
+        if(talk_Count != 1) {
             Change_Message();
         }
         return 0;
     }
 
-    protected override void Action_In_End_Talk() {
-        Change_Message();
+    protected override void Action_In_End_Talk() {       
         StartCoroutine("Action_After_Talking_Cor");        
     }
 
@@ -36,12 +35,12 @@ public class Mystia : TalkCharacter {
     //会話終了時
     private IEnumerator Action_After_Talking_Cor() {
         //収集アイテム出す
-        if (transform.childCount > 1 && !CollectionManager.Instance.Is_Collected("Mystia")) {
+        if (transform.childCount > 1 && start_ID == 1) {
             transform.GetChild(0).gameObject.SetActive(true);
-            transform.GetChild(0).SetParent(null);
+            transform.GetChild(0).SetParent(null);            
             yield break;
-        }        
-
+        }
+       
         //以降ルーミアに関して
         if (now_Rumia_State == Stage1_1Scene.Rumia.not_find) {
             yield break;        

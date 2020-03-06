@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: 1806c976766a9674580ed8d0dd7e85b0
+guid: 29f45294a995d6043a8417de2c9edc72
 TextureImporter:
   fileIDToRecycleName:
-    21300000: CrowWithWolf_0
-    21300002: CrowWithWolf_1
-    21300004: CrowWithWolf_2
-    21300006: CrowWithWolf_3
+    21300000: Momizi_0
+    21300002: Momizi_1
+    21300004: Momizi_2
+    21300006: Momizi_3
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -67,7 +67,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -78,7 +78,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -89,7 +89,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -100,7 +100,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -111,7 +111,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -121,81 +121,81 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: CrowWithWolf_0
+      name: Momizi_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 52
-        height: 65
+        width: 25
+        height: 27
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 15f3fa91e62962446b765bf93f8b9206
+      spriteID: b72004ba076ea47438519c7daeefe24d
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CrowWithWolf_1
+      name: Momizi_1
       rect:
         serializedVersion: 2
-        x: 55
+        x: 25
         y: 0
-        width: 52
-        height: 65
+        width: 25
+        height: 27
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 87fd12d02592b9e4b8e99d2b2d45181b
+      spriteID: 21315ec353e291845b8390f0886ebc3d
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CrowWithWolf_2
+      name: Momizi_2
       rect:
         serializedVersion: 2
-        x: 110
+        x: 50
         y: 0
-        width: 52
-        height: 65
+        width: 25
+        height: 27
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d731cdcdb2f6d38429b336f9da6a25d3
+      spriteID: 0f463c233b7ac324782c13a52b0ead23
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CrowWithWolf_3
+      name: Momizi_3
       rect:
         serializedVersion: 2
-        x: 165
+        x: 75
         y: 0
-        width: 52
-        height: 65
+        width: 25
+        height: 27
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ba9ca3bf4bb038b4999ddd67a19925bf
+      spriteID: 4692570ec4e65d647a81a48a08ada449
       vertices: []
       indices: 
       edges: []
@@ -203,7 +203,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 8f0a1eab6640d404b8d55a80539688a4
+    spriteID: 934a4c4c0401c5a4f8589d3962dc53fb
     vertices: []
     indices: 
     edges: []

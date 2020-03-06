@@ -20,6 +20,8 @@ public class TalkCharacter : MonoBehaviour {
     protected bool end_Talk = false;
     //会話マーク
     protected GameObject mark_Up_Baloon;
+    //会話の回数
+    protected int talk_Count = 0;
 
     private List<string> talk_Tags = new List<string> {
         "PlayerAttackTag",
@@ -60,7 +62,9 @@ public class TalkCharacter : MonoBehaviour {
         end_Talk = false;
         
         GameObject player = GameObject.FindWithTag("PlayerTag");
-        PlayerController player_Controller = player.GetComponent<PlayerController>();       
+        PlayerController player_Controller = player.GetComponent<PlayerController>();
+
+        talk_Count++;
 
         //会話開始        
         if (player_Controller.Get_Is_Playable()) {
@@ -94,7 +98,7 @@ public class TalkCharacter : MonoBehaviour {
     /// 会話開始前に行う処理
     /// </summary>
     /// <returns>処理の後会話開始までの時間[s]</returns>
-    protected virtual float Action_Before_Talk() {
+    protected virtual float Action_Before_Talk() {        
         return 0;
     }
 

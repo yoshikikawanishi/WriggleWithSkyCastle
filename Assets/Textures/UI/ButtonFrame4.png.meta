@@ -1,11 +1,7 @@
 fileFormatVersion: 2
-guid: 1806c976766a9674580ed8d0dd7e85b0
+guid: 357bfa5f6a2e21f4ba7b43013d9f5530
 TextureImporter:
-  fileIDToRecycleName:
-    21300000: CrowWithWolf_0
-    21300002: CrowWithWolf_1
-    21300004: CrowWithWolf_2
-    21300006: CrowWithWolf_3
+  fileIDToRecycleName: {}
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -44,12 +40,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 1
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -119,91 +115,11 @@ TextureImporter:
     androidETC2FallbackOverride: 0
   spriteSheet:
     serializedVersion: 2
-    sprites:
-    - serializedVersion: 2
-      name: CrowWithWolf_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 52
-        height: 65
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 15f3fa91e62962446b765bf93f8b9206
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: CrowWithWolf_1
-      rect:
-        serializedVersion: 2
-        x: 55
-        y: 0
-        width: 52
-        height: 65
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 87fd12d02592b9e4b8e99d2b2d45181b
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: CrowWithWolf_2
-      rect:
-        serializedVersion: 2
-        x: 110
-        y: 0
-        width: 52
-        height: 65
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d731cdcdb2f6d38429b336f9da6a25d3
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: CrowWithWolf_3
-      rect:
-        serializedVersion: 2
-        x: 165
-        y: 0
-        width: 52
-        height: 65
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ba9ca3bf4bb038b4999ddd67a19925bf
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
+    sprites: []
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 8f0a1eab6640d404b8d55a80539688a4
+    spriteID: 603e3891f8b27ef489740504404b1824
     vertices: []
     indices: 
     edges: []

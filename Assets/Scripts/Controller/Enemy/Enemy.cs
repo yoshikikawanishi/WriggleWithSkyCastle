@@ -24,7 +24,9 @@ public class Enemy : MonoBehaviour {
 
     private bool is_Exist = true;
     private int default_Life;
-       
+
+    private GameObject vanish_Shoot_If_Collected_Hina;
+
 
 	// Use this for initialization
 	void Awake () {
@@ -35,6 +37,7 @@ public class Enemy : MonoBehaviour {
         default_Life = life;
         spider_Footing_Enemy = gameObject.AddComponent<SpiderFootingEnemy>();
         poisoned_Enemy = gameObject.AddComponent<PoisonedEnemy>();
+        vanish_Shoot_If_Collected_Hina = Resources.Load("Effect/EnemyVanishShoot") as GameObject;
     }
 
 
@@ -70,9 +73,16 @@ public class Enemy : MonoBehaviour {
     //消滅前のアクション
     // EnemyCollisionDetectionのDamagedで変更
     private void Vanish_Action(string attacked_Tag) {
+        //雛の収集アイテムを集めていれば弾を出す
+        if (CollectionManager.Instance.Is_Collected("Hina")) {
+            GameObject shoot = ObjectPoolManager.Instance.Get_Pool(vanish_Shoot_If_Collected_Hina).GetObject();
+            shoot.transform.position = transform.position;
+            ObjectPoolManager.Instance.Set_Inactive(shoot, 1.0f);
+        }
+        //蜘蛛にやられたとき蜘蛛の巣を張る
         if(attacked_Tag == "PlayerSpiderAttackTag" || attacked_Tag == "Poison") {
             spider_Footing_Enemy.Generate_Footing_Vanish();
-        }
+        }        
         else {
             Vanish();
         }

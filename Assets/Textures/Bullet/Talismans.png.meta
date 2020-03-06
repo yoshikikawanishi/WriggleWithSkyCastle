@@ -1,11 +1,12 @@
 fileFormatVersion: 2
-guid: 1806c976766a9674580ed8d0dd7e85b0
+guid: abebc57dd2411c445965ca866d907e36
 TextureImporter:
   fileIDToRecycleName:
-    21300000: CrowWithWolf_0
-    21300002: CrowWithWolf_1
-    21300004: CrowWithWolf_2
-    21300006: CrowWithWolf_3
+    21300000: Talismans_0
+    21300002: Talismans_1
+    21300004: Talismans_2
+    21300006: Talismans_3
+    21300008: Talismans_4
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -121,81 +122,101 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: CrowWithWolf_0
+      name: Talismans_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 52
-        height: 65
+        width: 15
+        height: 10
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 15f3fa91e62962446b765bf93f8b9206
+      spriteID: 260d072dfbfe33b4c8802f30857f9a7c
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CrowWithWolf_1
+      name: Talismans_1
       rect:
         serializedVersion: 2
-        x: 55
+        x: 15
         y: 0
-        width: 52
-        height: 65
+        width: 15
+        height: 10
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 87fd12d02592b9e4b8e99d2b2d45181b
+      spriteID: 63fd8335769963245b3fb4cdb134caa3
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CrowWithWolf_2
+      name: Talismans_2
       rect:
         serializedVersion: 2
-        x: 110
+        x: 30
         y: 0
-        width: 52
-        height: 65
+        width: 15
+        height: 10
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d731cdcdb2f6d38429b336f9da6a25d3
+      spriteID: 0aa34a22c3a597d499e5530c92d35319
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CrowWithWolf_3
+      name: Talismans_3
       rect:
         serializedVersion: 2
-        x: 165
+        x: 45
         y: 0
-        width: 52
-        height: 65
+        width: 15
+        height: 10
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ba9ca3bf4bb038b4999ddd67a19925bf
+      spriteID: b526152117a927d479d12fbbcfe86793
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Talismans_4
+      rect:
+        serializedVersion: 2
+        x: 60
+        y: 0
+        width: 15
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2ff0b3bfb9b17c74cab57afa334c6f76
       vertices: []
       indices: 
       edges: []
@@ -203,7 +224,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 8f0a1eab6640d404b8d55a80539688a4
+    spriteID: 7cd5609a5d5cd8d4da3176fb5a300ed2
     vertices: []
     indices: 
     edges: []

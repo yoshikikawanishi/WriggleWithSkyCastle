@@ -6,6 +6,7 @@ using UnityEngine;
 public class RopeWay : MonoBehaviour {
 
     [SerializeField] private List<Vector2> move_Distance_And_Direction;
+    [SerializeField] private bool is_Stop_In_End = false;
 
     private List<string> moved_Tags = new List<string> {
         "PlayerKickTag",
@@ -33,7 +34,14 @@ public class RopeWay : MonoBehaviour {
                 now_List_Index++;
             }
             //終着点
-            else if (move_Speed > 0){
+            else if (move_Speed > 0){                                                   
+                //終着点で機能を停止する
+                if (is_Stop_In_End) {
+                    this.enabled = false;
+                    _anim.SetBool("MoveBool", false);
+                    _anim.SetBool("BackBool", false);
+                }
+                //それ以外の時は後ろに下がる
                 move_Speed -= 0.03f;
                 return;
             }
@@ -66,6 +74,9 @@ public class RopeWay : MonoBehaviour {
 
 
     private void OnTriggerEnter2D(Collider2D collision) {
+        if (this.enabled == false)
+            return;
+
         foreach(string tag in moved_Tags) {
             if(tag == collision.tag) {
                 move_Speed = 1.5f;

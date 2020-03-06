@@ -13,6 +13,22 @@ public class CollectionItem : MonoBehaviour {
     //キャンバスのプレハブはResources/UIフォルダに入れる
     [SerializeField] private string guide_Canvas_Name;
 
+    //すでに取得済みの時、代わりに回復アイテムを出すか否か
+    //出さない場合は何も出さない
+    [SerializeField] private bool is_Change_Life_Up_Item = false;
+
+
+    private void Start() {
+        //すでに取得済みの時
+        if (CollectionManager.Instance.Is_Collected(collection_Name)) {
+            if (is_Change_Life_Up_Item) {
+                GameObject item = Instantiate(Resources.Load("Object/LifeUpItem") as GameObject);
+                item.transform.position = transform.position;
+            }
+            Destroy(gameObject);            
+        }
+    }
+
 
     private void OnTriggerEnter2D(Collider2D collision) {
         if(collision.tag == "PlayerBodyTag") {

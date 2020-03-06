@@ -116,10 +116,11 @@ public class PlayerShoot : MonoBehaviour {
                 Set_Shoot_Status(normal_Bullet, 900f, 12f, 2);
                 break;
             case PlayerManager.Option.bee:
-                Set_Shoot_Status(bee_Bullet, 1000f, 6f, 4);                
+                Set_Shoot_Status(bee_Bullet, 1000f, 6f, 4);
+                shoot_Num--;
                 break;
             case PlayerManager.Option.butterfly:                
-                Set_Shoot_Status(butterfly_Bullet, 700f, 12f, 4);
+                Set_Shoot_Status(butterfly_Bullet, 700f, 12f, 3);
                 shoot_Num--;
                 break;
             case PlayerManager.Option.mantis:                
