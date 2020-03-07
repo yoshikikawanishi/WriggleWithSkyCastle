@@ -85,6 +85,7 @@ public class MessageDisplay : MonoBehaviour {
         GameObject canvas = GameObject.Find("Canvas");
         messagePanel = canvas.transform.Find("MessagePanel").gameObject;
         messagePanel.SetActive(true);
+        messagePanel.transform.SetAsLastSibling();
         //テキストを取得
         messageText = messagePanel.transform.GetChild(0).GetComponent<Text>();
         messageText.text = "";

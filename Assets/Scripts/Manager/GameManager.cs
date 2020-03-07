@@ -46,7 +46,10 @@ public class GameManager : SingletonMonoBehaviour<GameManager> {
         player.transform.position = new Vector3(pos_X, pos_Y);
 
         //ステータスの調整
-        PlayerManager.Instance.Set_Life(3);
+        if (CollectionManager.Instance.Is_Collected("BigFrog"))
+            PlayerManager.Instance.Set_Life(4);
+        else
+           PlayerManager.Instance.Set_Life(3);
         BeetlePowerManager.Instance.StartCoroutine("Increase_Cor", 50);
 
         //エフェクト

@@ -6,6 +6,14 @@ TextureImporter:
     21300002: Minoriko_1
     21300004: Minoriko_2
     21300006: Minoriko_3
+    21300008: Minoriko_4
+    21300010: Minoriko_5
+    21300012: Minoriko_6
+    21300014: Minoriko_7
+    21300016: Minoriko_8
+    21300018: Minoriko_9
+    21300020: Minoriko_10
+    21300022: Minoriko_11
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -124,10 +132,10 @@ TextureImporter:
       name: Minoriko_0
       rect:
         serializedVersion: 2
-        x: 1
-        y: 0
-        width: 17
-        height: 29
+        x: 0
+        y: 60
+        width: 20
+        height: 30
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -135,7 +143,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 63dd793cd2a2ea24788b0d4c34d8b709
+      spriteID: 3ee946e1326e5164987f403ebac320c3
       vertices: []
       indices: 
       edges: []
@@ -144,10 +152,10 @@ TextureImporter:
       name: Minoriko_1
       rect:
         serializedVersion: 2
-        x: 21
-        y: 0
-        width: 17
-        height: 29
+        x: 20
+        y: 60
+        width: 20
+        height: 30
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -155,7 +163,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7090f25775af58446b81e0a9b88ee7ac
+      spriteID: c35246955a2bcef4784f795ee01d1374
       vertices: []
       indices: 
       edges: []
@@ -164,10 +172,10 @@ TextureImporter:
       name: Minoriko_2
       rect:
         serializedVersion: 2
-        x: 41
-        y: 0
-        width: 17
-        height: 29
+        x: 40
+        y: 60
+        width: 20
+        height: 30
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -175,7 +183,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6aa6afe3f7277b047889eba8d76ded53
+      spriteID: ed55cb477dfcb534b82ab76b24726f60
       vertices: []
       indices: 
       edges: []
@@ -184,10 +192,10 @@ TextureImporter:
       name: Minoriko_3
       rect:
         serializedVersion: 2
-        x: 61
-        y: 0
-        width: 17
-        height: 29
+        x: 60
+        y: 60
+        width: 20
+        height: 30
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -195,7 +203,167 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7b2d042f4e888b74daff342b546d68db
+      spriteID: 84fab22326899914ba245dc8abc46f3d
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minoriko_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 30
+        width: 20
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8fbf658af624d4b4b9fff1a0f4f997fe
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minoriko_5
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 30
+        width: 20
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6c1de67c02c81ee48b21a8c0b0737fff
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minoriko_6
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 30
+        width: 20
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0f95681cfaa24464689a6227269874ad
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minoriko_7
+      rect:
+        serializedVersion: 2
+        x: 60
+        y: 30
+        width: 20
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 55cd671f0584e8f45a485b25f011ca29
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minoriko_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 20
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7692bd1620ea57048855db3aa050001c
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minoriko_9
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 0
+        width: 20
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 34922a0e196e37c42aa3cd953dab2a05
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minoriko_10
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 0
+        width: 20
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d27995bdd0193db439aff9d96346c4ea
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minoriko_11
+      rect:
+        serializedVersion: 2
+        x: 60
+        y: 0
+        width: 20
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 353a160b336115442b69da196f530d05
       vertices: []
       indices: 
       edges: []
@@ -203,7 +371,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: edb37faabef9b0448afd071ba3a73bd2
+    spriteID: a2132acd32a6606479970690d463fb69
     vertices: []
     indices: 
     edges: []

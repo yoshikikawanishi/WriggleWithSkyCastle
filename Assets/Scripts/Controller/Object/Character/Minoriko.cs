@@ -21,6 +21,10 @@ public class Minoriko : Enemy {
     private float normal_Shoot_Time;
     private float NORMAL_SHOOT_SPAN = 8.5f;
 
+    //倒されたかどうか、静葉から利用する
+    [HideInInspector] public bool is_Defeated = false;
+
+
 	// Use this for initialization
 	void Start () {
         //取得
@@ -59,6 +63,7 @@ public class Minoriko : Enemy {
         is_Visible = true;
         Stop_Potate_Shoot();
         GetComponent<MoveTwoPoints>().Start_Move(transform.position + new Vector3(0, 48f));
+        GetComponent<Animator>().SetTrigger("FlyTrigger");
     }    
 
 
@@ -74,7 +79,7 @@ public class Minoriko : Enemy {
 
         yield return new WaitForSeconds(7.0f);        
         normal_Potate_Shoot.Shoot();
-        yield return new WaitForSeconds(3.0f);
+        yield return new WaitForSeconds(5.0f);
     }
 
 
@@ -90,14 +95,15 @@ public class Minoriko : Enemy {
     }
 
 
-    //消滅時
+    //敗北時
     public override void Vanish() {
         Play_Vanish_Effect();
         Put_Out_Item();
         StopAllCoroutines();
 
         //無敵化、移動
-        GetComponent<MoveTwoPoints>().Start_Move(new Vector3(transform.position.x, -48f));
+        GetComponent<MoveTwoPoints>().Start_Move(new Vector3(transform.position.x, -36f));
+        GetComponent<Animator>().SetTrigger("DefeatTrigger");
         this.enabled = false;
         gameObject.layer = LayerMask.NameToLayer("InvincibleLayer");
 
@@ -108,6 +114,8 @@ public class Minoriko : Enemy {
 
         //会話できるようにする
         transform.GetChild(2).gameObject.SetActive(true);
+
+        is_Defeated = true;
     }
 
 

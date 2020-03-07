@@ -10,6 +10,10 @@ public class PoisonedEnemy : MonoBehaviour {
     private Color poisoned_Color;
     private bool is_Poisoned = false;
 
+    private readonly int POISON_DAMAGE = 16;
+    private readonly int POISON_DAMAGE_BOSS = 8;
+    private readonly int POISON_DAMAGE_POWER_UP = 8;
+
 
 	// Use this for initialization
 	void Awake () {
@@ -47,12 +51,20 @@ public class PoisonedEnemy : MonoBehaviour {
         Enemy enemy_Controller = GetComponent<Enemy>();
         if (enemy_Controller == null)
             yield break;
-
+        
+        //フラグの変更
         is_Poisoned = true;
-        for (int i = 0; i < 16; i++) {
+
+        //ダメージの計算
+        int damage = POISON_DAMAGE;
+        if (CollectionManager.Instance.Is_Collected("Medicine"))
+            damage += POISON_DAMAGE_POWER_UP;
+        //ダメージを与える
+        for (int i = 0; i < damage; i++) {
             enemy_Controller.Damaged(1, "Poison");
             yield return new WaitForSeconds(0.4f);
         }
+
         is_Poisoned = false;
         if (Compare_Color(_sprite.color, poisoned_Color))
             _sprite.color = default_Color;
@@ -64,11 +76,19 @@ public class PoisonedEnemy : MonoBehaviour {
         if (_boss == null)
             yield break;
 
+        //フラグの変更
         is_Poisoned = true;
-        for (int i = 0; i < 8; i++) {
+
+        //ダメージの計算
+        int damage = POISON_DAMAGE_BOSS;
+        if (CollectionManager.Instance.Is_Collected("Medicine"))
+            damage += POISON_DAMAGE_POWER_UP;
+        //ダメージを与える
+        for (int i = 0; i < damage; i++) {
             _boss.Damaged(1, "Poison");
-            yield return new WaitForSeconds(0.8f);
+            yield return new WaitForSeconds(0.4f);
         }
+
         is_Poisoned = false;
         if (Compare_Color(_sprite.color, poisoned_Color))
             _sprite.color = default_Color;

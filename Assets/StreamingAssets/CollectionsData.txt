@@ -1,8 +1,8 @@
 #Key	#IsCollected
 test	False
 orb	False
-Rumia	True
-Mystia	True
+Rumia	False
+Mystia	False
 Yuka	False
 Shizuha	False
 BigFrog	False
@@ -10,4 +10,4 @@ Nitori	False
 LightFairy	False
 Medicine	False
 Hina	False
-Momizi	True
+Momizi	False

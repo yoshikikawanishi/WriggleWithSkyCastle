@@ -7,10 +7,11 @@ public class Momizi : TalkCharacter {
     [SerializeField] private RopeWay rop_Way;
 
     protected override float Action_Before_Talk() {
-        //ロープウェイが届いたらセリフ変える
+        //ロープウェイが届いたらセリフと表情変える
         if (start_ID == 1) {
             if (rop_Way.transform.position.x > 2200f && rop_Way.transform.position.y > -16f) {
                 Change_Message_Status("MomiziText", 2, 4);
+                GetComponent<Animator>().SetTrigger("GladTrigger");
             }
         }
         return 0;

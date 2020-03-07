@@ -41,12 +41,11 @@ public class PlayerDataButton : MonoBehaviour {
         { "Mystia", "鳥獣伎楽の楽譜\nファンに高値で売れる" },
         { "LightFairy", "b" },
         { "Yuka", "蠢符「リトルバグストーム」\nチャージショットを撃てるようになる" },
-        { "Medicine", "もたせると　どくを　かいふくする\n人形が持っていても意味がない" },
-        { "Shizuha", "d" },
-        { "Minoriko", "e" },
-        { "BigFrog", "f" },
+        { "Medicine", "メディスンの隣にいる小さいやつ\n毒攻撃が強くなる" },
+        { "Shizuha", "秋姉妹万歳！秋姉妹万歳！" },        
+        { "BigFrog", "大蝦蟇の加護\n復活時の初期ライフが増える" },
         //TODO : 雛
-        { "Nitori", "g" },
+        { "Nitori", "のびーるアーム\n攻撃範囲が広がる" },
 
     };
 
