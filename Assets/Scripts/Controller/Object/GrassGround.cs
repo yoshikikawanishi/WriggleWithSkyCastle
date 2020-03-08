@@ -9,12 +9,16 @@ public class GrassGround : MonoBehaviour {
         "PlayerAttackTag",
         "PlayerButterflyAttackTag",
         "PlayerSpiderAttackTag",
-        "PlayerChargeAttackTag",
+        "PlayerChargeAttackTag",        
+    };
+    private List<string> player_Bullet_Tags = new List<string> {
+        "PlayerBulletTag",
     };
 
     private Tilemap _tilemap;
 
     private PlayerAttackCollision player_Attack_Collision;
+    private PlayerKickCollision player_Kick_Collision;
 
     private GameObject leaf_Effect_Prefab;  //消滅時のエフェクト
     private TileBase grass_Tile_Top;        //最上部のタイル
@@ -28,6 +32,7 @@ public class GrassGround : MonoBehaviour {
         //取得
         _tilemap = GetComponent<Tilemap>();
         player_Attack_Collision = GameObject.FindWithTag("PlayerTag").GetComponentInChildren<PlayerAttackCollision>();
+        player_Kick_Collision = GameObject.FindWithTag("PlayerTag").GetComponentInChildren<PlayerKickCollision>();
         grass_Tile_Top =    Resources.Load("GrassGroundTop") as TileBase;
         grass_Tile_Bottom = Resources.Load("GrassGroundBottom") as TileBase;
         //エフェクトのオブジェクトプール
@@ -41,6 +46,7 @@ public class GrassGround : MonoBehaviour {
         if (player_Attack_Collision == null)
             return;
 
+        //近接攻撃を受けた時
         foreach(string tag in player_Attack_Tags) {
             if(collision.tag == tag) {
                 //攻撃の範囲を取得
@@ -48,8 +54,30 @@ public class GrassGround : MonoBehaviour {
                 Vector2 right_Top = player_Attack_Collision.Get_Collision_Range()[1];
                 //範囲内のタイルを消す
                 Search_Tile_And_Delete(left_Bottom, right_Top);
+                return;
             }
         }  
+        //ショットが当たったとき
+        foreach(string tag in player_Bullet_Tags) {
+            if(collision.tag == tag) {
+                //攻撃の範囲を取得
+                Vector2 left_Bottom = collision.transform.position + new Vector3(-6f, -16f);
+                Vector2 right_Top = collision.transform.position + new Vector3(16f, 16f);
+                //範囲内のタイルを消す
+                Search_Tile_And_Delete(left_Bottom, right_Top);
+                return;
+            }
+        }
+        //キックが当たったとき
+        if(collision.tag == "PlayerKickTag") {
+            //攻撃の範囲を取得
+            Vector2 left_Bottom = player_Kick_Collision.Get_Collision_Range()[0];
+            Vector2 right_Top = player_Kick_Collision.Get_Collision_Range()[1];
+            //範囲内のタイルを消す
+            Search_Tile_And_Delete(left_Bottom, right_Top);
+            return;
+        }
+        
     }
 
 

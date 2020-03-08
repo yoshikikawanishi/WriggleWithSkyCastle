@@ -3,7 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Crow : MonoBehaviour {
-        
+
+
+    private void Update() {
+        if(transform.position.y < -180f) {
+            Destroy(gameObject);
+        }
+    }
 
     private void OnBecameVisible() {
         StartCoroutine("Shoot_Cor");         

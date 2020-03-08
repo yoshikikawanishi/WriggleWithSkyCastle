@@ -18,10 +18,10 @@ public class GenBlockFourSide : MonoBehaviour {
         "PlayerChargeBulletTag",
     };
 
-    [SerializeField] private int max_Length = 5;
-    [SerializeField] private float block_Size = 32;
+    [SerializeField] protected int max_Length = 5;
+    [SerializeField] protected float block_Size = 32;
 
-    private GameObject[] blocks;
+    protected GameObject[] blocks;
     private GameObject[] blocks_Copy;
 
     private bool can_Generate = true;
@@ -58,7 +58,7 @@ public class GenBlockFourSide : MonoBehaviour {
 
 
     //攻撃を喰らったときの処理
-    private void Attacked() {                
+    protected virtual void Attacked() {                
         //本体と存在するブロックからブロックを生成する
         for (int i = 0; i < blocks.Length; i++) {
             if (blocks_Copy[i] != null) {                

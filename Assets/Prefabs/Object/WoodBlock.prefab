@@ -59,7 +59,7 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 32, y: 32}
-    newSize: {x: 32, y: 32}
+    newSize: {x: 0.32, y: 0.32}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -86,12 +86,13 @@ MonoBehaviour:
   - PlayerSpiderAttackTag
   - PlayerBulletTag
   - PlayerChargeBulletTag
-  max_Length: 2
+  - PlayerKickTag
+  max_Length: 3
   block_Size: 32
   glass_Sprites:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 21300000, guid: f0aa31233db67da4b82b4844dab4502f, type: 3}
+  - {fileID: 21300002, guid: f0aa31233db67da4b82b4844dab4502f, type: 3}
+  - {fileID: 21300004, guid: f0aa31233db67da4b82b4844dab4502f, type: 3}
 --- !u!212 &212178907274614842
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -127,12 +128,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 8e742691290345842b862fb1a3e2fe4a, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: 21300000, guid: e3d4beb9a9d632a47866c8be20d2472e, type: 3}
+  m_Color: {r: 0.8018868, g: 0.8018868, b: 0.8018868, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 32, y: 32}
+  m_Size: {x: 0.32, y: 0.32}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1

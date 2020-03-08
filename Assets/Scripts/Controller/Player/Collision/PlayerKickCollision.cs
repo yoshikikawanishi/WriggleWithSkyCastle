@@ -73,4 +73,14 @@ public class PlayerKickCollision : MonoBehaviour {
         ObjectPoolManager.Instance.Set_Inactive(effect, 1.5f);
     }
 
+
+    public Vector2[] Get_Collision_Range() {
+        Vector2[] range = new Vector2[2];
+        Vector2 center = new Vector2(transform.position.x + _collider.offset.x, transform.position.y + _collider.offset.y);
+        Vector2 diff = new Vector2(1, 1) * _collider.radius;
+        range[0] = center - diff;
+        range[1] = center + diff;
+        return range;
+    }
+
 }

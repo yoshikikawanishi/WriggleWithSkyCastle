@@ -215,6 +215,7 @@ MonoBehaviour:
   - PlayerButterflyAttackTag
   - PlayerSpiderAttackTag
   - PlayerChargeAttackTag
+  - PlayerKickTag
   repel_Tag_List: []
   life: 1
   damaged_Sprite: {fileID: 0}
