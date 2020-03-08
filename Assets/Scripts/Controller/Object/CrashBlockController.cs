@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class CrashBlockController : MonoBehaviour {
 
+    [SerializeField] private bool is_Pooled = false;
+
     [SerializeField]
     private List<string> destroyer_Tag_List = new List<string> {
         "PlayerBulletTag",
@@ -63,7 +65,10 @@ public class CrashBlockController : MonoBehaviour {
         }
         else if(life == 0) {
             Play_Effect();
-            Destroy(gameObject);
+            if (is_Pooled)
+                gameObject.SetActive(false);
+            else
+                Destroy(gameObject);
         }
     }
 
@@ -81,13 +86,20 @@ public class CrashBlockController : MonoBehaviour {
 
     //消滅エフェクト
     private void Play_Effect() {
-        if(transform.childCount == 0) {
+        if (transform.childCount == 0) {
             return;
         }
         GameObject effect = transform.GetChild(0).gameObject;
-        effect.transform.SetParent(null);
-        effect.SetActive(true);
-        Destroy(effect, 1.0f);
+        if (is_Pooled) {
+            Instantiate(effect);
+            effect.transform.position = transform.position;
+            Destroy(effect, 1.0f);
+        }
+        else {
+            effect.transform.SetParent(null);
+            effect.SetActive(true);
+            Destroy(effect, 1.0f);
+        }
     }
 
 
