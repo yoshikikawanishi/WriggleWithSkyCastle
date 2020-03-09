@@ -133,6 +133,7 @@ MonoBehaviour:
   Delete_Player_Data: 0
   Player_Life: 3
   Player_Power: 0
+  Player_Option: 1
   Delete_Yuka_Data: 0
 --- !u!114 &114752986096458988
 MonoBehaviour:

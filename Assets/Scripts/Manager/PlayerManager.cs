@@ -32,6 +32,7 @@ public class PlayerManager : SingletonMonoBehaviour<PlayerManager> {
         #if UNITY_EDITOR
         Set_Life(DebugModeManager.Instance.Player_Life);
         Set_Power(DebugModeManager.Instance.Player_Power);
+        Set_Option(DebugModeManager.Instance.Player_Option);
         #endif
     }
 

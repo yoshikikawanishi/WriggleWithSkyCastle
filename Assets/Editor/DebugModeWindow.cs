@@ -26,9 +26,12 @@ public class DebugModeWindow : EditorWindow {
 
         obj.Player_Life = EditorGUILayout.IntField("Player_Life", obj.Player_Life);
         obj.Player_Power = EditorGUILayout.IntField("Player_Power", obj.Player_Power);
+        obj.Player_Option = (PlayerManager.Option)EditorGUILayout.EnumPopup("Player_Option", obj.Player_Option);
         EditorGUILayout.Space();
 
         obj.Delete_Yuka_Data = EditorGUILayout.Toggle("Delete_Yuka_Tutorial_Data", obj.Delete_Yuka_Data);
+
+        EditorUtility.SetDirty(obj);
         
     }    
 

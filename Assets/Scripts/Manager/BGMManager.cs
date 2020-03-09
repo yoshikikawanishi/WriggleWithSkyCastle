@@ -2,40 +2,86 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BGMManager : SingletonMonoBehaviour<BGMManager> {
+[System.Serializable]
+public class BGM {
+    public readonly string name;
+    public AudioClip clip;
+    public float volume;
 
-    //書き換えないこと
-    //Inspecterで代入して、外から取得したい
-    public AudioClip stage2_Boss_BGM;
+    public BGM(string name) {
+        this.name = name;
+    }
+}
 
-    private AudioClip now_BGM;
-    private AudioSource audio_Source;
+[System.Serializable]
+public class BGMManager : MonoBehaviour{      
+    
+    public List<BGM> BGM_List = new List<BGM>() {
+        new BGM("Stage1"),
+        new BGM("Stage1_Boss"),
+        new BGM("Stage2"),
+        new BGM("Stage2_Boss"),
+        new BGM("Stage3"),
+    };
+
+    private BGM now_BGM;
+    private AudioSource audio_Source;   
 
 
-	// Use this for initialization
-	void Start () {
-        audio_Source = GetComponent<AudioSource>();        
+    //シングルトン用
+    public static BGMManager Instance;
+    void Awake() {        
+        //シングルトン
+        if (Instance != null) {
+            Destroy(this.gameObject);
+        }
+        else if (Instance == null) {
+            Instance = this;
+        }
+        //シーンを遷移してもオブジェクトを消さない
+        DontDestroyOnLoad(gameObject);
+    }
+
+
+    // Use this for initialization
+    void Start () {
+        audio_Source = GetComponent<AudioSource>();                   
 	}
 	
 
-    public void Change_BGM(AudioClip next_BGM) {
+    //名前でリストからBGMを取得する
+    private BGM Get_BGM(string name) {
+        foreach(BGM b in BGM_List) {
+            if (b.name == name)
+                return b;
+        }
+        Debug.Log(name + " BGM is not Exist");
+        return null;
+    }
+
+
+    /// <summary>
+    /// BGMを変更する
+    /// </summary>
+    /// <param name="name">変更先のBGM名</param>
+    public void Change_BGM(string name) {
+        BGM next_BGM = Get_BGM(name);
+
         if(now_BGM != next_BGM) {
-            audio_Source.clip = next_BGM;
+            audio_Source.clip = next_BGM.clip;
+            audio_Source.volume = next_BGM.volume;
             audio_Source.Play();
             now_BGM = next_BGM;
         }
     }
 
-    public void Change_BGM(AudioClip next_BGM, float volume) {
-        if (now_BGM != next_BGM) {
-            audio_Source.PlayOneShot(next_BGM);
-            audio_Source.volume = volume;
-            now_BGM = next_BGM;
-        }
-    }
-
+   
+    /// <summary>
+    /// BGMを止める
+    /// </summary>
     public void Stop_BGM() {
         audio_Source.Stop();
+        now_BGM = null;
     }
     
 }

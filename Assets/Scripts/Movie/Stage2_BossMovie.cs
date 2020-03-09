@@ -57,7 +57,7 @@ public class Stage2_BossMovie : MonoBehaviour {
 
         //戦闘開始
         nemuno.GetComponent<NemunoController>().Start_Battle();
-        BGMManager.Instance.Change_BGM(BGMManager.Instance.stage2_Boss_BGM);
+        BGMManager.Instance.Change_BGM("Stage2_Boss");
     }
 
 

@@ -44,7 +44,7 @@ public class PlayerDataButton : MonoBehaviour {
         { "Medicine", "メディスンの隣にいる小さいやつ\n毒攻撃が強くなる" },
         { "Shizuha", "秋姉妹万歳！秋姉妹万歳！" },        
         { "BigFrog", "大蝦蟇の加護\n復活時の初期ライフが増える" },
-        //TODO : 雛
+        { "Hina", "お札\n敵を倒した時お札が飛び散る" },
         { "Nitori", "のびーるアーム\n攻撃範囲が広がる" },
 
     };
