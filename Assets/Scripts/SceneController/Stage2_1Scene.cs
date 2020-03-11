@@ -19,7 +19,7 @@ public class Stage2_1Scene : MonoBehaviour {
         //初回時
         if (SceneManagement.Instance.Is_First_Visit()) {
             //フェードイン
-            FadeInOut.Instance.Start_Fade_In(new Color(1, 1, 1), 0.015f);
+            FadeInOut.Instance.Start_Fade_In(new Color(1, 1, 1), 0.008f);
             
             //自機をカブトムシに乗せる            
             PlayerGettingOnBeetle player_Ride_Beetle = player.GetComponent<PlayerGettingOnBeetle>();

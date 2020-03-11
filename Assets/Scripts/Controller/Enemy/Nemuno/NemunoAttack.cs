@@ -13,7 +13,8 @@ public class NemunoAttack : MonoBehaviour {
     private MoveTwoPoints _move_Two_Points;
     //自機
     private GameObject player;
-
+    //カメラ
+    private CameraShake camera_Shake;
 
     private enum AttackKind {
         close_Slash,
@@ -36,7 +37,8 @@ public class NemunoAttack : MonoBehaviour {
 
         _barrier.gameObject.SetActive(false);
 
-        player = GameObject.FindWithTag("PlayerTag");        
+        player = GameObject.FindWithTag("PlayerTag");
+        camera_Shake = GameObject.FindWithTag("MainCamera").GetComponent<CameraShake>();
     }
 
 
@@ -310,9 +312,11 @@ public class NemunoAttack : MonoBehaviour {
         if (Mathf.Abs(x) > 200f)
             x = x.CompareTo(0) * 200f;
 
+        _sound.Play_Jump_Sound(0.04f);
         _move_Two_Points.Start_Move(new Vector3(x, transform.position.y), 0);
         yield return new WaitUntil(_move_Two_Points.End_Move);
 
+        _sound.Play_Land_Sound();
         _controller.Change_Land_Paramter();
         _controller.Change_Animation("IdleBool");
     }
@@ -325,11 +329,13 @@ public class NemunoAttack : MonoBehaviour {
 
         _controller.Change_Fly_Parameter();
         _controller.Change_Animation("BackJumpBool");
-        yield return new WaitForSeconds(0.2f);        
+        yield return new WaitForSeconds(0.2f);
 
+        _sound.Play_Jump_Sound(0.04f);
         _move_Two_Points.Start_Move(new Vector3(160f * direction, transform.position.y), 0);
         yield return new WaitUntil(_move_Two_Points.End_Move);
 
+        _sound.Play_Land_Sound();
         _controller.Change_Land_Paramter();
         _controller.Change_Animation("IdleBool");
     }
@@ -342,11 +348,14 @@ public class NemunoAttack : MonoBehaviour {
         _controller.Change_Fly_Parameter();
         yield return new WaitForSeconds(0.2f);
 
+        _sound.Play_Jump_Sound(0.08f);
         _move_Two_Points.Start_Move(new Vector3(190f * -direction, -80f), 5);
         yield return new WaitUntil(_move_Two_Points.End_Move);
 
+        _sound.Play_Land_Sound();
         _controller.Change_Land_Paramter();
         _controller.Change_Animation("IdleBool");
+        camera_Shake.Shake(0.3f, new Vector2(1f, 1f), true);
     }
 
     //自機の隣にジャンプする
@@ -466,7 +475,8 @@ public class NemunoAttack : MonoBehaviour {
         //歩く
         int direction = (transform.position.x - player.transform.position.x).CompareTo(0);
         transform.localScale = new Vector3(direction, 1, 1);
-        
+
+        UsualSoundManager.Instance.Play_Shoot_Sound();
         _controller.Change_Animation("DashBool");
         _move_Two_Points.Start_Move(new Vector3(transform.position.x - walk_Length * direction, transform.position.y), 1);
         yield return new WaitForSeconds(2.0f);
@@ -484,7 +494,7 @@ public class NemunoAttack : MonoBehaviour {
         _controller.Change_Fly_Parameter();
         _move_Two_Points.Start_Move(transform.position + new Vector3(0, 80f), 2);
         yield return new WaitUntil(_move_Two_Points.End_Move);
-        yield return null;
+        //yield return null;
         _controller.Change_Fly_Parameter();
         //ショット
         _controller.Change_Animation("SlashTrigger");
