@@ -16,6 +16,9 @@ public class DebugModeManager : SingletonMonoBehaviour<DebugModeManager> {
     //テストプレイ時のシーンを初回訪問にするかどうか    
     public bool Is_First_Visit_Scene_In_Testplay;
 
+    //BGM鳴らすかどうか
+    public bool Is_Delete_BGM;
+
     //自機のデータを消す        
     public bool Delete_Player_Data;
     //自機の初期データ    

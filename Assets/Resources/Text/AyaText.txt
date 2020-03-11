@@ -1,0 +1,3 @@
+#ID	#NAME	#ICON	#MESSAGE
+1	早鬼	non	あああ
+2	文	non	いいい

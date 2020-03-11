@@ -151,11 +151,11 @@ MonoBehaviour:
   BGM_List:
   - clip: {fileID: 8300000, guid: 45b539613836e2341be5cdd6cdf47319, type: 3}
     volume: 0.3
-  - clip: {fileID: 0}
-    volume: 0
+  - clip: {fileID: 8300000, guid: 996ba4caf6ba3774690d553ea0782233, type: 3}
+    volume: 0.3
   - clip: {fileID: 0}
     volume: 0
   - clip: {fileID: 8300000, guid: 7d6f2f88ccf0276429c53cdf6bc8b261, type: 3}
-    volume: 0.3
+    volume: 0.2
   - clip: {fileID: 0}
     volume: 0

@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class MantisBullet : MonoBehaviour {
 
-    private List<string> refrect_Obj_Tags = new List<string> {
-        "EnemyTag",
+    private List<string> refrect_Obj_Tags = new List<string> {        
         "GroundTag",
         "SandbackTag",
         "SandbackGroundTag",
         "DamagedGroundTag",
     };
 
+    private GameObject main_Camera;
     private Rigidbody2D _rigid;
 
     private bool is_First_Frame = true;
@@ -21,6 +21,7 @@ public class MantisBullet : MonoBehaviour {
 
     private void Awake() {
         //取得
+        main_Camera = GameObject.FindWithTag("MainCamera");
         _rigid = GetComponent<Rigidbody2D>();
     }
 
@@ -38,6 +39,9 @@ public class MantisBullet : MonoBehaviour {
             is_First_Frame = false;
         }
         _rigid.AddForce(new Vector2(-start_Direction * 1000, 0));
+        //消す
+        if ((main_Camera.transform.position.x - transform.position.x) * start_Direction > 260f)
+            gameObject.SetActive(false);
     }
 
 

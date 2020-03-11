@@ -25,6 +25,8 @@ public class PlayerManager : SingletonMonoBehaviour<PlayerManager> {
     private int MAX_STOCK = 9;
     private int MAX_POWER = 128;
     private int MAX_SCORE = 9999999;
+    //スコア50000点おきに残機アップ
+    private int STOCK_UP_SCORE = 50000;
 
 
     private new void Awake() {
@@ -60,7 +62,7 @@ public class PlayerManager : SingletonMonoBehaviour<PlayerManager> {
     }
     
     public void Add_Stock() {
-        if (stock < MAX_SCORE) {
+        if (stock < MAX_SCORE) {            
             stock++;
         }
     }
@@ -72,6 +74,10 @@ public class PlayerManager : SingletonMonoBehaviour<PlayerManager> {
     }
 
     public void Add_Score(int value) {
+        //スコア2万点おきに残機アップ
+        if ((score + value) / STOCK_UP_SCORE > score / STOCK_UP_SCORE)
+            Add_Stock();
+
         score += value;
         if (score > MAX_SCORE) {
             score = MAX_SCORE;
@@ -118,6 +124,7 @@ public class PlayerManager : SingletonMonoBehaviour<PlayerManager> {
         if(stock > MAX_STOCK) {
             return;
         }
+
         this.stock = stock;       
     }  
     
@@ -140,6 +147,10 @@ public class PlayerManager : SingletonMonoBehaviour<PlayerManager> {
             score = 0;
             return;
         }
+        //スコア2万点おきに残機アップ
+        if (score / STOCK_UP_SCORE > this.score / STOCK_UP_SCORE)
+            Add_Stock();
+
         this.score = score;
     }
 

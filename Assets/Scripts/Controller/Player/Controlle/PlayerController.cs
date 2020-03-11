@@ -179,9 +179,14 @@ public class PlayerController : MonoBehaviour {
             attack_Frame_Count = 0;
             start_Attack_Frame_Count = false;
         }
-        
+       
         //チャージアタック溜めるかどうか
         if (start_Charge_Attack_Frame_Count) {
+            //収集アイテムを集めていないときは不可
+            if (!CollectionManager.Instance.Is_Collected("Raiko")) {
+                start_Charge_Attack_Frame_Count = false;
+                return;
+            }
             charge_Attack_Frame_Count++;
             //通常攻撃後10フレーム間攻撃ボタン押していたらチャージ開始
             if(charge_Attack_Frame_Count > 10) {                      

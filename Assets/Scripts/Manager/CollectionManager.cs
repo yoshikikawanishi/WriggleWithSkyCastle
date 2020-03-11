@@ -75,7 +75,9 @@ public class CollectionManager : SingletonMonoBehaviour<CollectionManager> {
     public bool Is_Collected(string collection_Name) {
         if (collections_Data.ContainsKey(collection_Name)) {
             return collections_Data[collection_Name];
-        }        
+        }
+
+        //Debug.Log(collection_Name + " Collection is not Exist");
         return false;
     }
     

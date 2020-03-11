@@ -31,14 +31,14 @@ public class PlayerDataButton : MonoBehaviour {
             else
                 Debug.Log("There is no item comment");
         }
-    }
+    }    
 
 
 
     /*---------------------------------------アイテムとそのコメント----------------------------------------*/
     private Dictionary<string, string> item_Dic = new Dictionary<string, string>() {
         { "Rumia", "ルーミアのリボン" },
-        { "Mystia", "鳥獣伎楽の楽譜\nファンに高値で売れる" },
+        { "Mystia", "のどぐすり\nくたミス！" },
         { "LightFairy", "b" },
         { "Yuka", "蠢符「リトルバグストーム」\nチャージショットを撃てるようになる" },
         { "Medicine", "メディスンの隣にいる小さいやつ\n毒攻撃が強くなる" },
@@ -46,6 +46,8 @@ public class PlayerDataButton : MonoBehaviour {
         { "BigFrog", "大蝦蟇の加護\n復活時の初期ライフが増える" },
         { "Hina", "お札\n敵を倒した時お札が飛び散る" },
         { "Nitori", "のびーるアーム\n攻撃範囲が広がる" },
+        { "Momizi", "" },
+        { "Aya", "\nキックの速度が上昇する" }
 
     };
 

@@ -16,11 +16,15 @@ public class DebugModeWindow : EditorWindow {
 
         EditorGUILayout.Space();
 
-        obj.Delete_Collection_Data = EditorGUILayout.Toggle("Delete_Collection", obj.Delete_Collection_Data);        
+        obj.Delete_Collection_Data = EditorGUILayout.Toggle("Delete_Collection", obj.Delete_Collection_Data);
+        EditorGUILayout.Space();
 
         obj.Delete_Visited_Scene_Date = EditorGUILayout.Toggle("Delete_Visited_Scene", obj.Delete_Visited_Scene_Date);        
+        obj.Is_First_Visit_Scene_In_Testplay = EditorGUILayout.Toggle("Play_Editor_In_First_Visit", obj.Is_First_Visit_Scene_In_Testplay);
+        EditorGUILayout.Space();
 
-        obj.Is_First_Visit_Scene_In_Testplay = EditorGUILayout.Toggle("Play_Editor_In_First_Visit", obj.Is_First_Visit_Scene_In_Testplay);        
+        obj.Is_Delete_BGM = !EditorGUILayout.Toggle("BGM", obj.Is_Delete_BGM);
+        EditorGUILayout.Space();
 
         obj.Delete_Player_Data = EditorGUILayout.Toggle("Delete_Player_Data", obj.Delete_Player_Data);        
 

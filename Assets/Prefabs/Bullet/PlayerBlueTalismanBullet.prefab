@@ -116,6 +116,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   deleted_Obj_Tag:
   - EnemyTag
+  - GroundTag
+  - SandbackGroundTag
+  - DamagedGroundTag
   is_Delete_Invisible: 1
 --- !u!212 &212296933041644598
 SpriteRenderer:

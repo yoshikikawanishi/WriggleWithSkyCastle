@@ -53,9 +53,9 @@ public class PlayerAttack : MonoBehaviour {
             //オプションによって変える
             switch (player_Manager.Get_Option()) {
                 case PlayerManager.Option.none:     Set_Attack_Status(0.18f, 0.17f, true); break;
-                case PlayerManager.Option.bee:      Set_Attack_Status(0.10f, 0.08f, true); break;
+                case PlayerManager.Option.bee:      Set_Attack_Status(0.07f, 0.04f, true); break;
                 case PlayerManager.Option.butterfly: Set_Attack_Status(0.18f, 0.13f, false); break;
-                case PlayerManager.Option.mantis:   Set_Attack_Status(0.24f, 1.0f, true); break;
+                case PlayerManager.Option.mantis:   Set_Attack_Status(0.24f, 0.7f, true); break;
                 case PlayerManager.Option.spider:   Set_Attack_Status(0.18f, 0.17f, true); break;
             }
             StartCoroutine("Attack_Cor");
@@ -253,19 +253,30 @@ public class PlayerAttack : MonoBehaviour {
         return false;
     }
 
-    //パワーによって速度を変える
+    //速度を変える
     private float Kick_Velocity() {
+        //パワーによって変える
         int power = PlayerManager.Instance.Get_Power();
+        float speed = 180f;
+
         if (power < 16) {
-            return 180f; 
+            speed = 180f;
         }
-        else if(power < 32) {
-            return 195f;
+        else if (power < 32) {
+            speed = 195f;
         }
-        else if(power < 64) {
-            return 210f;
+        else if (power < 64) {
+            speed = 210f;
         }
-        return 225f;
+        else {
+            speed = 225f;
+        }
+
+        //文のアイテムを持っていたら上げる
+        if (CollectionManager.Instance.Is_Collected("Aya"))
+            speed *= 1.5f;
+
+        return speed;
     }
     #endregion
 }

@@ -134,6 +134,7 @@ public class BossEnemy : MonoBehaviour {
 
         var converge_Effect = Instantiate(clear_Converge_Effect_Prefab);
         converge_Effect.transform.position = transform.position;
+        BackGroundEffector.Instance.Start_Change_Color(new Color(0, 0, 0), 1f);
 
         Time.timeScale = 0.15f;
         yield return new WaitForSeconds(0.1f);
@@ -141,6 +142,7 @@ public class BossEnemy : MonoBehaviour {
 
         var effect = Instantiate(clear_Effect_Prefab);
         effect.transform.position = transform.position;
+        _put_Out_Item.Put_Out_Item(power_Value * 2, score_Value * 2);
 
         _camera_Shake.Shake(0.8f, new Vector2(1.2f, 1.2f), true);
 

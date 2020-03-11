@@ -45,8 +45,14 @@ public class BGMManager : MonoBehaviour{
 
     // Use this for initialization
     void Start () {
-        audio_Source = GetComponent<AudioSource>();                   
-	}
+        audio_Source = GetComponent<AudioSource>();
+
+        #if UNITY_EDITOR
+        if (DebugModeManager.Instance.Is_Delete_BGM) {
+            audio_Source.enabled = false;
+        }
+        #endif
+    }
 	
 
     //名前でリストからBGMを取得する
@@ -65,7 +71,9 @@ public class BGMManager : MonoBehaviour{
     /// </summary>
     /// <param name="name">変更先のBGM名</param>
     public void Change_BGM(string name) {
-        BGM next_BGM = Get_BGM(name);
+        StopCoroutine("Fade_Out_Cor");
+
+        BGM next_BGM = Get_BGM(name);        
 
         if(now_BGM != next_BGM) {
             audio_Source.clip = next_BGM.clip;
@@ -82,6 +90,22 @@ public class BGMManager : MonoBehaviour{
     public void Stop_BGM() {
         audio_Source.Stop();
         now_BGM = null;
+    }
+
+
+    /// <summary>
+    /// BGMのフェードアウト
+    /// </summary>
+    public void Fade_Out() {
+        StartCoroutine("Fade_Out_Cor");
+    }
+
+    private IEnumerator Fade_Out_Cor() {
+        while(audio_Source.volume > 0) {
+            audio_Source.volume -= 0.005f;
+            yield return null;
+        }
+        audio_Source.Stop();
     }
     
 }

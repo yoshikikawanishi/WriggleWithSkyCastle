@@ -46,9 +46,10 @@ public class PlayerChargeBulletSmall : MonoBehaviour {
         else
             bullets[1].transform.Rotate(new Vector3(0, 0, -70f));
         //発射
-        for (int i = 0; i < 2; i++)
+        for (int i = 0; i < 2; i++) {
             bullets[i].GetComponent<Rigidbody2D>().velocity = bullets[i].transform.right * 50f;
-
+            ObjectPoolManager.Instance.Set_Inactive(bullets[i], 8.0f);
+        }
         gameObject.SetActive(false);
     }
 }

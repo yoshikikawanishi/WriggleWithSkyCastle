@@ -36,7 +36,7 @@ public class PlayerChargeAttack : MonoBehaviour {
 
 
     //溜め攻撃用溜め、chargePhaseとchargeTimeを変える
-    public void Charge() {
+    public void Charge() {        
         Change_Charge_Span();
         //0段階目
         if (charge_Time < charge_Span[0]) {

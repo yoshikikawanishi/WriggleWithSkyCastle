@@ -35,6 +35,8 @@ public class Stage1_BossMovie : MonoBehaviour {
         PauseManager.Instance.Set_Is_Pausable(false);
         is_First_Visit = SceneManagement.Instance.Is_First_Visit();
 
+        BGMManager.Instance.Stop_BGM();
+
         //フェードイン
         FadeInOut.Instance.Start_Fade_In(new Color(0, 0, 0), 0.05f);
         yield return new WaitForSeconds(1.0f);
@@ -62,6 +64,7 @@ public class Stage1_BossMovie : MonoBehaviour {
 
         //戦闘開始
         larva.GetComponent<LarvaController>().Start_Battle();
+        BGMManager.Instance.Change_BGM("Stage1_Boss");
     }
 
 
@@ -78,6 +81,7 @@ public class Stage1_BossMovie : MonoBehaviour {
         yield return new WaitUntil(_message.End_Message);
 
         FadeInOut.Instance.Start_Fade_Out(new Color(0, 0, 0), 0.01f);
+        BGMManager.Instance.Fade_Out();
         yield return new WaitForSeconds(2.5f);
 
         SceneManager.LoadScene("PlayGuide2Scene");
