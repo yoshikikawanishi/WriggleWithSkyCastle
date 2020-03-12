@@ -129,9 +129,10 @@ public class BossEnemy : MonoBehaviour {
     }
 
     private IEnumerator Clear_Cor() {
-        
+        //無敵化
         gameObject.layer = LayerMask.NameToLayer("InvincibleLayer");
 
+        //時間ゆっくりに、エフェクト出す
         var converge_Effect = Instantiate(clear_Converge_Effect_Prefab);
         converge_Effect.transform.position = transform.position;
         BackGroundEffector.Instance.Start_Change_Color(new Color(0, 0, 0), 1f);
@@ -140,6 +141,9 @@ public class BossEnemy : MonoBehaviour {
         yield return new WaitForSeconds(0.1f);
         Time.timeScale = 1;
 
+        BackGroundEffector.Instance.Change_Color_Default(1f);
+
+        //撃破エフェクト
         var effect = Instantiate(clear_Effect_Prefab);
         effect.transform.position = transform.position;
         _put_Out_Item.Put_Out_Item(power_Value * 2, score_Value * 2);

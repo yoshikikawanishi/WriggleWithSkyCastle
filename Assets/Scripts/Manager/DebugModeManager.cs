@@ -27,6 +27,8 @@ public class DebugModeManager : SingletonMonoBehaviour<DebugModeManager> {
     public PlayerManager.Option Player_Option = PlayerManager.Option.none;
 
     //幽香戦のデータを消す            
-    public bool Delete_Yuka_Data;               
+    public bool Delete_Yuka_Data;
+    //ルーミアのデータ消す
+    public bool Delete_Rumia_Data;
     
 }

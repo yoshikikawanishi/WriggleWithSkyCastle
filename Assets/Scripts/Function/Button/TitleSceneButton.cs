@@ -51,7 +51,7 @@ public class TitleSceneButton : MonoBehaviour {
 
         SceneManagement.Instance.Delete_Visit_Scene();  //シーン進行度
         DataManager.Instance.Initialize_Player_Data();  //自機のデータ
-        PlayerPrefs.DeleteKey("YukaTutorial");          //２面チュートリアル
+        PlayerPrefs.DeleteAll();
 
         DataManager.Instance.Load_Player_Data();
     }

@@ -6,6 +6,7 @@ public class BackGroundEffector : SingletonMonoBehaviour<BackGroundEffector> {
 
     [SerializeField] private GameObject back_Ground;
     private SpriteRenderer back_Ground_Sprite;
+    private Color default_Color;
 
     private new void Awake() {
         if(back_Ground == null) {
@@ -13,6 +14,7 @@ public class BackGroundEffector : SingletonMonoBehaviour<BackGroundEffector> {
             return;
         }
         back_Ground_Sprite = back_Ground.GetComponent<SpriteRenderer>();
+        default_Color = back_Ground_Sprite.color;
     }
     
 
@@ -28,6 +30,15 @@ public class BackGroundEffector : SingletonMonoBehaviour<BackGroundEffector> {
         }
         StopCoroutine(Change_Color_Cor(new Color(), 0));
         StartCoroutine(Change_Color_Cor(next_Color, change_Speed_Rate));
+    }
+
+
+    /// <summary>
+    /// 背景をシーン開始時の色に戻す
+    /// </summary>
+    /// <param name="change_Speed_Rate"></param>
+    public void Change_Color_Default(float change_Speed_Rate) {
+        Start_Change_Color(default_Color, change_Speed_Rate);
     }
 
 

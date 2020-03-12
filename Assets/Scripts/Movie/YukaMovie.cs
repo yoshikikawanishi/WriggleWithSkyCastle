@@ -15,14 +15,7 @@ public class YukaMovie : SingletonMonoBehaviour<YukaMovie> {
 	void Start () {
         //取得
         _message = GetComponent<MessageDisplay>();
-        yuka = GameObject.Find("Yuka");
-
-        #if UNITY_EDITOR
-        if (DebugModeManager.Instance.Delete_Yuka_Data) {
-            Debug.Log("<color=#ff0000ff>Delete Yuka Tutorial Data </color>");
-            PlayerPrefs.DeleteKey("YukaTutorial");
-        }
-        #endif
+        yuka = GameObject.Find("Yuka");       
     }
 	
 

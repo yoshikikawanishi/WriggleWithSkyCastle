@@ -29,6 +29,9 @@ public class TextFileReader  {
     public void Read_Text_File(string file_Name) {
         TextAsset textasset = new TextAsset();
         textasset = Resources.Load("Text/" + file_Name, typeof(TextAsset)) as TextAsset; //Resourcesフォルダから対象テキストを取得
+        if(textasset == null) {
+            Debug.Log(file_Name + " is not Exist");
+        }
         string TextLines = textasset.text; //テキスト全体をstring型で入れる変数を用意して入れる
 
         //Splitで一行づつを代入した1次配列を作成

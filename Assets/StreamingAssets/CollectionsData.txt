@@ -1,6 +1,6 @@
 #Key	#IsCollected
 Rumia	False
-Mystia	False
+Mystia	True
 LightFairy	False
 Yuka	False
 Medicine	False

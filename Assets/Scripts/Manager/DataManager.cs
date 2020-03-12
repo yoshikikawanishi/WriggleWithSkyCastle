@@ -12,6 +12,14 @@ public class DataManager : SingletonMonoBehaviour<DataManager> {
             Initialize_Player_Data();
             Debug.Log("<color=#ff0000ff>Delete Player Data </color>");
         }
+        if (DebugModeManager.Instance.Delete_Yuka_Data) {
+            Debug.Log("<color=#ff0000ff>Delete Yuka Tutorial Data </color>");
+            PlayerPrefs.DeleteKey("YukaTutorial");
+        }
+        if (DebugModeManager.Instance.Delete_Rumia_Data) {
+            Debug.Log("<color=#ff0000ff>Delete Rumia Tutorial Data </color>");
+            PlayerPrefs.DeleteKey("Rumia");
+        }
         #endif
     }
 
