@@ -379,8 +379,8 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 243373875129941320, guid: 99e0dad0e338c1f43a4b809f4ca302ab,
     type: 2}
   m_audioClip: {fileID: 8300000, guid: 815d9285b0ef2a44cbf01238ea5a7ea1, type: 3}
-  m_PlayOnAwake: 0
-  m_Volume: 0.2
+  m_PlayOnAwake: 1
+  m_Volume: 0.15
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -892,6 +892,9 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  is_Change_Sorting_Order: 0
+  sorting_Order: -5
+  sorting_Order_Diff: 0
   other_Param: 1
   num: 12
   inter_Angle_Deg: 20

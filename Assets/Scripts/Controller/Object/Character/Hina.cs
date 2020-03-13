@@ -18,6 +18,14 @@ public class Hina : TalkCharacter {
         base.Start();
         //取得
         player = GameObject.FindWithTag("PlayerTag");
+
+        //にとりと雛の収集アイテムを取得済みなら移動
+        CollectionManager c = CollectionManager.Instance;
+        if (c.Is_Collected("Nitori") && c.Is_Collected("Hina")) {
+            transform.position = new Vector3(5350f, -36f);
+            gameObject.layer = LayerMask.NameToLayer("InvincibleLayer");
+            this.enabled = false;
+        }
     }
 
     private void Update() {

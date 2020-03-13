@@ -4,6 +4,19 @@ using UnityEngine;
 
 public class Nitori : TalkCharacter {
 
+    new void Start() {
+        base.Start();
+
+        //にとりと雛のアイテムを収集済みなら移動
+        CollectionManager c = CollectionManager.Instance;
+        if(c.Is_Collected("Nitori") && c.Is_Collected("Hina")) {
+            transform.position = new Vector3(5390f, -36f);
+            GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
+            Change_Message_Status("NitoriText", 4, 4);
+        }
+    }
+
+
     protected override float Action_Before_Talk() {        
         //点滅して登場
         if(start_ID == 2) {

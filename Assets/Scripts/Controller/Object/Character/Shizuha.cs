@@ -6,6 +6,16 @@ public class Shizuha : TalkCharacter {
 
     [SerializeField] private Minoriko minoriko;
 
+    private new void Start() {
+        base.Start();
+        //アイテム取得済みの時
+        if (CollectionManager.Instance.Is_Collected("Shizuha")) {
+            Change_Message_Status("ShizuhaText", 7, 11);
+            transform.localScale = new Vector3(-1, 1, 1);
+            transform.position = new Vector3(4168f, transform.position.y);
+        }
+    }
+
     protected override float Action_Before_Talk() {
         if(minoriko.is_Defeated && start_ID == 1) {
             Change_Message_Status("ShizuhaText", 3, 3);

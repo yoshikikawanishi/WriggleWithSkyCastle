@@ -23,7 +23,7 @@ public class DebugModeWindow : EditorWindow {
         obj.Is_First_Visit_Scene_In_Testplay = EditorGUILayout.Toggle("Play_Editor_In_First_Visit", obj.Is_First_Visit_Scene_In_Testplay);
         EditorGUILayout.Space();
 
-        obj.Is_Delete_BGM = !EditorGUILayout.Toggle("BGM", obj.Is_Delete_BGM);
+        obj.Is_Delete_BGM = EditorGUILayout.Toggle("Delete_BGM", obj.Is_Delete_BGM);
         EditorGUILayout.Space();
 
         obj.Delete_Player_Data = EditorGUILayout.Toggle("Delete_Player_Data", obj.Delete_Player_Data);        

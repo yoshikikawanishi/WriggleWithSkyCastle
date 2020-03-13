@@ -24,7 +24,7 @@ public class GrassGround : MonoBehaviour {
     private TileBase grass_Tile_Top;        //最上部のタイル
     private TileBase grass_Tile_Bottom;     //最下部のタイル
 
-    readonly private Vector2Int CELL_SIZE = new Vector2Int(32, 32);
+    [SerializeField] private Vector2Int CELL_SIZE = new Vector2Int(32, 32);
 
 
 	// Use this for initialization

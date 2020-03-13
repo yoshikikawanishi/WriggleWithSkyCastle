@@ -8,6 +8,9 @@ public class BGM {
     public AudioClip clip;
     public float volume;
 
+    public bool have_Intoro = false;
+    public AudioClip intoro_Clip;
+
     public BGM(string name) {
         this.name = name;
     }
@@ -48,9 +51,10 @@ public class BGMManager : MonoBehaviour{
         audio_Source = GetComponent<AudioSource>();
 
         #if UNITY_EDITOR
-        if (DebugModeManager.Instance.Is_Delete_BGM) {
+        if (DebugModeManager.Instance.Is_Delete_BGM) 
             audio_Source.enabled = false;
-        }
+        else
+           audio_Source.enabled = true;
         #endif
     }
 	
@@ -74,12 +78,15 @@ public class BGMManager : MonoBehaviour{
         StopCoroutine("Fade_Out_Cor");
 
         BGM next_BGM = Get_BGM(name);        
+        if (now_BGM == next_BGM) 
+            return;        
+        now_BGM = next_BGM;
 
-        if(now_BGM != next_BGM) {
-            audio_Source.clip = next_BGM.clip;
-            audio_Source.volume = next_BGM.volume;
-            audio_Source.Play();
-            now_BGM = next_BGM;
+        if (next_BGM.have_Intoro) {
+            StartCoroutine("Play_BGM_Intoro_Cor", next_BGM);
+        }
+        else {            
+            Play_BGM(next_BGM);
         }
     }
 
@@ -108,4 +115,33 @@ public class BGMManager : MonoBehaviour{
         audio_Source.Stop();
     }
     
+
+    //BGMを再生する
+    private void Play_BGM(BGM next_BGM) {        
+        audio_Source.volume = next_BGM.volume;  //音量     
+        audio_Source.clip = next_BGM.clip;      //クリップ    
+        audio_Source.loop = true;               //ループ再生
+        audio_Source.Play();        
+    }
+
+
+    //イントロを流す、終了後本体をループ再生する
+    private IEnumerator Play_BGM_Intoro_Cor(BGM next_BGM) {
+        //イントロ流す
+        audio_Source.volume = next_BGM.volume;
+        audio_Source.clip = next_BGM.intoro_Clip;
+        audio_Source.loop = false;
+        audio_Source.Play();
+
+        //イントロ終了まで待つ
+        while (audio_Source.isPlaying) {            
+            yield return null;
+            if (now_BGM != next_BGM) {       //BGMが切り替わったとき終了する
+                yield break;
+            }
+        }
+
+        //本体をループ再生
+        Play_BGM(next_BGM);
+    }
 }

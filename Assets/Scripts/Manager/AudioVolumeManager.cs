@@ -20,11 +20,13 @@ public class AudioVolumeManager : SingletonMonoBehaviour<AudioVolumeManager> {
 
     private new void Awake() {
         base.Awake();
-        FILEPATH = Application.dataPath + @"\StreamingAssets\AudioSetting.txt";
+        FILEPATH = Application.dataPath + @"\StreamingAssets\AudioSetting.txt";               
+    }
+
+    private void Start() {
         //初めにデータを読み込む
         Load_Volume_Setting();
     }
-
 
     //ボリュームを上げる
     public void Increase_Volume(AudioGroup group) {

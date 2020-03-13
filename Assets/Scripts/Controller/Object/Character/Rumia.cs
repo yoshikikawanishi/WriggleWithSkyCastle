@@ -20,6 +20,8 @@ public class Rumia : TalkCharacter {
         if(PlayerPrefs.GetInt("Rumia") == 2) {
             Change_Status_With_Mystia();
         }
+
+        mark_Up_Baloon.transform.SetParent(null);
     }
 
 

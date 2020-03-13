@@ -18,15 +18,15 @@ public class Stage3_2Scene : MonoBehaviour {
         if (SceneManagement.Instance.Is_First_Visit()) {
             FadeInOut.Instance.Start_Fade_In(new Color(0, 0, 0), 0.01f);
         }
-
-	}
+        BGMManager.Instance.Change_BGM("Stage3");
+    }
 	
 	// Update is called once per frame
 	void Update () {
         if (player == null)
             return;
 
-        if (player.transform.position.x > 5240f) {
+        if (player.transform.position.x > 6000f) {
             if (!is_Passed_Final_Point) {
                 is_Passed_Final_Point = true;
                 BackGroundEffector.Instance.Start_Change_Color(new Color(0.7f, 0.7f, 0.7f), 0.02f);

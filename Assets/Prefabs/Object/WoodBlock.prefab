@@ -87,6 +87,7 @@ MonoBehaviour:
   - PlayerBulletTag
   - PlayerChargeBulletTag
   - PlayerKickTag
+  - EnemyBulletTag
   max_Length: 3
   block_Size: 32
   glass_Sprites:

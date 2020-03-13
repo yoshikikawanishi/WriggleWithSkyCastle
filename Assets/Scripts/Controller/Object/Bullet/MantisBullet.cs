@@ -5,6 +5,7 @@ using UnityEngine;
 public class MantisBullet : MonoBehaviour {
 
     private List<string> refrect_Obj_Tags = new List<string> {        
+        "EnemyTag",
         "GroundTag",
         "SandbackTag",
         "SandbackGroundTag",

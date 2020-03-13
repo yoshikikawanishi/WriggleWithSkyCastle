@@ -31,7 +31,15 @@ public class Minoriko : Enemy {
         player = GameObject.FindWithTag("PlayerTag");
         //初期設定
         normal_Shoot_Time = NORMAL_SHOOT_SPAN - 1.5f;
+        //静葉アイテム取得済みの時
+        if (CollectionManager.Instance.Is_Collected("Shizuha")) {
+            transform.position = new Vector3(4200f, -68f);
+            this.enabled = false;
+            gameObject.layer = LayerMask.NameToLayer("InvincibleLayer");
+            GetComponent<Animator>().SetTrigger("DefeatTrigger");
+        }
 	}
+
 	
 	// Update is called once per frame
 	void Update () {

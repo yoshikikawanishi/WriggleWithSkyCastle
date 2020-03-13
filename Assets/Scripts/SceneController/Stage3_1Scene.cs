@@ -10,6 +10,7 @@ public class Stage3_1Scene : MonoBehaviour {
         if (SceneManagement.Instance.Is_First_Visit()) {
             FadeInOut.Instance.Start_Fade_In(new Color(0, 0, 0), 0.01f);
         }
+        BGMManager.Instance.Change_BGM("Stage3");
 	}
 	
 }

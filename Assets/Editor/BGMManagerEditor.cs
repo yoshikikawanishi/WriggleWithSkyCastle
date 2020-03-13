@@ -9,8 +9,18 @@ public class BGMManagerEditor : Editor {
     public override void OnInspectorGUI() {
         BGMManager obj = target as BGMManager;        
 
-        for (int i = 0; i < obj.BGM_List.Count; i++) {            
+        for (int i = 0; i < obj.BGM_List.Count; i++) {
+            
             EditorGUILayout.LabelField(obj.BGM_List[i].name);
+
+            EditorGUILayout.BeginHorizontal();
+            {
+                obj.BGM_List[i].have_Intoro = EditorGUILayout.Toggle("Intoro", obj.BGM_List[i].have_Intoro);
+                if (obj.BGM_List[i].have_Intoro) {
+                    obj.BGM_List[i].intoro_Clip = (AudioClip)EditorGUILayout.ObjectField("", obj.BGM_List[i].intoro_Clip, typeof(AudioClip), false);
+                }
+            }
+            EditorGUILayout.EndHorizontal();
 
             EditorGUILayout.BeginHorizontal();
             {
