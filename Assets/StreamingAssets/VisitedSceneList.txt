@@ -1,9 +1,7 @@
 #SceneName
 Stage1_1Scene
-ConfigScene
-TitleScene
 Stage3_1Scene
 Stage3_2Scene
 DemoEndingScene
+TitleScene
 PlayerDataScene
-Stage2_2Scene

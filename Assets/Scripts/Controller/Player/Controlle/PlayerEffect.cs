@@ -10,6 +10,7 @@ public class PlayerEffect : MonoBehaviour {
     [SerializeField] private ParticleSystem red_Powder;
     [SerializeField] private ParticleSystem ride_Beetle;
     [SerializeField] private ParticleSystem dark_Powder;
+    [SerializeField] private GameObject jump_Effect;
 
     private ParticleSystem[] shoot_Charge_Particle = new ParticleSystem[3];
 
@@ -90,6 +91,17 @@ public class PlayerEffect : MonoBehaviour {
         ride_Beetle.Stop();
         StopCoroutine("Play_Ridding_Beetle_Effect");
         ride_Beetle.gameObject.SetActive(false);
+    }
+
+
+    /// <summary>
+    /// ジャンプエフェクトを出す
+    /// </summary>
+    public void Play_Jump_Effect() {
+        var effect = Instantiate(jump_Effect);
+        effect.transform.position = transform.position + new Vector3(0, -8f);
+        effect.SetActive(true);
+        Destroy(effect, 1.0f);
     }
 
 }

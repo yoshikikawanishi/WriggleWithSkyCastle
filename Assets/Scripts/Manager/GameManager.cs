@@ -27,6 +27,9 @@ public class GameManager : SingletonMonoBehaviour<GameManager> {
 
     //復活の処理
     public IEnumerator Revive() {
+        //取得
+        PlayerManager player_Manager = PlayerManager.Instance;
+
         yield return new WaitForSeconds(1.0f);
 
         if (!PlayerPrefs.HasKey("SCENE")) 
@@ -47,13 +50,19 @@ public class GameManager : SingletonMonoBehaviour<GameManager> {
 
         //ステータスの調整
         if (CollectionManager.Instance.Is_Collected("BigFrog"))
-            PlayerManager.Instance.Set_Life(4);
+            player_Manager.Set_Life(4);
         else
-           PlayerManager.Instance.Set_Life(3);
+           player_Manager.Set_Life(3);
         BeetlePowerManager.Instance.StartCoroutine("Increase_Cor", 50);
 
         //エフェクト
         Play_Revive_Effect(player);
+
+        //残機が0の時ラルバムービー
+        //TODO : ムービーはゲーム中1度だけ
+        if(player_Manager.Get_Stock() == 0) {
+            gameObject.AddComponent<LarvaStockZeroMovie>().Start_Movie();
+        }
     }   
 
 

@@ -40,6 +40,12 @@ public class MoveTwoPoints : MonoBehaviour {
     }
 
 
+    //移動終了
+    public void Stop_Move() {
+        StopCoroutine("Move_Two_Points");
+    }
+
+
     //移動用のコルーチン
     private IEnumerator Move_Two_Points(Vector3 next_Pos) {        
         float now_Location  = 0;        //現在の移動距離割合

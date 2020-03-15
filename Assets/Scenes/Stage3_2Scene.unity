@@ -9030,6 +9030,12 @@ Prefab:
       propertyPath: is_Change_Life_Up_Item
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 212307917471595424, guid: ad841176ffea4c14cb8b8908df271e4f,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 3229cea259cbf734bb86c5f6dafdfc60,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ad841176ffea4c14cb8b8908df271e4f, type: 2}
   m_IsPrefabAsset: 0

@@ -101,6 +101,21 @@ public class BGMManager : MonoBehaviour{
 
 
     /// <summary>
+    /// 一時中断
+    /// </summary>
+    public void Pause_BGM() {
+        audio_Source.Pause();        
+    }
+
+    /// <summary>
+    /// 再開
+    /// </summary>
+    public void Resume_BGM() {        
+        audio_Source.UnPause();
+    }
+
+
+    /// <summary>
     /// BGMのフェードアウト
     /// </summary>
     public void Fade_Out() {

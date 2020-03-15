@@ -6,6 +6,7 @@ public class NemunoAttack : MonoBehaviour {
 
     //コンポーネント
     private SpriteRenderer _sprite;
+    private NemunoCollision _collision;
     private NemunoController _controller;
     private NemunoShoot _shoot;
     private NemunoBarrier _barrier;
@@ -29,6 +30,7 @@ public class NemunoAttack : MonoBehaviour {
     private void Awake() {
         //取得
         _sprite = GetComponent<SpriteRenderer>();
+        _collision = GetComponent<NemunoCollision>();
         _controller = GetComponent<NemunoController>();        
         _shoot = GetComponentInChildren<NemunoShoot>();
         _barrier = GetComponentInChildren<NemunoBarrier>();
@@ -39,7 +41,7 @@ public class NemunoAttack : MonoBehaviour {
 
         player = GameObject.FindWithTag("PlayerTag");
         camera_Shake = GameObject.FindWithTag("MainCamera").GetComponent<CameraShake>();
-    }
+    }   
 
 
     #region Phase1
@@ -48,79 +50,117 @@ public class NemunoAttack : MonoBehaviour {
         if (start_Phase[0]) {
             start_Phase[0] = false;
             _controller.Play_Battle_Effect();
-            StartCoroutine("Phase1_Cor");
+            StartCoroutine("Phase1_A_Cor");            
         }
     }
 
-    private IEnumerator Phase1_Cor() {                   
-        //Aメロ(約22秒)地上攻撃
-        for (int i = 0; i < 4; i++) {
+    //Aメロ
+    private IEnumerator Phase1_A_Cor() {
+        StartCoroutine("Phase1_B_Cor");
+        StartCoroutine("Phase1_C_Cor");
+
+        //地上攻撃
+        for (int i = 0; i < 5; i++) {
             //移動
             for (int j = 1; j <= 2; j++) {
                 float distance = ((int)Random.Range(0, 2) - 0.5f) * 100f;
-                StartCoroutine("Dash_Cor", distance);
-                yield return new WaitForSeconds(0.7f);
+                StartCoroutine("Dash_Cor", distance);                
+                yield return new WaitUntil(Is_End_Action);                
             }
-            yield return new WaitForSeconds(0.3f);
+            yield return new WaitForSeconds(0.1f);
 
             //攻撃            
             switch (i % 3) {
                 case 0:
                     Jump_Next_Player();
-                    yield return new WaitForSeconds(0.9f);
+                    yield return new WaitUntil(Is_End_Action);
                     StartCoroutine("Close_Slash_Cor");
-                    yield return new WaitForSeconds(1.5f);
+                    yield return new WaitUntil(Is_End_Action);
+                    yield return new WaitForSeconds(0.5f);
                     break;
                 case 1:
                     StartCoroutine("Back_Jump_Cor");
-                    yield return new WaitForSeconds(1.3f);
+                    yield return new WaitUntil(Is_End_Action);
                     StartCoroutine("Long_Slash_Cor", 8);
-                    yield return new WaitForSeconds(1.5f);
+                    yield return new WaitUntil(Is_End_Action);
+                    yield return new WaitForSeconds(0.8f);
                     break;
                 case 2:
                     StartCoroutine("Barrier_Walk_Cor", 180f);
-                    yield return new WaitForSeconds(5.5f);
+                    yield return new WaitUntil(Is_End_Action);
+                    yield return new WaitForSeconds(1.2f);
                     break;
-            }
-        }        
-
-        //Bメロ(約20秒)ジャンプ小弾幕攻撃
-        for (int i = 0; i < 4; i++) {
-            StartCoroutine("Back_Jump_Cor");
-            yield return new WaitForSeconds(1.0f);
-            StartCoroutine("Jump_Slash_Cor", 28);
-            yield return new WaitForSeconds(3.0f);
-            if (i == 3)
-                break;
-            StartCoroutine("High_Jump_Cor", transform.localScale.x);
-            yield return new WaitForSeconds(2.2f);
+            }            
         }
 
+        is_End_Action = true;
+    }
+
+
+    //Bメロ(開始後約22秒)
+    private IEnumerator Phase1_B_Cor() {        
+        yield return new WaitForSecondsRealtime(22f);
+        yield return new WaitUntil(Is_End_Action);
+
+        StopCoroutine("Phase1_A_Cor");        
+        _move_Two_Points.Stop_Move();
+        Is_End_Action();
+
+        //ジャンプ小弾幕攻撃
+        _controller.Change_Land_Paramter();
+        for (int i = 0; i < 6; i++) {
+            StartCoroutine("Back_Jump_Cor");
+            yield return new WaitUntil(Is_End_Action);
+            StartCoroutine("Jump_Slash_Cor", 28);
+            yield return new WaitUntil(Is_End_Action);
+            if (i == 5)
+                break;
+            StartCoroutine("High_Jump_Cor", transform.localScale.x);
+            yield return new WaitUntil(Is_End_Action);
+        }
         yield return new WaitForSeconds(1.0f);
 
-        //Aメロ(約5秒)        
+        //サビ前        
         StartCoroutine("Back_Jump_Cor");
-        yield return new WaitForSeconds(1.3f);
+        yield return new WaitUntil(Is_End_Action);
         StartCoroutine("Long_Slash_Cor", 10);
-        yield return new WaitForSeconds(2.0f);
-        Jump_Next_Player();
+        yield return new WaitUntil(Is_End_Action);
         yield return new WaitForSeconds(0.8f);
+
+        Jump_Next_Player();
+        yield return new WaitUntil(Is_End_Action);
         StartCoroutine("Close_Slash_Cor");
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitUntil(Is_End_Action);
+        yield return new WaitForSeconds(0.5f);
+
+        is_End_Action = true;
+    }
+
+
+    //Cメロ(開始後約56秒)
+    private IEnumerator Phase1_C_Cor() {
+        float start_Time = Time.unscaledTime;
+
+        yield return new WaitForSecondsRealtime(47f);                     
+
+        StopCoroutine("Phase1_B_Cor");
+        StopCoroutine("Long_Slash_Cor");
+
+        yield return new WaitUntil(Is_End_Action);
 
         //弾幕前溜め
         StartCoroutine("High_Jump_Cor", -1);
-        yield return new WaitForSeconds(2.5f);
+        yield return new WaitUntil(Is_End_Action);
 
         transform.localScale = new Vector3(1, 1, 1);
-        _controller.Play_Charge_Effect(4.0f);
+        _controller.Play_Charge_Effect(56f - (Time.unscaledTime - start_Time));
 
         //移動
         _controller.Change_Animation("ShootBool");
         _controller.Change_Fly_Parameter();
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSecondsRealtime(1.0f);
         _move_Two_Points.Start_Move(new Vector3(160f, 8f), 4);
-        yield return new WaitForSeconds(3.0f);
+        yield return new WaitForSecondsRealtime(56f - (Time.unscaledTime - start_Time));
 
         //弾幕攻撃
         _controller.Play_Burst_Effect();
@@ -130,20 +170,23 @@ public class NemunoAttack : MonoBehaviour {
 
         _controller.Change_Land_Paramter();
         _controller.Change_Animation("IdleBool");
-        yield return new WaitForSeconds(2.0f);       
-        
-        StartCoroutine("Phase1_Cor");
+        yield return new WaitForSeconds(2.0f);
+
+        is_End_Action = true;
+
+        StartCoroutine("Phase1_A_Cor");
     }
     
+
     private void Stop_Phase1() {
-        StopCoroutine("Phase1_Cor");
         StopAllCoroutines();
         _controller.Change_Animation("IdleBool");
         _controller.Change_Land_Paramter();
         _controller.Stop_Charge_Effect();
         _controller.Quit_Battle_Effect();
         _barrier.Stop_Barrier();
-        _shoot.Stop_Knife_Shoot();
+        _shoot.Stop_Kunai_Shoot();
+        Is_End_Action();
     }
     #endregion
 
@@ -192,7 +235,7 @@ public class NemunoAttack : MonoBehaviour {
                 for (int j = 1; j <= 2; j++) {
                     float distance = ((int)Random.Range(0, 2) - 0.5f) * 130f;
                     StartCoroutine("Dash_Cor", distance);
-                    yield return new WaitForSeconds(0.65f);
+                    yield return new WaitUntil(Is_End_Action);
                 }
                 yield return new WaitForSeconds(0.15f);
 
@@ -201,31 +244,34 @@ public class NemunoAttack : MonoBehaviour {
                 switch (next_Attack) {
                     case AttackKind.close_Slash:
                         Jump_Next_Player();
-                        yield return new WaitForSeconds(0.6f);
+                        yield return new WaitUntil(Is_End_Action);
                         StartCoroutine("Close_Slash_Cor");
-                        yield return new WaitForSeconds(1.3f);
+                        yield return new WaitUntil(Is_End_Action);
+                        yield return new WaitForSeconds(0.3f);
                         break;
                     case AttackKind.long_Slash:
                         StartCoroutine("Back_Jump_Cor");
-                        yield return new WaitForSeconds(1.0f);
+                        yield return new WaitUntil(Is_End_Action);
                         StartCoroutine("Long_Slash_Cor", 14);
-                        yield return new WaitForSeconds(1.5f);
+                        yield return new WaitUntil(Is_End_Action);
+                        yield return new WaitForSeconds(0.3f);
                         StartCoroutine("Long_Slash_Cor", 14);
-                        yield return new WaitForSeconds(1.3f);
+                        yield return new WaitUntil(Is_End_Action);
+                        yield return new WaitForSeconds(0.6f);
                         break;
                     case AttackKind.barrier:
                         StartCoroutine("Barrier_Walk_Cor", 210f);
-                        yield return new WaitForSeconds(4.5f);
+                        yield return new WaitUntil(Is_End_Action);
+                        yield return new WaitForSeconds(1.5f);
                         break;
                     case AttackKind.jump_Slash:
-                        for (int j = 0; j < 2; j++) {
-                            StartCoroutine("Back_Jump_Cor");
-                            yield return new WaitForSeconds(1.0f);
-                            StartCoroutine("Jump_Slash_Cor", 40);
-                            yield return new WaitForSeconds(3.2f);
-                            StartCoroutine("High_Jump_Cor", transform.localScale.x);
-                            yield return new WaitForSeconds(2.5f);
-                        }
+                        StartCoroutine("Back_Jump_Cor");
+                        yield return new WaitUntil(Is_End_Action);
+                        StartCoroutine("Jump_Slash_Cor", 40);
+                        yield return new WaitUntil(Is_End_Action);
+                        StartCoroutine("High_Jump_Cor", transform.localScale.x);
+                        yield return new WaitUntil(Is_End_Action);
+                        yield return new WaitForSeconds(0.2f);
                         break;
                 }
                 two_Pre_Attack = pre_Attack;
@@ -234,7 +280,7 @@ public class NemunoAttack : MonoBehaviour {
             }
             //大ジャンプ
             StartCoroutine("High_Jump_Cor", -1);
-            yield return new WaitForSeconds(2.5f);
+            yield return new WaitUntil(Is_End_Action);
             //サビ前移動(サビまでの時間調整)
             _controller.Change_Fly_Parameter();
             _controller.Change_Animation("ForwardJumpBool");
@@ -273,7 +319,7 @@ public class NemunoAttack : MonoBehaviour {
         _controller.Stop_Charge_Effect();
         _controller.Quit_Battle_Effect();
         _barrier.Stop_Barrier();
-        _shoot.Stop_Kunai_Shoot();
+        _shoot.Stop_Knife_Shoot();
     }
 
     //移動速度の上昇
@@ -301,6 +347,17 @@ public class NemunoAttack : MonoBehaviour {
         return two_Pre_Attack;        
     }
 
+    //行動の終了検知用
+    private bool is_End_Action = false;
+    private bool Is_End_Action() {
+        if (is_End_Action) {
+            is_End_Action = false;
+            return true;
+        }
+        return false;
+    }
+
+
 
     //前方向にジャンプする
     private IEnumerator Forward_Jump_Cor(float jump_Distance) {
@@ -319,6 +376,8 @@ public class NemunoAttack : MonoBehaviour {
         _sound.Play_Land_Sound();
         _controller.Change_Land_Paramter();
         _controller.Change_Animation("IdleBool");
+
+        is_End_Action = true;
     }
 
     //橋の決まった座標にバックジャンプする
@@ -338,6 +397,8 @@ public class NemunoAttack : MonoBehaviour {
         _sound.Play_Land_Sound();
         _controller.Change_Land_Paramter();
         _controller.Change_Animation("IdleBool");
+
+        is_End_Action = true;
     }
 
     //大ジャンプ
@@ -356,6 +417,8 @@ public class NemunoAttack : MonoBehaviour {
         _controller.Change_Land_Paramter();
         _controller.Change_Animation("IdleBool");
         camera_Shake.Shake(0.3f, new Vector2(1f, 1f), true);
+
+        is_End_Action = true;
     }
 
     //自機の隣にジャンプする
@@ -387,27 +450,26 @@ public class NemunoAttack : MonoBehaviour {
         if (dash_Distance > 0)
             transform.localScale = new Vector3(-1, 1, 1);
 
+        _controller.Change_Land_Paramter();
         _controller.Change_Animation("DashBool");
-        _move_Two_Points.Start_Move(new Vector2(transform.position.x + dash_Distance, transform.position.y), 3);
-        yield return new WaitUntil(_move_Two_Points.End_Move);
-        _controller.Change_Animation("IdleBool");
-    }
 
-    //自機の隣まで移動する
-    private void Dash_Next_Player_Cor() {
-        float dash_Distance = player.transform.position.x - transform.position.x;
-        //自機が右にいるとき
-        if (dash_Distance > 0) {
-            transform.localScale = new Vector3(-1, 1, 1);
-            dash_Distance -= 40f;
-        }
-        //自機が左にいるとき
-        else {
-            transform.localScale = new Vector3(1, 1, 1);
-            dash_Distance += 40f;
-        }
-        StartCoroutine("Dash_Cor", dash_Distance);
-    }
+        _move_Two_Points.Start_Move(new Vector2(transform.position.x + dash_Distance, transform.position.y), 3);        
+        while (!_move_Two_Points.End_Move()) {
+            yield return null;
+            //移動中に攻撃を喰らったときバックジャンプ
+            if (_collision.Damaged_Trigger()) {
+                int n = Random.Range(0, 3);
+                if (n < 2) {
+                    StartCoroutine("Back_Jump_Cor");
+                    yield break;
+                }
+            }            
+        }        
+
+        _controller.Change_Animation("IdleBool");
+
+        is_End_Action = true;
+    }    
 
 
     //近接攻撃、一回点滅後攻撃
@@ -427,6 +489,8 @@ public class NemunoAttack : MonoBehaviour {
         yield return new WaitForSeconds(0.5f);
 
         _controller.Change_Animation("IdleBool");
+
+        is_End_Action = true;
     }
 
 
@@ -449,6 +513,8 @@ public class NemunoAttack : MonoBehaviour {
         yield return new WaitForSeconds(0.5f);
 
         _controller.Change_Animation("IdleBool");
+
+        is_End_Action = true;
     }
 
 
@@ -484,6 +550,8 @@ public class NemunoAttack : MonoBehaviour {
         //バリア解除
         _controller.Change_Animation("IdleBool");
         _barrier.Stop_Barrier();
+
+        is_End_Action = true;
     }
 
 
@@ -507,6 +575,8 @@ public class NemunoAttack : MonoBehaviour {
         //落下
         _controller.Change_Animation("IdleBool");
         _controller.Change_Land_Paramter();
+
+        is_End_Action = true;
     } 
 
     #endregion

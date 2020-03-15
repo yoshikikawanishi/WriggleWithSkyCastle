@@ -26,17 +26,26 @@ public class PlayerController : MonoBehaviour {
     public bool is_Landing = true;
     public bool is_Squat = false;
     public bool is_Ride_Beetle = false;
+
+    //ジャンプボタンが押された時接地していなくても、数フレーム後に着地すればジャンプする
+    private bool start_Jump_Frame_Count = false;
+    private int jump_Frame_Count = 0;
+
     //攻撃の入力識別用
     public bool start_Attack_Frame_Count = false;
     public bool start_Charge_Attack_Frame_Count = false;    
-
     private int attack_Frame_Count = 0;
     private int charge_Attack_Frame_Count = 0;
 
+    //現在のアニメーション
     private string now_Animator_Parameter = "IdleBool";
 
+    //ショットについて
     private float SHOOT_INTERVAL = 0.2f;
     private float shoot_Time = 0.2f;
+
+    //初期値
+    private float default_Gravity;
 
     //緑ゲージ不足の警告音は飛行中1度だけ鳴らす
     private bool is_Played_Alert = false;   
@@ -56,7 +65,8 @@ public class PlayerController : MonoBehaviour {
         _shoot = GetComponent<PlayerShoot>();
         _getting_On_Beetle = GetComponent<PlayerGettingOnBeetle>();
         input = InputManager.Instance;
-        collection_Manager = CollectionManager.Instance;        
+        collection_Manager = CollectionManager.Instance;
+        default_Gravity = _rigid.gravityScale;
     }
 
 
@@ -109,8 +119,19 @@ public class PlayerController : MonoBehaviour {
             _transition.Slow_Down();
         }
         //ジャンプ
-        if (input.GetKeyDown(Key.Jump) && is_Landing) {
-            _jump.Jump();
+        //ジャンプボタンが押された時接地していなくても、数フレーム後に着地すればジャンプする
+        if (input.GetKeyDown(Key.Jump)) {
+            start_Jump_Frame_Count = true;            
+        }
+        if (start_Jump_Frame_Count) {
+            jump_Frame_Count++;
+            if (is_Landing) {
+                if (jump_Frame_Count < 10) {
+                    _jump.Jump();
+                }
+                start_Jump_Frame_Count = false;
+                jump_Frame_Count = 0;
+            }
         }
         if (input.GetKeyUp(Key.Jump)) {
             _jump.Slow_Down();
@@ -122,12 +143,24 @@ public class PlayerController : MonoBehaviour {
             _getting_On_Beetle.Get_On_Beetle();
             is_Played_Alert = false;    //警告音を鳴らしたかどうかをリセット
         }
-
+        //落下中重力下げる
+        if(_rigid.velocity.y < -1f) {
+            if(_rigid.gravityScale > default_Gravity - 5f)
+                _rigid.gravityScale = default_Gravity - 20f;
+        }
+        else {
+            if(_rigid.gravityScale < default_Gravity - 5f)
+                _rigid.gravityScale = default_Gravity;
+        }
     }
 
 
     //カブトムシ時の操作
     private void Beetle_Controlle() {
+        //重力
+        if (!Mathf.Approximately(_rigid.gravityScale, 0))
+            _rigid.gravityScale = 0;
+
         //移動
         Vector2 direction = new Vector2(0, 0);
         direction = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));        
