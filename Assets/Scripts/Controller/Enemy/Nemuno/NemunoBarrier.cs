@@ -35,7 +35,7 @@ public class NemunoBarrier : MonoBehaviour {
         //バリア発動中
         if (is_Barrier) {
             if(_sprite.color.a < 0.9f) {
-                _sprite.color += new Color(0, 0, 0, 0.01f);
+                _sprite.color += new Color(0, 0, 0, 0.02f);
             }
             else if(!_collider.enabled){
                 _collider.enabled = true;
@@ -49,7 +49,7 @@ public class NemunoBarrier : MonoBehaviour {
                 _collider.enabled = false;
             }
             if(_sprite.color.a > 0) {
-                _sprite.color -= new Color(0, 0, 0, 0.01f);
+                _sprite.color -= new Color(0, 0, 0, 0.02f);
             }
             else {
                 gameObject.SetActive(false);
@@ -84,8 +84,8 @@ public class NemunoBarrier : MonoBehaviour {
 
 
     private IEnumerator Blink() {
-        _sprite.color = new Color(0.7f, 0.7f, 0.7f, _sprite.color.a);
-        yield return new WaitForSeconds(0.2f);
-        _sprite.color = new Color(1f, 1f, 1f, _sprite.color.a);
+        _sprite.color = new Color(0.8f, 0.8f, 0.8f, _sprite.color.a);
+        yield return new WaitForSeconds(0.1f);
+        _sprite.color = new Color(0.5f, 0.5f, 0.5f, _sprite.color.a);
     }
 }

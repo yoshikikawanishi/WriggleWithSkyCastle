@@ -154,7 +154,11 @@ public class TalkCharacter : MonoBehaviour {
     /// 収集アイテムの放出、１番目の子要素を出す
     /// </summary>
     protected void Put_Out_Collection_Box() {
-        transform.GetChild(0).gameObject.SetActive(true);
+        var child = transform.GetChild(0);
+        if (child.GetComponent<CollectionBox>() != null) {
+            transform.GetChild(0).gameObject.SetActive(true);
+            transform.GetChild(0).SetParent(null);
+        }
     }
     
     

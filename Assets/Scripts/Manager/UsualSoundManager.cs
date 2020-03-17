@@ -12,6 +12,8 @@ public class UsualSoundManager : SingletonMonoBehaviour<UsualSoundManager> {
     [SerializeField] private AudioSource enemy_Shoot_Sound;
     [SerializeField] private AudioSource enemy_Shoot_Sound_Small;
     [SerializeField] private AudioSource enemy_Attack_Sound;
+    [SerializeField] private AudioSource enemy_Shoot_Damaged_Sound;
+    [SerializeField] private AudioSource enemy_Shoot_Damaged_Sound_Big;
 
 
     public void Play_Get_Small_Item_Sound() {
@@ -42,6 +44,14 @@ public class UsualSoundManager : SingletonMonoBehaviour<UsualSoundManager> {
 
     public void Play_Attack_Sound() {
         enemy_Attack_Sound.Play();
+    }
+
+    public void Play_Enemy_Damaged_Sound() {
+        enemy_Shoot_Damaged_Sound.Play();
+    }
+
+    public void Play_Enemy_Damaged_Sound_Big() {
+        enemy_Shoot_Damaged_Sound_Big.Play();
     }
 
 }

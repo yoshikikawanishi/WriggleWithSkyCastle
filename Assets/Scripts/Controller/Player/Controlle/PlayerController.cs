@@ -41,7 +41,7 @@ public class PlayerController : MonoBehaviour {
     private string now_Animator_Parameter = "IdleBool";
 
     //ショットについて
-    private float SHOOT_INTERVAL = 0.2f;
+    public readonly float SHOOT_INTERVAL = 0.25f;
     private float shoot_Time = 0.2f;
 
     //初期値

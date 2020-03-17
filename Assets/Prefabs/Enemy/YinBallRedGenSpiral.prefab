@@ -87,6 +87,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spread_Speed: 0.08
+  default_Size: 0
   max_Size: 15
   life_Time: 0
   angler_Velocity: 5

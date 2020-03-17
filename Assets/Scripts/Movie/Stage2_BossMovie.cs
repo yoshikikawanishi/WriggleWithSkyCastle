@@ -74,6 +74,7 @@ public class Stage2_BossMovie : MonoBehaviour {
 
         //シーン遷移
         FadeInOut.Instance.Start_Fade_Out(new Color(0, 0, 0), 0.02f);
+        BGMManager.Instance.Fade_Out();
         yield return new WaitForSeconds(2.0f);
         SceneManager.LoadScene("Stage3_1Scene");
     }

@@ -24,7 +24,7 @@ public class Medicine : TalkCharacter {
     private void Change_Status_With_Yuka() {
         transform.position = new Vector3(2060f, -109f);
         transform.localScale = new Vector3(-1, 1, 1);
-        Change_Message_Status("MedicineText", 2, 2);
+        Change_Message_Status("MedicineText", 5, 5);
     }
     
 }

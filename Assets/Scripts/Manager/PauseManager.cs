@@ -73,9 +73,7 @@ public class PauseManager : SingletonMonoBehaviour<PauseManager> {
         //自機の操作無効化
         GameObject player = GameObject.FindWithTag("PlayerTag");
         if(player != null)
-            player.GetComponent<PlayerController>().Set_Is_Playable(false);
-        //BGM
-        BGMManager.Instance.Pause_BGM();
+            player.GetComponent<PlayerController>().Set_Is_Playable(false);        
         //ポーズキャンバスの生成
         if(pause_Canvas == null) {
             pause_Canvas = Instantiate(pause_Canvas_Prefab);
@@ -102,9 +100,7 @@ public class PauseManager : SingletonMonoBehaviour<PauseManager> {
         //自機の操作有効化
         GameObject player = GameObject.FindWithTag("PlayerTag");
         if(player != null) 
-            player.GetComponent<PlayerController>().Set_Is_Playable(true);
-        //BGM
-        BGMManager.Instance.Resume_BGM();
+            player.GetComponent<PlayerController>().Set_Is_Playable(true);        
         //ポーズキャンバスを消す
         if (pause_Canvas != null)
             pause_Canvas.SetActive(false);

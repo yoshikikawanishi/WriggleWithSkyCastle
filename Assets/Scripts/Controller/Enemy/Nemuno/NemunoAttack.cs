@@ -50,14 +50,14 @@ public class NemunoAttack : MonoBehaviour {
         if (start_Phase[0]) {
             start_Phase[0] = false;
             _controller.Play_Battle_Effect();
+            StartCoroutine("Phase1_C_Cor");
+            StartCoroutine("Phase1_B_Cor");
             StartCoroutine("Phase1_A_Cor");            
         }
     }
 
     //Aメロ
-    private IEnumerator Phase1_A_Cor() {
-        StartCoroutine("Phase1_B_Cor");
-        StartCoroutine("Phase1_C_Cor");
+    private IEnumerator Phase1_A_Cor() {                
 
         //地上攻撃
         for (int i = 0; i < 5; i++) {
@@ -100,11 +100,10 @@ public class NemunoAttack : MonoBehaviour {
     //Bメロ(開始後約22秒)
     private IEnumerator Phase1_B_Cor() {        
         yield return new WaitForSecondsRealtime(22f);
-        yield return new WaitUntil(Is_End_Action);
+        yield return new WaitUntil(Is_End_Action);        
 
         StopCoroutine("Phase1_A_Cor");        
-        _move_Two_Points.Stop_Move();
-        Is_End_Action();
+        _move_Two_Points.Stop_Move();        
 
         //ジャンプ小弾幕攻撃
         _controller.Change_Land_Paramter();
@@ -141,14 +140,13 @@ public class NemunoAttack : MonoBehaviour {
     private IEnumerator Phase1_C_Cor() {
         float start_Time = Time.unscaledTime;
 
-        yield return new WaitForSecondsRealtime(47f);                     
+        yield return new WaitForSecondsRealtime(47f);
+        yield return new WaitUntil(Is_End_Action);        
 
         StopCoroutine("Phase1_B_Cor");
         StopCoroutine("Long_Slash_Cor");
 
-        yield return new WaitUntil(Is_End_Action);
-
-        //弾幕前溜め
+        //弾幕前溜め        
         StartCoroutine("High_Jump_Cor", -1);
         yield return new WaitUntil(Is_End_Action);
 
@@ -160,7 +158,7 @@ public class NemunoAttack : MonoBehaviour {
         _controller.Change_Fly_Parameter();
         yield return new WaitForSecondsRealtime(1.0f);
         _move_Two_Points.Start_Move(new Vector3(160f, 8f), 4);
-        yield return new WaitForSecondsRealtime(56f - (Time.unscaledTime - start_Time));
+        yield return new WaitForSeconds(56f - (Time.unscaledTime - start_Time));
 
         //弾幕攻撃
         _controller.Play_Burst_Effect();
@@ -174,6 +172,8 @@ public class NemunoAttack : MonoBehaviour {
 
         is_End_Action = true;
 
+        StartCoroutine("Phase1_C_Cor");
+        StartCoroutine("Phase1_B_Cor");
         StartCoroutine("Phase1_A_Cor");
     }
     
@@ -204,7 +204,7 @@ public class NemunoAttack : MonoBehaviour {
     private IEnumerator Phase2_Cor() {
         gameObject.layer = LayerMask.NameToLayer("InvincibleLayer");    //無敵化
         yield return new WaitForSeconds(1.0f);
-
+        
         _controller.Play_Battle_Effect();
         Raise_Move_Speed();
         AttackKind next_Attack = AttackKind.close_Slash;
@@ -229,6 +229,7 @@ public class NemunoAttack : MonoBehaviour {
         yield return new WaitForSeconds(8.0f);
 
         while (true) {
+            is_End_Action = false;
             //地上攻撃
             for (int i = 0; i < 3; i++) {
                 //移動
@@ -458,9 +459,13 @@ public class NemunoAttack : MonoBehaviour {
             yield return null;
             //移動中に攻撃を喰らったときバックジャンプ
             if (_collision.Damaged_Trigger()) {
-                int n = Random.Range(0, 3);
+                int n = Random.Range(0, 5);
                 if (n < 2) {
                     StartCoroutine("Back_Jump_Cor");
+                    yield break;
+                }
+                else if(n < 3) {
+                    StartCoroutine("High_Jump_Cor", transform.position.x.CompareTo(0));
                     yield break;
                 }
             }            

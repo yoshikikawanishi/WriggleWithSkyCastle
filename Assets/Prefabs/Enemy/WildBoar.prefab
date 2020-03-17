@@ -131,7 +131,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   is_Pooled: 0
-  life: 18
+  life: 24
   power_Value: 4
   score_Value: 5
   drop_Life_Probability: 0.1

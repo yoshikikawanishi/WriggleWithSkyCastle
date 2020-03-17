@@ -54,14 +54,16 @@ public class OptionBox : MonoBehaviour {
         }
         //オプションを出す
         if (kind == Kind.random) {
-            int r = Random.Range(0, 4);
             PlayerManager.Option po = new PlayerManager.Option();
-            switch (r) {
-                case 0: po = PlayerManager.Option.bee; break;
-                case 1: po = PlayerManager.Option.butterfly; break;
-                case 2: po = PlayerManager.Option.mantis; break;
-                case 3: po = PlayerManager.Option.spider; break;
-            }
+            do {
+                int r = Random.Range(0, 4);
+                switch (r) {
+                    case 0: po = PlayerManager.Option.bee; break;
+                    case 1: po = PlayerManager.Option.butterfly; break;
+                    case 2: po = PlayerManager.Option.mantis; break;
+                    case 3: po = PlayerManager.Option.spider; break;
+                }
+            } while (po == PlayerManager.Instance.Get_Option());
             transform.GetChild(0).GetComponent<OptionItem>().option = po;
         }
         transform.GetChild(0).gameObject.SetActive(true);

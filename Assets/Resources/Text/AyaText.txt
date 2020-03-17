@@ -1,3 +1,4 @@
 #ID	#NAME	#ICON	#MESSAGE
 1	早鬼	non	あああ
 2	文	non	いいい
+3	文	non	(椛と会話)

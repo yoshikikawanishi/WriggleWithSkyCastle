@@ -45,11 +45,7 @@ public class YukaMovie : SingletonMonoBehaviour<YukaMovie> {
 
         //初回のみ会話
         if (!PlayerPrefs.HasKey("YukaTutorial")) {
-            _message.Start_Display("YukaText", 1, 4);
-            yield return new WaitUntil(_message.End_Message);
-            _message.Start_Display_Auto("YukaText", 5, 5, 0, 0.07f);
-            yield return new WaitUntil(_message.End_Message);
-            _message.Start_Display("YukaText", 6, 10);
+            _message.Start_Display("YukaText", 1, 10);
             yield return new WaitUntil(_message.End_Message);
         }
         PlayerPrefs.SetInt("YukaTutorial", 1);

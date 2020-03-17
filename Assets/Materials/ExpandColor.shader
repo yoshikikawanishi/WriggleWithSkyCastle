@@ -1,9 +1,4 @@
-// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
-
-// Unity built-in shader source. Copyright (c) 2016 Unity Technologies. MIT license (see license.txt)
-
-Shader "Sprites/Default_Custom"
-{
+﻿Shader "Custom/2D/ExpandColor" {
 	Properties
     {
         [PerRendererData] _MainTex ("Sprite Texture", 2D) = "white" {}
@@ -66,7 +61,7 @@ Shader "Sprites/Default_Custom"
 
             fixed4 frag(v2f IN) : SV_Target
             {
-                fixed4 c = tex2D (_MainTex, IN.texcoord);
+                fixed4 c = tex2D (_MainTex, IN.texcoord) * IN.color.a;
 
                 c.rgb = saturate( c.rgb + (IN.color.rgb-0.5)*2 );
                 c.rgb *= c.a;

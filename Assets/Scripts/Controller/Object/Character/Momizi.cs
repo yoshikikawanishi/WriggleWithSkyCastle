@@ -6,6 +6,15 @@ public class Momizi : TalkCharacter {
 
     [SerializeField] private RopeWay rop_Way;
 
+    new void Start() {
+        base.Start();
+        CollectionManager c = CollectionManager.Instance;
+        if(c.Is_Collected("Momizi") && c.Is_Collected("Aya")) {
+            Change_Status_With_Aya();
+        }
+    }
+
+
     protected override float Action_Before_Talk() {
         //ロープウェイが届いたらセリフと表情変える
         if (start_ID == 1) {
@@ -26,4 +35,9 @@ public class Momizi : TalkCharacter {
         }
     }
 
+
+    private void Change_Status_With_Aya() {
+        transform.position = new Vector3(5770f, -64f);
+        Change_Message_Status("MomiziText", 5, 5);
+    }
 }

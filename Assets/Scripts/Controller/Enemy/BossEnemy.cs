@@ -63,7 +63,7 @@ public class BossEnemy : MonoBehaviour {
         }
         //連続で被弾時ダメージ減らす
         if(damaged_Span_Time < 0.6f) {
-            damage = (int)(damage * 0.4f);
+            damage = (int)(damage * 0.3f);
             if (damage < 1)
                 damage = 1;
         }
@@ -71,7 +71,7 @@ public class BossEnemy : MonoBehaviour {
         //被弾
         if(life[now_Phase - 1] > 0) {
             life[now_Phase - 1] -= damage;
-            Play_Damaged_Effect();
+            Play_Damaged_Effect(damaged_Tag);
         }
         //毒ダメージ
         if(damaged_Tag == "PlayerSpiderAttackTag") {
@@ -92,9 +92,15 @@ public class BossEnemy : MonoBehaviour {
 
 
     //被弾時のエフェクト
-    private void Play_Damaged_Effect() {
+    private void Play_Damaged_Effect(string damaged_Tag) {
         StartCoroutine("Blink", new Color(0.5f, 0.25f, 0.25f));
         //TODO: 被弾時のエフェクト
+        if(damaged_Tag == "PlayerBulletTag") {
+            if(life[now_Phase-1] <= 30)
+                UsualSoundManager.Instance.Play_Enemy_Damaged_Sound();
+            else
+                UsualSoundManager.Instance.Play_Enemy_Damaged_Sound_Big();
+        }
     }
 
     //無敵時のエフェクト

@@ -4,14 +4,17 @@ using UnityEngine;
 
 public class Test : MonoBehaviour {
 
+    
+
 	// Use this for initialization
-	void Start () {
-        Invoke("Test1", 3.0f);
+	void Start () {                
+        Invoke("Test1", 3f);        
 	}
 	
 
 	private void Test1() {
-
+        
     }
+    
 
 }

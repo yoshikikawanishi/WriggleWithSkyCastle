@@ -10,7 +10,7 @@ public class Shizuha : TalkCharacter {
         base.Start();
         //アイテム取得済みの時
         if (CollectionManager.Instance.Is_Collected("Shizuha")) {
-            Change_Message_Status("ShizuhaText", 7, 11);
+            Change_Message_Status("ShizuhaText", 8, 12);
             transform.localScale = new Vector3(-1, 1, 1);
             transform.position = new Vector3(4168f, transform.position.y);
         }
@@ -28,7 +28,7 @@ public class Shizuha : TalkCharacter {
         //穣子撃破後の会話後、アイテムを出す
         if (start_ID == 3) {
             base.Put_Out_Collection_Box();
-            Change_Message_Status("ShizuhaText", 4, 6);
+            Change_Message_Status("ShizuhaText", 4, 7);
         }
     }
 }

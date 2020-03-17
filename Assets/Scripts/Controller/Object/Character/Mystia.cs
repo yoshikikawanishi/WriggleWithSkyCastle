@@ -51,9 +51,8 @@ public class Mystia : TalkCharacter {
         int rumia = PlayerPrefs.GetInt("Rumia");
 
         //初回かつルーミアの隣じゃない
-        if (talk_Count == 1 && rumia != 2) {                  
-            transform.GetChild(0).gameObject.SetActive(true);
-            transform.GetChild(0).SetParent(null);
+        if (talk_Count == 1 && rumia != 2) {
+            Put_Out_Collection_Box();
             yield break;
         }
         //ルーミア発見済み
@@ -65,6 +64,8 @@ public class Mystia : TalkCharacter {
             _move.Start_Move(transform.position + new Vector3(-300f, 150f));
             GetComponent<Animator>().SetTrigger("FlyTrigger");
             mark_Up_Baloon.SetActive(false);
+            //エフェクト消す
+            GetComponentInChildren<ParticleSystem>().Stop();
             //アイテムを出す
             Put_Out_Score(15);
             //ルーミアの隣に配置

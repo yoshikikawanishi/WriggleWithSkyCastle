@@ -19,7 +19,7 @@ public class Minoriko : Enemy {
 
     //ノーマルショットの時間計測用
     private float normal_Shoot_Time;
-    private float NORMAL_SHOOT_SPAN = 8.5f;
+    private float NORMAL_SHOOT_SPAN = 10.5f;
 
     //倒されたかどうか、静葉から利用する
     [HideInInspector] public bool is_Defeated = false;
@@ -33,10 +33,10 @@ public class Minoriko : Enemy {
         normal_Shoot_Time = NORMAL_SHOOT_SPAN - 1.5f;
         //静葉アイテム取得済みの時
         if (CollectionManager.Instance.Is_Collected("Shizuha")) {
-            transform.position = new Vector3(4200f, -68f);
-            this.enabled = false;
+            transform.position = new Vector3(4200f, -68f);            
             gameObject.layer = LayerMask.NameToLayer("InvincibleLayer");
             GetComponent<Animator>().SetTrigger("DefeatTrigger");
+            Destroy(this);
         }
 	}
 
@@ -85,9 +85,8 @@ public class Minoriko : Enemy {
         shoot_Obj.SetActive(true);
         Destroy(shoot_Obj, 2.0f);
 
-        yield return new WaitForSeconds(7.0f);        
-        normal_Potate_Shoot.Shoot();
-        yield return new WaitForSeconds(5.0f);
+        yield return new WaitForSeconds(5.0f);        
+        normal_Potate_Shoot.Shoot();        
     }
 
 

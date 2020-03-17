@@ -8,11 +8,11 @@ using UnityEngine;
 public class EnemyCollisionDetection : MonoBehaviour {
 
     protected Dictionary<string, int> damaged_Tag_Dictionary = new Dictionary<string, int>() {
-        {"PlayerAttackTag"  , 10 },
+        {"PlayerAttackTag"  , 12 },
         {"PlayerChargeAttackTag", 20 },
-        {"PlayerButterflyAttackTag", 4 },
-        { "PlayerSpiderAttackTag", 6 },
-        {"PlayerKickTag"  , 10 },
+        {"PlayerButterflyAttackTag", 12 },
+        { "PlayerSpiderAttackTag", 12 },
+        {"PlayerKickTag"  , 12 },
         {"PlayerBulletTag"  , 1 },
         {"PlayerChargeBulletTag"  , 10},
         {"PlayerTag"        , 10},
