@@ -37,7 +37,7 @@ public class Momizi : TalkCharacter {
 
 
     private void Change_Status_With_Aya() {
-        transform.position = new Vector3(5770f, -64f);
+        transform.position = new Vector3(5740f, -64f);
         Change_Message_Status("MomiziText", 5, 5);
     }
 }

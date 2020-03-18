@@ -301,13 +301,13 @@ public class NemunoAttack : MonoBehaviour {
                 //ショット
                 _controller.Play_Burst_Effect();
                 UsualSoundManager.Instance.Play_Shoot_Sound();
-                yield return new WaitForSeconds(1.5f);
-                if (i == 1) {
-                    _controller.Change_Land_Paramter();
-                    _controller.Change_Animation("IdleBool");
-                }
+                yield return new WaitForSeconds(1.5f);                
             }
-            yield return new WaitForSeconds(4.0f);
+            yield return new WaitForSeconds(2.0f);
+
+            _controller.Change_Land_Paramter();
+            _controller.Change_Animation("IdleBool");
+            yield return new WaitForSeconds(2.0f);
         }  
         
     }

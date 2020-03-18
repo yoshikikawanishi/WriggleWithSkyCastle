@@ -19,12 +19,13 @@ public class HinaMovie : MonoBehaviour {
         Vector3 default_Pos = transform.position;
 
         //操作無効化
-        while (player_Controller.Get_Is_Playable()) {
-            player_Controller.Set_Is_Playable(false);
+        while (!player_Controller.Get_Is_Playable()) {            
             yield return null;
         }
+        player_Controller.Set_Is_Playable(false);
         player_Controller.Change_Animation("IdleBool");
         player.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
+        player_Controller.To_Disable_Ride_Beetle();
         PauseManager.Instance.Set_Is_Pausable(false);
 
         //雛が上から降りてくる
@@ -48,6 +49,7 @@ public class HinaMovie : MonoBehaviour {
 
         //操作有効か
         player_Controller.Set_Is_Playable(true);
-        PauseManager.Instance.Set_Is_Pausable(true);
+        player_Controller.To_Enable_Ride_Beetle();
+        PauseManager.Instance.Set_Is_Pausable(true);        
     }
 }

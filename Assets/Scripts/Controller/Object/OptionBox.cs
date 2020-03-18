@@ -18,8 +18,6 @@ public class OptionBox : MonoBehaviour {
     private List<string> open_Tags = new List<string> {
         "PlayerAttackTag",
         "PlayerChargeAttackTag",
-        "PlayerButterflyAttackTag",
-        "PlayerSpiderAttackTag",
         "PlayerBulletTag",
     };   
 

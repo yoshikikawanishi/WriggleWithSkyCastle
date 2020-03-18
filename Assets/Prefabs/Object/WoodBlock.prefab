@@ -82,12 +82,8 @@ MonoBehaviour:
   attacked_Tags:
   - PlayerAttackTag
   - PlayerChargeAttackTag
-  - PlayerButterflyAttackTag
-  - PlayerSpiderAttackTag
   - PlayerBulletTag
-  - PlayerChargeBulletTag
   - PlayerKickTag
-  - EnemyBulletTag
   max_Length: 3
   block_Size: 32
   glass_Sprites:
@@ -109,7 +105,7 @@ SpriteRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: fc6239414e6b2ed4b8e29974db3abb7d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -130,7 +126,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: e3d4beb9a9d632a47866c8be20d2472e, type: 3}
-  m_Color: {r: 0.8018868, g: 0.8018868, b: 0.8018868, a: 1}
+  m_Color: {r: 0.4, g: 0.4, b: 0.4, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

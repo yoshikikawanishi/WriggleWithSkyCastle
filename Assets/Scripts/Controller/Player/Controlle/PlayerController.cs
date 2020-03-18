@@ -30,6 +30,8 @@ public class PlayerController : MonoBehaviour {
     //ジャンプボタンが押された時接地していなくても、数フレーム後に着地すればジャンプする
     private bool start_Jump_Frame_Count = false;
     private int jump_Frame_Count = 0;
+    //地面から離れた後も数フレーム間はジャンプを受け付ける
+    private int leave_Land_Frame_Count = 0;
 
     //攻撃の入力識別用
     public bool start_Attack_Frame_Count = false;
@@ -119,20 +121,40 @@ public class PlayerController : MonoBehaviour {
             _transition.Slow_Down();
         }
         //ジャンプ
-        //ジャンプボタンが押された時接地していなくても、数フレーム後に着地すればジャンプする
         if (input.GetKeyDown(Key.Jump)) {
-            start_Jump_Frame_Count = true;            
+            //地面にいるときはそのままジャンプ
+            if (is_Landing) {
+                _jump.Jump();
+            }
+            //地面から離れている時
+            else {
+                //数フレーム前に地面にいた時はジャンプする
+                if (leave_Land_Frame_Count < 3) {
+                    _jump.Jump();
+                    leave_Land_Frame_Count = 3;
+                }
+                //ボタン押下後数フレーム間着地しないか監視する
+                else {                    
+                    start_Jump_Frame_Count = true;
+                    jump_Frame_Count = 0;
+                }
+            }
         }
+        //ボタン押下後数フレーム以内に着地したときジャンプする
         if (start_Jump_Frame_Count) {
             jump_Frame_Count++;
-            if (is_Landing) {
-                if (jump_Frame_Count < 10) {
-                    _jump.Jump();
-                }
+            if(is_Landing && jump_Frame_Count < 10) {
+                _jump.Jump();
                 start_Jump_Frame_Count = false;
                 jump_Frame_Count = 0;
             }
         }
+        //地面から離れた後のフレームカウントする
+        if (is_Landing)
+            leave_Land_Frame_Count = 0;
+        else
+            leave_Land_Frame_Count++;       
+        //減速
         if (input.GetKeyUp(Key.Jump)) {
             _jump.Slow_Down();
         }

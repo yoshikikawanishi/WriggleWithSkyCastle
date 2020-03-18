@@ -7,8 +7,6 @@ public class GrassGround : MonoBehaviour {
 
     private List<string> player_Attack_Tags = new List<string> {
         "PlayerAttackTag",
-        "PlayerButterflyAttackTag",
-        "PlayerSpiderAttackTag",
         "PlayerChargeAttackTag",        
     };
     private List<string> player_Bullet_Tags = new List<string> {

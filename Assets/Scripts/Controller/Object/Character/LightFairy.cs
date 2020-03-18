@@ -43,6 +43,7 @@ public class LightFairy : TalkCharacter {
 
     //登場
     private IEnumerator Appear() {
+        BGMManager.Instance.Resume_BGM();
         SpriteMask _mask = GetComponentInChildren<SpriteMask>();
         for (int i = 0; i < 8; i++) {
             _mask.enabled = false;

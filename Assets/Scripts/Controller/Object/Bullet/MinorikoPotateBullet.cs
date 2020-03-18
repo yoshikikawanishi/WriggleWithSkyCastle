@@ -13,9 +13,7 @@ public class MinorikoPotateBullet : Bullet {
         "GroundTag",
         "PlayerTag",
         "PlayerAttackTag",
-        "PlayerChargeAttackTag",
-        "PlayerButterflyAttackTag",
-        "PlayerSpiderAttackTag",
+        "PlayerChargeAttackTag",        
         "PlayerKickTag",
     };
 

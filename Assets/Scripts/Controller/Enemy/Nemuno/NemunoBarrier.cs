@@ -13,12 +13,9 @@ public class NemunoBarrier : MonoBehaviour {
     private bool is_Barrier = false;
 
     private List<string> blink_Tag_List = new List<string> {
-        "PlayerBulletTag",
-        "PlayerChargeBulletTag",
+        "PlayerBulletTag",        
         "PlayerAttackTag",
-        "PlayerChargeAttackTag",
-        "PlayerButterflyAttackTag",
-        "PlayerSpiderAttackTag",
+        "PlayerChargeAttackTag",        
         "PlayerKickTag",
     };
 

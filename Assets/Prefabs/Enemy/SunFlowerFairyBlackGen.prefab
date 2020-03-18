@@ -122,7 +122,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   is_Pooled: 1
-  life: 28
+  life: 20
   power_Value: 7
   score_Value: 9
   drop_Life_Probability: 0.1
@@ -209,7 +209,7 @@ MonoBehaviour:
   kind: 2
   comment: 
   play_On_Awake: 0
-  bullet: {fileID: 1548341539267244, guid: b7818f12bd791b34fbcfd64355ecf13f, type: 2}
+  bullet: {fileID: 1213655712385016, guid: b7818f12bd791b34fbcfd64355ecf13f, type: 2}
   parent: {fileID: 0}
   max_Speed: 120
   speed_Noise: 0

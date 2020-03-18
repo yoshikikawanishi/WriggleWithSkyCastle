@@ -8,14 +8,11 @@ using UnityEngine;
 public class EnemyCollisionDetection : MonoBehaviour {
 
     protected Dictionary<string, int> damaged_Tag_Dictionary = new Dictionary<string, int>() {
-        {"PlayerAttackTag"  , 12 },
-        {"PlayerChargeAttackTag", 20 },
-        {"PlayerButterflyAttackTag", 12 },
-        { "PlayerSpiderAttackTag", 12 },
-        {"PlayerKickTag"  , 12 },
-        {"PlayerBulletTag"  , 1 },
-        {"PlayerChargeBulletTag"  , 10},
-        {"PlayerTag"        , 10},
+        {"PlayerAttackTag"  , 12    },
+        {"PlayerChargeAttackTag", 20 },        
+        {"PlayerKickTag"    , 12    },
+        {"PlayerBulletTag"  , 1     },        
+        {"PlayerTag"        , 10    },
     };        
 
     private Enemy _enemy;
@@ -52,6 +49,10 @@ public class EnemyCollisionDetection : MonoBehaviour {
         //ダメージの計算
         int damage = (int)(damaged_Tag_Dictionary[key] * Damage_Rate());
         _enemy.Damaged(damage, key);
+        //自機の緑ゲージの回復
+        if(key != "PlayerBulletTag") {
+            BeetlePowerManager.Instance.StartCoroutine("Increase_Cor", 8);
+        }
     }
 
 

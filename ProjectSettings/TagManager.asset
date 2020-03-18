@@ -15,15 +15,12 @@ TagManager:
   - ScreenWallTag
   - InvisibleWallTag
   - MissZoneTag
-  - PlayerChargeBulletTag
   - BombTag
   - SandbackTag
   - ThroughGroundTag
   - SandbackGroundTag
   - SmallItemTag
   - PlayerKickTag
-  - PlayerButterflyAttackTag
-  - PlayerSpiderAttackTag
   - PlayerChargeAttackTag
   - DamagedGroundTag
   layers:

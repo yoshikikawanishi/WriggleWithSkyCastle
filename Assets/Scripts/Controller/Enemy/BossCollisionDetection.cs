@@ -14,8 +14,13 @@ public class BossCollisionDetection : EnemyCollisionDetection {
 
     //被弾の処理
     protected override void Damaged(string key) {
+        //ダメージの計算
         int damage = (int)(damaged_Tag_Dictionary[key] * Damage_Rate());
         _boss_Enemy.Damaged(damage, key);
+        //自機の緑ゲージ回復
+        if (key != "PlayerBulletTag") {
+            BeetlePowerManager.Instance.StartCoroutine("Increase_Cor", 8);
+        }
     }
 
 

@@ -11,9 +11,7 @@ public class GenBlockFourSide : MonoBehaviour {
     [SerializeField]
     private List<string> attacked_Tags = new List<string> {
         "PlayerAttackTag",
-        "PlayerChargeAttackTag",
-        "PlayerButterflyAttackTag",
-        "PlayerSpiderAttackTag",
+        "PlayerChargeAttackTag",        
         "PlayerBulletTag",
         "PlayerChargeBulletTag",
     };

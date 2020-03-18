@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerAttackCollision : MonoBehaviour {
 
-    private bool is_Hit_Attack = false;
+    private bool is_Hit_Attack = false;    
     private Vector2 offset;
     private BoxCollider2D _collider;
     private GameObject player;
@@ -32,14 +32,14 @@ public class PlayerAttackCollision : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D collision) {
         foreach (string tag in hit_Attack_Tag_List) {
-            if (collision.tag == tag && !is_Hit_Attack) {
+            if (collision.tag == tag && !is_Hit_Attack) {                
                 is_Hit_Attack = true;
                 Play_Hit_Effect(collision.transform.position);
             }
         }
     }
 
-
+    //あたったときtrue
     public bool Hit_Trigger() {
         if (is_Hit_Attack) {
             is_Hit_Attack = false;
@@ -47,7 +47,7 @@ public class PlayerAttackCollision : MonoBehaviour {
         }
         return false;
     }
-
+    
 
     private void Play_Hit_Effect(Vector2 pos) {
         GameObject effect = ObjectPoolManager.Instance.Get_Pool(HIT_EFFECT_NAME).GetObject();
@@ -61,8 +61,7 @@ public class PlayerAttackCollision : MonoBehaviour {
     public void Make_Collider_Appear(float lifeTime) {        
         is_Hit_Attack = false;        
         GetComponent<BoxCollider2D>().enabled = true;
-        Change_Size();
-        Change_Tag();
+        Change_Size();        
         Play_Animation();
         Invoke("Make_Collider_Disappear", lifeTime);
     }
@@ -135,18 +134,7 @@ public class PlayerAttackCollision : MonoBehaviour {
         }
     }
 
-
-    //オプションによるタグの変更
-    private void Change_Tag() {
-        switch (PlayerManager.Instance.Get_Option()) {
-            case PlayerManager.Option.none:         Set_Tag("PlayerAttackTag"); break;
-            case PlayerManager.Option.bee:          Set_Tag("PlayerAttackTag"); break;
-            case PlayerManager.Option.butterfly:    Set_Tag("PlayerButterflyAttackTag"); break;
-            case PlayerManager.Option.mantis:       Set_Tag("PlayerAttackTag"); break;
-            case PlayerManager.Option.spider:       Set_Tag("PlayerSpiderAttackTag");    break;
-        }
-    }
-
+   
     private void Set_Tag(string tag) {
         gameObject.tag = tag;
     }

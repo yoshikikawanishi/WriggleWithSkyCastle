@@ -10,6 +10,12 @@ public class GameManager : SingletonMonoBehaviour<GameManager> {
         base.Awake();
         //フレームレートの固定化
         Application.targetFrameRate = 60;
+        // PC向けビルドだったらサイズ変更
+        if (Application.platform == RuntimePlatform.WindowsPlayer ||
+        Application.platform == RuntimePlatform.OSXPlayer ||
+        Application.platform == RuntimePlatform.LinuxPlayer) {
+            Screen.SetResolution(960, 540, false);
+        }
     }
 
     //ミス時の処理

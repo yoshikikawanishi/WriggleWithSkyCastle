@@ -66,9 +66,9 @@ public class GreenYinBall : MonoBehaviour {
     private IEnumerator Blink() {
         SpriteRenderer _sprite = GetComponent<SpriteRenderer>();
         for(int i = 0; i < 4; i++) {
-            _sprite.color = new Color(0.5f, 0.8f, 0.3f);
+            _sprite.color = new Color(0.7f, 0.7f, 0.7f, 1);
             yield return new WaitForSeconds(0.1f);
-            _sprite.color = new Color(1, 1, 1, 1);
+            _sprite.color = new Color(0.5f, 0.5f, 0.5f, 1);
             yield return new WaitForSeconds(0.1f);
         }
     }

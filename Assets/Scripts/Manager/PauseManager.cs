@@ -80,7 +80,9 @@ public class PauseManager : SingletonMonoBehaviour<PauseManager> {
         }
         pause_Canvas.SetActive(true);
         EventSystem.current.SetSelectedGameObject(null);       
-        pause_Canvas.transform.GetChild(0).GetComponent<Button>().Select();
+        pause_Canvas.GetComponentsInChildren<Button>()[0].Select();
+        //効果音
+        UsualSoundManager.Instance.Play_Pause_In_Sound();
     }
 
     
@@ -106,6 +108,8 @@ public class PauseManager : SingletonMonoBehaviour<PauseManager> {
             pause_Canvas.SetActive(false);
         if (setting_Canvas != null)
             setting_Canvas.SetActive(false);
+        //効果音
+        UsualSoundManager.Instance.Play_Pause_Out_Sound();
     }
 
 
@@ -139,7 +143,7 @@ public class PauseManager : SingletonMonoBehaviour<PauseManager> {
         }
         pause_Canvas.SetActive(true);
         EventSystem.current.SetSelectedGameObject(null);
-        pause_Canvas.transform.GetChild(0).GetComponent<Button>().Select();
+        pause_Canvas.GetComponentsInChildren<Button>()[0].Select();
     }
 
 

@@ -7,7 +7,7 @@ public class PlayerKickCollision : MonoBehaviour {
     private CircleCollider2D _collider;
     private GameObject player;
 
-    public bool is_Hit_Kick = false;
+    public bool is_Hit_Kick = false;    
     private Vector2 offset;
 
     private readonly string HIT_EFFECT_NAME = "HitEffect";  //PlayerAttackCollisionの方でオブジェクトプール
@@ -27,7 +27,7 @@ public class PlayerKickCollision : MonoBehaviour {
     private void OnTriggerEnter2D(Collider2D collision) {
         foreach (string tag in hit_Attack_Tag_List) {
             if (collision.tag == tag && !is_Hit_Kick) {
-                is_Hit_Kick = true;
+                is_Hit_Kick = true;                
                 Play_Hit_Effect();
             }
         }
@@ -40,7 +40,7 @@ public class PlayerKickCollision : MonoBehaviour {
             return true;
         }
         return false;
-    }
+    }   
 
 
     //当たり判定を生成する

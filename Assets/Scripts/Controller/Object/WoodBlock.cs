@@ -41,6 +41,8 @@ public class WoodBlock : GenBlockFourSide {
     protected override void Attacked() {
         base.Attacked();
 
+        StartCoroutine("Blink_Cor");
+
         for(int i = 0; i < blocks.Length; i++) {
             if (blocks[i] == null)
                 continue;
@@ -54,5 +56,14 @@ public class WoodBlock : GenBlockFourSide {
                 blocks[i].GetComponent<SpriteRenderer>().sprite = glass_Sprites[1];
             }
         }
+    }
+
+
+    //白く点滅
+    private IEnumerator Blink_Cor() {
+        SpriteRenderer _sprite = GetComponent<SpriteRenderer>();
+        _sprite.color = new Color(0.7f, 0.7f, 0.7f);
+        yield return new WaitForSeconds(0.1f);
+        _sprite.color = new Color(0.4f, 0.4f, 0.4f);
     }
 }

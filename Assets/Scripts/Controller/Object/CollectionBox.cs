@@ -10,9 +10,7 @@ public class CollectionBox : MonoBehaviour {
 
     private List<string> hit_Tag_List = new List<string> {
         "PlayerAttackTag",
-        "PlayerChargeAttackTag",
-        "PlayerButterflyAttackTag",
-        "PlayerSpiderAttackTag",
+        "PlayerChargeAttackTag",        
         "PlayerKickTag",
     };	
 

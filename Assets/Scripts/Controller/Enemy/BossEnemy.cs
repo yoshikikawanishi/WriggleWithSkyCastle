@@ -74,7 +74,7 @@ public class BossEnemy : MonoBehaviour {
             Play_Damaged_Effect(damaged_Tag);
         }
         //毒ダメージ
-        if(damaged_Tag == "PlayerSpiderAttackTag") {
+        if(damaged_Tag == "PlayerAttackTag" && PlayerManager.Instance.Get_Option() == PlayerManager.Option.spider) {
             poisoned_Enemy.Start_Poisoned_Damaged(true);
         }
         else {

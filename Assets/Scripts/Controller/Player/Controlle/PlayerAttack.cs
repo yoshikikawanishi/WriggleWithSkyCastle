@@ -126,8 +126,7 @@ public class PlayerAttack : MonoBehaviour {
         if (knock_Back) {
             float force = _controller.is_Landing ? 170f : 30f;                  //ノックバック
             _rigid.velocity = new Vector2(force * -transform.localScale.x, 10f);
-        }
-        BeetlePowerManager.Instance.StartCoroutine("Increase_Cor", 8);      //緑パワーの増加
+        }         
         player_SE.Play_Hit_Attack_Sound();                                  //効果音                                                               
         float tmp = Time.timeScale;                                         //ヒットストップ        
         Time.timeScale = 0.4f;
@@ -238,8 +237,7 @@ public class PlayerAttack : MonoBehaviour {
 
     //キックのヒット時の処理
     private void Do_Hit_Kick_Process() {
-        _rigid.velocity = new Vector2(30f * -transform.localScale.x, 160f); //ノックバック
-        BeetlePowerManager.Instance.StartCoroutine("Increase_Cor", 8);      //緑ゲージの増加
+        _rigid.velocity = new Vector2(30f * -transform.localScale.x, 160f); //ノックバック        
         player_SE.Play_Hit_Attack_Sound();                                  //効果音
     }
 

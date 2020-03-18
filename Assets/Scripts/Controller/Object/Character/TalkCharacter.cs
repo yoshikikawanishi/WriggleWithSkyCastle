@@ -25,9 +25,7 @@ public class TalkCharacter : MonoBehaviour {
 
     private List<string> talk_Tags = new List<string> {
         "PlayerAttackTag",
-        "PlayerChargeAttackTag",
-        "PlayerButterflyAttackTag",
-        "PlayerSpiderAttackTag",
+        "PlayerChargeAttackTag",               
     };    
 
 
@@ -63,6 +61,7 @@ public class TalkCharacter : MonoBehaviour {
         
         GameObject player = GameObject.FindWithTag("PlayerTag");
         PlayerController player_Controller = player.GetComponent<PlayerController>();
+        PlayerBodyCollision player_Collision = player.GetComponentInChildren<PlayerBodyCollision>();
 
         talk_Count++;
 
@@ -73,6 +72,8 @@ public class TalkCharacter : MonoBehaviour {
             yield return null;
             player.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
             player_Controller.Change_Animation("IdleBool");
+            //自機無敵化
+            player_Collision.Become_Invincible();
             //ポーズ禁止
             PauseManager.Instance.Set_Is_Pausable(false);
 
@@ -85,6 +86,7 @@ public class TalkCharacter : MonoBehaviour {
             //終了
             yield return new WaitForSeconds(0.1f);
             player_Controller.Set_Is_Playable(true);
+            player_Collision.Release_Invincible();
             PauseManager.Instance.Set_Is_Pausable(true);
         }        
 

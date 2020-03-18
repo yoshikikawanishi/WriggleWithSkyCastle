@@ -8,12 +8,9 @@ public class CrashBlockController : MonoBehaviour {
 
     [SerializeField]
     private List<string> destroyer_Tag_List = new List<string> {
-        "PlayerBulletTag",
-        "PlayerChargeBulletTag",
+        "PlayerBulletTag",        
         "PlayerAttackTag",
-        "PlayerChargeAttackTag",
-        "PlayerButterflyAttackTag",
-        "PlayerSpiderAttackTag",
+        "PlayerChargeAttackTag",        
         "PlayerKickTag",
     };
 

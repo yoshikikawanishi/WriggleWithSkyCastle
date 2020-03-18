@@ -68,7 +68,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1826034871318784}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 747.9, y: -5.6, z: 0}
+  m_LocalPosition: {x: -91, y: -30.3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4250762073969834}
@@ -124,7 +124,7 @@ MonoBehaviour:
   play_On_Awake: 0
   bullet: {fileID: 1999695524264546, guid: d83779209dcf93c4a9c9418966c2b38a, type: 2}
   parent: {fileID: 0}
-  max_Speed: 80
+  max_Speed: 100
   speed_Noise: 0
   angle_Noise: 0
   lifeTime: 0.6
@@ -173,7 +173,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   is_Pooled: 0
-  life: 24
+  life: 50
   power_Value: 5
   score_Value: 6
   drop_Life_Probability: 0.1

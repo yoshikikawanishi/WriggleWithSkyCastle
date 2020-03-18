@@ -13,8 +13,7 @@ public class WildBoar : Enemy {
 
     private List<string> repelled_Attack_Tags = new List<string>() {
         "PlayerAttackTag",
-        "PlayerSpiderAttackTag",
-        "PlayerButterflyAttackTag",
+        "PlayerChargeAttackTag",
         "PlayerKickTag",
     };
 

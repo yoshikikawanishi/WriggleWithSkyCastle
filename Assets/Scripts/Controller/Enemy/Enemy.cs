@@ -54,7 +54,7 @@ public class Enemy : MonoBehaviour {
     public virtual void Damaged(int damage, string attacked_Tag) {
         life -= damage;
         //毒ダメージ発生
-        if(attacked_Tag == "PlayerSpiderAttackTag") {
+        if(attacked_Tag == "PlayerAttackTag" && PlayerManager.Instance.Get_Option() == PlayerManager.Option.spider) {
             poisoned_Enemy.Start_Poisoned_Damaged(false);
         }
         //消滅
@@ -80,7 +80,7 @@ public class Enemy : MonoBehaviour {
             ObjectPoolManager.Instance.Set_Inactive(shoot, 1.0f);
         }
         //蜘蛛にやられたとき蜘蛛の巣を張る
-        if(attacked_Tag == "PlayerSpiderAttackTag" || attacked_Tag == "Poison") {
+        if((attacked_Tag == "PlayerAttackTag" && PlayerManager.Instance.Get_Option() == PlayerManager.Option.spider) || attacked_Tag == "Poison") {
             spider_Footing_Enemy.Generate_Footing_Vanish();
         }        
         else {

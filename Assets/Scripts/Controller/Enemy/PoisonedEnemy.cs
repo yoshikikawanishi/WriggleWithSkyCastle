@@ -61,7 +61,7 @@ public class PoisonedEnemy : MonoBehaviour {
             damage += POISON_DAMAGE_POWER_UP;
         //ダメージを与える
         for (int i = 0; i < damage; i++) {
-            enemy_Controller.Damaged(1, "Poison");
+            enemy_Controller.Damaged(2, "Poison");
             yield return new WaitForSeconds(0.4f);
         }
 

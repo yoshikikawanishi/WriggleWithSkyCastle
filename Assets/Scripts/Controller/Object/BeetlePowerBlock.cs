@@ -9,8 +9,6 @@ public class BeetlePowerBlock : MonoBehaviour {
         "PlayerKickTag",
         "PlayerAttackTag",
         "PlayerChargeAttackTag",
-        "PlayerButterflyAttackTag",
-        "PlayerSpiderAttackTag",
     };
 
     private Vector2 default_Pos;

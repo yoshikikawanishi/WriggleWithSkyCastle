@@ -1,11 +1,11 @@
 #Key	#IsCollected
 Rumia	False
-Mystia	True
+Mystia	False
 LightFairy	False
-Yuka	True
-Medicine	True
-Shizuha	True
-BigFrog	True
+Yuka	False
+Medicine	False
+Shizuha	False
+BigFrog	False
 Nitori	False
 Hina	False
 Momizi	False

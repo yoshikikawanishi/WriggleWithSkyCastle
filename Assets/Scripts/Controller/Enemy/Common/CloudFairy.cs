@@ -22,7 +22,7 @@ public class CloudFairy : Enemy {
 	void Update () {        
         if (is_Damaged) {
             //被弾後一定時間待つ
-            if (attack_Time < 0.6f) {
+            if (attack_Time < 0.01f) {
                 attack_Time += Time.deltaTime;
             }
             //攻撃
