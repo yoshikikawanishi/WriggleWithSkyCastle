@@ -31,7 +31,6 @@ public class MoveGround : MonoBehaviour {
         }
         if (collision.tag == "PlayerFootTag") {
             player.transform.SetParent(null);
-            //player.transform.localScale = new Vector3(1, 1, 1);
             player.transform.rotation = new Quaternion(0, 0, 0, 0);
         }
     }

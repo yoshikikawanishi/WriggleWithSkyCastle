@@ -19,10 +19,14 @@ public class BigFrog : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        //アイテム取得済みの場合消す
+        if (CollectionManager.Instance.Is_Collected("BigFrog")) {
+            Destroy(gameObject);
+        }
         //取得
         boss_Enemy = GetComponent<BossEnemy>();
         _anim = GetComponent<Animator>();
-        player = GameObject.FindWithTag("PlayerTag");
+        player = GameObject.FindWithTag("PlayerTag");        
 	}
 	
 

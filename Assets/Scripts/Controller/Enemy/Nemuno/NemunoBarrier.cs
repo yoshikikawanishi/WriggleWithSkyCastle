@@ -37,7 +37,7 @@ public class NemunoBarrier : MonoBehaviour {
             else if(!_collider.enabled){
                 _collider.enabled = true;
             }
-            transform.Rotate(new Vector3(0, 0, 1f));
+            transform.Rotate(new Vector3(0, 0, 1f * Time.timeScale));
             transform.position = nemuno.transform.position;
         }
         //ばリア停止中

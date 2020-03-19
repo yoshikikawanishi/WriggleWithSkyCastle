@@ -23,6 +23,20 @@ public class CrashBlockController : MonoBehaviour {
     [Space]
     [SerializeField] private Sprite damaged_Sprite;
 
+    private int default_Life;
+
+
+    //Awake
+    private void Awake() {
+        default_Life = life;
+    }
+
+
+    //OnEnable
+    private void OnEnable() {
+        life = default_Life;
+    }
+
 
     //OnTriggerEnter
     private void OnTriggerEnter2D(Collider2D collision) {

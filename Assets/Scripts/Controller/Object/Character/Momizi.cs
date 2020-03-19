@@ -28,9 +28,9 @@ public class Momizi : TalkCharacter {
 
 
     protected override void Action_In_End_Talk() {
-        //ロープウェイ到着感謝後
+        //ロープウェイ到着セリフ後
         if (start_ID == 2) {
-            Change_Message_Status("MomiziText", 4, 4);            
+            Change_Message_Status("MomiziText", 5, 9);            
             Put_Out_Collection_Box();
         }
     }
@@ -38,6 +38,6 @@ public class Momizi : TalkCharacter {
 
     private void Change_Status_With_Aya() {
         transform.position = new Vector3(5740f, -64f);
-        Change_Message_Status("MomiziText", 5, 5);
+        Change_Message_Status("MomiziText", 10, 10);
     }
 }

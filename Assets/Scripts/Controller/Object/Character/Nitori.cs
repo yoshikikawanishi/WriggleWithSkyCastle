@@ -12,7 +12,7 @@ public class Nitori : TalkCharacter {
         if(c.Is_Collected("Nitori") && c.Is_Collected("Hina")) {
             transform.position = new Vector3(5390f, -36f);
             GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
-            Change_Message_Status("NitoriText", 4, 4);
+            Change_Message_Status("NitoriText", 5, 9);
         }
     }
 
@@ -29,13 +29,13 @@ public class Nitori : TalkCharacter {
     protected override void Action_In_End_Talk() {
         //驚きセリフ後、登場セリフ
         if (start_ID == 1) {            
-            Change_Message_Status("NitoriText", 2, 2);
+            Change_Message_Status("NitoriText", 2, 3);
             StartCoroutine(Talk());
         }
         //イベント終了後
         else if(start_ID == 2) {
             Put_Out_Collection_Box();
-            Change_Message_Status("NitoriText", 3, 3);
+            Change_Message_Status("NitoriText", 4, 4);
         }
     }
 

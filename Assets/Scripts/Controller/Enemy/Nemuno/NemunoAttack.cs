@@ -213,7 +213,7 @@ public class NemunoAttack : MonoBehaviour {
 
         //大ジャンプ
         StartCoroutine("High_Jump_Cor", -1);
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitUntil(Is_End_Action);
 
         //溜め
         transform.localScale = new Vector3(1, 1, 1);
@@ -263,7 +263,7 @@ public class NemunoAttack : MonoBehaviour {
                     case AttackKind.barrier:
                         StartCoroutine("Barrier_Walk_Cor", 210f);
                         yield return new WaitUntil(Is_End_Action);
-                        yield return new WaitForSeconds(1.5f);
+                        yield return new WaitForSeconds(1.2f);
                         break;
                     case AttackKind.jump_Slash:
                         StartCoroutine("Back_Jump_Cor");
@@ -546,10 +546,13 @@ public class NemunoAttack : MonoBehaviour {
         //歩く
         int direction = (transform.position.x - player.transform.position.x).CompareTo(0);
         transform.localScale = new Vector3(direction, 1, 1);
+        float pos = transform.position.x - walk_Length * direction;
+        if (Mathf.Abs(pos) > 200f)
+            pos = 200 * pos.CompareTo(0);
 
         UsualSoundManager.Instance.Play_Shoot_Sound();
-        _controller.Change_Animation("DashBool");
-        _move_Two_Points.Start_Move(new Vector3(transform.position.x - walk_Length * direction, transform.position.y), 1);
+        _controller.Change_Animation("DashBool");        
+        _move_Two_Points.Start_Move(new Vector3(pos, transform.position.y), 1);
         yield return new WaitForSeconds(2.0f);
 
         //バリア解除

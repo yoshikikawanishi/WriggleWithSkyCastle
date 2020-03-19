@@ -48,7 +48,7 @@ public class SmallFrog : MonoBehaviour {
 
     //ジャンプ
     private void Jump() {
-        _rigid.velocity = new Vector2(-80f * transform.localScale.x, 200f);
+        _rigid.velocity = new Vector2(-80f * transform.localScale.x, 180f);
         _anim.SetBool("JumpBool", true);
     }
 }

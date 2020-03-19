@@ -47,7 +47,7 @@ public class Stage2_BossMovie : MonoBehaviour {
 
         //会話
         if (is_First_Visit) {
-            _message.Start_Display("NemunoText", 1, 1);
+            _message.Start_Display("NemunoText", 1, 8);
             yield return new WaitUntil(_message.End_Message);
         }
 
@@ -69,7 +69,7 @@ public class Stage2_BossMovie : MonoBehaviour {
         yield return new WaitForSeconds(2.0f);
 
         //会話
-        _message.Start_Display("NemunoText", 1, 1);
+        _message.Start_Display("NemunoText", 9, 11);
         yield return new WaitUntil(_message.End_Message);
 
         //シーン遷移

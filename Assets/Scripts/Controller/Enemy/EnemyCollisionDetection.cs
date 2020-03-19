@@ -11,8 +11,9 @@ public class EnemyCollisionDetection : MonoBehaviour {
         {"PlayerAttackTag"  , 12    },
         {"PlayerChargeAttackTag", 20 },        
         {"PlayerKickTag"    , 12    },
-        {"PlayerBulletTag"  , 1     },        
-        {"PlayerTag"        , 10    },
+        {"PlayerBulletTag"  , 1     },
+        {"PlayerTag"        , 10    },  
+        {"PlayerBodyTag"    , 10    },
     };        
 
     private Enemy _enemy;

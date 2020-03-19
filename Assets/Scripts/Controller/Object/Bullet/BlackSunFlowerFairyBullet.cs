@@ -8,25 +8,29 @@ public class BlackSunFlowerFairyBullet : MonoBehaviour {
 
     private ShootSystem _shoot;
 
+    private bool is_Shooting = false;   //Updata内で１度だけ呼ぶよう、enableをfalseにするとObjectPoolのあれこれでよくない
+
 
     private void Awake() {
         _shoot = GetComponent<ShootSystem>();
     }
 
     private void OnEnable() {
+        main_Purple_Bullet.SetActive(true);
         StartCoroutine("Shoot_Cor");
-        this.enabled = true;
-    }
+        is_Shooting = true;
+    }    
+
 
     private void Update() {
-        if (!main_Purple_Bullet.activeSelf) {
+        if (!main_Purple_Bullet.activeSelf && is_Shooting) {
             _shoot.Stop_Shoot();
-            this.enabled = false;
+            is_Shooting = false;
         }
     }
 
     private IEnumerator Shoot_Cor() {
-        yield return null;                
+        yield return null;        
         _shoot.center_Angle_Deg = transform.parent.localEulerAngles.z;
         _shoot.Shoot();
     }
