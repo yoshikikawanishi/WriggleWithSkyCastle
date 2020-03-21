@@ -121,7 +121,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af31272f1f3ee8b4da76f39de104ea4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  start_Time: 3
+  start_Time: 1.5
   loop_Count: 1
   span: 0
 --- !u!114 &114431919548988232
@@ -147,7 +147,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   is_Pooled: 1
-  life: 5
+  life: 9
   power_Value: 5
   score_Value: 5
   drop_Life_Probability: 0.1

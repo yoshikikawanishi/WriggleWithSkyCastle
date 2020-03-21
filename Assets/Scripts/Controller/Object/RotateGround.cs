@@ -54,7 +54,7 @@ public class RotateGround : MonoBehaviour {
     //自機が回転する地面から離れた時
     private void Get_Off_Player() {
         player.transform.SetParent(null);
-        player.transform.localScale = new Vector3(1, 1, 1);
+        player.transform.localScale = new Vector3(player.transform.localScale.x.CompareTo(0), 1, 1);
         player.transform.rotation = new Quaternion(0, 0, 0, 0);
         is_Landing = false;
     }
