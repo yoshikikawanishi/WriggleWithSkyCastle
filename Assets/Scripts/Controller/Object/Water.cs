@@ -7,7 +7,6 @@ public class Water : MonoBehaviour {
     [SerializeField] private GameObject water_Display_Effect_Prefab;
 
     private ObjectPool surface_Effect_Pool;
-    private GameObject player;
 
     private GameObject water_Display_Effect;
 
@@ -22,9 +21,7 @@ public class Water : MonoBehaviour {
         GameObject main_Camera = GameObject.FindWithTag("MainCamera");
         water_Display_Effect = Instantiate(water_Display_Effect_Prefab, main_Camera.transform);
         water_Display_Effect.transform.localPosition = new Vector3(0, 0, 10);
-        Stop_Water_Display_Effect();
-        //取得
-        player = GameObject.FindWithTag("PlayerTag");
+        Stop_Water_Display_Effect();        
     }
 	
 

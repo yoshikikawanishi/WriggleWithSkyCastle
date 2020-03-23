@@ -13,6 +13,7 @@ public class NemunoController : MonoBehaviour {
     private CapsuleCollider2D _collider;
     private BossEnemy _boss_Controller;
     private NemunoAttack _attack;
+    public NemunoBGMTimeKeeper _BGM;
 
     //戦闘開始
     private bool start_Battle = false;
@@ -25,6 +26,7 @@ public class NemunoController : MonoBehaviour {
         _collider = GetComponent<CapsuleCollider2D>();
         _boss_Controller = GetComponent<BossEnemy>();
         _attack = GetComponent<NemunoAttack>();
+        _BGM = new NemunoBGMTimeKeeper();
     }
 
 
@@ -38,8 +40,8 @@ public class NemunoController : MonoBehaviour {
 	void Update () {
         if (start_Battle) {
             switch (_boss_Controller.Get_Now_Phase()) {
-                case 1: _attack.Phase1(); break;
-                case 2: _attack.Phase2(); break;
+                case 1: _attack.Phase1(_BGM); break;
+                case 2: _attack.Phase2(_BGM); break;
             }
         }
 	}
@@ -61,6 +63,7 @@ public class NemunoController : MonoBehaviour {
     //戦闘開始
     public void Start_Battle() {
         start_Battle = true;
+        _BGM.Start_Time_Count();
     }
 
 
