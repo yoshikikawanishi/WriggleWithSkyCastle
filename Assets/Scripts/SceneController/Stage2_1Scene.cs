@@ -24,8 +24,10 @@ public class Stage2_1Scene : MonoBehaviour {
             //自機をカブトムシに乗せる            
             PlayerGettingOnBeetle player_Ride_Beetle = player.GetComponent<PlayerGettingOnBeetle>();
             player_Ride_Beetle.Get_On_Beetle();
-        }        
-        
+        }
+
+        //BGM
+        BGMManager.Instance.Change_BGM("Stage2");
 	}
 
 

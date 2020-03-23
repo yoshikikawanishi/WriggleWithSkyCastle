@@ -9,7 +9,8 @@ public class SceneChangeTrigger : MonoBehaviour {
 
     public enum Change_Efect {
         non,
-        fade_Out
+        fade_Out,
+        fade_Out_With_BGM
     }
     public Change_Efect change_Effect_Type;
 
@@ -30,12 +31,19 @@ public class SceneChangeTrigger : MonoBehaviour {
     private IEnumerator Change_Scene_Cor() {
         //遷移前のエフェクト
         is_Changing = true;
+
         switch (change_Effect_Type) {            
             case Change_Efect.fade_Out:
                 FadeInOut.Instance.Start_Fade_Out(fade_Out_Color, 0.05f);
                 yield return new WaitForSeconds(1.0f);
                 break;
+            case Change_Efect.fade_Out_With_BGM:
+                FadeInOut.Instance.Start_Fade_Out(fade_Out_Color, 0.05f);
+                BGMManager.Instance.Fade_Out();
+                yield return new WaitForSeconds(1.0f);
+                break;
         }
+
         is_Changing = false;
         SceneManager.LoadScene(next_Scene);
     }

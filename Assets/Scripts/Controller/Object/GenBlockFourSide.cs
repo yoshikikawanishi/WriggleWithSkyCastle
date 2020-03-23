@@ -146,7 +146,7 @@ public class GenBlockFourSide : MonoBehaviour {
         if(move == null) {
             move = block.AddComponent<MoveTwoPoints>();
             move.Change_Transition_Curve(AnimationCurve.Linear(0, 0, 1, 1), 0);
-            move.Change_Paramter(0.2f, 0, 0);
+            move.Change_Paramter(0.07f, 0, 0);
         }
 
         Vector3 d = new Vector3(direction.x, direction.y);
