@@ -157,10 +157,18 @@ public class PlayerAttack : MonoBehaviour {
 
 
     private IEnumerator Kick_Cor(bool is_Sliding) {
-        accept_Input = false;
 
+        accept_Input = false;
+        
+        //入力受付後15フレーム以内にキック可能になればキック
+        float loop_Count = 0;
         while (!can_Attack) {
             yield return null;
+            loop_Count++;
+            if (loop_Count > 15) {
+                accept_Input = true;
+                yield break;
+            }
         }
         can_Attack = false;
         _controller.Set_Is_Playable(false);

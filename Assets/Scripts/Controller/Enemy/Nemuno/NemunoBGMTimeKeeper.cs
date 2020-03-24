@@ -12,8 +12,8 @@ public class NemunoBGMTimeKeeper  {
     }
     private Melody now_Melody = Melody.A;
 
-    //曲のタイミング                            A   B    A  ｻﾋﾞ前 ｻﾋﾞ  ﾙｰﾌﾟ
-    public readonly float[] BGM_Time_Keeper = { 0, 22f, 40f, 48f, 56f, 80f };
+    //曲のタイミング                            A   B    A  ｻﾋﾞ前   ｻﾋﾞ    ﾙｰﾌﾟ
+    public readonly float[] BGM_Time_Keeper = { 0, 20f, 42f, 48f, 56.14f, 78.7f };
 
     private float BGM_Launch_Time = 0;
     private float now_BGM_Time = 0;
@@ -41,10 +41,10 @@ public class NemunoBGMTimeKeeper  {
             if (now_Melody != Melody.A)
                 now_Melody = Melody.A;
         }
-        else if (now_BGM_Time < BGM_Time_Keeper[4]) {
+        else if (now_BGM_Time < BGM_Time_Keeper[5]) {
             if (now_Melody != Melody.main)
                 now_Melody = Melody.main;
-        }        
+        }
         return now_Melody;
     }
 

@@ -12,7 +12,7 @@ public class NemunoKunaiBullet : MonoBehaviour {
 
     private IEnumerator Shoot_Cor() {
         float r = Random.Range(0f, 1.0f);
-        if(r < 0.6f) {
+        if(r < 0.75f) {
             yield break;
         }
         yield return new WaitForSeconds(r*r);

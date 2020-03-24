@@ -27425,7 +27425,7 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    speed: 0.025
+    speed: 0.024
     arc_Size: 48
     is_Local_Position: 0
   - comment: "\u30D0\u30EA\u30A2\u7A81\u9032\u7528"
@@ -27453,7 +27453,7 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    speed: 0.01
+    speed: 0.008
     arc_Size: 0
     is_Local_Position: 0
   - comment: "\u5782\u76F4\u30B8\u30E3\u30F3\u30D7\u7528"
@@ -27509,7 +27509,7 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    speed: 0.025
+    speed: 0.015
     arc_Size: 0
     is_Local_Position: 0
   - comment: "\u98DB\u884C\u6642\u79FB\u52D5"
@@ -33256,7 +33256,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c9048ccf0aa56442ba7e89fea6de129, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  life: e001000090010000
+  life: e0010000a4010000
   power_Value: 16
   score_Value: 20
   phase_Change_Bomb_Prefab: {fileID: 1493121116874872, guid: 20dc9e0b24cf99a4c902f6c82ea5650b,

@@ -69,13 +69,15 @@ public class NemunoController : MonoBehaviour {
 
     //空に飛ぶとき、重力を消してあたりはんていをtriggerにする
     public void Change_Fly_Parameter() {
-        _rigid.gravityScale = 0;        
+        _rigid.gravityScale = 0;
+        _rigid.velocity = Vector2.zero;
         _collider.isTrigger = true;
     }
 
     //地上に降りるとき、重力を付けて当たり判定をつける
     public void Change_Land_Paramter() {
         _rigid.gravityScale = 32f;
+        _rigid.velocity = Vector2.zero;
         _collider.isTrigger = false;
     }
 

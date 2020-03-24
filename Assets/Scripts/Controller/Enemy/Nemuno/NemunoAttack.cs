@@ -29,15 +29,16 @@ public class NemunoAttack : MonoBehaviour {
         _attack_Func = GetComponent<NemunoAttackFunction>();
         _shoot = GetComponentInChildren<NemunoShoot>();
         _barrier = GetComponentInChildren<NemunoBarrier>();              
-        _move_Two_Points = GetComponent<MoveTwoPoints>();
+        _move_Two_Points = GetComponent<MoveTwoPoints>();        
+    }
 
+
+    private void Start() {
         //初期設定
         _barrier.gameObject.SetActive(false);
         can_Attack = true;
-    }   
+    }
 
-
-   
 
     #region Phase1
     //==========================================フェーズ１===================================
@@ -56,7 +57,7 @@ public class NemunoAttack : MonoBehaviour {
                 Phase1_Melody_A(10);
                 break;
             case NemunoBGMTimeKeeper.Melody.B:
-                Phase1_Melody_B(24);
+                Phase1_Melody_B(18);
                 break;
             case NemunoBGMTimeKeeper.Melody.main:
                 StartCoroutine("Phase1_Melody_Main_Cor", _BGM);
@@ -90,16 +91,16 @@ public class NemunoAttack : MonoBehaviour {
     
 
     //サビ
-    private IEnumerator Phase1_Melody_Main_Cor(NemunoBGMTimeKeeper _BGM) {
-
-        //サビ開始までの時間を計算
-        float wait_Time = _BGM.BGM_Time_Keeper[4] - (Time.unscaledTime % _BGM.BGM_Time_Keeper[5] - _BGM.Get_BGM_Launch_Time());
-        if (wait_Time < 0)
-            wait_Time = 2.0f;
+    private IEnumerator Phase1_Melody_Main_Cor(NemunoBGMTimeKeeper _BGM) {       
 
         //弾幕前溜め        
         _attack_Func.StartCoroutine("High_Jump_Cor", -1);
         yield return new WaitUntil(_attack_Func.Is_End_Move);
+
+        //サビ開始までの時間を計算
+        float wait_Time = _BGM.BGM_Time_Keeper[4] - (Time.unscaledTime  - _BGM.Get_BGM_Launch_Time()) % _BGM.BGM_Time_Keeper[5];
+        if (wait_Time < 0 || wait_Time > 10)
+            wait_Time = 2.0f;
 
         transform.localScale = new Vector3(1, 1, 1);
         _controller.Play_Charge_Effect(wait_Time);
@@ -109,7 +110,7 @@ public class NemunoAttack : MonoBehaviour {
         _controller.Change_Fly_Parameter();
         yield return new WaitForSecondsRealtime(1.0f);
         _move_Two_Points.Start_Move(new Vector3(160f, 8f), 4);
-        yield return new WaitForSeconds(wait_Time);
+        yield return new WaitForSeconds(wait_Time - 1.0f);
 
         //弾幕攻撃
         _controller.Play_Burst_Effect();
@@ -136,7 +137,8 @@ public class NemunoAttack : MonoBehaviour {
         _controller.Stop_Charge_Effect();
         _controller.Quit_Battle_Effect();
         _barrier.Stop_Barrier();
-        _shoot.Stop_Kunai_Shoot();        
+        _shoot.Stop_Kunai_Shoot();
+        _move_Two_Points.Stop_Move();
     }
     #endregion
 
@@ -212,8 +214,8 @@ public class NemunoAttack : MonoBehaviour {
         yield return new WaitUntil(_attack_Func.Is_End_Move);
 
         //サビ開始までの時間を計算
-        float wait_Time = _BGM.BGM_Time_Keeper[4] - (Time.unscaledTime % _BGM.BGM_Time_Keeper[5] - _BGM.Get_BGM_Launch_Time());
-        if (wait_Time < 0)
+        float wait_Time = _BGM.BGM_Time_Keeper[4] - (Time.unscaledTime  - _BGM.Get_BGM_Launch_Time()) % _BGM.BGM_Time_Keeper[5];
+        if (wait_Time < 0 || wait_Time > 10)
             wait_Time = 2.0f;
 
         //溜め開始        
@@ -223,9 +225,9 @@ public class NemunoAttack : MonoBehaviour {
         _controller.Change_Animation("ShootBool");
         _controller.Change_Fly_Parameter();
         _move_Two_Points.Start_Move(new Vector3(160f * -direction, 8f), 4);
-        yield return new WaitUntil(_move_Two_Points.End_Move);
+        yield return new WaitForSeconds(1.5f);
 
-        yield return new WaitForSeconds(wait_Time);        
+        yield return new WaitForSeconds(wait_Time - 1.5f);        
 
         //弾幕攻撃
         _shoot.Start_Knife_Shoot();
@@ -253,6 +255,7 @@ public class NemunoAttack : MonoBehaviour {
         _controller.Quit_Battle_Effect();
         _barrier.Stop_Barrier();
         _shoot.Stop_Knife_Shoot();
+        _move_Two_Points.Stop_Move();
     }    
     #endregion
 

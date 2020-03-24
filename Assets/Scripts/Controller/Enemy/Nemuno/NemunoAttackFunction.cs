@@ -102,11 +102,14 @@ public class NemunoAttackFunction : MonoBehaviour {
         is_End_Move = false;
 
         //移動先の座標        
-        float x = transform.position.x + Player_Direction() * Mathf.Abs(dash_Distance);
-        if (Mathf.Abs(x) > 200f)
-            x = transform.position.x - Player_Direction() * Mathf.Abs(dash_Distance);
+        int direction = Player_Direction();        
+        float x = transform.position.x + direction * Mathf.Abs(dash_Distance);
+        if (Mathf.Abs(x) > 200f) {
+            x = transform.position.x - direction * Mathf.Abs(dash_Distance);
+            direction *= -1;
+        }
         //方向
-        transform.localScale = new Vector3(-Player_Direction(), 1, 1);        
+        transform.localScale = new Vector3(-direction, 1, 1);        
 
         //ダッシュ
         _controller.Change_Land_Paramter();
@@ -139,7 +142,7 @@ public class NemunoAttackFunction : MonoBehaviour {
         yield return new WaitForSeconds(0.2f);
 
         _sound.Play_Jump_Sound(0.08f);
-        _move_Two_Points.Start_Move(new Vector3(190f * -direction, -80f), 5);
+        _move_Two_Points.Start_Move(new Vector3(190f * -direction, -79f), 5);
         yield return new WaitUntil(_move_Two_Points.End_Move);
 
         _sound.Play_Land_Sound();
@@ -179,7 +182,7 @@ public class NemunoAttackFunction : MonoBehaviour {
         yield return new WaitForSeconds(0.5f);
 
         _controller.Change_Animation("IdleBool");
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.2f);
 
         _attack.can_Attack = true;
     }
@@ -211,6 +214,7 @@ public class NemunoAttackFunction : MonoBehaviour {
         yield return new WaitForSeconds(0.5f);
 
         _controller.Change_Animation("IdleBool");
+        yield return new WaitForSeconds(0.2f);
 
         _attack.can_Attack = true;
     }
