@@ -137,6 +137,7 @@ MonoBehaviour:
   Player_Option: 3
   Delete_Yuka_Data: 0
   Delete_Rumia_Data: 0
+  Delete_Aya_Data: 1
 --- !u!114 &114752986096458988
 MonoBehaviour:
   m_ObjectHideFlags: 1

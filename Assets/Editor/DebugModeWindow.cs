@@ -35,6 +35,7 @@ public class DebugModeWindow : EditorWindow {
 
         obj.Delete_Yuka_Data = EditorGUILayout.Toggle("Delete_Yuka_Tutorial_Data", obj.Delete_Yuka_Data);
         obj.Delete_Rumia_Data = EditorGUILayout.Toggle("Delete_Rumia_Data", obj.Delete_Rumia_Data);
+        obj.Delete_Aya_Data = EditorGUILayout.Toggle("Delete_Aya_Data", obj.Delete_Aya_Data);
 
         EditorUtility.SetDirty(obj);
         

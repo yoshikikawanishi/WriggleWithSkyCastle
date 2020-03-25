@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Stage3_2Scene : MonoBehaviour {
-
-    [SerializeField] private AyaCameraFrame camera_Frame_Effect;
-
+   
     private GameObject player;
+
+    private AyaMovie aya_Movie;
 
     private bool is_Passed_Middle_Point = false;
     private bool is_Passed_Final_Point = false;
@@ -16,6 +16,7 @@ public class Stage3_2Scene : MonoBehaviour {
 	void Start () {
         //取得
         player = GameObject.FindWithTag("PlayerTag");
+        aya_Movie = GetComponent<AyaMovie>();
         //初回時フェードイン
         if (SceneManagement.Instance.Is_First_Visit()) {
             FadeInOut.Instance.Start_Fade_In(new Color(0, 0, 0), 0.01f);
@@ -38,7 +39,7 @@ public class Stage3_2Scene : MonoBehaviour {
             if (!is_Passed_Middle_Point) {
                 is_Passed_Middle_Point = true;
                 BackGroundEffector.Instance.Start_Change_Color(new Color(0.4f, 0.4f, 0.4f), 0.02f);
-                camera_Frame_Effect.Appear();
+                aya_Movie.Play_Aya_Movie();
             }
         }
 	}

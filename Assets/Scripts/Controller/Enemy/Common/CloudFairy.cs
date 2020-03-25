@@ -36,7 +36,6 @@ public class CloudFairy : Enemy {
 	}
 
     public override void Damaged(int damage, string attacked_Tag) {
-        Debug.Log(attacked_Tag);
         base.Damaged(damage, attacked_Tag);
         //打ち返し開始
         if (!is_Damaged && attacked_Tag != "Poison") {

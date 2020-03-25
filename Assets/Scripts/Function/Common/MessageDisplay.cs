@@ -57,6 +57,17 @@ public class MessageDisplay : MonoBehaviour {
         StartCoroutine("Print_Message");
     }
 
+    //表示開始    
+    public void Start_Display(string fileName, int start_ID, int end_ID, bool is_Overwrite) {
+        if (is_Overwrite)
+            StopAllCoroutines();
+        else if (messagePanel.activeSelf)
+            return;
+
+        Start_Display(fileName, start_ID, end_ID);
+    }
+
+
     //表示開始
     public void Start_Display_Auto(string fileName, int start_ID, int end_ID, float waitingTime, float speed) {
         //テキストファイルの読み込み
@@ -70,6 +81,15 @@ public class MessageDisplay : MonoBehaviour {
         StartCoroutine(Print_Message_Auto(waitingTime, speed));
     }
 
+    //表示開始
+    public void Start_Display_Auto(string fileName, int start_ID, int end_ID, float waitingTime, float speed, bool is_Overwrite) {
+        if (is_Overwrite)
+            StopAllCoroutines();
+        else if (messagePanel != null && messagePanel.activeSelf)            
+            return;
+
+        Start_Display_Auto(fileName, start_ID, end_ID, waitingTime, speed);
+    }
 
 
     //テキストファイルの読み込み

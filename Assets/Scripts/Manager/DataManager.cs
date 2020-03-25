@@ -20,6 +20,10 @@ public class DataManager : SingletonMonoBehaviour<DataManager> {
             Debug.Log("<color=#ff0000ff>Delete Rumia Tutorial Data </color>");
             PlayerPrefs.DeleteKey("Rumia");
         }
+        if (DebugModeManager.Instance.Delete_Aya_Data) {
+            Debug.Log("<color=#ff0000ff>Delete Aya Movie Data </color>");
+            PlayerPrefs.DeleteKey("Aya");
+        }
         #endif
     }
 
