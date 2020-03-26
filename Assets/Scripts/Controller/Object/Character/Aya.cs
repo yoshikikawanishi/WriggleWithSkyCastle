@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Aya : TalkCharacter {
+public class Aya : TalkCharacter {    
 
     new void Start() {
         base.Start();

@@ -29,13 +29,14 @@ public class Stage3_2Scene : MonoBehaviour {
         if (player == null)
             return;
 
-        if (player.transform.position.x > 6700f) {
+        if (player.transform.position.x > 6500f) {
             if (!is_Passed_Final_Point) {
                 is_Passed_Final_Point = true;
+                is_Passed_Middle_Point = true;
                 BackGroundEffector.Instance.Start_Change_Color(new Color(1f, 1f, 1f), 0.02f);
             }
         }
-        else if (player.transform.position.x > 3304f) {
+        else if (player.transform.position.x > 3364f) {
             if (!is_Passed_Middle_Point) {
                 is_Passed_Middle_Point = true;
                 BackGroundEffector.Instance.Start_Change_Color(new Color(0.4f, 0.4f, 0.4f), 0.02f);

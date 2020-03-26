@@ -4,6 +4,16 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
+/// <summary>
+/// メッセージを表示する
+/// シーン内にキャンバスと表示用のパネルを用意すること
+/// 
+/// ※パネルの構成
+///         ﾊﾟﾈﾙ
+///           |
+///         |￣￣|
+///     ﾒｯｾﾃｷｽﾄ　ﾈｰﾑﾃｷｽﾄ
+/// </summary>
 public class MessageDisplay : MonoBehaviour {
     
     //テキストの複数列を入れる2次元配列
@@ -26,6 +36,10 @@ public class MessageDisplay : MonoBehaviour {
     //メッセージ表示の速度
     private float textSpeed = 0.07f;
 
+    //キャンバスとメッセージパネルの名前
+    private string canvas_Name = "Canvas";
+    private string panel_Name = "MessagePanel";
+
     //メッセージ表示後に選択画面を生成するか
     public bool is_Display_Selection_After_Message = false;
     //メッセージ表示後に生成する選択画面、シーン上に配置する
@@ -44,6 +58,7 @@ public class MessageDisplay : MonoBehaviour {
     }
 
 
+    //=================================================== public =======================================================
     //表示開始
     public void Start_Display(string fileName, int start_ID, int end_ID) {
         //テキストファイルの読み込み
@@ -92,6 +107,14 @@ public class MessageDisplay : MonoBehaviour {
     }
 
 
+    //表示用キャンバスとパネルの変更
+    public void Set_Canvas_And_Panel_Name(string canvas_Name, string panel_Name) {
+        this.canvas_Name = canvas_Name;
+        this.panel_Name = panel_Name;
+    }
+
+
+    //==================================================== private ====================================================
     //テキストファイルの読み込み
     private void Read_Text(string fileName) {
         TextFileReader text = new TextFileReader();
@@ -102,8 +125,8 @@ public class MessageDisplay : MonoBehaviour {
 
     //メッセージパネルの表示
     private void Display_Panel() {
-        GameObject canvas = GameObject.Find("Canvas");
-        messagePanel = canvas.transform.Find("MessagePanel").gameObject;
+        GameObject canvas = GameObject.Find(canvas_Name);
+        messagePanel = canvas.transform.Find(panel_Name).gameObject;
         if (messagePanel == null)
             messagePanel = Instantiate(Resources.Load("UI/MessagePanel") as GameObject, canvas.transform);
         messagePanel.SetActive(true);

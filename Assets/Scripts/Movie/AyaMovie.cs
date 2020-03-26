@@ -4,13 +4,19 @@ using UnityEngine;
 
 public class AyaMovie : MonoBehaviour {
 
+    [SerializeField] private Aya aya;
     //画面エフェクト用
     [SerializeField] private AyaCameraFrame camera_Frame_Effect;
 
     //セリフのID
     [SerializeField] private Vector2Int[]   start_Message_ID        = new Vector2Int[3];
-    [SerializeField] private float[]        on_The_Way_Message_Line = new float[2];
-    [SerializeField] private Vector2Int[]   on_The_Way_Message_ID   = new Vector2Int[2];    
+    [Space]
+    [SerializeField] private float          on_The_Way_Message_Line1;
+    [SerializeField] private Vector2Int[]   on_The_Way_Message_ID1  = new Vector2Int[2];
+    [Space]
+    [SerializeField] private float          on_The_Way_Message_Line2;
+    [SerializeField] private Vector2Int[]   on_The_Way_Message_ID2  = new Vector2Int[2];
+    [Space]
     [SerializeField] private Vector2Int[]   damaged_Message_ID      = new Vector2Int[3];
 
     private GameObject main_Camera;
@@ -29,10 +35,14 @@ public class AyaMovie : MonoBehaviour {
 
     private void Start() {
         main_Camera = GameObject.FindWithTag("MainCamera");
-        if (on_The_Way_Message_Line.Length != on_The_Way_Message_ID.Length)
-            Debug.Log("OnTheWayMessage[] Size Error");
+
+        if (movie_Count >= 3 && aya != null)
+            Destroy(aya.gameObject);
     }
 
+    public int Get_Movie_Count() {
+        return movie_Count;
+    }
 
     //ムービーを開始する
     public void Play_Aya_Movie() {
@@ -41,7 +51,10 @@ public class AyaMovie : MonoBehaviour {
             PlayerPrefs.SetInt("Aya", 0);
         }
         movie_Count = PlayerPrefs.GetInt("Aya") + 1;
-        PlayerPrefs.SetInt("Aya", movie_Count);        
+        PlayerPrefs.SetInt("Aya", movie_Count);
+        //３回目以降は文が登場しない
+        if (movie_Count >= 3 && aya != null)
+            Destroy(aya.gameObject);
         //ムービー開始
         StartCoroutine("Aya_Movie_Cor");
     }
@@ -49,39 +62,49 @@ public class AyaMovie : MonoBehaviour {
 
     //ムービー本体
     private IEnumerator Aya_Movie_Cor() {
+        if (movie_Count > start_Message_ID.Length)
+            yield break;
+
         //初期設定
         damaged_Count = 0;
         player_Life = PlayerManager.Instance.Get_Life();
+        _message.Set_Canvas_And_Panel_Name("AyaMessageCanvas", "AyaMessagePanel");        
+
+        //開始セリフ
+        Display_Message(start_Message_ID[movie_Count - 1]);        
+        yield return new WaitUntil(_message.End_Message);        
+
         //カメラエフェクト
         camera_Frame_Effect.Appear();
 
-        //開始セリフ
-        switch (movie_Count) {
-            case 1: Display_Message(start_Message_ID[0]); break;
-            case 2: Display_Message(start_Message_ID[1]); break;
-            case 3: Display_Message(start_Message_ID[2]); break;
-        }
-        yield return new WaitUntil(_message.End_Message);
-
         //一定x座標を越えた時のセリフ
-        StartCoroutine("On_The_Way_Message_Cor", 0);
+        StartCoroutine("On_The_Way_Message1_Cor");
+        StartCoroutine("On_The_Way_Message2_Cor");
         //自機被弾時セリフ
         StartCoroutine("Player_Damaged_Movie_Cor");        
     }
 
 
     //一定のx座標を超えた時のセリフ
-    private IEnumerator On_The_Way_Message_Cor(int line_Index) {        
+    private IEnumerator On_The_Way_Message1_Cor() {        
         //待つ
-        while(main_Camera.transform.position.x < on_The_Way_Message_Line[line_Index]) {
+        while(main_Camera.transform.position.x < on_The_Way_Message_Line1) {
             yield return null;
         }
         //セリフ
-        Display_Message(on_The_Way_Message_ID[line_Index]);
+        Display_Message(on_The_Way_Message_ID1[movie_Count - 1]);
         yield return new WaitUntil(_message.End_Message);
-        //次の道中セリフを待つ
-        if(line_Index + 1 < on_The_Way_Message_Line.Length)
-            StartCoroutine("On_The_Way_Message", line_Index + 1);
+    }
+
+    private IEnumerator On_The_Way_Message2_Cor() {
+        //待つ
+        while (main_Camera.transform.position.x < on_The_Way_Message_Line2) {
+            yield return null;
+        }
+        //セリフ
+        Display_Message(on_The_Way_Message_ID2[movie_Count - 1]);
+        yield return new WaitUntil(_message.End_Message);
+        camera_Frame_Effect.Disappear();
     }
 
 
@@ -89,6 +112,10 @@ public class AyaMovie : MonoBehaviour {
     private IEnumerator Player_Damaged_Movie_Cor() {           
         //待つ
         while (true) {
+            //自機が回復したとき
+            if (PlayerManager.Instance.Get_Life() > player_Life)
+                player_Life++;
+            //被弾時
             if (Is_Player_Damaged()) {
                 damaged_Count++;
                 break;    

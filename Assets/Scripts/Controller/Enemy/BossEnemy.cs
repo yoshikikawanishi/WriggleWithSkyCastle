@@ -36,7 +36,7 @@ public class BossEnemy : MonoBehaviour {
     private float damaged_Span_Time = 0;
 
 
-    private void Awake() {
+    protected void Awake() {
         //取得
         _put_Out_Item   = gameObject.AddComponent<PutOutSmallItems>();
         _sprite         = GetComponent<SpriteRenderer>();
@@ -46,7 +46,7 @@ public class BossEnemy : MonoBehaviour {
         DEFAULT_LIFE = new List<int>(life);
     }
 
-    private void Update() {
+    protected void Update() {
         if(damaged_Span_Time < 0.6f) {
             damaged_Span_Time += Time.deltaTime;
         }
