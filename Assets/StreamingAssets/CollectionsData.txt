@@ -9,4 +9,4 @@ BigFrog	True
 Nitori	True
 Hina	True
 Momizi	False
-Aya	False
+Aya	True

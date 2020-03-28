@@ -64,10 +64,7 @@ public class AyaMovie : MonoBehaviour {
     private IEnumerator Aya_Movie_Cor() {
         if (movie_Count > start_Message_ID.Length)
             yield break;
-
-        //初期設定
-        damaged_Count = 0;
-        player_Life = PlayerManager.Instance.Get_Life();
+        
         _message.Set_Canvas_And_Panel_Name("AyaMessageCanvas", "AyaMessagePanel");        
 
         //開始セリフ
@@ -109,7 +106,10 @@ public class AyaMovie : MonoBehaviour {
 
 
     //自機被弾時セリフ    
-    private IEnumerator Player_Damaged_Movie_Cor() {           
+    private IEnumerator Player_Damaged_Movie_Cor() {
+        //初期設定
+        damaged_Count = 0;
+        player_Life = PlayerManager.Instance.Get_Life();
         //待つ
         while (true) {
             //自機が回復したとき
@@ -143,6 +143,6 @@ public class AyaMovie : MonoBehaviour {
 
 
     private void Display_Message(Vector2Int ID) {
-        _message.Start_Display_Auto("AyaText", ID.x, ID.y, 1, 0.05f, false);
+        _message.Start_Display_Auto("AyaText", ID.x, ID.y, 1.5f, 0.05f, false);
     }
 }

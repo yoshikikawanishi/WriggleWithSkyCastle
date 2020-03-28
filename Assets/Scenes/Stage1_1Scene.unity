@@ -479,8 +479,8 @@ Transform:
   - {fileID: 151536077}
   - {fileID: 2026904917}
   - {fileID: 565274065}
-  - {fileID: 234729205}
   - {fileID: 1058689092}
+  - {fileID: 234729205}
   - {fileID: 1059550373}
   - {fileID: 1393562356}
   - {fileID: 966808325}
@@ -749,7 +749,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4885315563241268, guid: 4bd949678d72d7c4f8be11df88e5a537, type: 2}
       propertyPath: m_RootOrder
-      value: 9
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4bd949678d72d7c4f8be11df88e5a537, type: 2}
@@ -19496,7 +19496,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4908763420005374, guid: 8f830b816a60e664ea8f98348e639141, type: 2}
       propertyPath: m_RootOrder
-      value: 10
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8f830b816a60e664ea8f98348e639141, type: 2}
@@ -27678,6 +27678,7 @@ GameObject:
   - component: {fileID: 1322609505}
   - component: {fileID: 1322609506}
   - component: {fileID: 1322609507}
+  - component: {fileID: 1322609508}
   m_Layer: 0
   m_Name: Scripts
   m_TagString: Untagged
@@ -27783,6 +27784,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfdc2bc7f88b64348ab4834882a0782c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1322609508
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1322609499}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7226e2b508673247bf31f23e8393eaf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  file_Name: Stage1SceneEnemy
 --- !u!1 &1326628648
 GameObject:
   m_ObjectHideFlags: 0

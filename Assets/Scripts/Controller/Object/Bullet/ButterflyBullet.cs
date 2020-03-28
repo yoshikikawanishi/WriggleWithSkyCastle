@@ -58,9 +58,16 @@ public class ButterflyBullet : MonoBehaviour {
         float distance = 0;
         GameObject[] enemy_List = GameObject.FindGameObjectsWithTag("EnemyTag");
         foreach (GameObject enemy in enemy_List) {
-            distance = enemy.transform.position.x - player.transform.position.x;
-            //一番近くて、無敵化していない敵を探す
-            if (-64f < distance && distance < min_Distance && enemy.activeSelf && enemy.layer != 10) {
+            //無敵化している敵は無視
+            if (!enemy.activeSelf && enemy.layer == 10)
+                continue;
+            //画面の外にいる敵は無視
+            if (Mathf.Abs(enemy.transform.position.y) > 150f)
+                continue;
+
+            //一番近くの敵を探す
+            distance = Vector2.Distance(enemy.transform.position, player.transform.position);            
+            if (distance < min_Distance) {
                 min_Distance = distance;
                 target = enemy;
             }

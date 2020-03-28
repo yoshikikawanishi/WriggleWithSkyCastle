@@ -10,6 +10,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour {
     
     [SerializeField] private bool is_Pooled = false;
+    [SerializeField] public bool is_One_Life = false;
     [Space]
     [SerializeField] private int life = 5;
     [SerializeField] private int power_Value = 0;
@@ -95,7 +96,7 @@ public class Enemy : MonoBehaviour {
         Put_Out_Item();
         StopAllCoroutines();
         
-        if (is_Pooled) {            
+        if (is_Pooled || is_One_Life) {            
             gameObject.SetActive(false);
             return;
         }

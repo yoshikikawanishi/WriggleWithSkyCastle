@@ -60,11 +60,17 @@ public class PlayerShoot : MonoBehaviour {
 
     #region NormalShoot
 
-    private ObjectPool bullet_Pool;
-    private int shoot_Num;
-    private int loop_Count;
-    private float bullet_Speed;
-    private float width;
+    public struct ShootStatus {
+        public ObjectPool bullet_Pool;        
+        public int num;        
+        public float span;
+        public float bullet_Speed;
+        public float width;
+    }
+    private ShootStatus normal_Shoot = new ShootStatus();
+    private ShootStatus option_Shoot = new ShootStatus();
+    [HideInInspector] public float shoot_Interval = 0.25f;
+
 
     //ショットを打つ
     public void Shoot() {
@@ -74,23 +80,27 @@ public class PlayerShoot : MonoBehaviour {
 
         Change_Shoot_Status();
 
-        StartCoroutine("Shoot_Cor");
-    }
+        StartCoroutine("Shoot_Cor", normal_Shoot);
+        StartCoroutine("Shoot_Cor", option_Shoot);
+    }    
 
-    private IEnumerator Shoot_Cor() {
-        for (int i = 0; i < loop_Count; i++) {
-            for (int j = 0; j < shoot_Num; j++) {
-                GameObject bullet = bullet_Pool.GetObject();
+
+    private IEnumerator Shoot_Cor(ShootStatus s) {           
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < s.num; j++) {
+                GameObject bullet = s.bullet_Pool.GetObject();
                 bullet.transform.position = transform.position;
-                bullet.transform.position += new Vector3(0, (-width * shoot_Num) / 2) + new Vector3(0, width * j);
+                bullet.transform.position += new Vector3(0, (-s.width * s.num) / 2) + new Vector3(0, s.width * j);
                 bullet.transform.localScale = transform.localScale;
-                bullet.GetComponent<Rigidbody2D>().velocity = new Vector2(bullet_Speed * transform.localScale.x, 0);
-                if (player_Manager.Get_Option() == PlayerManager.Option.spider)
-                    Add_Diffusion_Shoot_Vel(bullet, shoot_Num, j);
+                bullet.GetComponent<Rigidbody2D>().velocity = new Vector2(s.bullet_Speed * transform.localScale.x, 0);
+                if (s.bullet_Pool == ObjectPoolManager.Instance.Get_Pool(spider_Bullet))
+                    Add_Diffusion_Shoot_Vel(bullet, s.num, j);
+                else if (s.bullet_Pool == ObjectPoolManager.Instance.Get_Pool(butterfly_Bullet))
+                    Add_Diffusion_Shoot_Vel(bullet, s.num, j);
                 player_SE.Play_Shoot_Sound();
                 bullet.GetComponent<Bullet>().Set_Inactive(10);
             }
-            yield return new WaitForSeconds(player_Controller.SHOOT_INTERVAL / loop_Count - Time.deltaTime);
+            yield return new WaitForSeconds(s.span);
         }
     }
 
@@ -102,53 +112,64 @@ public class PlayerShoot : MonoBehaviour {
         
         //弾数
         if (power < 32) 
-            shoot_Num = 2;        
+            option_Shoot.num = 2;        
         else if (power < 64) 
-            shoot_Num = 3;        
+            option_Shoot.num = 3;        
         else if (power < 128) 
-            shoot_Num = 4;        
+            option_Shoot.num = 4;        
         else 
-            shoot_Num = 5;        
+            option_Shoot.num = 5;                
 
         //弾の種類、速度、幅、弾        
         switch (option) {
             case PlayerManager.Option.none:
-                Set_Shoot_Status(normal_Bullet, 900f, 12f, 2);
+                Set_Shoot_Status(ref option_Shoot, normal_Bullet, 900f, 12f, 0.12f);
+                normal_Shoot.num = 0;
                 break;
             case PlayerManager.Option.bee:
-                Set_Shoot_Status(bee_Bullet, 1000f, 3f, 3);
-                shoot_Num--;
+                Set_Shoot_Status(ref option_Shoot, bee_Bullet, 1000f, 3f, 0.08f);
+                option_Shoot.num--;
+                normal_Shoot.num = 0;
                 break;
             case PlayerManager.Option.butterfly:                
-                Set_Shoot_Status(butterfly_Bullet, 700f, 12f, 2);
-                shoot_Num--;
+                Set_Shoot_Status(ref option_Shoot, butterfly_Bullet, 700f, 18f, 0.12f);
+                option_Shoot.num --;
+                normal_Shoot.num = 2;
                 break;
             case PlayerManager.Option.mantis:                
-                Set_Shoot_Status(mantis_Bullet, 700f, 8f, 2);
+                Set_Shoot_Status(ref option_Shoot, mantis_Bullet, 700f, 8f, 0.12f);
+                normal_Shoot.num = 0;
                 break;
             case PlayerManager.Option.spider:
-                Set_Shoot_Status(spider_Bullet, 400f, 0f, 3);
-                shoot_Num += 2;
+                Set_Shoot_Status(ref option_Shoot, spider_Bullet, 400f, 0f, 0.08f);
+                option_Shoot.num += 2;
+                normal_Shoot.num = 0;
                 break;
         }
 
-        if (shoot_Num <= 0)
-            shoot_Num = 1;
+        //時間
+        shoot_Interval = option_Shoot.span * 3;
+
+        //通常ショット
+        Set_Shoot_Status(ref normal_Shoot, normal_Bullet, 900f, 12f, option_Shoot.span);
+
+        if (option_Shoot.num <= 0)
+            option_Shoot.num = 1;
     }
 
 
     //弾の種類、速度、幅、回数を代入する
-    private void Set_Shoot_Status(GameObject bullet, float speed, float width, int loop_Count) {
-        bullet_Pool = ObjectPoolManager.Instance.Get_Pool(bullet);
-        bullet_Speed = speed;
-        this.width = width;
-        this.loop_Count = loop_Count;
+    private void Set_Shoot_Status(ref ShootStatus s, GameObject bullet, float speed, float width, float span) {        
+        s.bullet_Pool   = ObjectPoolManager.Instance.Get_Pool(bullet);        
+        s.bullet_Speed  = speed;
+        s.width         = width;
+        s.span          = span;
     }
 
 
     //蜘蛛拡散弾の縦方向の速度を加算
-    private void Add_Diffusion_Shoot_Vel(GameObject bullet, int shoot_Num, int index) {
-        float center = (shoot_Num - 1) / 2;
+    private void Add_Diffusion_Shoot_Vel(GameObject bullet, int num, int index) {
+        float center = (num - 1) / 2;
         bullet.GetComponent<Rigidbody2D>().velocity += new Vector2(0, (center - index) * -130f);
     }
 

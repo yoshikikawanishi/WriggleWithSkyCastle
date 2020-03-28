@@ -1,0 +1,4 @@
+Name	IsExist
+BlueFairy	False
+YellowFairy	False
+RedFairy	False

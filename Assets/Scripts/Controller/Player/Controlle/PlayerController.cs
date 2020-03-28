@@ -43,7 +43,7 @@ public class PlayerController : MonoBehaviour {
     private string now_Animator_Parameter = "IdleBool";
 
     //ショットについて
-    public readonly float SHOOT_INTERVAL = 0.25f;
+    public  float SHOOT_INTERVAL = 0.25f;
     private float shoot_Time = 0.2f;
 
     //初期値
@@ -273,7 +273,7 @@ public class PlayerController : MonoBehaviour {
 
     public void Shoot() {
         //通常ショット
-        if (shoot_Time < SHOOT_INTERVAL) {
+        if (shoot_Time < _shoot.shoot_Interval) {
             shoot_Time += Time.deltaTime;
             if (input.GetKeyDown(Key.Shoot))
                 is_Buffered_Input = true;
