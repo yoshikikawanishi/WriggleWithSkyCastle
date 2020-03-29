@@ -1,2 +1,6 @@
 #SceneName
 Stage1_1Scene
+TitleScene
+Stage2_2Scene
+Stage3_2Scene
+DemoEndingScene

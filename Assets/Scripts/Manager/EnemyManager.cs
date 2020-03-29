@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System;
 using System.IO;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -20,7 +21,7 @@ public class OneLifeEnemy {
 
     public bool Is_Exist() {
         return is_Exist;
-    }
+    }    
 }
 
 
@@ -45,7 +46,8 @@ public class EnemyManager : MonoBehaviour {
     }
     
     void Start () {        
-        Find_Enemies();                 //シーン内の敵を探す        
+        Find_Enemies();                 //シーン内の敵を探す       
+        Sort_Enemies_In_Position();     //enemiesリストをソートする
         Write_Initial_Setting();        //初回時見つかった敵をテキストファイルに保存
         Load_Data_And_Delete_Enemy();   //ファイルの読み込みと一度倒された敵の消去
     }
@@ -78,9 +80,26 @@ public class EnemyManager : MonoBehaviour {
         //EnemyTagのオブジェクトの中からEnemyクラスを持っていて、is_One_Lifeになっているオブジェクトを探す
         for(int i = 0; i < objs.Length; i++) {
             enemy = objs[i].GetComponent<Enemy>();
-            if (enemy != null && enemy.is_One_Life)
+            if (enemy == null || !objs[i].activeSelf)
+                continue;
+            if (enemy.is_One_Life)
                 enemies.Add(new OneLifeEnemy(objs[i]));
         }        
+    }
+
+
+    //敵をx座標の小さい順にソートする
+    private void Sort_Enemies_In_Position() {
+        var c = new Comparison<OneLifeEnemy>(Compare);
+        enemies.Sort(c);        
+    }
+
+    static int Compare(OneLifeEnemy a, OneLifeEnemy b) {
+        if (a.obj.transform.position.x > b.obj.transform.position.x)
+            return 1;
+        else if(a.obj.transform.position.x < b.obj.transform.position.x)
+            return -1;
+        return 0;
     }
 
 

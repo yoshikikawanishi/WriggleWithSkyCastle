@@ -71,12 +71,16 @@ public class WolfAndCrow : MonoBehaviour {
         yield return new WaitForSeconds(0.8f);
 
         wolf.SetActive(true);
+        wolf.transform.SetParent(null);
 
         GetComponent<Renderer>().enabled = false;
 
         if (gen_Crow_With_Wolf) {
             yield return new WaitForSeconds(0.3f);
-            crow.SetActive(true);            
+            crow.SetActive(true);
+            crow.transform.SetParent(null);
         }
+
+        gameObject.SetActive(false);
     }
 }

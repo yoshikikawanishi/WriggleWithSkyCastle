@@ -276,7 +276,7 @@ public class ShootSystem : MonoBehaviour {
             angle_Noise = Random.Range(-this.angle_Noise, this.angle_Noise);    //回転
             bullet.transform.Rotate(new Vector3(0, 0, 1), angle_Deg + angle_Noise);           
             speed_Noise = Random.Range(-this.speed_Noise, this.speed_Noise);    //初速 
-            bullet.GetComponent<Rigidbody2D>().velocity = bullet.transform.right * (speed + speed_Noise);
+            Bullet_Rigid(bullet).velocity = bullet.transform.right * (speed + speed_Noise);
             //寿命
             if (lifeTime > 0) {
                 Delete_Bullet(bullet, lifeTime);                       
@@ -298,6 +298,12 @@ public class ShootSystem : MonoBehaviour {
     }
 
 
+    //弾のrigidbody取得
+    private Rigidbody2D Bullet_Rigid(GameObject bullet) {        
+        return bullet.GetComponent<Rigidbody2D>();
+    }
+
+
     //弾の消去
     private void Delete_Bullet(GameObject bullet, float lifeTime) {
         Bullet b = bullet.GetComponent<Bullet>();
@@ -312,7 +318,7 @@ public class ShootSystem : MonoBehaviour {
 
     //弾の加速(単体)
     public IEnumerator Accelerate_Bullet_Cor(GameObject bullet, float max_Speed) {
-        Rigidbody2D bullet_Rigid = bullet.GetComponent<Rigidbody2D>();
+        Rigidbody2D bullet_Rigid = Bullet_Rigid(bullet);
         float xt = velocity_Forward.keys[velocity_Forward.keys.Length - 1].time;
         float yt = velocity_Lateral.keys[velocity_Lateral.keys.Length - 1].time;
         float end_Time = Mathf.Max(xt, yt);
@@ -331,52 +337,6 @@ public class ShootSystem : MonoBehaviour {
             yield return new WaitForSeconds(0.016f);
         }
     }
-
-
-    //弾の加速(List)
-    /*
-    public IEnumerator Accelerate_Bullet_Cor(List<GameObject> bullet_List, float max_Speed) {
-        if (bullet_List[0].GetComponent<Rigidbody2D>() == null) {
-            Debug.Log("Bullet Must Attached Rigidbody2D");
-            yield break;
-        }
-
-        //Rigidbody2Dの取得
-        List<Rigidbody2D> rigid_List = new List<Rigidbody2D>();
-        for (int i = 0; i < bullet_List.Count; i++) {
-            rigid_List.Add(bullet_List[i].GetComponent<Rigidbody2D>());
-        }
-
-        List<Rigidbody2D> remove_List = new List<Rigidbody2D>();
-        //速度変更
-        float forward = max_Speed;
-        float lateral = 0;
-        for (float t = 0; t < lifeTime; t += Time.deltaTime) {
-
-            for (int i = 0; i < rigid_List.Count; i++) {
-                //消えたものを除く
-                if (!rigid_List[i].gameObject.activeSelf) {
-                    remove_List.Add(rigid_List[i]);
-                    continue;
-                }             
-                //速度の計算、代入
-                forward = max_Speed * velocity_Forward.Evaluate(t); //前方向
-                lateral = max_Speed * velocity_Lateral.Evaluate(t); //横方向                
-                rigid_List[i].velocity = bullet_List[i].transform.right * forward + bullet_List[i].transform.up * lateral;    //速度代入
-                float dirVelocity = Mathf.Atan2(rigid_List[i].velocity.y, rigid_List[i].velocity.x) * Mathf.Rad2Deg;    //進行方向に回転
-                bullet_List[i].transform.rotation = Quaternion.AngleAxis(dirVelocity, new Vector3(0, 0, 1));
-            }
-
-            //消えたものを除く
-            for(int i = 0; i < remove_List.Count; i++) {
-                rigid_List.Remove(remove_List[i]);
-                bullet_List.Remove(remove_List[i].gameObject);
-            }
-            remove_List.Clear();
-
-            yield return new WaitForSeconds(0.015f);
-        }
-    }
-    */
+    
 
 }

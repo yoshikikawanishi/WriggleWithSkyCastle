@@ -18092,6 +18092,7 @@ GameObject:
   - component: {fileID: 2040442446}
   - component: {fileID: 2040442445}
   - component: {fileID: 2040442449}
+  - component: {fileID: 2040442450}
   m_Layer: 0
   m_Name: Scripts
   m_TagString: Untagged
@@ -18161,6 +18162,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1eeb242f19e76eb48a98557ddeb0de7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2040442450
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2040442444}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7226e2b508673247bf31f23e8393eaf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  file_Name: Stage2_2SceneEnemy
 --- !u!4 &2049060919 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4183997764480874, guid: fd803d44ed3628f4e890a27b9360459d,

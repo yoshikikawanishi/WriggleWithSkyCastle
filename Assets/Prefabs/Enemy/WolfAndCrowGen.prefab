@@ -21,10 +21,12 @@ GameObject:
   - component: {fileID: 4823310283459906}
   - component: {fileID: 212591490725560728}
   - component: {fileID: 114839905481385752}
+  - component: {fileID: 114594364157830532}
   - component: {fileID: 95490003181025736}
+  - component: {fileID: 114308089442064036}
   m_Layer: 0
   m_Name: WolfAndCrowGen
-  m_TagString: Untagged
+  m_TagString: EnemyTag
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -494,6 +496,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10d1fe2f6d0a7064e9c6f43cec126646, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114308089442064036
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1093771574772342}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 151a4e5617b28c34f873d3f94dcce539, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114313989439636274
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -506,6 +519,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   is_Pooled: 0
+  is_One_Life: 0
   life: 15
   power_Value: 5
   score_Value: 6
@@ -523,11 +537,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   is_Pooled: 0
+  is_One_Life: 0
   life: 12
   power_Value: 8
   score_Value: 8
   drop_Life_Probability: 1
   drop_Option_Box_Probability: 15
+--- !u!114 &114594364157830532
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1093771574772342}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e04eee4ffbf826347bb8e7a9fa8adac9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  is_Pooled: 0
+  is_One_Life: 1
+  life: 5
+  power_Value: 0
+  score_Value: 0
+  drop_Life_Probability: 1
+  drop_Option_Box_Probability: 0
 --- !u!114 &114691994486154928
 MonoBehaviour:
   m_ObjectHideFlags: 1
