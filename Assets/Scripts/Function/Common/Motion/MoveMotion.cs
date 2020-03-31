@@ -47,6 +47,9 @@ public class MoveMotion : MonoBehaviour {
         bool apply_Root_Position = pos_Curve[index].apply_Root_Position;
         float time = 0;
         float end_Time = x_Curve.keys[x_Curve.length - 1].time;
+        if (end_Time < y_Curve.keys[y_Curve.length - 1].time)
+            end_Time = y_Curve.keys[y_Curve.length - 1].time;
+
         Vector3 root_Pos = transform.position;
 
         while (true) {

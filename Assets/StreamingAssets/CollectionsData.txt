@@ -8,5 +8,5 @@ Shizuha	False
 BigFrog	True
 Nitori	True
 Hina	True
-Momizi	False
+Momizi	True
 Aya	True

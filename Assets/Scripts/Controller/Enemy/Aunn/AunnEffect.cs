@@ -4,13 +4,11 @@ using UnityEngine;
 
 public class AunnEffect : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+	public void Play_Battle_Effect() {
+
+    }
+
+    public void Delete_Battle_Effect() {
+
+    }
 }

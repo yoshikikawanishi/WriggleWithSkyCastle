@@ -28,7 +28,7 @@ public class AunnBGMManager{
 
     //メロディ取得
     public Melody Get_Now_Melody() {
-        now_BGM_Time = (Time.unscaledTime - BGM_Launch_Time) % BGM_TIME[BGM_TIME.Length] - 1;
+        now_BGM_Time = (Time.unscaledTime - BGM_Launch_Time) % BGM_TIME[BGM_TIME.Length - 1];
 
         if (now_BGM_Time < BGM_TIME[1]) {
             if (now_Melody != Melody.A)

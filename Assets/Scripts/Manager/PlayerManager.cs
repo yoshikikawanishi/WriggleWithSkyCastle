@@ -49,7 +49,7 @@ public class PlayerManager : SingletonMonoBehaviour<PlayerManager> {
     }
 
     public int Reduce_Stock() {
-        stock--;        
+        stock--;              
         return stock;
     }    
 
@@ -123,8 +123,7 @@ public class PlayerManager : SingletonMonoBehaviour<PlayerManager> {
     public void Set_Stock(int stock) {  
         if(stock > MAX_STOCK) {
             return;
-        }
-
+        }   
         this.stock = stock;       
     }  
     

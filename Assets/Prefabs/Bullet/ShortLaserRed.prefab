@@ -41,7 +41,7 @@ GameObject:
   - component: {fileID: 50325521276828380}
   - component: {fileID: 114589756790359804}
   m_Layer: 9
-  m_Name: RedLaser
+  m_Name: ShortLaserRed
   m_TagString: EnemyTag
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -150,7 +150,7 @@ MonoBehaviour:
   laserMat: {fileID: 2100000, guid: c72746730f3894a42a1bcd7697ce6271, type: 2}
   laserWidth: 5
   quality: 3
-  length: 200
+  length: 50
   play_On_Awake: 1
 --- !u!114 &114306853434308694
 MonoBehaviour:
